@@ -1,0 +1,51 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Esg_model extends CI_Model
+{
+	var $templates = array();
+	var $esg_data  = array();
+
+	public function __construct()
+	{
+		parent::__construct();
+	}
+	public function init()
+	{
+		$this->navigation();
+		$this->set_meta();
+		// $this->js();
+		$this->templates = $this->esg->get_config('templates');
+		$this->esg->set_esg('templates',$this->templates);
+		$this->esg_data = $this->esg->get_esg();
+	}
+	public function js()
+	{
+		$this->esg->set_esg('extra_js',base_url('templates/AdminLTE/assets/dist/js/script.js'));
+	}
+
+	public function set_meta($data = array())
+	{
+		if(empty($data) || !is_array($data))
+		{
+			$data = array(
+						'title' => 'esoftgreat',
+						'keyword' => 'software development',
+						'description' => 'software development and it consultant',
+						'developer' => 'esoftgreat',
+						'author' => 'esoftgreat',
+						'email' => 'iwan@esoftgreat.com , iwansafr@gmail.com',
+						'phone' => '6285640510460',
+						'icon' => base_url('images/icon.png'),
+					);
+		}
+		$this->esg->set_esg('meta', $data);
+	}
+
+	public function navigation()
+	{
+		$uri = array();
+		$uri['string'] = $this->uri->uri_string();
+		$uri['array'] = explode('/',$uri['string']);
+		$this->esg->set_esg('navigation',$uri);
+	}
+}
