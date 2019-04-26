@@ -128,7 +128,6 @@ class Pengguna_model extends CI_Model
 			{
 				$user_ids[] = $value['user_id'];
 			}
-			pr($user_ids);
 			$this->zea->del_data('user', $user_ids);
 		}
 	}
