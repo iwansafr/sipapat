@@ -12,6 +12,7 @@ if(is_root() || is_admin() || @$pengguna['desa_id'] == $_GET['id'])
 	$form->setLabel('nama','Nama Desa');
 	$form->addInput('kecamatan','text');
 	$form->addInput('kabupaten','text');
+	$form->addInput('provinsi','text');
 	$form->addInput('kode_pos','text');
 	$form->setLabel('kode_pos','Kode Pos');
 	$form->setAttribute('kode_pos',['type'=>'number']);
