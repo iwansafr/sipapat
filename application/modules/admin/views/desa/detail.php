@@ -15,6 +15,7 @@ if(!empty($id) && is_numeric($id))
 	$form->setLabel('nama','Nama Desa');
 	$form->addInput('kecamatan','plaintext');
 	$form->addInput('kabupaten','plaintext');
+	$form->addInput('provinsi','plaintext');
 	$form->addInput('kode_pos','plaintext');
 	$form->setLabel('kode_pos','Kode Pos');
 	$form->setAttribute('kode_pos',['type'=>'number']);
@@ -27,7 +28,7 @@ if(!empty($id) && is_numeric($id))
 	$form->setAttribute('website',['type'=>'url','placeholder'=>'http://website.com']);
 	$form->addInput('alamat','plaintext');
 	$form->setLabel('alamat','Alamat Balai Desa');
-	$form->setRequired(['nama','kecamatan','kabupaten']);
+	$form->setRequired(['nama','kecamatan','kabupaten','provinsi']);
 	$form->setSave(FALSE);
 	$form->form();
 }else{
