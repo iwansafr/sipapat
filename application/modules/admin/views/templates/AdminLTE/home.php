@@ -1,5 +1,19 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 echo '<div class="row">';
+$pengumuman = $this->esg->get_config('pengumuman');
+if(!empty($pengumuman))
+{
+	?>
+	<div class="container">
+		<h1>Pengumuman</h1>
+		<div class="callout callout-info">
+	    <h4><?php echo $pengumuman['judul'] ?>!</h4>
+
+	    <p><?php echo $pengumuman['pengumuman'] ?></p>
+	  </div>
+	</div>
+	<?php
+}
 if(!empty($home))
 {
 	foreach ($home as $key => $value) 
