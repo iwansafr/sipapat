@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Desa extends CI_Controller
+class Pengguna extends CI_Controller
 {
 	public function __construct()
 	{
@@ -19,24 +19,25 @@ class Desa extends CI_Controller
 
 	public function edit()
 	{
-		$pengguna = $this->pengguna_model->get_pengguna();
-		$this->load->view('index',['pengguna'=>$pengguna]);
+		$this->load->view('index');
+		$this->pengguna_model->save();
 	}
 
 	public function detail($id = 0)
 	{
-		$this->esg_model->set_nav_title('Detail Desa');
+		$this->esg_model->set_nav_title('Detail Pengguna');
+
 		$this->load->view('index', ['id'=>$id]);
 	}
 
 	public function list()
 	{
-		$pengguna = $this->pengguna_model->get_pengguna();
-		$this->load->view('index',['pengguna'=>$pengguna]);
+		$this->pengguna_model->delete();
+		$this->load->view('index');
 	}
 
 	public function clear_list()
 	{
-		$this->load->view('desa/list');
+		$this->load->view('pengguna/list');
 	}
 }

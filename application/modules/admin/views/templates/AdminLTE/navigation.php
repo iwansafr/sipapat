@@ -12,12 +12,18 @@ $title = $title == 'admin' ? 'home' : $title;
 	if(count($navigation['array']) > 1)
 	{
 		$url = '';
+		$nav_length = count($navigation['array'])-1;
 		foreach ($navigation['array'] as $key => $value)
 		{
 			$url .= '/'.$value;
 			if($key > 0)
 			{
-				echo '<li><a href="'.base_url($url).'">'.$value.'</a></li>';
+				if($key == $nav_length)
+				{
+					echo '<li>'.$value.'</li>';
+				}else{
+					echo '<li><a href="'.base_url($url).'">'.$value.'</a></li>';
+				}
 			}
 		}
 	}
