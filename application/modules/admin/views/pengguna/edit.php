@@ -4,6 +4,20 @@ $this->zea->init('edit');
 $this->zea->setTable('user_desa');
 $this->zea->setId(@intval($_GET['id']));
 $this->zea->setHeading('Pengguna');
+if(!empty($_GET['id']))
+{
+	$data_pengguna = $this->zea->getData();
+	$this->zea->addInput('user_id','hidden');
+	if($data_pengguna['user_id'] == 0)
+	{
+		$user_id = $this->db->query('SELECT id FROM user WHERE username = ?',$data_pengguna['username'])->row_array();
+		if(!empty($user_id['id']))
+		{
+			$user_id = $user_id['id'];
+			$this->zea->setValue('user_id',$user_id);
+		}
+	}
+}
 $this->zea->addInput('nama','text');
 $this->zea->addInput('username','text');
 $this->zea->addInput('user_role_id','dropdown');
