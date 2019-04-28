@@ -49,7 +49,7 @@ class Desa extends CI_Controller
 	}
 
 	// Export ke excel
-	public function export()
+	public function excel()
 	{
 		// Create new Spreadsheet object
 		$data['desa'] = $this->db->get('desa')->result_array();
@@ -152,10 +152,6 @@ class Desa extends CI_Controller
 		$pdf->Cell(35,6,'website',1,0);
 		$pdf->Cell(45,6,'alamat balai desa',1,1);
 
-    // $pdf->Cell(20,6,'NIM',1,0);
-    // $pdf->Cell(85,6,'NAMA MAHASISWA',1,0);
-    // $pdf->Cell(27,6,'NO HP',1,0);
-    // $pdf->Cell(25,6,'TANGGAL LHR',1,1);
     $pdf->SetFont('Arial','',7);
     $desa = $this->db->get('desa')->result_array();
     $i = 1;
@@ -173,10 +169,6 @@ class Desa extends CI_Controller
 			$pdf->Cell(35,6,$value['website'],1,0);
 			$pdf->Cell(45,6,$value['alamat'],1,1);
 
-      // $pdf->Cell(20,6,$row->nim,1,0);
-      // $pdf->Cell(85,6,$row->nama_lengkap,1,0);
-      // $pdf->Cell(27,6,$row->no_hp,1,0);
-      // $pdf->Cell(25,6,$row->tanggal_lahir,1,1); 
       $i++;
     }
     $pdf->Output();

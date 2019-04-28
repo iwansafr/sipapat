@@ -41,11 +41,11 @@ class Perangkat extends CI_Controller
 		$this->load->view('index', ['pengguna'=>$pengguna,'jabatan'=>$jabatan]);
 	}
 
-	public function clear_list()
+	public function clear_list($task = '')
 	{
 		$pengguna = $this->pengguna_model->get_pengguna();
 		$jabatan = $this->pengguna_model->jabatan();
-		$this->load->view('perangkat/index', ['pengguna'=>$pengguna,'jabatan'=>$jabatan]);
+		$this->load->view('perangkat/index', ['pengguna'=>$pengguna,'jabatan'=>$jabatan,'task'=>$task]);
 	}
 
 	public function bpd($task = 'list', $id=0)

@@ -5,6 +5,11 @@ $form->init('roll');
 $kelompok = empty($kelompok) ? 1: $kelompok;
 $module = ['1'=>'','2'=>'bpd','3'=>'lpmp','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw'];
 $module_title = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmp','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw'];
+if(!empty($task) && in_array($task, $module))
+{
+	$kelompok = array_keys($module,$task);
+	$kelompok = $kelompok[0];
+}
 $ext = (!is_root() && !is_admin()) ? ' AND desa_id = '.$pengguna['desa_id'] : '';
 $form->search();
 $form->setTable('perangkat_desa');
@@ -103,7 +108,7 @@ $form->setType('akhir_masa_jabatan','date');
 
 $form->setFormName($module[$kelompok].'_desa_form');
 
-$form->setUrl('admin/'.$module[$kelompok].'/clear_list');
+$form->setUrl('admin/perangkat/clear_list/'.$module[$kelompok]);
 $form->setEdit(TRUE);
 $form->setDelete(TRUE);
 $form->form();

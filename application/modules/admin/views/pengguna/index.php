@@ -3,7 +3,12 @@
 $form = new zea();
 $form->init('roll');
 $form->setTable('user_desa');
-$form->setHeading('Pengguna');
+$form->setHeading
+	(
+		'Pengguna '.
+		'<a target="_blank" href="'.base_url('admin/pengguna/pdf').'" class="btn btn-sm btn-default"><i class="fa fa-file-pdf-o"></i>/<i class="fa fa-print"></i></a>'.
+		'<a target="_blank" href="'.base_url('admin/pengguna/excel').'" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i></a>'
+	);
 $form->search();
 $form->addInput('id','link');
 $form->setLabel('id','detail');
