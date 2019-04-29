@@ -1,4 +1,6 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -21,29 +23,29 @@ CREATE TABLE `admin_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `admin_menu` (`id`, `par_id`, `user_role_ids`, `title`, `icon`, `link`, `sort_order`, `created`, `updated`) VALUES
-(1, 0, ',1,2,3,', 'Dashboard', 'fa fa-tachometer-alt', '/', 1, '2019-03-30 03:05:59', '2019-03-30 03:29:18'),
-(2, 0, ',1,2,3,', 'Content', 'fa fa-file-alt', '/content', 2, '2019-03-30 03:24:19', '2019-03-31 23:06:51'),
+(1, 0, ',1,2,3,', 'Dashboard', 'fa fa-tachometer-alt', '/', 0, '2019-03-30 03:05:59', '2019-04-26 19:23:53'),
+(2, 0, ',1,', 'Content', 'fa fa-file-alt', '/content', 6, '2019-03-30 03:24:19', '2019-04-26 20:17:17'),
 (3, 2, ',1,2,3,', 'Category', 'fa fa-list', '/content/category', 21, '2019-03-30 03:26:22', '2019-04-01 05:48:07'),
 (4, 2, ',1,2,3,', 'Add Content', 'fa fa-pencil-alt', '/content/edit', 22, '2019-03-30 03:35:27', '2019-04-01 05:48:07'),
 (5, 2, ',1,2,3,', 'Content List', 'fa fa-list', '/content/list', 23, '2019-03-30 03:35:44', '2019-04-01 05:48:07'),
 (6, 2, ',1,2,3,', 'Tag', 'fa fa-list', '/content/tag', 24, '2019-03-30 03:36:06', '2019-04-01 05:48:07'),
-(7, 0, ',1,2,3,', 'Gallery', 'fa fa-images', '/gallery', 3, '2019-03-31 22:53:29', '2019-04-01 05:47:53'),
+(7, 0, ',1,', 'Gallery', 'fa fa-images', '/gallery', 7, '2019-03-31 22:53:29', '2019-04-26 20:17:22'),
 (8, 7, ',1,2,3,', 'Images', 'fa fa-image', '/gallery', 31, '2019-03-31 22:53:57', '2019-04-01 06:01:57'),
-(9, 0, ',1,2,', 'User', 'fa fa-user', '/user', 4, '2019-03-31 22:54:25', '2019-04-01 05:47:53'),
+(9, 0, ',1,', 'User', 'fa fa-user', '/user', 8, '2019-03-31 22:54:25', '2019-04-26 20:17:25'),
 (10, 9, ',1,2,', 'User List', 'fa fa-dot-circle', '/user/list', 41, '2019-03-31 22:55:32', '2019-04-01 06:02:10'),
 (11, 9, ',1,2,', 'User Edit', 'fa fa-dot-circle', '/user/edit', 42, '2019-03-31 22:58:48', '2019-04-01 06:02:10'),
 (12, 9, ',1,', 'User Role', 'fa fa-dot-circle', '/user/role', 43, '2019-03-31 22:59:13', '2019-04-01 06:02:10'),
-(13, 0, ',1,2,', 'Menu', 'fa fa-list', '/menu', 5, '2019-03-31 22:59:33', '2019-04-01 05:47:53'),
+(13, 0, ',1,', 'Menu', 'fa fa-list', '/menu', 9, '2019-03-31 22:59:33', '2019-04-26 20:17:27'),
 (14, 13, ',1,2,', 'Add Menu', 'fa fa-pencil-alt', '/menu/edit', 51, '2019-03-31 22:59:58', '2019-04-01 06:02:26'),
 (15, 13, ',1,2,', 'Menu List', 'fa fa-pencil-alt', '/menu/list', 52, '2019-03-31 23:00:18', '2019-04-01 06:02:26'),
 (16, 13, ',1,2,', 'Menu Position', 'fa fa-list', '/menu/position', 53, '2019-03-31 23:00:37', '2019-04-01 06:02:26'),
-(17, 0, ',1,', 'Admin Menu', 'fa fa-list', '/admin_menu', 6, '2019-03-31 23:01:10', '2019-04-01 05:47:53'),
+(17, 0, ',1,', 'Admin Menu', 'fa fa-list', '/admin_menu', 10, '2019-03-31 23:01:10', '2019-04-26 19:09:00'),
 (18, 17, ',1,', 'Add Menu', 'fa fa-pencil-alt', '/admin_menu/edit', 61, '2019-04-01 05:45:00', '2019-04-01 06:02:42'),
 (19, 17, ',1,', 'Menu List', 'fa fa-list', '/admin_menu/list', 62, '2019-04-01 05:45:20', '2019-04-01 06:02:42'),
 (20, 17, ',1,', 'Menu Parent', 'fa fa-list', '/admin_menu/list?id=0', 63, '2019-04-01 05:46:00', '2019-04-01 06:02:42'),
-(21, 0, ',1,2,', 'Data', 'fa fa-database', '/visitor', 7, '2019-04-01 05:46:34', '2019-04-01 05:47:53'),
+(21, 0, ',1,', 'Data', 'fa fa-database', '/visitor', 11, '2019-04-01 05:46:34', '2019-04-26 20:17:35'),
 (22, 21, ',1,2,', 'Visitor', 'fa fa-chart-bar', '/visitor', 71, '2019-04-01 05:46:56', '2019-04-01 06:02:51'),
-(23, 0, ',1,2,', 'Configuration', 'fa fa-cog', '/config', 8, '2019-04-01 06:03:37', '2019-04-01 06:04:01'),
+(23, 0, ',1,', 'Configuration', 'fa fa-cog', '/config', 12, '2019-04-01 06:03:37', '2019-04-26 20:17:58'),
 (24, 23, ',1,2,', 'Logo', 'fa fa-cog', '/config/logo', 81, '2019-04-01 06:04:28', '2019-04-01 06:08:52'),
 (25, 23, ',1,2,', 'Site', 'fa fa-cog', '/config/site', 82, '2019-04-01 06:04:41', '2019-04-01 06:08:52'),
 (26, 23, ',1,2,', 'Templates', 'fa fa-cog', '/config/templates', 83, '2019-04-01 06:04:57', '2019-04-01 06:08:52'),
@@ -56,9 +58,23 @@ INSERT INTO `admin_menu` (`id`, `par_id`, `user_role_ids`, `title`, `icon`, `lin
 (33, 21, ',1,2,', 'Invoice', 'fa fa-money', '/invoice', 1, '2019-04-05 23:07:23', '2019-04-05 23:07:23'),
 (34, 23, ',1,2,', 'Bank Account', 'fa fa-user', '/config/bank_account', 85, '2019-04-06 01:37:09', '2019-04-06 01:38:22'),
 (35, 23, ',1,', 'Dashboard', 'fa fa-chart-bar', '/config/dashboard', 88, '2019-04-19 18:37:39', '2019-04-19 18:40:30'),
-(36, 0, ',1,2,3,', 'Desa', 'fa fa-list', '/admin/desa', 1, '2019-04-25 16:43:34', '2019-04-25 16:43:34'),
-(37, 36, ',1,2,3,', 'Data Desa', 'fa fa-list', '/desa/list', 1, '2019-04-25 16:44:04', '2019-04-25 16:48:00'),
-(38, 36, ',1,2,3,', 'Tambah Desa', 'fa fa-plus', '/desa/edit', 1, '2019-04-25 16:44:21', '2019-04-25 16:48:16');
+(36, 0, ',1,2,3,', 'Desa', 'fa fa-list', '/admin/desa', 2, '2019-04-25 16:43:34', '2019-04-26 19:09:00'),
+(37, 36, ',1,2,3,', 'Data Desa', 'fa fa-list', '/desa/list', 1, '2019-04-25 16:44:04', '2019-04-26 09:15:55'),
+(38, 36, ',1,2,', 'Tambah Desa', 'fa fa-plus', '/desa/edit', 1, '2019-04-25 16:44:21', '2019-04-26 08:16:26'),
+(39, 0, ',1,2,', 'Pengguna', 'fa fa-user', '/pengguna/list', 3, '2019-04-26 02:33:07', '2019-04-26 19:09:00'),
+(40, 39, ',1,2,', 'Data Pengguna', 'fa fa-list', '/pengguna/list', 1, '2019-04-26 02:33:28', '2019-04-26 02:33:28'),
+(41, 39, ',1,2,', 'Tambah Pengguna', 'fa fa-plus', '/pengguna/edit', 1, '2019-04-26 02:33:41', '2019-04-26 02:33:41'),
+(42, 0, ',1,2,3,', 'Perangkat Desa', 'fa fa-user', '/perangkat/list', 4, '2019-04-26 06:17:45', '2019-04-26 19:09:00'),
+(43, 42, ',1,2,3,', 'Data Perangkat Desa', 'fa fa-list', '/perangkat/list', 1, '2019-04-26 06:18:10', '2019-04-26 06:18:10'),
+(44, 42, ',1,2,3,', 'Tambah Perangkat Desa', 'fa fa-plus', '/perangkat/edit', 1, '2019-04-26 06:18:33', '2019-04-26 06:18:33'),
+(45, 0, ',1,2,3,', 'Lembaga', 'fa fa-bank', '/perangkat', 5, '2019-04-26 18:15:46', '2019-04-26 19:09:00'),
+(46, 45, ',1,2,3,', 'BPD', 'fa fa-dot-circle', '/perangkat/bpd/list', 1, '2019-04-26 18:16:20', '2019-04-26 18:58:50'),
+(47, 45, ',1,2,3,', 'LPMP', 'fa fa-dot-circle', '/perangkat/lpmp/list', 2, '2019-04-26 19:02:41', '2019-04-26 19:09:17'),
+(48, 45, ',1,2,3,', 'PKK', 'fa fa-dot-circle', '/perangkat/pkk', 3, '2019-04-26 19:07:12', '2019-04-26 19:09:17'),
+(49, 45, ',1,2,3,', 'Karang Taruna', 'fa fa-dot-circle', '/perangkat/karang_taruna/list', 4, '2019-04-26 19:07:46', '2019-04-26 19:09:17'),
+(50, 45, ',1,2,3,', 'RT', 'fa fa-dot-circle', '/perangkat/rt/list', 5, '2019-04-26 19:07:59', '2019-04-26 19:09:17'),
+(51, 45, ',1,2,3,', 'RW', 'fa fa-dot-circle', '/perangkat/rw/list', 6, '2019-04-26 19:08:14', '2019-04-26 19:09:17'),
+(52, 0, ',1,2,', 'Pengumuman', 'fa fa-bullhorn', '/pengumuman', 1, '2019-04-26 19:23:05', '2019-04-26 19:24:45');
 
 DROP TABLE IF EXISTS `bank_account`;
 CREATE TABLE `bank_account` (
@@ -106,9 +122,10 @@ INSERT INTO `config` (`id`, `name`, `value`) VALUES
 (7, 'Avilon_widget', '{\"template\":\"Avilon\",\"menu_top\":{\"content\":\"1\"},\"content_thumbnail\":{\"content\":\"4\",\"limit\":\"3\"},\"content_hot\":{\"content\":\"5\",\"limit\":\"1\"},\"content_top\":{\"content\":\"6\",\"limit\":\"4\"},\"content\":{\"content\":\"7\",\"limit\":\"3\"},\"content_banner\":{\"content\":\"8\",\"limit\":\"1\"},\"content_bottom\":{\"content\":\"9\",\"limit\":\"4\"},\"content_brand\":{\"content\":\"10\",\"limit\":\"10\"},\"content_pricing\":{\"content\":\"11\",\"limit\":\"3\"},\"content_question\":{\"content\":\"12\",\"limit\":\"7\"},\"content_team\":{\"content\":\"13\",\"limit\":\"6\"},\"content_gallery\":{\"content\":\"14\",\"limit\":\"6\"},\"content_payment\":{\"content\":\"0\",\"limit\":\"7\"},\"menu_bottom\":{\"content\":\"0\"}}'),
 (8, 'Avilon_script', '{\"script\":\"<!-- Go to www.addthis.com\\/dashboard to customize your tools -->\\r\\n<!-- <script type=\\\"text\\/javascript\\\" src=\\\"\\/\\/s7.addthis.com\\/js\\/300\\/addthis_widget.js#pubid=ra-5c2b7a98a617a916\\\"><\\/script> -->\"}'),
 (9, 'Avilon_style', '{\"style\":\"<style>\\r\\n.credit{\\r\\npadding-bottom: 10px;\\r\\n}\\r\\n.product-screens img{\\r\\n border-radius: 25px;\\r\\n}\\r\\n#clients img{\\r\\n max-height: 150px;\\r\\n}\\r\\n#clients .col-md-4{\\r\\n text-align: center;\\r\\n}\\r\\n<\\/style>\\r\\n<!-- Global site tag (gtag.js) - Google Analytics -->\\r\\n<script async src=\\\"https:\\/\\/www.googletagmanager.com\\/gtag\\/js?id=UA-113848816-1\\\"><\\/script>\\r\\n<script>\\r\\n  window.dataLayer = window.dataLayer || [];\\r\\n  function gtag(){dataLayer.push(arguments);}\\r\\n  gtag(\'js\', new Date());\\r\\n\\r\\n  gtag(\'config\', \'UA-113848816-1\');\\r\\n<\\/script>\\r\\n<script async src=\\\"\\/\\/pagead2.googlesyndication.com\\/pagead\\/js\\/adsbygoogle.js\\\"><\\/script>\\r\\n<script>\\r\\n  (adsbygoogle = window.adsbygoogle || []).push({\\r\\n    google_ad_client: \\\"ca-pub-3145506515429478\\\",\\r\\n    enable_page_level_ads: true\\r\\n  });\\r\\n<\\/script>\"}'),
-(10, 'dashboard', '{\"icon\":{\"bank_account\":\"fa fa-chart-bar\",\"comment\":\"fa fa-chart-bar\",\"content\":\"fa fa-chart-bar\",\"content_cat\":\"fa fa-chart-bar\",\"content_tag\":\"fa fa-chart-bar\",\"invoice\":\"fa fa-chart-bar\",\"menu\":\"fa fa-chart-bar\",\"menu_position\":\"fa fa-chart-bar\",\"message\":\"fa fa-chart-bar\",\"product\":\"fa fa-chart-bar\",\"product_cat\":\"fa fa-chart-bar\",\"product_tag\":\"fa fa-chart-bar\",\"user\":\"fa fa-chart-bar\",\"user_login\":\"fa fa-chart-bar\",\"user_role\":\"fa fa-chart-bar\",\"visitor\":\"fa fa-chart-bar\"},\"link\":{\"bank_account\":\"\\/admin\\/bank_account\",\"comment\":\"\",\"content\":\"\\/admin\\/content\\/list\",\"content_cat\":\"\\/admin\\/content\\/category\",\"content_tag\":\"\\/admin\\/content\\/tag\",\"invoice\":\"\\/admin\\/invoice\",\"menu\":\"\\/admin\\/menu\\/list\",\"menu_position\":\"\\/admin\\/menu\\/position\",\"message\":\"\\/admin\\/message\",\"product\":\"\",\"product_cat\":\"\",\"product_tag\":\"\",\"user\":\"\\/admin\\/user\\/list\",\"user_login\":\"\",\"user_role\":\"\\/admin\\/user\\/role\",\"visitor\":\"\\/admin\\/visitor\"},\"publish_row\":[\"bank_account\",\"content\",\"content_cat\",\"content_tag\",\"invoice\",\"menu\",\"menu_position\",\"message\",\"user\",\"user_role\",\"visitor\"],\"color_row\":{\"bank_account\":\"#1d53d6\",\"comment\":\"#1b27aa\",\"content\":\"#d9de35\",\"content_cat\":\"#1fd628\",\"content_tag\":\"#643f7f\",\"invoice\":\"#844465\",\"menu\":\"#347f43\",\"menu_position\":\"#9c4b95\",\"message\":\"#b55da4\",\"product\":\"#78753e\",\"product_cat\":\"#c5c560\",\"product_tag\":\"#737c29\",\"user\":\"#ad7852\",\"user_login\":\"#6d5f91\",\"user_role\":\"#27799a\",\"visitor\":\"#2b6173\"}}'),
+(10, 'dashboard', '{\"icon\":{\"bank_account\":\"fa fa-chart-bar\",\"comment\":\"fa fa-chart-bar\",\"content\":\"fa fa-chart-bar\",\"content_cat\":\"fa fa-chart-bar\",\"content_tag\":\"fa fa-chart-bar\",\"desa\":\"fa fa-chart-bar\",\"invoice\":\"fa fa-chart-bar\",\"menu\":\"fa fa-chart-bar\",\"menu_position\":\"fa fa-chart-bar\",\"message\":\"fa fa-chart-bar\",\"perangkat_desa\":\"fa fa-chart-bar\",\"product\":\"fa fa-chart-bar\",\"product_cat\":\"fa fa-chart-bar\",\"product_tag\":\"fa fa-chart-bar\",\"subscriber\":\"\",\"user\":\"fa fa-chart-bar\",\"user_desa\":\"\",\"user_login\":\"fa fa-chart-bar\",\"user_login_failed\":\"\",\"user_role\":\"fa fa-chart-bar\",\"visitor\":\"fa fa-chart-bar\"},\"link\":{\"bank_account\":\"\\/admin\\/bank_account\",\"comment\":\"\",\"content\":\"\\/admin\\/content\\/list\",\"content_cat\":\"\\/admin\\/content\\/category\",\"content_tag\":\"\\/admin\\/content\\/tag\",\"desa\":\"\\/admin\\/desa\\/list\",\"invoice\":\"\\/admin\\/invoice\",\"menu\":\"\\/admin\\/menu\\/list\",\"menu_position\":\"\\/admin\\/menu\\/position\",\"message\":\"\\/admin\\/message\",\"perangkat_desa\":\"\\/admin\\/perangkat\\/list\",\"product\":\"\",\"product_cat\":\"\",\"product_tag\":\"\",\"subscriber\":\"\",\"user\":\"\\/admin\\/user\\/list\",\"user_desa\":\"\",\"user_login\":\"\",\"user_login_failed\":\"\",\"user_role\":\"\\/admin\\/user\\/role\",\"visitor\":\"\\/admin\\/visitor\"},\"color_row\":{\"bank_account\":\"#1d53d6\",\"comment\":\"#1b27aa\",\"content\":\"#d9de35\",\"content_cat\":\"#1fd628\",\"content_tag\":\"#643f7f\",\"desa\":\"#9581ed\",\"invoice\":\"#844465\",\"menu\":\"#347f43\",\"menu_position\":\"#9c4b95\",\"message\":\"#b55da4\",\"perangkat_desa\":\"#c34fce\",\"product\":\"#78753e\",\"product_cat\":\"#c5c560\",\"product_tag\":\"#737c29\",\"subscriber\":\"#000000\",\"user\":\"#ad7852\",\"user_desa\":\"#000000\",\"user_login\":\"#6d5f91\",\"user_login_failed\":\"#000000\",\"user_role\":\"#27799a\",\"visitor\":\"#2b6173\"}}'),
 (11, 'comodo_widget', '{\"template\":\"comodo\",\"menu_top\":{\"content\":\"1\"},\"content_top\":{\"content\":\"3\",\"limit\":\"1\"},\"content\":{\"content\":\"3\",\"limit\":\"1\"},\"content_oval\":{\"content\":\"14\",\"limit\":\"4\"},\"content_tab_1\":{\"content\":\"14\",\"limit\":\"1\"},\"content_tab_2\":{\"content\":\"3\",\"limit\":\"1\"},\"content_tab_3\":{\"content\":\"7\",\"limit\":\"1\"},\"content_gallery\":{\"content\":\"14\",\"limit\":\"6\"},\"content_testimonial\":{\"content\":\"12\",\"limit\":\"7\"},\"content_pricing\":{\"content\":\"11\",\"limit\":\"3\"},\"content_faq\":{\"content\":\"12\",\"limit\":\"7\"},\"content_blog\":{\"content\":\"19\",\"limit\":\"7\"},\"menu_bottom_1\":{\"content\":\"1\"},\"menu_bottom_2\":{\"content\":\"1\"},\"menu_bottom_3\":{\"content\":\"1\"},\"menu_bottom_4\":{\"content\":\"1\"},\"menu_footer\":{\"content\":\"1\"}}'),
-(12, 'comodo_style', '{\"style\":\"<style>\\r\\n.header_area{\\r\\n background: #222d32;\\r\\n}\\r\\n<\\/style>\"}');
+(12, 'comodo_style', '{\"style\":\"<style>\\r\\n.header_area{\\r\\n background: #222d32;\\r\\n}\\r\\n<\\/style>\"}'),
+(13, 'pengumuman', '{\"judul\":\"pembaharuan\",\"pengumuman\":\"<p>ada pembaharuan di dalam aplikasi <span style=\\\"background-color: rgb(255, 0, 0);\\\"><b><u>sipapat<\\/u><\\/b><\\/span><\\/p>\"}');
 
 DROP TABLE IF EXISTS `content`;
 CREATE TABLE `content` (
@@ -263,6 +280,7 @@ CREATE TABLE `desa` (
   `nama` varchar(255) NOT NULL,
   `kecamatan` varchar(255) NOT NULL,
   `kabupaten` varchar(255) NOT NULL,
+  `provinsi` varchar(255) NOT NULL,
   `kode_pos` int(11) NOT NULL,
   `telepon` varchar(20) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -271,6 +289,9 @@ CREATE TABLE `desa` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `desa` (`id`, `kode`, `nama`, `kecamatan`, `kabupaten`, `provinsi`, `kode_pos`, `telepon`, `email`, `website`, `alamat`, `created`, `updated`) VALUES
+(4, '5467856', 'RONGGO', 'JAKEN', 'PATI', 'JAWA TENGAH', 59184, '2147483647', 'ronggo@gmail.com', 'http://ronggo-jaken.desa.id', 'jl ronggo-jaken k 09', '2019-04-26 20:28:43', '2019-04-26 20:39:13');
 
 DROP TABLE IF EXISTS `invoice`;
 CREATE TABLE `invoice` (
@@ -348,8 +369,10 @@ CREATE TABLE `perangkat_desa` (
   `tempat_lahir` varchar(255) NOT NULL,
   `tgl_lahir` date NOT NULL,
   `kelamin` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0=wanita,1=laki-laki',
+  `alamat` text NOT NULL,
+  `telepon` varchar(20) NOT NULL,
   `agama` tinyint(1) NOT NULL COMMENT '1=islam,2=kristen,3=katholik,4=hindu,5=budha,6=khonghucu,7=kepercayaan terhadap tuhan yang maha esa lainnya',
-  `status_perkawinan` tinyint(1) NOT NULL COMMENT '0=belum kawin,1=sudah kawin',
+  `status_perkawinan` tinyint(1) NOT NULL COMMENT '0=belum kawin,1=cerai hidup,2=cerai mati,3=kawin',
   `pendidikan_terakhir` tinyint(2) NOT NULL COMMENT '1=akademi/diploma iii/s.muda,2=belum tamat sd/sederajat,3=diploma i/ii,4=diploma iv/strata i,5=slta/sederajat,6=sltp/sederajat,7=strata ii,8=strata iii,9=tamat sd/sederajat,10=tidak/belum sekolah',
   `jamkes` varchar(255) NOT NULL COMMENT 'jaminan kesehatan',
   `jabatan` tinyint(2) NOT NULL COMMENT 'perangkat desa(1=kepala desa,2=sekretaris desa,3=kepala dusun 1,4=kepala dusun ii,5=kepala dusun iii,6=kepala dusun iv,7=kepala dusun v,8=kaur administrasi dan umum,9=kaur keuangan,10=kasi pemerintahan,11=kasi pembangunan,12=kasi kesra,13=staf kaur keuangan,14=staf kasi pemerintahan,15=staf kasi pembangunan,16=staf kasi kesra),bpd(1=ketua , 2=wakil ketua, 3=sekretaris, 4=anggota),lpmp(1=ketua, 2=seksi agama, 3=seksi pemuda, 4=anggota),pkk(1=ketua,2=sekretaris i,3=sekretaris ii,4=bendahara i,5=bendahara ii,6=pokja i,7=pokja ii),karang taruna(1=ketua,2=wakil ketua,3=sekretaris i,4=sekretaris ii,5=bendahara i,6=bendahara ii,7=anggota)',
@@ -365,6 +388,9 @@ CREATE TABLE `perangkat_desa` (
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `perangkat_desa` (`id`, `desa_id`, `kelompok`, `nama`, `foto`, `tempat_lahir`, `tgl_lahir`, `kelamin`, `alamat`, `telepon`, `agama`, `status_perkawinan`, `pendidikan_terakhir`, `jamkes`, `jabatan`, `no_sk`, `sk_penetapan_kembali`, `tgl_pelantikan`, `akhir_masa_jabatan`, `pelantik`, `bengkok`, `penghasilan`, `riwayat_pendidikan`, `riwayat_diklat`, `created`, `updated`) VALUES
+(10, 0, 1, 'ahmad', 'foto_ahmad.jpg', 'pati', '1994-12-01', 1, '', '', 1, 0, 1, '', 2, '', '', '0000-00-00', '0000-00-00', '', '', 0, '', '', '2019-04-27 03:45:20', '2019-04-27 03:45:23');
 
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
@@ -405,6 +431,14 @@ CREATE TABLE `product_tag` (
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+DROP TABLE IF EXISTS `subscriber`;
+CREATE TABLE `subscriber` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
@@ -420,9 +454,31 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `image`, `user_role_id`, `active`, `created`, `updated`) VALUES
 (1, 'root', '$2y$10$iN3I64zsXAyy9MCEVAPe3uqv1ygazlJgKFYEc2aNCiu2VDe/ZTKjO', 'root@esoftgreat.com', '', 1, 1, '2018-11-03 07:36:32', '2018-11-03 07:36:32'),
-(2, 'admin', '$2y$10$jdpCJJsaAfx1hv0EXyQpjOce6kqeffl9X/cOJvJYuSnG4/aFLwb7C', 'admin@esoftgreat.com', '', 2, 1, '2018-11-04 19:27:55', '2018-11-04 19:27:55'),
-(6, 'sabil', '$2y$10$tiM9lqis8SiY1wnfzMd0uO0BpGj09BOX.v00nU/n6o3gD2Bu1pz1u', 'sabil@esoftgreat.com', '', 2, 1, '2018-12-26 11:41:41', '2018-12-26 11:41:41'),
-(7, 'esoftgreat', '$2y$10$8gCi1lmoWGc6aM1kRPkLjedUEO9tgkZlF6b1tdujtbH34MpJ4Osdi', 'iwan@esoftgreat.com', '', 1, 1, '2018-12-29 09:10:05', '2018-12-29 09:10:05');
+(7, 'esoftgreat', '$2y$10$8gCi1lmoWGc6aM1kRPkLjedUEO9tgkZlF6b1tdujtbH34MpJ4Osdi', 'iwan@esoftgreat.com', '', 1, 1, '2018-12-29 09:10:05', '2018-12-29 09:10:05'),
+(16, 'admin', '$2y$10$JOUyfnYafyRA4VFkJVfsCOdyUAyfpGCqQHnY714c3uEs8IQxTMj92', 'admin@esoftgreat.com', '', 2, 1, '2019-04-27 03:15:16', '2019-04-27 03:15:16'),
+(17, 'ronggo', '$2y$10$4SOqyCZeWAp72oeBUgdby.rmywpr2ZA8l2JhX.cTzwu6Ci7wnxFSq', 'medianusaperkasa@gmail.com', '', 3, 1, '2019-04-27 03:30:26', '2019-04-27 03:30:26'),
+(18, 'coba', '$2y$10$XL7tAnzaH7p2EFJf510.O.F3jAKq7z06hz6kiuFhTtNah8oADDW5u', 'ndutkak@gmail.com', '', 3, 1, '2019-04-27 03:43:13', '2019-04-27 03:43:13');
+
+DROP TABLE IF EXISTS `user_desa`;
+CREATE TABLE `user_desa` (
+  `id` int(11) NOT NULL,
+  `desa_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `user_role_id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `sandi` varchar(255) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `user_desa` (`id`, `desa_id`, `user_id`, `user_role_id`, `username`, `email`, `sandi`, `nama`, `phone`, `active`, `created`, `updated`) VALUES
+(10, 0, 16, 2, 'admin', 'admin@esoftgreat.com', 'password0123', 'Admin', '6285290335332', 1, '2019-04-27 03:15:16', '2019-04-27 03:15:16'),
+(11, 4, 17, 3, 'ronggo', 'medianusaperkasa@gmail.com', 'Merdeka222', 'Joyo', '081326775555', 1, '2019-04-28 20:26:06', '2019-04-28 20:26:06'),
+(12, 0, 18, 3, 'coba', 'ndutkak@gmail.com', '12345', 'much', '082330892154', 1, '2019-04-27 03:43:13', '2019-04-27 03:43:13');
 
 DROP TABLE IF EXISTS `user_login`;
 CREATE TABLE `user_login` (
@@ -435,7 +491,62 @@ CREATE TABLE `user_login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `user_login` (`id`, `user_id`, `ip`, `browser`, `status`, `created`) VALUES
-(1, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 1, '2019-04-25 23:39:50');
+(1, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 1, '2019-04-25 23:39:50'),
+(2, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 1, '2019-04-26 07:11:56'),
+(3, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 1, '2019-04-26 12:28:23'),
+(4, 14, '127.0.0.1', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0', 1, '2019-04-26 15:14:12'),
+(5, 13, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 1, '2019-04-26 15:38:44'),
+(6, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 1, '2019-04-26 16:10:38'),
+(7, 0, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 0, '2019-04-26 18:53:26'),
+(8, 0, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 0, '2019-04-26 18:55:03'),
+(9, 15, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 1, '2019-04-26 18:55:09'),
+(10, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 1, '2019-04-27 00:40:58'),
+(11, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0', 1, '2019-04-27 00:50:50'),
+(12, 13, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 1, '2019-04-27 00:51:31'),
+(13, 14, '127.0.0.1', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0', 1, '2019-04-27 00:53:05'),
+(14, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 1, '2019-04-27 01:10:51'),
+(15, 13, '182.1.94.62', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 1, '2019-04-27 03:06:08'),
+(16, 1, '182.1.94.62', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 1, '2019-04-27 03:07:07'),
+(17, 16, '182.1.94.62', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0', 1, '2019-04-27 03:16:32'),
+(18, 0, '36.73.33.148', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 0, '2019-04-27 03:25:29'),
+(19, 0, '36.73.33.148', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 0, '2019-04-27 03:26:01'),
+(20, 0, '36.73.33.148', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 0, '2019-04-27 03:26:03'),
+(21, 16, '182.1.94.62', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0', 1, '2019-04-27 03:26:17'),
+(22, 0, '36.73.33.148', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 0, '2019-04-27 03:26:29'),
+(23, 16, '36.73.33.148', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 1, '2019-04-27 03:26:43'),
+(24, 0, '36.73.33.148', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 0, '2019-04-27 03:41:15'),
+(25, 0, '36.73.33.148', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 0, '2019-04-27 03:41:33'),
+(26, 16, '36.73.33.148', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 1, '2019-04-27 03:41:52'),
+(27, 18, '36.73.33.148', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 1, '2019-04-27 03:43:41'),
+(28, 16, '36.73.33.148', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 1, '2019-04-27 03:47:16'),
+(29, 16, '36.73.35.219', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 1, '2019-04-27 10:24:19'),
+(30, 0, '182.1.64.139', 'Mozilla/5.0 (Linux; Android 9; Mi A2 Lite) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.99 Mobile Safari/537.36', 0, '2019-04-27 12:09:29'),
+(31, 16, '182.1.64.139', 'Mozilla/5.0 (Linux; Android 9; Mi A2 Lite) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.99 Mobile Safari/537.36', 1, '2019-04-27 12:09:38'),
+(32, 16, '36.73.35.219', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 1, '2019-04-27 18:21:09'),
+(33, 16, '120.188.94.21', 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1 Mobile/15E148 Safari/604.1', 1, '2019-04-27 18:32:36'),
+(34, 16, '114.125.76.107', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 1, '2019-04-28 01:54:28'),
+(35, 16, '114.125.79.71', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 1, '2019-04-28 04:10:42'),
+(36, 16, '114.125.79.71', 'Mozilla/5.0 (Linux; Android 9; Mi A2 Lite) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.99 Mobile Safari/537.36', 1, '2019-04-28 04:17:27'),
+(37, 16, '182.1.77.166', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 1, '2019-04-28 20:24:36'),
+(38, 1, '36.65.195.57', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', 1, '2019-04-29 07:22:17');
+
+DROP TABLE IF EXISTS `user_login_failed`;
+CREATE TABLE `user_login_failed` (
+  `id` int(11) NOT NULL,
+  `user_login_id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `user_login_failed` (`id`, `user_login_id`, `username`, `password`) VALUES
+(1, 8, 'lina', '1'),
+(2, 18, 'admin', 'admin'),
+(3, 19, 'admin', 'admin'),
+(4, 20, 'admin', 'admin'),
+(5, 22, 'admin', '0123'),
+(6, 24, 'ronggo', 'merdeka222'),
+(7, 25, 'ronggo', 'merdeka222'),
+(8, 30, 'admin', 'Password0123');
 
 DROP TABLE IF EXISTS `user_role`;
 CREATE TABLE `user_role` (
@@ -450,7 +561,7 @@ CREATE TABLE `user_role` (
 INSERT INTO `user_role` (`id`, `level`, `title`, `description`, `created`, `updated`) VALUES
 (1, 1, 'root', 'super user', '2018-11-02 22:57:22', '2018-11-02 22:57:22'),
 (2, 2, 'admin', 'the administrator', '2018-11-02 22:57:22', '2018-11-02 22:57:22'),
-(3, 5, 'Member', 'User member yang hanya berlangganan saja', '2018-11-04 12:59:26', '2018-11-04 12:59:26');
+(3, 5, 'Anggota', 'level Pengguna untuk petugas desa', '2018-11-04 12:59:26', '2019-04-26 02:31:49');
 
 DROP TABLE IF EXISTS `visitor`;
 CREATE TABLE `visitor` (
@@ -570,7 +681,98 @@ INSERT INTO `visitor` (`id`, `ip`, `visited`, `city`, `region`, `country`, `brow
 (103, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 00:23:54'),
 (104, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 00:24:08'),
 (105, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 00:24:21'),
-(106, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 00:25:13');
+(106, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 00:25:13'),
+(107, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:11:56'),
+(108, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:16:27'),
+(109, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:16:41'),
+(110, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:16:45'),
+(111, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:17:51'),
+(112, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:19:14'),
+(113, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:21:27'),
+(114, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:21:45'),
+(115, '::1', 'http://localhost/sipapat/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:22:18'),
+(116, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:23:47'),
+(117, '::1', 'http://localhost/sipapat/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:23:47'),
+(118, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:24:50'),
+(119, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:25:14'),
+(120, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:25:16'),
+(121, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:25:18'),
+(122, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:25:36'),
+(123, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:25:41'),
+(124, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:25:44'),
+(125, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:26:11'),
+(126, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:26:18'),
+(127, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:26:23'),
+(128, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:27:29'),
+(129, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:27:53'),
+(130, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:28:16'),
+(131, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:30:53'),
+(132, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:31:02'),
+(133, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:31:26'),
+(134, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:31:36'),
+(135, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:32:03'),
+(136, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:34:06'),
+(137, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:34:15'),
+(138, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:34:33'),
+(139, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:34:36'),
+(140, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:34:41'),
+(141, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:34:55'),
+(142, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:34:57'),
+(143, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:35:10'),
+(144, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:35:13'),
+(145, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:35:19'),
+(146, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:35:27'),
+(147, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:35:51'),
+(148, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:36:20'),
+(149, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:36:36'),
+(150, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:36:50'),
+(151, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:36:53'),
+(152, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:37:14'),
+(153, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:37:16'),
+(154, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 07:37:56'),
+(155, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:00:39'),
+(156, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:00:47'),
+(157, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:01:12'),
+(158, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:01:29'),
+(159, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:15:39'),
+(160, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:16:17'),
+(161, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:16:43'),
+(162, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:16:50'),
+(163, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:16:55'),
+(164, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:17:22'),
+(165, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:18:20'),
+(166, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:19:20'),
+(167, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:19:35'),
+(168, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:20:55'),
+(169, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:21:31'),
+(170, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:21:49'),
+(171, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:25:51'),
+(172, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:26:20'),
+(173, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:26:29'),
+(174, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:27:04'),
+(175, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:27:11'),
+(176, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:30:52'),
+(177, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:31:09'),
+(178, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:31:27'),
+(179, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:31:32'),
+(180, '::1', 'http://localhost/sipapat/images/ajax-loader.gif', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:31:49'),
+(181, '::1', 'http://localhost/sipapat/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 09:47:37'),
+(182, '::1', 'http://localhost/sipapat/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 10:00:49'),
+(183, '::1', 'http://localhost/sipapat/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 12:34:04'),
+(184, '::1', 'http://localhost/sipapat/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 12:35:05'),
+(185, '::1', 'http://localhost/sipapat/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 13:22:57'),
+(186, '::1', 'http://localhost/sipapat/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 13:24:26'),
+(187, '::1', 'http://localhost/sipapat/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 13:30:35'),
+(188, '::1', 'http://localhost/sipapat/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 13:31:01'),
+(189, '::1', 'http://localhost/sipapat/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 16:22:37'),
+(190, '::1', 'http://localhost/sipapat/perangkat/clear_list', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-26 18:35:28'),
+(191, '182.1.94.62', 'https://sipapat.esoftgreat.com/favicon.ico', 'Surabaya', 'East Java', 'ID', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-27 03:11:52'),
+(192, '182.1.94.62', 'https://sipapat.esoftgreat.com/favicon.ico', 'Surabaya', 'East Java', 'ID', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0', '2019-04-27 03:20:30'),
+(193, '182.1.94.62', 'https://sipapat.esoftgreat.com/templates/AdminLTE/assets/summernote/summernote.js.map', 'Surabaya', 'East Java', 'ID', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-27 03:38:43'),
+(194, '114.125.79.71', 'https://sipapat.esoftgreat.com/favicon.ico', 'Surabaya', 'East Java', 'ID', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-28 04:11:04'),
+(195, '182.1.77.166', 'https://sipapat.esoftgreat.com/favicon.ico', 'Surabaya', 'East Java', 'ID', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-28 20:24:51'),
+(196, '182.1.77.166', 'https://sipapat.esoftgreat.com/favicon.ico', 'Surabaya', 'East Java', 'ID', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-28 20:25:03'),
+(197, '182.1.77.166', 'https://sipapat.esoftgreat.com/favicon.ico', 'Surabaya', 'East Java', 'ID', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2019-04-28 20:26:18');
 
 
 ALTER TABLE `admin_menu`
@@ -596,8 +798,7 @@ ALTER TABLE `content_tag`
   ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `desa`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `unique_kode` (`kode`);
+  ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `invoice`
   ADD PRIMARY KEY (`id`);
@@ -622,6 +823,9 @@ ALTER TABLE `product_cat`
   ADD KEY `id` (`id`);
 
 ALTER TABLE `product_tag`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `subscriber`
   ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `user`
@@ -629,7 +833,13 @@ ALTER TABLE `user`
   ADD UNIQUE KEY `username` (`username`),
   ADD UNIQUE KEY `id` (`id`);
 
+ALTER TABLE `user_desa`
+  ADD PRIMARY KEY (`id`);
+
 ALTER TABLE `user_login`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `user_login_failed`
   ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `user_role`
@@ -640,45 +850,75 @@ ALTER TABLE `visitor`
 
 
 ALTER TABLE `admin_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+
 ALTER TABLE `bank_account`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 ALTER TABLE `comment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 ALTER TABLE `config`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
 ALTER TABLE `content`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+
 ALTER TABLE `content_cat`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
 ALTER TABLE `content_tag`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
 ALTER TABLE `desa`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 ALTER TABLE `invoice`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 ALTER TABLE `menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
 ALTER TABLE `menu_position`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 ALTER TABLE `message`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 ALTER TABLE `perangkat_desa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 ALTER TABLE `product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 ALTER TABLE `product_cat`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 ALTER TABLE `product_tag`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `subscriber`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+ALTER TABLE `user_desa`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
 ALTER TABLE `user_login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+ALTER TABLE `user_login_failed`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 ALTER TABLE `user_role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 ALTER TABLE `visitor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=198;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
