@@ -126,7 +126,7 @@ class Pengguna extends CI_Controller
 		$pdf->Cell(8,6,'no',1,0);
 		$pdf->Cell(12,6,'nama',1,0);
 		$pdf->Cell(25,6,'username',1,0);
-		$pdf->Cell(25,6,'email',1,0);
+		$pdf->Cell(40,6,'email',1,0);
 		$pdf->Cell(25,6,'phone',1,0);
 		$pdf->Cell(25,6,'group',1,0);
 		$pdf->Cell(20,6,'desa',1,0);
@@ -140,7 +140,7 @@ class Pengguna extends CI_Controller
     	$pdf->Cell(8,6,$i,1,0);
 			$pdf->Cell(12,6,$value['nama'],1,0);
 			$pdf->Cell(25,6,$value['username'],1,0);
-			$pdf->Cell(25,6,$value['email'],1,0);
+			$pdf->Cell(40,6,$value['email'],1,0);
 			$pdf->Cell(25,6,$value['phone'],1,0);
 			$pdf->Cell(25,6,$value['title'],1,0);
 			$pdf->Cell(20,6,$value['desa'],1,0);
