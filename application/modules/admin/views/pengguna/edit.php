@@ -23,6 +23,8 @@ $this->zea->addInput('username','text');
 $this->zea->addInput('user_role_id','dropdown');
 $this->zea->setLabel('user_role_id','group');
 $this->zea->tableOptions('user_role_id','user_role','id','title','level > 1');
+$this->zea->setFirstOption('user_role_id',['0'=>'Pilih Group']);
+$this->zea->setAttribute('user_role_id',['placeholder'=>'pilih group']);
 $this->zea->setLabel('nama','Nama Lengkap');
 $this->zea->addInput('email','text');
 $this->zea->setAttribute('email',['type'=>'email']);
@@ -31,6 +33,7 @@ $this->zea->setAttribute('phone',['type'=>'number']);
 $this->zea->addInput('desa_id','dropdown');
 $this->zea->tableOptions('desa_id','desa','id','nama');
 $this->zea->setLabel('desa_id','nama desa');
+$this->zea->setFirstOption('desa_id',['0'=>'Pilih Desa']);
 $this->zea->addInput('sandi','password');
 $this->zea->addInput('active','radio');
 $this->zea->setRadio('active',['Tidak Aktif','Aktif']);
@@ -40,4 +43,5 @@ if(!empty($_GET['id']))
 {
 	$this->zea->setValue('sandi',$this->zea->getData()['sandi']);
 }
+$this->zea->setFormName('pengguna_edit_form');
 $this->zea->form();
