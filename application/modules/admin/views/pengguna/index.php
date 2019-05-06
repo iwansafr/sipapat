@@ -24,14 +24,22 @@ $form->tableOptions('user_role_id','user_role','id','title','level > 1');
 $form->setLabel('nama','Nama Lengkap');
 $form->addInput('email','plaintext');
 $form->setAttribute('email',['type'=>'email']);
+if(is_root())
+{
+	$form->addInput('sandi','plaintext');
+}
 $form->addInput('phone','plaintext');
 $form->setAttribute('phone',['type'=>'number']);
 $form->addInput('desa_id','dropdown');
-$form->setAttribute('desa_id','disabled');
+if(!is_root())
+{
+	$form->setAttribute('desa_id','disabled');
+}
 $form->tableOptions('desa_id','desa','id','nama');
 $form->setLabel('desa_id','nama desa');
 $form->addInput('active','checkbox');
 $form->setUrl('admin/pengguna/clear_list');
+$form->setFormName('pengguna_list_roll');
 $form->setNumbering(TRUE);
 $form->setEdit(TRUE);
 $form->setDelete(TRUE);

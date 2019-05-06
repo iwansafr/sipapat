@@ -18,7 +18,10 @@ $form->setWhere(' kelompok = '.$kelompok.' '.$ext);
 $form->setHeading('<a href="'.base_url('admin/perangkat/'.$module[$kelompok].'/edit').'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>');
 $form->addInput('desa_id','dropdown');
 $form->tableOptions('desa_id','desa','id','nama');
-$form->setAttribute('desa_id','disabled');
+if(!is_root())
+{
+	$form->setAttribute('desa_id','disabled');
+}
 $form->setLabel('desa_id','Nama Desa');
 $form->addInput('id','link');
 $form->setLabel('id','detail');
