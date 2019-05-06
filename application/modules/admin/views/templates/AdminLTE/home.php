@@ -4,7 +4,6 @@ $pengumuman = $this->esg->get_config('pengumuman');
 <style type="text/css">
 	#dashboard{
 		background: url(<?php echo image_module('config','pengumuman'.'/'.$pengumuman['background_image']) ?>) center top no-repeat;
-		width: 100%;
     height: 100vh;
     background-size: cover;
     position: relative;
