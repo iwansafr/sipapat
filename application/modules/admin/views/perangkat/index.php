@@ -1,7 +1,4 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-$form = new zea();
-$form->init('roll');
-// $form->setId(@intval($_GET['id']));
 $kelompok = empty($kelompok) ? 1: $kelompok;
 $module = ['1'=>'','2'=>'bpd','3'=>'lpmp','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw'];
 $module_title = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmp','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw'];
@@ -10,7 +7,20 @@ if(!empty($task) && in_array($task, $module))
 	$kelompok = array_keys($module,$task);
 	$kelompok = $kelompok[0];
 }
+if(is_admin() || is_root())
+{
+	?>
+	<a href="<?php echo base_url('admin/perangkat/desa/'.$module[$kelompok]) ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> data perdesa</a>
+	<?php
+}
+$form = new zea();
+$form->init('roll');
+// $form->setId(@intval($_GET['id']));
 $ext = (!is_root() && !is_admin()) ? ' AND desa_id = '.$pengguna['desa_id'] : '';
+if(!empty($_GET['desa_id']) && (is_root() || is_admin()))
+{
+	$ext = ' AND desa_id = '.@intval($_GET['desa_id']);
+}
 $form->search();
 $form->setTable('perangkat_desa');
 $form->setNumbering(TRUE);

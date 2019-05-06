@@ -19,6 +19,11 @@ class Perangkat extends CI_Controller
 		$this->load->view('index', ['pengguna'=>$pengguna,'jabatan'=>$jabatan]);
 	}
 
+	public function desa($group = '')
+	{
+		$this->load->view('index', ['desa_option'=>$this->pengguna_model->get_desa(),'group'=>$group]);
+	}
+
 	public function edit()
 	{
 		$pengguna = $this->pengguna_model->get_pengguna();

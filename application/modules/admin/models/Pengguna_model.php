@@ -8,6 +8,13 @@ class Pengguna_model extends CI_Model
 		parent::__construct();
 	}
 
+	public function get_desa()
+	{
+		$this->db->select('id');
+		$this->db->select('nama');
+		return $this->db->get('desa')->result_array();
+	}
+
 	public function get_pengguna($id = 0)
 	{
 		if(empty($id))
