@@ -94,6 +94,13 @@ $form->setType('tgl_pelantikan','date');
 $form->addInput('akhir_masa_jabatan','plaintext');
 $form->setLabel('akhir_masa_jabatan','Akhir Masa Jabatan');
 $form->setType('akhir_masa_jabatan','date');
+if(is_admin() || is_root())
+{
+	$form->addInput('user_id','dropdown');
+	$form->tableOptions('user_id','user','id','username');
+	$form->setAttribute('user_id','disabled');
+	$form->setLabel('user_id','penginput');
+}
 
 // $form->addInput('pelantik','plaintext');
 // $form->setLabel('pelantik','Pejabat Pelantik');

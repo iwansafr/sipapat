@@ -99,6 +99,10 @@ if(!is_admin())
 	$form->setLabel('riwayat_diklat','Riwayat Diklat');
 
 	$form->setFormName('perangkat_desa_form');
-
+	if(!empty(@$user['id']))
+	{
+		$form->addInput('user_id','static');
+		$form->setValue('user_id',$user['id']);
+	}
 	$form->form();
 }
