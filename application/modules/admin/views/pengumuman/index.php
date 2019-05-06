@@ -9,4 +9,5 @@ $form->setHeading('Atur Pengumuman');
 $form->addInput('judul', 'text');
 $form->addInput('pengumuman','textarea');
 $form->setAttribute('pengumuman',['id'=>'summernote']);
+$form->addInput('background_image','image');
 $form->form();
