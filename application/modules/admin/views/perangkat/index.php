@@ -93,7 +93,7 @@ $form->setAttribute('pendidikan_terakhir','disabled');
 // $form->setAttribute('jabatan','disabled');
 
 $form->addInput('no_sk','plaintext');
-$form->setType('no_sk','number');
+// $form->setType('no_sk','number');
 $form->setLabel('no_sk','Nomor SK');
 $form->addInput('sk_penetapan_kembali','plaintext');
 $form->setLabel('sk_penetapan_kembali','SK Penetapan Kembali');
