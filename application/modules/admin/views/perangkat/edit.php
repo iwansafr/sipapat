@@ -72,7 +72,7 @@ if(!is_admin())
 	}
 
 	$form->addInput('no_sk','text');
-	$form->setType('no_sk','number');
+	// $form->setType('no_sk','number');
 	$form->setLabel('no_sk','Nomor SK');
 	$form->addInput('sk_penetapan_kembali','text');
 	$form->setLabel('sk_penetapan_kembali','SK Penetapan Kembali');
