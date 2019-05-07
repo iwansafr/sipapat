@@ -2,7 +2,7 @@
 $pengumuman = $this->esg->get_config('pengumuman');
 ?>
 <style type="text/css">
-	#dashboard{
+	.content-wrapper{
 		background: url(<?php echo image_module('config','pengumuman'.'/'.$pengumuman['background_image']) ?>) center top no-repeat;
     height: 100vh;
     background-size: cover;
@@ -10,7 +10,7 @@ $pengumuman = $this->esg->get_config('pengumuman');
 	}	
 </style>
 <?php
-echo '<div class="row" id="dashboard">';
+echo '<div class="row">';
 if(!empty($pengumuman))
 {
 	?>

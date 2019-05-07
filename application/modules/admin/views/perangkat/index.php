@@ -25,7 +25,18 @@ $form->search();
 $form->setTable('perangkat_desa');
 $form->setNumbering(TRUE);
 $form->setWhere(' kelompok = '.$kelompok.' '.$ext);
-$form->setHeading('<a href="'.base_url('admin/perangkat/'.$module[$kelompok].'/edit').'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>');
+if(is_root() || is_admin())
+{
+	$desa_id_get = !empty($_GET['desa_id']) ? '?desa_id='.@intval($_GET['desa_id']) : '';
+	$form->setHeading
+	(
+		'data '.$module[$kelompok].' '.
+		'<a target="_blank" href="'.base_url('admin/perangkat/pdf/'.$module[$kelompok]).$desa_id_get.'" class="btn btn-sm btn-default"><i class="fa fa-file-pdf-o"></i>/<i class="fa fa-print"></i></a>'.
+		'<a target="_blank" href="'.base_url('admin/perangkat/excel/'.$module[$kelompok]).$desa_id_get.'" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i></a>'
+	);
+}else{
+	$form->setHeading('<a href="'.base_url('admin/perangkat/'.$module[$kelompok].'/edit').'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>');
+}
 $form->addInput('desa_id','dropdown');
 $form->tableOptions('desa_id','desa','id','nama');
 if(!is_root())
