@@ -47,7 +47,8 @@ class Pengguna_model extends CI_Model
 								'13'=>strtoupper('staf kaur keuangan'),
 								'14'=>strtoupper('staf kasi pemerintahan'),
 								'15'=>strtoupper('staf kasi pembangunan'),
-								'16'=>strtoupper('staf kasi kesra')
+								'16'=>strtoupper('staf kasi kesra'),
+								'17'=>strtoupper('kader desa')
 							],
 			'2' =>  [
 								'1'=>strtoupper('ketua'),
