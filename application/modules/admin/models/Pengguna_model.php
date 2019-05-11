@@ -40,6 +40,7 @@ class Pengguna_model extends CI_Model
 								'6'=>strtoupper('kepala dusun iv'),
 								'7'=>strtoupper('kepala dusun v'),
 								'8'=>strtoupper('kaur administrasi dan umum'),
+								'18'=>strtoupper('staff kaur administrasi dan umum'),
 								'9'=>strtoupper('kaur keuangan'),
 								'10'=>strtoupper('kasi pemerintahan'),
 								'11'=>strtoupper('kasi pembangunan'),
