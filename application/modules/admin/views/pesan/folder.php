@@ -12,8 +12,13 @@
   </div>
   <div class="box-body no-padding">
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="<?php echo base_url('admin/pesan/masuk') ?>"><i class="fa fa-inbox"></i> Pesan Masuk
-        <span class="label label-primary pull-right">12</span></a></li>
+      <li>
+        <a href="<?php echo base_url('admin/pesan/masuk') ?>"><i class="fa fa-inbox"></i> Pesan Masuk
+          <?php if (!empty($pesan)): ?>
+            <span class="label label-primary pull-right"><?php echo $pesan['total'] ?></span>
+          <?php endif ?>
+        </a>
+      </li>
       <li><a href="<?php echo base_url('admin/pesan/keluar') ?>"><i class="fa fa-envelope"></i> Pesan Terkirim</a></li>
     </ul>
   </div>

@@ -15,15 +15,10 @@
 			$form = new zea();
 			$form->setTable('pesan');
 			$form->init('roll');
-			$form->setWhere(' recipient = '.@intval($user['id'].' OR recipient = 0'));
+			$form->setWhere(' recipient = 0 OR recipient = '.@intval($user['id']));
 			$form->search();
 			// $form->
 			$form->addInput('id','plaintext');
-			$form->addInput('updated','link');
-			$form->setLink('updated',base_url('admin/pesan/keluar/'),'id');
-			$form->setLabel('updated','detail');
-			$form->setPlaintext('updated','detail');
-			$form->setClearGet('updated');
 			$form->addInput('title','plaintext');
 			$form->addInput('sender','dropdown');
 			$form->tableOptions('sender','user','id','username');
