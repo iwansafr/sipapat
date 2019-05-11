@@ -1,10 +1,15 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-$message = $this->esg->get_esg('message');
+$this->load->model('pesan_model');
+$message = $this->esg->get_esg('pesan');
 ?>
 <header class="main-header">
   <a href="<?php echo base_url('admin') ?>" class="logo">
     <span class="logo-mini"><img src="<?php echo image_module('config', 'site/'.@$this->esg->get_esg('site')['site']['image']); ?>" height="50"></span>
-    <span class="logo-lg"><img src="<?php echo image_module('config', 'logo/'.@$this->esg->get_esg('site')['logo']['image']); ?>" height="40"></span>
+    <?php if (@$site['logo']['display'] == 'image'): ?>
+      <span class="logo-lg"><img src="<?php echo image_module('config', 'logo/'.@$this->esg->get_esg('site')['logo']['image']); ?>" height="40"></span>
+    <?php else: ?>
+      <span class="logo-lg"><?php echo @$site['logo']['title'] ?></span>
+    <?php endif ?>
   </a>
   <nav class="navbar navbar-static-top">
     <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
@@ -32,7 +37,7 @@ $message = $this->esg->get_esg('message');
               <ul class="menu">
                 <?php foreach ($message['list'] as $l_key => $l_value): ?>
                   <li>
-                    <a href="<?php echo base_url('admin/message/detail/'.$l_value['id']) ?>">
+                    <a href="<?php echo base_url('admin/pesan/detail/'.$l_value['id']) ?>">
                       <div class="pull-left">
                         <img src="<?php echo $meta['icon'] ?>" class="img-circle" alt="User Image">
                       </div>
@@ -47,7 +52,7 @@ $message = $this->esg->get_esg('message');
               </ul>
             <?php endif ?>
             </li>
-            <li class="footer"><a href="<?php echo base_url('admin/message') ?>">See All Messages</a></li>
+            <li class="footer"><a href="<?php echo base_url('admin/pesan/edit') ?>"><i class="fa fa-pencil-alt"></i> Buat Pesan Baru</a><a href="<?php echo base_url('admin/pesan') ?>"><i class="fa fa-list"></i>Lihat Semua Pesan</a></li>
           </ul>
         </li>
         <li class="dropdown notifications-menu">

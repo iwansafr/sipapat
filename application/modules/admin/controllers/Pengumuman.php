@@ -15,4 +15,9 @@ class Pengumuman extends CI_Controller
 	{
 		$this->load->view('index');
 	}
+
+	public function surat()
+	{
+		$this->load->view('index');
+	}
 }
