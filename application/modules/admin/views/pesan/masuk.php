@@ -13,12 +13,20 @@
 			}
 		}else{
 			$form = new zea();
-			$form->setTable('pesan');
+			$form->setTable('pesan_status');
 			$form->init('roll');
-			$form->setWhere(' recipient = 0 OR recipient = '.@intval($user['id']));
+			$form->join('pesan','ON(pesan.id=pesan_status.pesan_id)','pesan.title,pesan_status.id,pesan_status.pesan_id,pesan_status.sender,pesan_status.status,pesan.created,pesan.updated');
+			$form->setWhere(' pesan_status.recipient = 0 OR pesan_status.recipient = '.@intval($user['id']));
 			$form->search();
-			// $form->
 			$form->addInput('id','plaintext');
+			$form->addInput('status','dropdown');
+			$form->setOptions('status',['<i class="fa fa-envelope"></i> belum dibaca','<i class="fa fa-envelope-open"></i> sudah dibaca']);
+			$form->setAttribute('status','disabled');
+			$form->addInput('updated','link');
+			$form->setLink('updated',base_url('admin/pesan/detail/'),'id');
+			$form->setLabel('updated','detail');
+			$form->setPlaintext('updated','detail');
+			$form->setClearGet('updated');
 			$form->addInput('title','plaintext');
 			$form->addInput('sender','dropdown');
 			$form->tableOptions('sender','user','id','username');

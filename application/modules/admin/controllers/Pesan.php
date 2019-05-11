@@ -19,6 +19,7 @@ class Pesan extends CI_Controller
 	}
 	public function masuk($id = 0)
 	{
+		$this->esg_model->set_nav_title('Pesan Masuk');
 		$data['id'] = 0;
 		if(!empty($id))
 		{
@@ -29,6 +30,7 @@ class Pesan extends CI_Controller
 	}
 	public function keluar($id = 0)
 	{
+		$this->esg_model->set_nav_title('Detail Pesan');
 		$data['id'] = 0;
 		if(!empty($id))
 		{
@@ -39,6 +41,7 @@ class Pesan extends CI_Controller
 	}
 	public function edit()
 	{
+		$this->esg_model->set_nav_title('Buat Pesan');
 		$data['recipient'] = $this->pesan_model->get_recipient();
 		$this->load->view('index', $data);
 		$this->pesan_model->save();
@@ -49,6 +52,7 @@ class Pesan extends CI_Controller
 	}
 	public function detail($id = 0)
 	{
+		$this->esg_model->set_nav_title('Detail Pesan');
 		$data['id'] = 0;
 		if(!empty($id))
 		{

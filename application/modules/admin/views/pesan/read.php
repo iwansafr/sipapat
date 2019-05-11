@@ -61,7 +61,7 @@
   </div>
 </div>
 <?php if (!empty($detail_pesan['status']) && $detail_pesan['pesan']['recipient']==0): ?>
-	<div class="col-md-3">
+	<div class="col-md-6">
     <div class="box box-success collapsed-box box-solid">
       <div class="box-header with-border">
         <h3 class="box-title">sudah dibaca oleh</h3>
@@ -70,16 +70,16 @@
           </button>
         </div>
       </div>
-      <?php foreach ($detail_pesan['status'] as $key => $value): ?>
-      	<?php if ($value['status'] == 1): ?>
-		      <div class="box-body">
-		        <?php echo $value['username'] ?>
-		      </div>
-      	<?php endif ?>
-      <?php endforeach ?>
+		  <div class="box-body">
+        <?php foreach ($detail_pesan['status'] as $key => $value): ?>
+        	<?php if ($value['status'] == 1): ?>
+  		        <span class="badge bg-green"><?php echo $value['username'] ?></span>
+        	<?php endif ?>
+        <?php endforeach ?>
+		  </div>
     </div>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-6">
     <div class="box box-warning collapsed-box box-solid">
       <div class="box-header with-border">
         <h3 class="box-title">belum dibaca oleh</h3>
@@ -88,13 +88,13 @@
           </button>
         </div>
       </div>
-      <?php foreach ($detail_pesan['status'] as $key => $value): ?>
-      	<?php if ($value['status'] == 0): ?>
-		      <div class="box-body">
-		        <?php echo $value['username'] ?>
-		      </div>
-      	<?php endif ?>
-      <?php endforeach ?>
+		  <div class="box-body">
+        <?php foreach ($detail_pesan['status'] as $key => $value): ?>
+        	<?php if ($value['status'] == 0): ?>
+  		        <span class="badge bg-red"><?php echo $value['username'] ?></span>
+        	<?php endif ?>
+        <?php endforeach ?>
+		  </div>
     </div>
     <!-- /.box -->
   </div>
