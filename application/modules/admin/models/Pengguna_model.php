@@ -69,8 +69,8 @@ class Pengguna_model extends CI_Model
 								'4'=>strtoupper('bendahara i'),
 								'5'=>strtoupper('bendahara ii'),
 								'6'=>strtoupper('pokja i'),
-								'7'=>strtoupper('pokja ii')
-								'8'=>strtoupper('pokja iii')
+								'7'=>strtoupper('pokja ii'),
+								'8'=>strtoupper('pokja iii'),
 								'9'=>strtoupper('pokja iv')
 							],
 			'5' => 	[
