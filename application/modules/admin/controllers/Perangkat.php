@@ -136,8 +136,14 @@ class Perangkat extends CI_Controller
 		exit;
 	}
 
-	public function pdf($group = '')
+	public function pdf($kelompok = 'perangkat')
 	{
+		$kelompok = empty($kelompok) ? 1: $kelompok;
+		$module = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmp','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw'];
+		$module_title = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmp','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw'];
+		$kelompok = array_keys($module,$kelompok);
+		$kelompok = $kelompok[0];
+
 		$this->load->library('pdf');
 		$pdf = new FPDF('L','mm','A4');
     // membuat halaman baru
@@ -147,7 +153,7 @@ class Perangkat extends CI_Controller
     // mencetak string 
     $pdf->Cell(200,10,'SIPAPAT',0,1,'C');
     $pdf->SetFont('Arial','B',6);
-    $pdf->Cell(200,10,'DATA '.$group ,0,1,'C');
+    $pdf->Cell(200,10,'DATA '.$kelompok ,0,1,'C');
     // Memberikan space kebawah agar tidak terlalu rapat
     $pdf->Cell(10,7,'',0,1);
     $pdf->SetFont('Arial','B',7);
@@ -182,8 +188,9 @@ class Perangkat extends CI_Controller
 			AND 
 				perangkat_desa.desa_id = desa.id
 			AND 
-				kelompok = 1
-		')->result_array();
+				kelompok = ?
+		', @intval($kelompok))->result_array();
+		// pr($this->db->last_query());
     $i = 1;
     foreach ($data as $key => $value)
     {

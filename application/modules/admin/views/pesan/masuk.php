@@ -18,7 +18,8 @@
 			$form->join('pesan','ON(pesan.id=pesan_status.pesan_id)','pesan.title,pesan_status.id,pesan_status.pesan_id,pesan_status.sender,pesan_status.status,pesan.created,pesan.updated');
 			$form->setWhere(' pesan_status.recipient = 0 OR pesan_status.recipient = '.@intval($user['id']));
 			$form->search();
-			$form->addInput('id','plaintext');
+			$form->setNumbering(TRUE);
+			$form->addInput('id','hidden');
 			$form->addInput('status','dropdown');
 			$form->setOptions('status',['<i class="fa fa-envelope"></i> belum dibaca','<i class="fa fa-envelope-open"></i> sudah dibaca']);
 			$form->setAttribute('status','disabled');

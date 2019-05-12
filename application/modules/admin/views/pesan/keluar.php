@@ -18,7 +18,8 @@
 			$form->setWhere(' sender = '.@intval($user['id']));
 			$form->search();
 			// $form->
-			$form->addInput('id','plaintext');
+			$form->setNumbering(TRUE);
+			$form->addInput('id','hidden');
 			$form->addInput('updated','link');
 			$form->setLink('updated',base_url('admin/pesan/keluar/'),'id');
 			$form->setLabel('updated','detail');
