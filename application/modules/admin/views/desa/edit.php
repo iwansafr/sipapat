@@ -10,6 +10,7 @@ if(is_root() || is_admin() || @$pengguna['desa_id'] == $_GET['id'])
 	$form->setLabel('kode','Kode Desa');
 	$form->addInput('nama','text');
 	$form->setLabel('nama','Nama Desa');
+	$form->setAttribute('nama','onkeyup="this.value = this.value.toUpperCase();"');
 	$form->addInput('kecamatan','text');
 	$form->setAttribute('kecamatan','onkeyup="this.value = this.value.toUpperCase();"');
 	$form->addInput('kabupaten','text');
