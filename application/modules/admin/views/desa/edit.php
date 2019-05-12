@@ -11,8 +11,11 @@ if(is_root() || is_admin() || @$pengguna['desa_id'] == $_GET['id'])
 	$form->addInput('nama','text');
 	$form->setLabel('nama','Nama Desa');
 	$form->addInput('kecamatan','text');
+	$form->setAttribute('kecamatan','onkeyup="this.value = this.value.toUpperCase();"');
 	$form->addInput('kabupaten','text');
+	$form->setAttribute('kabupaten','onkeyup="this.value = this.value.toUpperCase();"');
 	$form->addInput('provinsi','text');
+	$form->setAttribute('provinsi','onkeyup="this.value = this.value.toUpperCase();"');
 	$form->addInput('kode_pos','text');
 	$form->setLabel('kode_pos','Kode Pos');
 	$form->setAttribute('kode_pos',['type'=>'number']);
