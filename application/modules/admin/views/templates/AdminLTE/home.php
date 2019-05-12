@@ -13,16 +13,22 @@ $pengumuman = $this->esg->get_config('pengumuman');
 echo '<div class="row">';
 if(!empty($pengumuman))
 {
-	?>
-	<div class="container">
-		<h1>Pengumuman</h1>
-		<div class="callout callout-info">
-	    <h4><?php echo $pengumuman['judul'] ?>!</h4>
+		?>
+		<div class="container">
+			<h1>Pengumuman</h1>
+			<?php
+			for($i=1;$i<4;$i++)
+			{
+				?>
+				<div class="callout callout-info">
+		    <h4><?php echo $pengumuman['judul'.$i] ?>!</h4>
 
-	    <p><?php echo $pengumuman['pengumuman'] ?></p>
-	  </div>
-	</div>
-	<?php
+		    <p><?php echo $pengumuman['pengumuman'.$i] ?></p>
+		  	</div>
+		  	<?php
+			}?>
+		</div>
+		<?php
 }
 if(!empty($home))
 {
