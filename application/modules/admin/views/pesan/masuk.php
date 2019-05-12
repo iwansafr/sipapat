@@ -34,6 +34,7 @@
 			$form->setFirstOption('sender',['0'=>'Semua User']);
 			$form->setAttribute('sender','disabled');
 			$form->addInput('created','plaintext');
+			$form->setFormName('pesan_masuk_form_roll');
 			$form->form();
 		}?>
   </div>

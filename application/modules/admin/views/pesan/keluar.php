@@ -31,6 +31,8 @@
 			$form->setFirstOption('recipient',['0'=>'Semua User']);
 			$form->setAttribute('recipient','disabled');
 			$form->addInput('created','plaintext');
+			$form->setDelete(TRUE);
+			$form->setFormName('pesan_keluar_roll');
 			$form->form();
 		}?>
   </div>
