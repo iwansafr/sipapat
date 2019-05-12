@@ -1,5 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
+require('./vendor/autoload.php');
 
+use PhpOffice\PhpSpreadsheet\Helper\Sample;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 class Perangkat extends CI_Controller
 {
 	public function __construct()
@@ -21,7 +25,23 @@ class Perangkat extends CI_Controller
 
 	public function excel()
 	{
-		$data = $this->db->query('SELECT user_desa.nama,user_desa.phone,user_role.title,user.username,user.email,desa.nama AS desa,user.created FROM user_desa INNER JOIN desa INNER JOIN user INNER JOIN user_role WHERE user.id=user_desa.user_id AND user.user_role_id = user_role.id AND user_desa.desa_id = desa.id')->result_array();
+		$data = $this->db->query
+		('
+			SELECT 
+				perangkat_desa.*,user.username,desa.nama AS nama_desa
+			FROM 
+				perangkat_desa
+			INNER JOIN 
+				desa 
+			INNER JOIN 
+				user 
+			WHERE 
+				perangkat_desa.user_id = user.id
+			AND 
+				perangkat_desa.desa_id = desa.id
+			AND 
+				kelompok = 1
+		')->result_array();
 		$spreadsheet = new Spreadsheet();
 
 		// Set document properties
@@ -36,13 +56,28 @@ class Perangkat extends CI_Controller
 		// Add some data
 		$spreadsheet->setActiveSheetIndex(0)
 		->setCellValue('A1','no')
-		->setCellValue('B1','nama')
-		->setCellValue('C1','username')
-		->setCellValue('D1','email')
-		->setCellValue('E1','phone')
-		->setCellValue('F1','group')
-		->setCellValue('G1','desa')
-		->setCellValue('H1','terdaftar');
+		->setCellValue('B1','username')
+		->setCellValue('C1','nama desa')
+		->setCellValue('D1','nama')
+		->setCellValue('E1','tempat lahir')
+		->setCellValue('F1','tgl lahir')
+		->setCellValue('G1','kelamin')
+		->setCellValue('H1','alamat')
+		->setCellValue('I1','telepon')
+		->setCellValue('J1','agama')
+		->setCellValue('K1','status perkawinan')
+		->setCellValue('L1','pendidikan terakhir')
+		->setCellValue('M1','jamkes')
+		->setCellValue('N1','jabatan')
+		->setCellValue('O1','no sk')
+		->setCellValue('P1','sk penetapan kembali')
+		->setCellValue('Q1','tgl pelantikan')
+		->setCellValue('R1','akhir masa jabatan')
+		->setCellValue('S1','pelantik')
+		->setCellValue('T1','bengkok')
+		->setCellValue('U1','penghasilan')
+		->setCellValue('V1','riwayat pendidikan')
+		->setCellValue('W1','riwayat diklat');
 
 		// Miscellaneous glyphs, UTF-8
 		$i=2;
@@ -51,26 +86,41 @@ class Perangkat extends CI_Controller
 		{
 			$spreadsheet->setActiveSheetIndex(0)
 			->setCellValue('A'.$i,$j)
-			->setCellValue('B'.$i,$value['nama'])
-			->setCellValue('C'.$i,$value['username'])
-			->setCellValue('D'.$i,$value['email'])
-			->setCellValue('E'.$i,$value['phone'])
-			->setCellValue('F'.$i,$value['title'])
-			->setCellValue('G'.$i,$value['desa'])
-			->setCellValue('H'.$i,$value['created']);
+			->setCellValue('B'.$i,$value['username'])
+			->setCellValue('C'.$i,$value['nama_desa'])
+			->setCellValue('D'.$i,$value['nama'])
+			->setCellValue('E'.$i,$value['tempat_lahir'])
+			->setCellValue('F'.$i,$value['tgl_lahir'])
+			->setCellValue('G'.$i,$value['kelamin'])
+			->setCellValue('H'.$i,$value['alamat'])
+			->setCellValue('I'.$i,$value['telepon'])
+			->setCellValue('J'.$i,$value['agama'])
+			->setCellValue('K'.$i,$value['status_perkawinan'])
+			->setCellValue('L'.$i,$value['pendidikan_terakhir'])
+			->setCellValue('M'.$i,$value['jamkes'])
+			->setCellValue('N'.$i,$value['jabatan'])
+			->setCellValue('O'.$i,$value['no_sk'])
+			->setCellValue('P'.$i,$value['sk_penetapan_kembali'])
+			->setCellValue('Q'.$i,$value['tgl_pelantikan'])
+			->setCellValue('R'.$i,$value['akhir_masa_jabatan'])
+			->setCellValue('S'.$i,$value['pelantik'])
+			->setCellValue('T'.$i,$value['bengkok'])
+			->setCellValue('U'.$i,$value['penghasilan'])
+			->setCellValue('V'.$i,$value['riwayat_pendidikan'])
+			->setCellValue('W'.$i,$value['riwayat_diklat']);
 			$i++;
 			$j++;
 		}
 
 		// Rename worksheet
-		$spreadsheet->getActiveSheet()->setTitle('data pengguna '.date('d-m-Y H'));
+		$spreadsheet->getActiveSheet()->setTitle('data perangkat '.date('d-m-Y H'));
 
 		// Set active sheet index to the first sheet, so Excel opens this as the first sheet
 		$spreadsheet->setActiveSheetIndex(0);
 
 		// Redirect output to a client’s web browser (Xlsx)
 		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-		header('Content-Disposition: attachment;filename="data pengguna.xlsx"');
+		header('Content-Disposition: attachment;filename="data perangkat.xlsx"');
 		header('Cache-Control: max-age=0');
 		// If you're serving to IE 9, then the following may be needed
 		header('Cache-Control: max-age=1');
@@ -89,50 +139,67 @@ class Perangkat extends CI_Controller
 	public function pdf($group = '')
 	{
 		$this->load->library('pdf');
-		$pdf = new FPDF('P','mm','A4');
+		$pdf = new FPDF('L','mm','A4');
     // membuat halaman baru
     $pdf->AddPage();
     // setting jenis font yang akan digunakan
     $pdf->SetFont('Arial','B',7);
     // mencetak string 
     $pdf->Cell(200,10,'SIPAPAT',0,1,'C');
-    $pdf->SetFont('Arial','B',7);
+    $pdf->SetFont('Arial','B',6);
     $pdf->Cell(200,10,'DATA '.$group ,0,1,'C');
     // Memberikan space kebawah agar tidak terlalu rapat
     $pdf->Cell(10,7,'',0,1);
     $pdf->SetFont('Arial','B',7);
 
 		$pdf->Cell(8,6,'no',1,0);
-		$pdf->Cell(12,6,'nama',1,0);
-		$pdf->Cell(25,6,'foto',1,0);
-		$pdf->Cell(40,6,'tempat lahir',1,0);
-		$pdf->Cell(25,6,'tgl lahir',1,0);
-		$pdf->Cell(25,6,'kelamin',1,0);
-		$pdf->Cell(20,6,'alamat',1,0);
-		$pdf->Cell(25,6,'telepon',1,0);
-		$pdf->Cell(25,6,'agama',1,0);
-		$pdf->Cell(25,6,'status perkawinan',1,0);
+		$pdf->Cell(18,6,'nama desa',1,0);
+		$pdf->Cell(18,6,'nama',1,0);
+		$pdf->Cell(18,6,'tempat lahir',1,0);
+		$pdf->Cell(18,6,'tgl lahir',1,0);
+		$pdf->Cell(18,6,'kelamin',1,0);
+		$pdf->Cell(18,6,'telepon',1,0);
+		$pdf->Cell(18,6,'agama',1,0);
+		$pdf->Cell(18,6,'status',1,0);
 		$pdf->Cell(25,6,'pendidikan terakhir',1,0);
-		$pdf->Cell(25,6,'jaminan kesehatan',1,0);
-		$pdf->Cell(25,6,'jabatan',1,0);
-		$pdf->Cell(25,6,'no sk',1,0);
-		$pdf->Cell(25,6,'sk penetapan kembali',1,0);
-		$pdf->Cell(25,6,'tgl pelantikan',1,0);
-		$pdf->Cell(25,6,'akhir masa jabatan',1,0);
+		$pdf->Cell(18,6,'jabatan',1,0);
+		$pdf->Cell(18,6,'no sk',1,0);
+		$pdf->Cell(25,6,'akhir masa jabatan',1,1);
 
     $pdf->SetFont('Arial','',7);
-    $data = $this->db->query('SELECT user_desa.nama,user_desa.phone,user_role.title,user.username,user.email,desa.nama AS desa,user.created FROM user_desa INNER JOIN desa INNER JOIN user INNER JOIN user_role WHERE user.id=user_desa.user_id AND user.user_role_id = user_role.id AND user_desa.desa_id = desa.id')->result_array();
+    $data = $this->db->query
+		('
+			SELECT 
+				perangkat_desa.*,user.username,desa.nama AS nama_desa
+			FROM 
+				perangkat_desa
+			INNER JOIN 
+				desa 
+			INNER JOIN 
+				user 
+			WHERE 
+				perangkat_desa.user_id = user.id
+			AND 
+				perangkat_desa.desa_id = desa.id
+			AND 
+				kelompok = 1
+		')->result_array();
     $i = 1;
     foreach ($data as $key => $value)
     {
     	$pdf->Cell(8,6,$i,1,0);
-			$pdf->Cell(12,6,$value['nama'],1,0);
-			$pdf->Cell(25,6,$value['username'],1,0);
-			$pdf->Cell(40,6,$value['email'],1,0);
-			$pdf->Cell(25,6,$value['phone'],1,0);
-			$pdf->Cell(25,6,$value['title'],1,0);
-			$pdf->Cell(20,6,$value['desa'],1,0);
-			$pdf->Cell(25,6,$value['created'],1,1);
+			$pdf->Cell(18,6,$value['nama_desa'],1,0);
+			$pdf->Cell(18,6,$value['nama'],1,0);
+			$pdf->Cell(18,6,$value['tempat_lahir'],1,0);
+			$pdf->Cell(18,6,$value['tgl_lahir'],1,0);
+			$pdf->Cell(18,6,$value['kelamin'],1,0);
+			$pdf->Cell(18,6,$value['telepon'],1,0);
+			$pdf->Cell(18,6,$value['agama'],1,0);
+			$pdf->Cell(18,6,$value['status_perkawinan'],1,0);
+			$pdf->Cell(25,6,$value['pendidikan_terakhir'],1,0);
+			$pdf->Cell(18,6,$value['jabatan'],1,0);
+			$pdf->Cell(18,6,$value['no_sk'],1,0);
+			$pdf->Cell(25,6,$value['akhir_masa_jabatan'],1,1);
       $i++;
     }
     $pdf->Output();

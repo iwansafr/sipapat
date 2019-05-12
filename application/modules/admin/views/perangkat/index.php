@@ -97,12 +97,6 @@ $form->setOptions('pendidikan_terakhir',
 );
 $form->setAttribute('pendidikan_terakhir','disabled');
 
-// $form->addInput('jamkes','plaintext');
-// $form->setLabel('jamkes','Jaminan Kesehatan');
-// $form->addInput('jabatan', 'dropdown');
-// $form->setOptions('jabatan', $jabatan[1]);
-// $form->setAttribute('jabatan','disabled');
-
 $form->addInput('no_sk','plaintext');
 $form->setType('no_sk','number');
 $form->setLabel('no_sk','Nomor SK');
@@ -122,20 +116,6 @@ if(is_admin() || is_root())
 	$form->setAttribute('user_id','disabled');
 	$form->setLabel('user_id','penginput');
 }
-
-// $form->addInput('pelantik','plaintext');
-// $form->setLabel('pelantik','Pejabat Pelantik');
-// $form->addInput('bengkok','plaintext');
-// $form->setType('bengkok','number');
-// $form->setLabel('bengkok','Luas Bengkok');
-// $form->addInput('penghasilan','plaintext');
-// $form->setType('penghasilan','number');
-// $form->setLabel('penghasilan','Penghasilan Tetap');
-
-// $form->addInput('riwayat_pendidikan','plaintext');
-// $form->setLabel('riwayat_pendidikan','Riwayat Pendidikan');
-// $form->addInput('riwayat_diklat','plaintext');
-// $form->setLabel('riwayat_diklat','Riwayat Diklat');
 
 $form->setFormName($module[$kelompok].'_desa_form');
 
