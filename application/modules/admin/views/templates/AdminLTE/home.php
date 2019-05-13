@@ -21,9 +21,9 @@ if(!empty($pengumuman))
 			{
 				?>
 				<div class="callout callout-info">
-		    <h4><?php echo $pengumuman['judul'.$i] ?>!</h4>
+		    <h4><?php echo @$pengumuman['judul'.$i] ?>!</h4>
 
-		    <p><?php echo $pengumuman['pengumuman'.$i] ?></p>
+		    <p><?php echo @$pengumuman['pengumuman'.$i] ?></p>
 		  	</div>
 		  	<?php
 			}?>
