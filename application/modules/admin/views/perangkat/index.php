@@ -121,5 +121,6 @@ $form->setFormName($module[$kelompok].'_desa_form');
 
 $form->setUrl('admin/perangkat/clear_list/'.$module[$kelompok]);
 $form->setEdit(TRUE);
+$form->setEditLink(base_url('admin/perangkat/'.$module[$kelompok].'/edit?id='));
 $form->setDelete(TRUE);
 $form->form();
