@@ -45,10 +45,13 @@ if(!is_root())
 }
 $form->tableOptions('desa_id','desa','id','nama');
 $form->setLabel('desa_id','nama desa');
-$form->addInput('active','checkbox');
 $form->setUrl('admin/pengguna/clear_list');
 $form->setFormName('pengguna_list_roll');
-$form->setNumbering(TRUE);
-$form->setEdit(TRUE);
-$form->setDelete(TRUE);
+if(!is_kecamatan())
+{
+	$form->addInput('active','checkbox');
+	$form->setNumbering(TRUE);
+	$form->setEdit(TRUE);
+	$form->setDelete(TRUE);
+}
 $form->form();
