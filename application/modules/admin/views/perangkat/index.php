@@ -16,11 +16,17 @@ if(is_admin() || is_root())
 $form = new zea();
 $form->init('roll');
 // $form->setId(@intval($_GET['id']));
-$ext = (!is_root() && !is_admin()) ? ' AND desa_id = '.$pengguna['desa_id'] : '';
+$ext = (!is_root() && !is_admin() && !is_kecamatan()) ? ' AND desa_id = '.$pengguna['desa_id'] : '';
 if(!empty($_GET['desa_id']) && (is_root() || is_admin()))
 {
 	$ext = ' AND desa_id = '.@intval($_GET['desa_id']);
 }
+if(is_kecamatan())
+{
+	$kecamatan = strtoupper(str_replace('kec_','', $this->session->userdata(base_url().'_logged_in')['username']));
+	$ext .= " AND kecamatan = '{$kecamatan}'";
+	$form->join('desa','ON(perangkat_desa.desa_id=desa.id)','perangkat_desa.*,desa.kecamatan');
+}	
 $form->search();
 $form->setTable('perangkat_desa');
 $form->setNumbering(TRUE);

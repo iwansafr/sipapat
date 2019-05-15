@@ -9,6 +9,14 @@ $form->setHeading
 		'<a target="_blank" href="'.base_url('admin/pengguna/pdf').'" class="btn btn-sm btn-default"><i class="fa fa-file-pdf-o"></i>/<i class="fa fa-print"></i></a>'.
 		'<a target="_blank" href="'.base_url('admin/pengguna/excel').'" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i></a>'
 	);
+$where = '';
+if(is_kecamatan())
+{
+	$kecamatan = strtoupper(str_replace('kec_','', $this->session->userdata(base_url().'_logged_in')['username']));
+	$where = " kecamatan = '{$kecamatan}'";
+	$form->join('desa','ON(user_desa.desa_id=desa.id)','user_desa.*,desa.kecamatan');
+}	
+$form->setWhere($where);
 $form->search();
 $form->addInput('id','link');
 $form->setLabel('id','detail');

@@ -2,7 +2,7 @@
 
 $form = new zea();
 $form->setTable('desa');
-if(!is_admin() && !is_root())
+if(!is_admin() && !is_root() && !is_kecamatan())
 {
 	// $form->setWhere(' id = '.$pengguna['desa_id']);
 	$form->setId($pengguna['desa_id']);
@@ -24,6 +24,12 @@ if(!is_admin() && !is_root())
 	$form->setSave(FALSE);
 	$form->form();
 }else{
+	$where = '';
+	if(is_kecamatan())
+	{
+		$kecamatan = strtoupper(str_replace('kec_','', $this->session->userdata(base_url().'_logged_in')['username']));
+		$where = " kecamatan = '{$kecamatan}'";
+	}
 	$form->init('roll');
 	$form->search();
 	$form->setHeading
@@ -32,6 +38,7 @@ if(!is_admin() && !is_root())
 			'<a target="_blank" href="'.base_url('admin/desa/pdf').'" class="btn btn-sm btn-default"><i class="fa fa-file-pdf-o"></i>/<i class="fa fa-print"></i></a>'.
 			'<a target="_blank" href="'.base_url('admin/desa/excel').'" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i></a>'
 		);
+	$form->setWhere($where);
 	$form->setNumbering(TRUE);
 	$form->addInput('id','link');
 	$form->setLabel('id','detail');

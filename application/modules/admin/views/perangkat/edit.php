@@ -1,10 +1,10 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-if(!is_admin())
+$kelompok = empty($kelompok) ? 1: $kelompok;
+$module = ['1'=>'','2'=>'bpd','3'=>'lpmp','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw'];
+$module_title = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmp','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw'];
+if(!is_admin() && !is_kecamatan())
 {
-	$kelompok = empty($kelompok) ? 1: $kelompok;
-	$module = ['1'=>'','2'=>'bpd','3'=>'lpmp','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw'];
-	$module_title = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmp','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw'];
 	$form = new zea();
 	$form->init('edit');
 	$form->setId(@intval($_GET['id']));
@@ -105,4 +105,6 @@ if(!is_admin())
 		$form->setValue('user_id',$user['id']);
 	}
 	$form->form();
+}else{
+	msg('hanya petugas desa yang bisa menambah '.$module_title[$kelompok],'danger');
 }
