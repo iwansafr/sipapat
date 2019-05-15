@@ -12,6 +12,11 @@ class Pengguna_model extends CI_Model
 	{
 		$this->db->select('id');
 		$this->db->select('nama');
+		if(is_kecamatan())
+		{
+			$kecamatan = strtoupper(str_replace('kec_','', $this->session->userdata(base_url().'_logged_in')['username']));
+			$this->db->where("kecamatan = '{$kecamatan}'");
+		}
 		return $this->db->get('desa')->result_array();
 	}
 
