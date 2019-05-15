@@ -24,7 +24,7 @@ $form->tableOptions('user_role_id','user_role','id','title','level > 1');
 $form->setLabel('nama','Nama Lengkap');
 $form->addInput('email','plaintext');
 $form->setAttribute('email',['type'=>'email']);
-if(is_root())
+if(is_root() || is_admin())
 {
 	$form->addInput('sandi','plaintext');
 }
