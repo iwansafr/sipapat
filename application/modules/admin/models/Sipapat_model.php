@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Pengguna_model extends CI_Model
+class Sipapat_model extends CI_Model
 {
 
 	public function __construct()
@@ -26,4 +26,24 @@ class Pengguna_model extends CI_Model
 		$this->esg->set_esg('meta', $data);
 	}
 
+	public function get_pengumuman($name = '')
+  {
+		$data = array();
+		if(!empty($name))
+		{
+			$value = $this->db->query('SELECT value FROM pengumuman WHERE name = ?', 'kec_'.$name)->row_array();
+			if(!empty($value))
+			{
+				$data = json_decode($value['value'], 1);
+			}
+		}
+		return $data;
+	}
+	public function get_desa($id = 0)
+	{
+		if(!empty($id) && is_numeric($id))
+		{
+			return $this->db->get_where('desa', ['id'=>$id])->row_array();
+		}
+	}
 }

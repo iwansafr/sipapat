@@ -56,7 +56,7 @@ $form->setPlainText('id','detail');
 $form->setLink('id',base_url('admin/perangkat/'.$module[$kelompok].'/detail'),'id');
 $form->setClearGet('id');
 $form->addInput('nama','plaintext');
-$form->addInput('foto','thumbnail');
+// $form->addInput('foto','thumbnail');
 $form->addInput('tempat_lahir','plaintext');
 $form->setLabel('tempat_lahir','Tempat Lahir');
 $form->addInput('tgl_lahir','plaintext');

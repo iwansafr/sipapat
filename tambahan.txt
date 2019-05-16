@@ -1,0 +1,1 @@
+ALTER TABLE `perangkat_desa` ADD `jabatan_text` VARCHAR(255) NOT NULL AFTER `jabatan`;

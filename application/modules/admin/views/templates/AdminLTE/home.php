@@ -1,5 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 $pengumuman = $this->esg->get_config('pengumuman');
+$pengumuman = $this->esg->get_config('pengumuman');
 ?>
 <style type="text/css">
 	.content-wrapper{
@@ -19,6 +20,14 @@ if(!empty($pengumuman))
 			<?php
 			for($i=1;$i<4;$i++)
 			{
+				if($i==3)
+				{
+					if(!empty($pengumuman_kecamatan))
+					{
+						$pengumuman['judul'.$i] = $pengumuman_kecamatan['judul'];
+						$pengumuman['pengumuman'.$i] = $pengumuman_kecamatan['pengumuman'];
+					}
+				}
 				?>
 				<div class="callout callout-info">
 		    <h4><?php echo @$pengumuman['judul'.$i] ?>!</h4>

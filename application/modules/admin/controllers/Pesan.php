@@ -30,7 +30,7 @@ class Pesan extends CI_Controller
 	}
 	public function keluar($id = 0)
 	{
-		$this->esg_model->set_nav_title('Detail Pesan');
+		$this->esg_model->set_nav_title('Pesan Terkirim');
 		$data['id'] = 0;
 		if(!empty($id))
 		{
@@ -46,9 +46,19 @@ class Pesan extends CI_Controller
 		$this->load->view('index', $data);
 		$this->pesan_model->save();
 	}
-	public function clear_list()
+	public function clear_list($title = '')
 	{
-		$this->load->view('message/index');
+		$this->esg_model->set_nav_title('Pesan '.$title);
+		$data = array();
+		$data['id'] = 0;
+		if(!empty($id))
+		{
+			$data['id'] = @intval($id);
+			$data['detail_pesan'] = $this->pesan_model->get_pesan($id);
+		}
+		$this->pesan_model->pesan();
+		$data['pesan'] = $this->esg->get_esg('pesan');
+		$this->load->view('pesan/'.$title, $data);
 	}
 	public function detail($id = 0)
 	{

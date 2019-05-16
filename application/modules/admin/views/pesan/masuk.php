@@ -16,7 +16,7 @@
 			$form->setTable('pesan_status');
 			$form->init('roll');
 			$form->join('pesan','ON(pesan.id=pesan_status.pesan_id)','pesan.title,pesan_status.id,pesan_status.pesan_id,pesan_status.sender,pesan_status.status,pesan.created,pesan.updated');
-			$form->setWhere(' pesan_status.recipient = 0 OR pesan_status.recipient = '.@intval($user['id']));
+			$form->setWhere(' pesan_status.recipient = 0 OR pesan_status.recipient = '.@intval($this->session->userdata(base_url().'_logged_in')['id']));
 			$form->search();
 			$form->setNumbering(TRUE);
 			$form->addInput('id','hidden');
@@ -35,6 +35,7 @@
 			$form->setAttribute('sender','disabled');
 			$form->addInput('created','plaintext');
 			$form->setFormName('pesan_masuk_form_roll');
+			$form->setUrl('admin/pesan/clear_list/masuk');
 			$form->form();
 		}?>
   </div>

@@ -88,7 +88,6 @@ $message = $this->esg->get_esg('pesan');
             <!-- User image -->
             <li class="user-header">
               <img src="<?php echo image_module('user', $user['id'].'/'.$user['image']) ?>" class="img-circle" alt="User Image">
-
               <p>
                 <?php echo $user['username'] ?> - <?php echo $user['role'] ?>
                 <small>Member since <?php echo content_date($user['created']) ?></small>

@@ -15,7 +15,7 @@
 			$form = new zea();
 			$form->setTable('pesan');
 			$form->init('roll');
-			$form->setWhere(' sender = '.@intval($user['id']));
+			$form->setWhere(' sender = '.@intval($this->session->userdata(base_url().'_logged_in')['id']));
 			$form->search();
 			// $form->
 			$form->setNumbering(TRUE);
@@ -32,6 +32,7 @@
 			$form->setAttribute('recipient','disabled');
 			$form->addInput('created','plaintext');
 			$form->setDelete(TRUE);
+			$form->setUrl('admin/pesan/clear_list/keluar');
 			$form->setFormName('pesan_keluar_roll');
 			$form->form();
 		}?>
