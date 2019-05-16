@@ -139,8 +139,8 @@ class Perangkat extends CI_Controller
 	public function pdf($kelompok = 'perangkat')
 	{
 		$kelompok = empty($kelompok) ? 1: $kelompok;
-		$module = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmp','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw'];
-		$module_title = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmp','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw'];
+		$module = ['1'=>'','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd'];
+		$module_title = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd'];
 		$kelompok = array_keys($module,$kelompok);
 		$kelompok = $kelompok[0];
 
@@ -287,6 +287,13 @@ class Perangkat extends CI_Controller
 		$pengguna = $this->pengguna_model->get_pengguna();
 		$jabatan = $this->pengguna_model->jabatan();
 		$this->esg_model->set_nav_title($task.' rw ');
+		$this->load->view('index', ['pengguna'=>$pengguna,'jabatan'=>$jabatan,'task'=>$task,'id'=>$id]);
+	}
+	public function kpmd($task = 'list', $id=0)
+	{
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$jabatan = $this->pengguna_model->jabatan();
+		$this->esg_model->set_nav_title($task.' kpmd ');
 		$this->load->view('index', ['pengguna'=>$pengguna,'jabatan'=>$jabatan,'task'=>$task,'id'=>$id]);
 	}
 }

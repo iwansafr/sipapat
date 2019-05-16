@@ -1,8 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 $kelompok = empty($kelompok) ? 1: $kelompok;
-$module = ['1'=>'','2'=>'bpd','3'=>'lpmp','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw'];
-$module_title = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmp','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw'];
+$module = ['1'=>'','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd'];
+$module_title = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd'];
 if(!is_admin() && !is_kecamatan())
 {
 	$form = new zea();
@@ -69,6 +69,19 @@ if(!is_admin() && !is_kecamatan())
 		$form->setLabel('jamkes','Jaminan Kesehatan');
 		$form->addInput('jabatan', 'dropdown');
 		$form->setOptions('jabatan', $jabatan[$kelompok]);
+	}
+	if($module_title[$kelompok] == 'rt' || $module_title[$kelompok] == 'rw')
+	{
+		$form->addInput('rw','text');
+		$form->setType('rw','number');
+		$form->setLabel('rw','Ketua RW');
+		if($module_title[$kelompok] == 'rt')
+		{
+			$form->addInput('rt','text');
+			$form->setType('rt','number');
+			$form->setLabel('rt','Ketua RT');
+			$form->setLabel('rw','Wilayah RW');
+		}
 	}
 
 	$form->addInput('no_sk','text');

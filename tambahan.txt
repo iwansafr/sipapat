@@ -1,1 +1,3 @@
 ALTER TABLE `perangkat_desa` ADD `jabatan_text` VARCHAR(255) NOT NULL AFTER `jabatan`;
+ALTER TABLE `perangkat_desa` DROP `jabatan_text`;
+ALTER TABLE `perangkat_desa` ADD `rt` INT(11) NOT NULL COMMENT 'untuk ketua RT' AFTER `jabatan`, ADD `rw` INT(11) NOT NULL COMMENT 'untuk ketua RT & RW' AFTER `rt`;

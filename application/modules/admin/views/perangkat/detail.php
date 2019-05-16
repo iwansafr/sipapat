@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 $kelompok = empty($kelompok) ? 1: $kelompok;
-$module = ['1'=>'','2'=>'bpd','3'=>'lpmp','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw'];
-$module_title = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmp','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw'];
+$module = ['1'=>'','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd'];
+$module_title = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd'];
 echo '<a class="btn btn-warning btn-sm" href="'.base_url('admin/perangkat/'.$module[$kelompok].'/list').'"><i class="fa fa-arrow-left"></i> kembali</a>';
 if(!empty($id) && is_numeric($id))
 {
@@ -77,6 +77,18 @@ if(!empty($id) && is_numeric($id))
 		$form->addInput('jabatan', 'dropdown');
 		$form->setAttribute('jabatan','disabled');
 		$form->setOptions('jabatan', $jabatan[$kelompok]);
+	}
+
+	if($module_title[$kelompok] == 'rt' || $module_title[$kelompok] == 'rw')
+	{
+		$form->addInput('rw','plaintext');
+		$form->setLabel('rw','Ketua RW');
+		if($module_title[$kelompok] == 'rt')
+		{
+			$form->addInput('rt','plaintext');
+			$form->setLabel('rt','Ketua RT');
+			$form->setLabel('rw','Wilayah RW');
+		}
 	}
 
 	$form->addInput('no_sk','plaintext');

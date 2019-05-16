@@ -20,6 +20,7 @@ if($user['id'] == @intval($_GET['id']))
 	$this->zea->addInput('email','text');
 	$this->zea->setType('emial','email');
 	$this->zea->addInput('image','upload');
+	$this->zea->setAccept('image', '.jpg,.jpeg,.png');
 	if($user['level'] > 2)
 	{
 		$this->zea->addInput('user_role_id','static');
