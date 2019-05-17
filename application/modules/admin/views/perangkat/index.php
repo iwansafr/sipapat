@@ -136,4 +136,3 @@ if(!is_kecamatan())
 	$form->setDelete(TRUE);
 }
 $form->form();
-pr($form->getData());
