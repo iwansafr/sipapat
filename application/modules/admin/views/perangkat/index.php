@@ -17,15 +17,18 @@ $form = new zea();
 $form->init('roll');
 // $form->setId(@intval($_GET['id']));
 $ext = (!is_root() && !is_admin() && !is_kecamatan()) ? ' AND desa_id = '.$pengguna['desa_id'] : '';
-if(!empty($_GET['desa_id']) && (is_root() || is_admin()))
+if(!empty($_GET['desa_id']) && (is_root() || is_admin() || is_kecamatan()))
 {
 	$ext = ' AND desa_id = '.@intval($_GET['desa_id']);
 }
 if(is_kecamatan())
 {
 	$kecamatan = strtoupper(str_replace('kec_','', $this->session->userdata(base_url().'_logged_in')['username']));
-	$ext .= " AND kecamatan = '{$kecamatan}'";
-	$form->join('desa','ON(perangkat_desa.desa_id=desa.id)','perangkat_desa.*,desa.kecamatan');
+	if(empty(@intval($_GET['desa_id'])))
+	{
+		$ext .= " AND kecamatan = '{$kecamatan}'";
+		$form->join('desa','ON(perangkat_desa.desa_id=desa.id)','perangkat_desa.*,desa.kecamatan');
+	}
 }	
 $form->search();
 $form->setTable('perangkat_desa');
@@ -133,3 +136,4 @@ if(!is_kecamatan())
 	$form->setDelete(TRUE);
 }
 $form->form();
+pr($form->getData());
