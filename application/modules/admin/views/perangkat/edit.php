@@ -102,6 +102,7 @@ if(!is_admin() && !is_kecamatan())
 	$form->addInput('bengkok','text');
 	$form->setType('bengkok','number');
 	$form->setLabel('bengkok','Luas Bengkok');
+	$form->setAttribute('bengkok',['placeholder'=>'Meter']);
 	$form->addInput('penghasilan','text');
 	$form->setType('penghasilan','number');
 	$form->setLabel('penghasilan','Penghasilan Tetap');
