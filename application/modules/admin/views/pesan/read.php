@@ -5,8 +5,12 @@
     <h3 class="box-title">Detail Pesan</h3>
 
     <div class="box-tools pull-right">
-      <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Previous"><i class="fa fa-chevron-left"></i></a>
-      <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Next"><i class="fa fa-chevron-right"></i></a>
+      <?php if (!empty($detail_pesan['prev'])): ?>
+        <a href="<?php echo $detail_pesan['prev'] ?>" class="btn btn-box-tool" data-toggle="tooltip" title="Previous"><i class="fa fa-chevron-left"></i></a>
+      <?php endif ?>
+      <?php if (!empty($detail_pesan['next'])): ?>
+        <a href="<?php echo $detail_pesan['next'] ?>" class="btn btn-box-tool" data-toggle="tooltip" title="Next"><i class="fa fa-chevron-right"></i></a>
+      <?php endif ?>
     </div>
   </div>
   <!-- /.box-header -->

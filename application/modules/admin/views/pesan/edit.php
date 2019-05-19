@@ -6,19 +6,18 @@
   </div>
   <div class="col-md-9">
 		<?php
-		$where = (!is_admin() || !is_root() || !is_kecamatan()) ? " AND (username LIKE 'kec_%' OR user_role_id =2)":'';
 		$this->zea->init('edit');
 		$this->zea->setTable('pesan');
 		$this->zea->addInput('sender','static');
 		$this->zea->setValue('sender',@intval($user['id']));
 		$this->zea->addInput('recipient','dropdown');
 		$this->zea->setLabel('recipient', 'Kirim Ke');
-		$this->zea->tableOptions('recipient','user','id','username',' active = 1 AND user_role_id > 1 AND id != '.$user['id'].' '.$where);
-		if(is_admin() || is_root() || is_kecamatan())
+		$this->zea->setOptions('recipient',$recipient);
+		if(is_kecamatan())
 		{
-			$this->zea->setFirstOption('recipient',['0'=>'Semua']);
-		}else{
-			// $this->zea->setFirstOption('recipient',['-'=>'Pilih Penerima']);
+			$this->zea->setFirstOption('recipient',['0'=>'Semua Desa di kecamatan '.str_replace('kec_','',$user['username'])]);
+		}else if(is_admin()){
+			$this->zea->setFirstOption('recipient',$kecamatan_user);
 		}
 		$this->zea->addInput('title','text');
 		$this->zea->setLabel('title','Judul');
@@ -28,6 +27,7 @@
 		$this->zea->setAttribute('pesan',['id'=>'summernote']);
 		$this->zea->setFormName('compose_message');
 		$this->zea->form();
+		$this->pesan_model->save();
   	?>
   </div>
 </div>

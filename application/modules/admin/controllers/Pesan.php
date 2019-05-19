@@ -26,6 +26,7 @@ class Pesan extends CI_Controller
 			$data['id'] = @intval($id);
 			$data['detail_pesan'] = $this->pesan_model->get_pesan($id);
 		}
+		$data['search_user_id'] = $this->pesan_model->search_user_id('sender');
 		$this->load->view('index', $data);
 	}
 	public function keluar($id = 0)
@@ -37,14 +38,18 @@ class Pesan extends CI_Controller
 			$data['id'] = @intval($id);
 			$data['detail_pesan'] = $this->pesan_model->get_pesan($id);
 		}
+		$data['search_user_id'] = $this->pesan_model->search_user_id('recipient');
 		$this->load->view('index', $data);
 	}
 	public function edit()
 	{
 		$this->esg_model->set_nav_title('Buat Pesan');
 		$data['recipient'] = $this->pesan_model->get_recipient();
+		if(is_admin() || is_root())
+		{
+			$data['kecamatan_user'] = $this->pesan_model->get_kecamatan_user();
+		}
 		$this->load->view('index', $data);
-		$this->pesan_model->save();
 	}
 	public function clear_list($title = '')
 	{

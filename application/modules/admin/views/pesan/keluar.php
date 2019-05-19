@@ -15,7 +15,7 @@
 			$form = new zea();
 			$form->setTable('pesan');
 			$form->init('roll');
-			$form->setWhere(' sender = '.@intval($this->session->userdata(base_url().'_logged_in')['id']));
+			$form->setWhere(' sender = '.@intval($this->session->userdata(base_url().'_logged_in')['id']).$search_user_id);
 			$form->search();
 			// $form->
 			$form->setNumbering(TRUE);
