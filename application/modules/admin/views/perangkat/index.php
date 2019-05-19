@@ -115,10 +115,12 @@ $form->setLabel('sk_penetapan_kembali','SK Penetapan Kembali');
 $form->addInput('tgl_pelantikan','plaintext');
 $form->setLabel('tgl_pelantikan','Tanggal Pelantikan');
 $form->setType('tgl_pelantikan','date');
-
-$form->addInput('jabatan','dropdown');
-$form->setOptions('jabatan',$jabatan[$kelompok]);
-$form->setAttribute('jabatan','disabled');
+if(!empty($jabatan[$kelompok]))
+{
+	$form->addInput('jabatan','dropdown');
+	$form->setOptions('jabatan',$jabatan[$kelompok]);
+	$form->setAttribute('jabatan','disabled');
+}
 
 $form->addInput('akhir_masa_jabatan','plaintext');
 $form->setLabel('akhir_masa_jabatan','Akhir Masa Jabatan');
