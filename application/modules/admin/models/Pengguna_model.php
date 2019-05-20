@@ -64,6 +64,10 @@ class Pengguna_model extends CI_Model
 							],
 			'3' =>  [
 								'1'=>strtoupper('ketua'),
+								'5'=>strtoupper('sekretaris i'),
+								'6'=>strtoupper('sekretaris ii'),
+								'7'=>strtoupper('bendahara i'),
+								'8'=>strtoupper('bendahara ii'),
 								'2'=>strtoupper('seksi agama'),
 								'3'=>strtoupper('seksi pemuda'),
 								'4'=>strtoupper('anggota')
