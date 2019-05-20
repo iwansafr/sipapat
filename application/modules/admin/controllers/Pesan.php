@@ -61,6 +61,7 @@ class Pesan extends CI_Controller
 			$data['id'] = @intval($id);
 			$data['detail_pesan'] = $this->pesan_model->get_pesan($id);
 		}
+		$data['search_user_id'] = $this->pesan_model->search_user_id('sender');
 		$this->pesan_model->pesan();
 		$data['pesan'] = $this->esg->get_esg('pesan');
 		$this->load->view('pesan/'.$title, $data);

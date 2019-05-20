@@ -16,7 +16,7 @@
 			$form->setTable('pesan_status');
 			$form->init('roll');
 			$form->join('pesan','ON(pesan.id=pesan_status.pesan_id)','pesan.title,pesan_status.id,pesan_status.pesan_id,pesan_status.sender,pesan_status.status,pesan.created,pesan.updated');
-			$form->setWhere(' pesan_status.recipient = 0 OR pesan_status.recipient = '.@intval($this->session->userdata(base_url().'_logged_in')['id']).$search_user_id);
+			$form->setWhere(' pesan_status.recipient = '.@intval($this->session->userdata(base_url().'_logged_in')['id']).$search_user_id);
 			$form->search();
 			$form->setNumbering(TRUE);
 			$form->addInput('id','hidden');
@@ -31,7 +31,7 @@
 			$form->addInput('title','plaintext');
 			$form->addInput('sender','dropdown');
 			$form->tableOptions('sender','user','id','username');
-			$form->setFirstOption('sender',['0'=>'Semua User']);
+			// $form->setFirstOption('sender',['0'=>'Semua User']);
 			$form->setAttribute('sender','disabled');
 			$form->addInput('created','plaintext');
 			$form->setFormName('pesan_masuk_form_roll');
