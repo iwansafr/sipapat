@@ -36,6 +36,11 @@ if($user['id'] == @intval($_GET['id']))
 	$this->zea->setUnique(array('username','email'));
 	$this->zea->setEncrypt(array('password'));
 	$this->zea->form();
+
+	if(!empty($_POST['password']))
+	{
+		$this->db->update('user_desa',['sandi'=>@$_POST['password']], ' user_id= '.$user['id']);
+	}
 }else{
 	echo msg('Forbiden and dangerous menu', 'danger');
 }
