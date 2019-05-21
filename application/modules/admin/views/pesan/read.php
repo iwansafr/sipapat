@@ -53,7 +53,7 @@
 	      <li>
 	        <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
 	        <div class="mailbox-attachment-info">
-	          <a target="_blank" href="<?php echo image_module('pesan', $detail_pesan['pesan']['id'].'/'.$detail_pesan['pesan']['file']) ?>" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> <?php echo $detail_pesan['pesan']['file'] ?></a>
+	          <a target="_blank" href="<?php echo image_module('pesan', $detail_pesan['pesan']['id'].'/'.$detail_pesan['pesan']['file']) ?>" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> <?php echo str_replace('_',' ',$detail_pesan['pesan']['file']) ?></a>
 	              <span class="mailbox-attachment-size">
 	                <?php echo round(filesize(FCPATH.'images/modules/pesan/'.$detail_pesan['pesan']['id'].'/'.$detail_pesan['pesan']['file'])/1000, 1); ?> KB
 	                <a target="_blank" href="<?php echo image_module('pesan', $detail_pesan['pesan']['id'].'/'.$detail_pesan['pesan']['file']) ?>" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download-alt"></i></a>

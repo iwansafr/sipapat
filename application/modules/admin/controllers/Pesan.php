@@ -12,6 +12,7 @@ class Pesan extends CI_Controller
 		$this->load->library('esg');
 		$this->load->library('ZEA/zea');
 		$this->esg_model->init();
+		$this->pesan_model->repair();
 	}
 	public function index()
 	{

@@ -77,6 +77,27 @@ class Pesan_model extends CI_Model
 		}
 		return $data;
 	}
+
+	public function repair()
+	{
+		$this->db->select('id');
+		$this->db->select('recipient');
+		$data = $this->db->get('pesan')->result_array();
+		$q = array();
+		foreach ($data as $key => $value) 
+		{
+			if($value['recipient'] == 0)
+			{
+				// $this->db->update('pesan',['recipient'=>'Semua Desa','kelompok'=>2], ['id'=>$value['id']]);
+				$q[] = "UPDATE pesan SET recipient = 'Semua Desa', kelompok = 2 WHERE id = {$value['id']};";
+			}
+			if($value['recipient']>0)
+			{
+				$q[] = "UPDATE pesan SET recipient = 'Semua Desa', kelompok = 2 WHERE id = {$value['id']};";
+			}
+		}
+	}
+
 	public function get_pesan_id($status_id = 0)
 	{
 		if(!empty($status_id))

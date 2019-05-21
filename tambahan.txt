@@ -1,3 +1,5 @@
 ALTER TABLE `perangkat_desa` ADD `jabatan_text` VARCHAR(255) NOT NULL AFTER `jabatan`;
 ALTER TABLE `perangkat_desa` DROP `jabatan_text`;
 ALTER TABLE `perangkat_desa` ADD `rt` INT(11) NOT NULL COMMENT 'untuk ketua RT' AFTER `jabatan`, ADD `rw` INT(11) NOT NULL COMMENT 'untuk ketua RT & RW' AFTER `rt`;
+
+ALTER TABLE `pesan` ADD `kelompok` TINYINT(1) NOT NULL COMMENT '1=1 desa/1 akun, 2 = semua desa, 3 = akun kecamatan, 4 = semua desa di kecamatan, 5 = semua akun kecamatan' AFTER `id`;
