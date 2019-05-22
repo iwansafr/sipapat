@@ -180,7 +180,7 @@ class Pesan_model extends CI_Model
 				$value = $b-$value;
 				$q = $this->db->query('SELECT username FROM user WHERE id = ?', $value)->row_array();
 				$q = $q['username'];
-				$username_desa[$value] = 'Desa-desa di '.$q;
+				$username_desa[$value] = 'Desa di kecamatan'.$q;
 			}else if($value == 0)
 			{
 				$username_desa[$value] = 'Semua Desa';
