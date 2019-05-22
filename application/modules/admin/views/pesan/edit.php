@@ -6,28 +6,29 @@
   </div>
   <div class="col-md-9">
 		<?php
-		$this->zea->init('edit');
-		$this->zea->setTable('pesan');
-		$this->zea->addInput('sender','static');
-		$this->zea->setValue('sender',@intval($user['id']));
-		$this->zea->addInput('recipient','dropdown');
-		$this->zea->setLabel('recipient', 'Kirim Ke');
-		$this->zea->setOptions('recipient',$recipient);
-		if(is_kecamatan())
+		if(!empty($recipient))
 		{
-			$this->zea->setFirstOption('recipient',['0'=>'Semua Desa di kecamatan '.str_replace('kec_','',$user['username'])]);
-		}else if(is_admin()){
-			$this->zea->setFirstOption('recipient',$kecamatan_user);
+			$this->zea->init('edit');
+			$this->zea->setTable('pesan');
+			$this->zea->addInput('sender','static');
+			$this->zea->setValue('sender',@intval($user['id']));
+			$this->zea->addInput('type','static');
+			$this->zea->setValue('type',@intval($type));
+			$this->zea->addInput('recipient','dropdown');
+			$this->zea->setLabel('recipient', 'Kirim Ke');
+			$this->zea->setOptions('recipient',$recipient);
+			$this->zea->addInput('title','text');
+			$this->zea->setLabel('title','Judul');
+			$this->zea->addInput('file','file');
+			$this->zea->setAccept('file', '.jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx');
+			$this->zea->addInput('pesan','textarea');
+			$this->zea->setAttribute('pesan',['id'=>'summernote']);
+			$this->zea->setFormName('compose_message');
+			$this->zea->form();
+			$this->pesan_model->save();
+		}else{
+			msg('Mohon Maaf, Anda tidak mempunyai akses ke halaman ini','danger');
 		}
-		$this->zea->addInput('title','text');
-		$this->zea->setLabel('title','Judul');
-		$this->zea->addInput('file','file');
-		$this->zea->setAccept('file', '.jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx');
-		$this->zea->addInput('pesan','textarea');
-		$this->zea->setAttribute('pesan',['id'=>'summernote']);
-		$this->zea->setFormName('compose_message');
-		$this->zea->form();
-		$this->pesan_model->save();
   	?>
   </div>
 </div>

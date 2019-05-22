@@ -26,11 +26,14 @@
 			$form->setPlaintext('updated','detail');
 			$form->setClearGet('updated');
 			$form->addInput('title','plaintext');
-			// $form->addInput('recipient','dropdown');
+			$form->setLabel('title','judul');
+			$form->addInput('recipient','plaintext');
+			$form->setLabel('recipient','penerima');
 			// $form->tableOptions('recipient','user','id','username');
 			// $form->setFirstOption('recipient',['0'=>'Semua User']);
 			// $form->setAttribute('recipient','disabled');
 			$form->addInput('created','plaintext');
+			$form->setLabel('created','tgl');
 			$form->setDelete(TRUE);
 			$form->setUrl('admin/pesan/clear_list/keluar');
 			$form->setFormName('pesan_keluar_roll');

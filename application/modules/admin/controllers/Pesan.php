@@ -12,12 +12,17 @@ class Pesan extends CI_Controller
 		$this->load->library('esg');
 		$this->load->library('ZEA/zea');
 		$this->esg_model->init();
-		$this->pesan_model->repair();
 	}
 	public function index()
 	{
 		$this->load->view('index');
 	}
+
+	public function repair()
+	{
+		$this->pesan_model->repair();
+	}
+
 	public function masuk($id = 0)
 	{
 		$this->esg_model->set_nav_title('Pesan Masuk');
@@ -42,14 +47,23 @@ class Pesan extends CI_Controller
 		$data['search_user_id'] = $this->pesan_model->search_user_id('recipient');
 		$this->load->view('index', $data);
 	}
-	public function edit()
+	public function edit($mode = '')
 	{
 		$this->esg_model->set_nav_title('Buat Pesan');
-		$data['recipient'] = $this->pesan_model->get_recipient();
-		if(is_admin() || is_root())
+		if($mode == 'broadcast')
 		{
-			$data['kecamatan_user'] = $this->pesan_model->get_kecamatan_user();
+			$data['type'] = 0;
+			$data['recipient'] = $this->pesan_model->bc_recipient();
+		}else if($mode == 'single')
+		{
+			$data['type'] = 1;
+			$data['recipient'] = $this->pesan_model->sg_recipient();
 		}
+		// $data['recipient'] = $this->pesan_model->get_recipient();
+		// if(is_admin() || is_root())
+		// {
+		// 	$data['kecamatan_user'] = $this->pesan_model->get_kecamatan_user();
+		// }
 		$this->load->view('index', $data);
 	}
 	public function clear_list($title = '')

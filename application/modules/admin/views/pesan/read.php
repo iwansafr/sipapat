@@ -19,13 +19,10 @@
       <h3><?php echo $detail_pesan['pesan']['title'] ?></h3>
       <h5>
       	<?php if ($this->router->fetch_method() == 'keluar'): ?>
-      		To : 
+      		Untuk : <?php echo $detail_pesan['recipient'] ?>
       		<?php 
-      		if($detail_pesan['pesan']['recipient']==0) 
+      		if($detail_pesan['pesan']['type']==1) 
       		{
-      			echo 'SEMUA USER';
-      		}else{
-      			echo $detail_pesan['recipient'];
       			foreach($detail_pesan['status'] AS $key =>$value)
       			{
       				if($value['status'] ==0)
@@ -39,7 +36,7 @@
       		?>
 
       	<?php else: ?>
-      		From : <?php echo $detail_pesan['sender'] ?>
+      		Dari : <?php echo $detail_pesan['sender'] ?>
       	<?php endif ?>
         <span class="mailbox-read-time pull-right"><?php echo $detail_pesan['pesan']['created'] ?></span></h5>
     </div>
@@ -64,7 +61,7 @@
   	<?php endif ?>
   </div>
 </div>
-<?php if (!empty($detail_pesan['status']) && $detail_pesan['pesan']['recipient']==0): ?>
+<?php if (!empty($detail_pesan['status']) && $detail_pesan['pesan']['type']==0): ?>
 	<div class="col-md-6">
     <div class="box box-success collapsed-box box-solid">
       <div class="box-header with-border">

@@ -29,7 +29,9 @@
 			$form->setPlaintext('updated','detail');
 			$form->setClearGet('updated');
 			$form->addInput('title','plaintext');
+			$form->setLabel('title','judul');
 			$form->addInput('sender','dropdown');
+			$form->setLabel('sender','pengirim');
 			$form->tableOptions('sender','user','id','username');
 			// $form->setFirstOption('sender',['0'=>'Semua User']);
 			$form->setAttribute('sender','disabled');
