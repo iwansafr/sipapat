@@ -52,7 +52,7 @@ $message = $this->esg->get_esg('pesan');
               </ul>
             <?php endif ?>
             </li>
-            <li class="footer"><a href="<?php echo base_url('admin/pesan/edit') ?>"><i class="fa fa-pencil-alt"></i> Buat Pesan Baru</a><a href="<?php echo base_url('admin/pesan') ?>"><i class="fa fa-list"></i>Lihat Semua Pesan</a></li>
+            <li class="footer"><a href="<?php echo base_url('admin/pesan/edit/single') ?>"><i class="fa fa-pencil-alt"></i> Buat Pesan Baru</a><a href="<?php echo base_url('admin/pesan') ?>"><i class="fa fa-list"></i>Lihat Semua Pesan</a></li>
           </ul>
         </li>
         <li class="dropdown notifications-menu">

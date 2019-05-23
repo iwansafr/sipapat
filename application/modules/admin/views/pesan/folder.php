@@ -1,6 +1,21 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-?>
-<a href="<?php echo base_url('admin/pesan/edit') ?>" class="btn btn-primary btn-block margin-bottom"><i class="fa fa-pencil-alt"></i> Buat Pesan</a>
+if (!is_desa()): ?>
+  <div class="btn-group">
+      <a href="#" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        <i class="fa fa-pencil-alt"></i> Buat Pesan
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+      </a>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="<?php echo base_url('admin/pesan/edit/broadcast') ?>">Broadcast</a></li>
+        <li class="divider"></li>
+        <li><a href="<?php echo base_url('admin/pesan/edit/single') ?>">Single</a></li>
+      </ul>
+    <hr>
+  </div>
+<?php else: ?>
+  <a href="<?php echo base_url('admin/pesan/edit/single') ?>" class="btn btn-primary btn-block margin-bottom"><i class="fa fa-pencil-alt"></i> Buat Pesan</a>
+<?php endif ?>
 
 <div class="box box-solid">
   <div class="box-header with-border">
