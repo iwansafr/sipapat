@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-if(is_admin())
+if(is_admin() || is_root())
 {
 	$form  = new zea();
 
@@ -14,6 +14,10 @@ if(is_admin())
 		$form->setAttribute('pengumuman'.$i,['class'=>'form-control summernote']);
 	}
 	$form->addInput('background_image','image');
+	$form->addInput('header','text');
+	$form->addInput('header_color','text');
+	$form->setType('header_color','color');
+	$form->setLabel('header_color','Warna Header');
 	$form->form();
 }else if(is_kecamatan()){
 	$form  = new zea();
