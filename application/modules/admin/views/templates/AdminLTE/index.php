@@ -34,7 +34,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
+      <div class="badge"><?php echo date('d/M/Y h:i A'); ?></div> <b>Version</b> 2.4.0
     </div>
     <strong>Copyright &copy; 2015-<?php echo date('Y'); ?> <a href="https://www.dinusa.co.id">dinusa</a>.</strong> All rights
     reserved.
