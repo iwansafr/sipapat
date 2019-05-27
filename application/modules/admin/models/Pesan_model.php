@@ -63,13 +63,13 @@ class Pesan_model extends CI_Model
 			
 		}else{
 			$tmp_data = $this->db->query("SELECT id,username FROM user WHERE username LIKE 'kec_%'")->result_array();
+			if(is_admin() || is_root())
+			{
+				$data['ad'] = 'SEMUA DESA';
+				$data['ak'] = 'SEMUA KECAMATAN';
+			}
 			if(!empty($tmp_data))
 			{
-				if(is_admin() || is_root())
-				{
-					$data['ad'] = 'SEMUA DESA';
-					$data['ak'] = 'SEMUA KECAMATAN';
-				}
 				foreach ($tmp_data as $key => $value) 
 				{
 					$username = strtolower(str_replace('kec_','',$value['username']));
