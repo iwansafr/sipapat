@@ -1,14 +1,14 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 $navigation = $this->esg->get_esg('navigation');
 $title = end($navigation['array']);
-$title = $title == 'admin' ? 'home' : $title;
+$title = $title == 'admin' ? 'beranda' : $title;
 ?>
 <h1>
 	<?php echo str_replace('_',' ',$title) ?>
 </h1>
 <ol class="breadcrumb">
 	<?php
-	echo '<li><a href="'.base_url('admin').'"> <i class="fa fa-home"></i> Home</a></li>';
+	echo '<li><a href="'.base_url('admin').'"> <i class="fa fa-home"></i> BERANDA</a></li>';
 	if(count($navigation['array']) > 1)
 	{
 		$url = '';

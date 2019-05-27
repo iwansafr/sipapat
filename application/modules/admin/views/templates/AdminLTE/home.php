@@ -1,6 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 $pengumuman = $this->esg->get_config('pengumuman');
-$pengumuman = $this->esg->get_config('pengumuman');
 ?>
 <style type="text/css">
 	.content-wrapper{
@@ -10,6 +9,7 @@ $pengumuman = $this->esg->get_config('pengumuman');
     position: relative;
 	}	
 </style>
+<h1 style="text-align: center; color: <?php echo @$pengumuman['header_color']; ?>; font-weight: bold;"><?php echo @$pengumuman['header'] ?></h1>
 <?php
 echo '<div class="row">';
 if(!empty($pengumuman))
