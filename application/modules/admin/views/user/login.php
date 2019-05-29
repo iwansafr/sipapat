@@ -28,6 +28,11 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <style type="text/css">
+    .c_pass{
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body class="hold-transition login-page" style="background: #d2d6de;">
 	<?php
@@ -65,6 +70,7 @@
       <div class="form-group has-feedback">
         <input type="password" class="form-control" placeholder="Password" name="password" value="<?php echo @$data['password'] ?>">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        <span class="fa fa-eye c_pass" title="Tampilkan Sandi" style="color: black;"></span>
       </div>
       <div class="row">
         <div class="col-xs-8">
@@ -111,6 +117,19 @@
       checkboxClass: 'icheckbox_square-blue',
       radioClass: 'iradio_square-blue',
       increaseArea: '20%' /* optional */
+    });
+    $('.c_pass').on('click',function(){
+      var is_cek = $(this).attr('is_cek');
+      if(is_cek){
+        $('input[name="password"]').attr('type','password');
+        $(this).removeAttr('is_cek');
+        $(this).attr('title','Tampilkan Sandi');
+      }else{
+        $('input[name="password"]').attr('type','text');
+        $(this).attr('is_cek','is_cek');
+        $(this).attr('title','Sembunyikan Sandi');
+      }
+
     });
   });
   window.onload = function() {
