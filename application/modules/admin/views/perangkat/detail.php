@@ -134,6 +134,19 @@ if(!empty($id) && is_numeric($id))
 			'7'=>'Kepercayaan thd Tuhan yang Maha Esa Lainnya'
 		];
 	$status_perkawinan = ['Belum Kawin','Cerai Hidup','Cerai Mati','Kawin'];
+	$pendidikan_terakhir = 
+		[
+			'1'=>strtoupper('akademi/diploma iii/s.muda'),
+			'2'=>strtoupper('belum tamat sd/sederajat'),
+			'3'=>strtoupper('diploma i/ii'),
+			'4'=>strtoupper('diploma iv/strata i'),
+			'5'=>strtoupper('slta/sederajat'),
+			'6'=>strtoupper('sltp/sederajat'),
+			'7'=>strtoupper('strata ii'),
+			'8'=>strtoupper('strata iii'),
+			'9'=>strtoupper('tamat sd/sederajat'),
+			'10'=>strtoupper('tidak/belum sekolah')
+		];
 	if(!empty($data))
 	{
 		// pr($data);
@@ -163,7 +176,7 @@ if(!empty($id) && is_numeric($id))
 								<tr>
 									<td>Tgl Lahir</td>
 									<td>:</td>
-									<td><?php echo content_date($data['tgl_lahir']) ?></td>
+									<td><?php echo $data['tgl_lahir']; ?></td>
 								</tr>
 								<tr>
 									<td>Jenis Kelamin</td>
@@ -180,10 +193,6 @@ if(!empty($id) && is_numeric($id))
 									<td>:</td>
 									<td><?php echo $data['alamat'] ?></td>
 								</tr>
-							</table>
-						</div>
-						<div class="col-md-4">
-							<table class="table table-responsive">
 								<tr>
 									<td>Status Perkawinan</td>
 									<td>:</td>
@@ -191,8 +200,142 @@ if(!empty($id) && is_numeric($id))
 								</tr>
 							</table>
 						</div>
+						<div class="col-md-4">
+							<table class="table table-responsive">
+								<tr>
+									<td>Pendidikan Terakhir</td>
+									<td>:</td>
+									<td><?php echo $pendidikan_terakhir[$data['status_perkawinan']] ?></td>
+								</tr>
+								<?php 
+								if(!empty($jabatan[$kelompok]))
+								{
+									?>
+									<tr>
+										<td>Jabatan</td>
+										<td>:</td>
+										<td><?php echo $jabatan[$kelompok][$data['jabatan']] ?></td>
+									</tr>
+									<?php
+								}
+								if($module_title[$kelompok] == 'rt' || $module_title[$kelompok] == 'rw')
+								{
+									?>
+									<tr>
+										<td>RW</td>
+										<td>:</td>
+										<td><?php echo $data['rw'] ?></td>
+									</tr>
+									<?php
+									if($module_title[$kelompok] == 'rt')
+									{
+										?>
+										<tr>
+											<td>RT</td>
+											<td>:</td>
+											<td><?php echo $data['rt'] ?></td>
+										</tr>
+										<?php
+									}
+								}
+								?>
+								<tr>
+									<td>NO SK</td>
+									<td>:</td>
+									<td><?php echo $data['no_sk'] ?></td>
+								</tr>
+								<tr>
+									<td>Tgl Pelantikan</td>
+									<td>:</td>
+									<td><?php echo $data['tgl_pelantikan'] ?></td>
+								</tr>
+								<tr>
+									<td>Pelantik</td>
+									<td>:</td>
+									<td><?php echo $data['pelantik'] ?></td>
+								</tr>
+								<tr>
+									<td>Bengkok</td>
+									<td>:</td>
+									<td><?php echo $data['bengkok'] ?></td>
+								</tr>
+								<tr>
+									<td>Penghasilan</td>
+									<td>:</td>
+									<td><?php echo $data['penghasilan'] ?></td>
+								</tr>
+							</table>
+						</div>
 					</div>
-				</div>	
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="col-md-6">
+							<?php 
+							$riwayat_pendidikan = $data['riwayat_pendidikan'];
+							if (!empty($riwayat_pendidikan))
+							{
+								$riwayat_pendidikan = explode("\n", $riwayat_pendidikan);
+								?>
+								<h3>Riwayat Pendidikan</h3>
+								<table class="table table-responsive">
+									<tr>
+										<th>No</th>
+										<th>Jenjang</th>
+									</tr>
+									<?php 
+									$i = 1;
+									foreach ($riwayat_pendidikan as $key => $value) 
+									{
+										?>
+										<tr>
+											<td><?php echo $i ?></td>
+											<td><?php echo $value ?></td>
+										</tr>
+										<?php
+										$i++;
+									}
+									?>
+									
+								</table>
+								<?php
+							}
+							?>
+						</div>
+						<div class="col-md-6">
+							<?php 
+							$riwayat_diklat = $data['riwayat_diklat'];
+							if (!empty($riwayat_diklat))
+							{
+								$riwayat_diklat = explode("\n", $riwayat_diklat);
+								?>
+								<h3>Riwayat Pendidikan</h3>
+								<table class="table table-responsive">
+									<tr>
+										<th>No</th>
+										<th>Diklat</th>
+									</tr>
+									<?php 
+									$i = 1;
+									foreach ($riwayat_diklat as $key => $value) 
+									{
+										?>
+										<tr>
+											<td><?php echo $i ?></td>
+											<td><?php echo $value ?></td>
+										</tr>
+										<?php
+										$i++;
+									}
+									?>
+									
+								</table>
+								<?php
+							}
+							?>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="panel-footer">
 				
