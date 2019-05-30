@@ -164,7 +164,7 @@ if(!empty($id) && is_numeric($id))
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-						<div class="col-md-6">
+						<div class="col-xs-6">
 							<?php 
 							$riwayat_pendidikan = $data['riwayat_pendidikan'];
 							if (!empty($riwayat_pendidikan))
@@ -196,14 +196,14 @@ if(!empty($id) && is_numeric($id))
 							}
 							?>
 						</div>
-						<div class="col-md-6">
+						<div class="col-xs-6">
 							<?php 
 							$riwayat_diklat = $data['riwayat_diklat'];
 							if (!empty($riwayat_diklat))
 							{
 								$riwayat_diklat = explode("\n", $riwayat_diklat);
 								?>
-								<h3>Riwayat Pendidikan</h3>
+								<h3>Riwayat Diklat</h3>
 								<table class="table table-responsive">
 									<tr>
 										<th>No</th>
