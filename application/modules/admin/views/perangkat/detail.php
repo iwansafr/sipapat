@@ -87,7 +87,7 @@ if(!empty($id) && is_numeric($id))
 								<tr>
 									<td>Pendidikan Terakhir</td>
 									<td>:</td>
-									<td><?php echo $pendidikan_terakhir[$data['status_perkawinan']] ?></td>
+									<td><?php echo $pendidikan_terakhir[$data['pendidikan_terakhir']] ?></td>
 								</tr>
 								<?php 
 								if(!empty($jabatan[$kelompok]))
