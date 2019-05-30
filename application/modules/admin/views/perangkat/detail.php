@@ -1,5 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-echo empty(@$_GET['s'])? '<a class="btn btn-warning btn-sm" href="'.base_url('admin/perangkat/'.$module_title[$data['kelompok']].'/list').'"><i class="fa fa-arrow-left"></i> kembali</a>' :'';
+$module_kelompok = $module_title[$data['kelompok']] == 'perangkat' ? '': $module_title[$data['kelompok']];
+echo empty(@$_GET['s'])? '<a class="btn btn-warning btn-sm" href="'.base_url('admin/perangkat/'.$module_kelompok.'/list').'"><i class="fa fa-arrow-left"></i> kembali</a>' :'';
 if(!empty($id) && is_numeric($id))
 {
 	if(!empty($data))
