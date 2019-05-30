@@ -229,8 +229,73 @@ class Perangkat extends CI_Controller
 	{
 		$pengguna = $this->pengguna_model->get_pengguna();
 		$jabatan = $this->pengguna_model->jabatan();
-		$this->esg_model->set_nav_title('Detail Perangkat Desa');
-		$this->load->view('index', ['id'=>$id,'jabatan'=>$jabatan,'pengguna'=>$pengguna]);
+		$module_title = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd'];
+		$data = $this->db->query('SELECT * FROM perangkat_desa WHERE id = ?', $id)->row_array();
+		$this->esg_model->set_nav_title('Detail '.$module_title[$data['kelompok']]);
+		$kelamin = ['Perempuan','Laki-laki'];
+		$agama = 
+			[
+				'1'=>'Islam',
+				'2'=>'Kristen',
+				'3'=>'Katholik',
+				'4'=>'Hindu',
+				'5'=>'Budha',
+				'6'=>'Khonghucu',
+				'7'=>'Kepercayaan thd Tuhan yang Maha Esa Lainnya'
+			];
+		$status_perkawinan = ['Belum Kawin','Cerai Hidup','Cerai Mati','Kawin'];
+		$pendidikan_terakhir = 
+			[
+				'1'=>strtoupper('akademi/diploma iii/s.muda'),
+				'2'=>strtoupper('belum tamat sd/sederajat'),
+				'3'=>strtoupper('diploma i/ii'),
+				'4'=>strtoupper('diploma iv/strata i'),
+				'5'=>strtoupper('slta/sederajat'),
+				'6'=>strtoupper('sltp/sederajat'),
+				'7'=>strtoupper('strata ii'),
+				'8'=>strtoupper('strata iii'),
+				'9'=>strtoupper('tamat sd/sederajat'),
+				'10'=>strtoupper('tidak/belum sekolah')
+			];
+		$view = 'index';
+		if(@$_GET['s']=='print')
+		{
+			$data_meta = array(
+						'title' => 'sipapat',
+						'keyword' => 'media nusa perkasa',
+						'description' => 'sistem informasi terpadu',
+						'developer' => 'esoftgreat',
+						'author' => 'sipapat',
+						'email' => 'iwan@esoftgreat.com , iwansafr@gmail.com',
+						'phone' => '6285290335332',
+						'icon' => base_url('images/icon.png'),
+					);
+			$this->esg->set_esg('meta', $data_meta);
+			$view = 'perangkat/detail';
+			$this->load->view('templates/AdminLTE/meta');
+		}
+		$this->load->view($view, 
+			[
+				'id'=>$id,
+				'jabatan'=>$jabatan,
+				'pengguna'=>$pengguna,
+				'data'=>$data,
+				'kelamin'=>$kelamin,
+				'agama'=>$agama,
+				'status_perkawinan'=>$status_perkawinan,
+				'pendidikan_terakhir'=>$pendidikan_terakhir,
+				'module_title'=>$module_title,
+				'kelompok'=>@intval($data['kelompok'])
+			]
+		);
+		if(@$_GET['s']=='print')
+		{
+			?>
+			<script type="text/javascript">
+				window.print();
+			</script>
+			<?php
+		}
 	}
 
 	public function list()

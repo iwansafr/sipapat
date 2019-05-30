@@ -56,7 +56,7 @@ $form->setLabel('desa_id','Nama Desa');
 $form->addInput('id','link');
 $form->setLabel('id','detail');
 $form->setPlainText('id','detail');
-$form->setLink('id',base_url('admin/perangkat/'.$module[$kelompok].'/detail'),'id');
+$form->setLink('id',base_url('admin/perangkat/detail'),'id');
 $form->setClearGet('id');
 $form->addInput('nama','plaintext');
 // $form->addInput('foto','thumbnail');
