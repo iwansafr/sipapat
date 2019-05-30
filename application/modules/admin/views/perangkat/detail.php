@@ -1,5 +1,10 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 $module_kelompok = $module_title[$data['kelompok']] == 'perangkat' ? '': $module_title[$data['kelompok']];
+if(@$_GET['s']==='download')
+{
+	header("Content-type:application/pdf; charset=utf-8");
+	header("Content-Disposition:attachment;filename={$module_kelompok}.pdf");
+}
 if(!empty(@$_GET['s']))
 {
 	?>
@@ -25,7 +30,8 @@ if(!empty($id) && is_numeric($id))
 				if(empty($_GET['s']))
 				{
 					?>
-					<a href="?s=print" target="_blank" class="pull-right btn btn-default btn-sm"><i class="fa fa-file-pdf-o"></i>/<i class="fa fa-print"></i> CETAK</a>
+					<a href="?s=print" target="_blank" class="pull-right btn btn-default btn-sm"><i class="fa fa-print"></i></a>
+					<a href="?s=download" target="_blank" class="pull-right btn btn-default btn-sm"><i class="fa fa-download"></i></a>
 					<?php
 				}
 				?>
@@ -81,6 +87,11 @@ if(!empty($id) && is_numeric($id))
 									<td>Agama</td>
 									<td>:</td>
 									<td><?php echo $agama[$data['agama']] ?></td>
+								</tr>
+								<tr>
+									<td>Telepon</td>
+									<td>:</td>
+									<td><?php echo $data['telepon'] ?></td>
 								</tr>
 								<tr>
 									<td>Alamat</td>
