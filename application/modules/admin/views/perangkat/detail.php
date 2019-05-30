@@ -25,7 +25,7 @@ if(!empty($id) && is_numeric($id))
 						<div class="col-md-3">
 							<div class="image">
 								<a href="#">
-									<img src="<?php echo $image_src;?>" alt="" style="object-fit: cover;width: 100%; height: 350px;" class="img-responsive image-thumbnail image"  data-toggle="modal" data-target="#detail_image">
+									<img src="<?php echo $image_src;?>" alt="" style="object-fit: cover; height: 350px;" class="img-responsive image-thumbnail image"  data-toggle="modal" data-target="#detail_image">
 								</a>
 							</div>
 							<div class="modal fade" id="detail_image" tabindex="-1" role="dialog" aria-labelledby="detail_image">
