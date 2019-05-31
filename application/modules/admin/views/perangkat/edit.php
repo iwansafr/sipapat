@@ -72,6 +72,7 @@ if(!is_admin() && !is_kecamatan())
 	}
 	if($module_title[$kelompok] == 'rt' || $module_title[$kelompok] == 'rw')
 	{
+		$penghasilan_title = 'Insentif Pertahun';
 		$form->addInput('rw','text');
 		$form->setType('rw','number');
 		$form->setLabel('rw','Ketua RW');
@@ -82,6 +83,12 @@ if(!is_admin() && !is_kecamatan())
 			$form->setLabel('rt','Ketua RT');
 			$form->setLabel('rw','Wilayah RW');
 		}
+	}else{
+		$penghasilan_title = 'Penghasilan Tetap';
+		$form->setType('bengkok','number');
+		$form->setLabel('bengkok','Luas Bengkok');
+		$form->setAttribute('bengkok',['placeholder'=>'Meter']);
+		$form->addInput('bengkok','text');
 	}
 
 	$form->addInput('no_sk','text');
@@ -99,13 +106,9 @@ if(!is_admin() && !is_kecamatan())
 
 	$form->addInput('pelantik','text');
 	$form->setLabel('pelantik','Pejabat Pelantik');
-	$form->addInput('bengkok','text');
-	$form->setType('bengkok','number');
-	$form->setLabel('bengkok','Luas Bengkok');
-	$form->setAttribute('bengkok',['placeholder'=>'Meter']);
 	$form->addInput('penghasilan','text');
 	$form->setType('penghasilan','number');
-	$form->setLabel('penghasilan','Penghasilan Tetap');
+	$form->setLabel('penghasilan',$penghasilan_title);
 
 	$form->addInput('riwayat_pendidikan','textarea');
 	$form->setLabel('riwayat_pendidikan','Riwayat Pendidikan');
