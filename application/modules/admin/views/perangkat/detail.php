@@ -33,7 +33,7 @@ if(!empty($id) && is_numeric($id))
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-md-12">
-						<div class="col-md-3 col-xs-6">
+						<div class="col-md-3 col-xs-5">
 							<div class="image">
 								<a href="#">
 									<img src="<?php echo $image_src;?>" alt="" style="object-fit: cover; height: 350px;" class="img-responsive image-thumbnail image"  data-toggle="modal" data-target="#detail_image">
@@ -55,7 +55,7 @@ if(!empty($id) && is_numeric($id))
 							  </div>
 							</div>
 						</div>
-						<div class="col-md-4 col-xs-6">
+						<div class="col-md-4 col-xs-7">
 							<table class="table table-responsive">
 								<tr>
 									<td>Nama</td>
@@ -119,6 +119,7 @@ if(!empty($id) && is_numeric($id))
 								}
 								if($module_title[$kelompok] == 'rt' || $module_title[$kelompok] == 'rw')
 								{
+									$penghasilan_title = 'Insentif/Tahun';
 									?>
 									<tr>
 										<td>RW</td>
@@ -136,6 +137,15 @@ if(!empty($id) && is_numeric($id))
 										</tr>
 										<?php
 									}
+								}else{
+									$penghasilan_title = 'Penghasilan';
+									?>
+									<tr>
+										<td>Bengkok</td>
+										<td>:</td>
+										<td><?php echo $data['bengkok'] ?></td>
+									</tr>
+									<?php
 								}
 								?>
 								<tr>
@@ -154,12 +164,7 @@ if(!empty($id) && is_numeric($id))
 									<td><?php echo $data['pelantik'] ?></td>
 								</tr>
 								<tr>
-									<td>Bengkok</td>
-									<td>:</td>
-									<td><?php echo $data['bengkok'] ?></td>
-								</tr>
-								<tr>
-									<td>Penghasilan</td>
+									<td><?php echo $penghasilan_title ?></td>
 									<td>:</td>
 									<td><?php echo $data['penghasilan'] ?></td>
 								</tr>
