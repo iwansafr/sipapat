@@ -1,10 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 $module_kelompok = $module_title[$data['kelompok']] == 'perangkat' ? '': $module_title[$data['kelompok']];
-if(@$_GET['s']==='download')
-{
-	header("Content-type:application/pdf; charset=utf-8");
-	header("Content-Disposition:attachment;filename={$module_kelompok}.pdf");
-}
 if(!empty(@$_GET['s']))
 {
 	?>
@@ -30,8 +25,7 @@ if(!empty($id) && is_numeric($id))
 				if(empty($_GET['s']))
 				{
 					?>
-					<a href="?s=print" target="_blank" class="pull-right btn btn-default btn-sm"><i class="fa fa-print"></i></a>
-					<a href="?s=download" target="_blank" class="pull-right btn btn-default btn-sm"><i class="fa fa-download"></i></a>
+					<a href="?s=print" target="_blank" class="pull-right btn btn-default btn-sm"><i class="fa fa-print"></i> Cetak</a>
 					<?php
 				}
 				?>
@@ -61,7 +55,7 @@ if(!empty($id) && is_numeric($id))
 							  </div>
 							</div>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-4 col-xs-6">
 							<table class="table table-responsive">
 								<tr>
 									<td>Nama</td>
@@ -105,7 +99,7 @@ if(!empty($id) && is_numeric($id))
 								</tr>
 							</table>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-4 col-xs-6">
 							<table class="table table-responsive">
 								<tr>
 									<td>Pendidikan Terakhir</td>

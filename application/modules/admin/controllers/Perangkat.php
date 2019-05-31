@@ -258,7 +258,7 @@ class Perangkat extends CI_Controller
 				'10'=>strtoupper('tidak/belum sekolah')
 			];
 		$view = 'index';
-		if(@$_GET['s']=='print')
+		if(@$_GET['s']=='print' || @$_GET['s']=='download')
 		{
 			$data_meta = array(
 						'title' => 'sipapat',
