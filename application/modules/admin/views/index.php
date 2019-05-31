@@ -28,6 +28,11 @@ if($mod['name'] == 'admin' && $mod['task'] == 'index')
 	if(!empty($desa))
 	{
 		$pengumuman = $this->sipapat_model->get_pengumuman(strtolower($desa['kecamatan']));
+		$kepdes_alert = $this->sipapat_model->kepdes_alert();
+	}
+	if(!empty($kepdes_alert))
+	{
+		$this->esg->set_esg('kepdes_alert', $kepdes_alert);
 	}
 	if(!empty($pengumuman))
 	{

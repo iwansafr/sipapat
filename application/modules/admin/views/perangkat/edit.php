@@ -9,6 +9,7 @@ if(!is_admin() && !is_kecamatan())
 	$form->init('edit');
 	$form->setId(@intval($_GET['id']));
 	$form->setTable('perangkat_desa');
+	$form->setWhere(' AND desa_id = '.@intval($pengguna['desa_id']));
 	$form->addInput('desa_id','static');
 	$form->setValue('desa_id', @$pengguna['desa_id']);
 	$form->setHeading($module_title[$kelompok].' Desa '.@$pengguna['username']);
@@ -120,6 +121,12 @@ if(!is_admin() && !is_kecamatan())
 	{
 		$form->addInput('user_id','static');
 		$form->setValue('user_id',$user['id']);
+	}
+	$data = $form->getData();
+	if(empty($data) && !empty($_GET['id']))
+	{
+		msg('Anda tidak punya Akses ke halaman ini', 'danger');
+		exit();
 	}
 	$form->form();
 }else{

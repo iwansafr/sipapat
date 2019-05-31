@@ -1,5 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-
+if(is_desa())
+{
+	msg('Anda tidak punya Akses ke halaman ini','danger');
+	exit();
+}
 $form = new zea();
 $form->init('roll');
 $form->setTable('user_desa');

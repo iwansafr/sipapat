@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 	echo '<a class="btn btn-warning btn-sm" href="'.base_url('admin/pengguna/list').'"><i class="fa fa-arrow-left"></i> kembali</a>';
-if(!empty($id) && is_numeric($id))
+if(!empty($id) && is_numeric($id) && !is_desa())
 {
 	$form = new zea();
 

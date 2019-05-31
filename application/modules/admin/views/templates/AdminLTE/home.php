@@ -12,6 +12,18 @@ $pengumuman = $this->esg->get_config('pengumuman');
 <h1 style="text-align: center; color: <?php echo @$pengumuman['header_color']; ?>; font-weight: bold;"><?php echo @$pengumuman['header'] ?></h1>
 <?php
 echo '<div class="row">';
+if(!empty($kepdes_alert))
+{
+	?>
+	<div class="box-body">
+		<div class="alert alert-<?php echo $kepdes_alert['alert']?> alert-dismissible">
+	    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	    <h4><i class="icon fa fa-ban"></i> Perhatian!</h4>
+	    <?php echo $kepdes_alert['msg']?>
+	  </div>
+	</div>
+	<?php
+}
 if(!empty($pengumuman))
 {
 		?>

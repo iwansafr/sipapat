@@ -46,4 +46,24 @@ class Sipapat_model extends CI_Model
 			return $this->db->get_where('desa', ['id'=>$id])->row_array();
 		}
 	}
+
+	public function kepdes_alert()
+	{
+		$user = $this->session->userdata(base_url().'_logged_in');
+		if(!empty($user))
+		{
+			$data = $this->db->query('SELECT * FROM perangkat_desa WHERE user_id = ? AND kelompok = 1 AND jabatan = 1 LIMIT 1', $user['id'])->row_array();
+			$akhir_masa_jabatan = @$data['akhir_masa_jabatan'];
+			if(!empty($akhir_masa_jabatan))
+			{
+				$alert_time = date('Y-m-d', strtotime($akhir_masa_jabatan.' -3 month'));
+				$current = date('Y-m-d');
+				if($current>=$alert_time)
+				{
+					return ['msg'=>'masa jabatan kepala desa '.$data['nama'].' akan berakhir pada tanggal '.$data['akhir_masa_jabatan'],'alert'=>'danger'];
+				}
+			}
+		}
+	}
+
 }

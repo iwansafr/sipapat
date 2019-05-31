@@ -1,5 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-
+if(is_desa())
+{
+	msg('Anda tidak punya Akses ke halaman ini','danger');
+	exit();
+}
 $this->zea->init('edit');
 $this->zea->setTable('user_desa');
 $this->zea->setId(@intval($_GET['id']));
