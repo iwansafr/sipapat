@@ -136,7 +136,7 @@ if(is_admin() || is_root())
 $form->setFormName($module[$kelompok].'_desa_form');
 
 $form->setUrl('admin/perangkat/clear_list/'.$module[$kelompok]);
-if(!is_kecamatan())
+if(is_desa() || is_root())
 {
 	$form->setEdit(TRUE);
 	$form->setEditLink(base_url('admin/perangkat/'.$module[$kelompok].'/edit?id='));

@@ -117,6 +117,7 @@ if(!is_admin() && !is_kecamatan())
 	$form->setLabel('riwayat_diklat','Riwayat Diklat');
 
 	$form->setFormName('perangkat_desa_form');
+	pr($user);
 	if(!empty(@$user['id']))
 	{
 		$form->addInput('user_id','static');

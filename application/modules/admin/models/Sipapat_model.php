@@ -58,6 +58,24 @@ class Sipapat_model extends CI_Model
 		}
 	}
 
+	public function perangkat_alert()
+	{
+		if(is_desa())
+		{
+			$user = $this->session->userdata(base_url().'_logged_in');
+			$perangkat = $this->db->query('SELECT * FROM perangkat_desa WHERE user_id = ?', $user['id'])->result_array();
+			if(!empty($perangkat))
+			{
+				$amj = array();
+				foreach ($perangkat as $key => $value)
+				{
+					$amj[$value['id']]['amj'] = $value['akhir_masa_jabatan'];
+				}
+			}
+		}
+
+	}
+
 	public function kepdes_alert()
 	{
 		$user = $this->session->userdata(base_url().'_logged_in');
@@ -76,5 +94,4 @@ class Sipapat_model extends CI_Model
 			}
 		}
 	}
-
 }

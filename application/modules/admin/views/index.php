@@ -38,5 +38,6 @@ if($mod['name'] == 'admin' && $mod['task'] == 'index')
 	{
 		$this->esg->set_esg('pengumuman_kecamatan', $pengumuman);
 	}
+	$this->sipapat_model->perangkat_alert();
 }
 $this->load->view('templates'.DIRECTORY_SEPARATOR.$this->esg->get_esg('templates')['admin_template'].DIRECTORY_SEPARATOR.'index', $this->esg->get_esg());
