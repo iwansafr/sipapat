@@ -14,6 +14,7 @@ class Desa extends CI_Controller
 		$this->load->model('esg_model');
 		$this->load->model('admin_model');
 		$this->load->model('pengguna_model');
+		$this->load->model('sipapat_model');
 		$this->load->library('esg');
 		$this->load->library('ZEA/zea');
 		$this->esg_model->init();
@@ -32,7 +33,41 @@ class Desa extends CI_Controller
 	public function detail($id = 0)
 	{
 		$this->esg_model->set_nav_title('Detail Desa');
-		$this->load->view('index', ['id'=>$id]);
+		$data = $this->sipapat_model->get_desa($id);
+		$image = $this->sipapat_model->get_image_kab();
+
+		$view = 'index';
+		if(@$_GET['s']=='print' || @$_GET['s']=='download')
+		{
+			$data_meta = array(
+						'title' => 'sipapat',
+						'keyword' => 'media nusa perkasa',
+						'description' => 'sistem informasi terpadu',
+						'developer' => 'esoftgreat',
+						'author' => 'sipapat',
+						'email' => 'iwan@esoftgreat.com , iwansafr@gmail.com',
+						'phone' => '6285290335332',
+						'icon' => base_url('images/icon.png'),
+					);
+			$this->esg->set_esg('meta', $data_meta);
+			$view = 'desa/detail';
+			$this->load->view('templates/AdminLTE/meta');
+		}
+		$this->load->view($view, 
+			[
+				'id'=>$id,
+				'data'=>$data,
+				'image'=>$image
+			]
+		);
+		if(@$_GET['s']=='print')
+		{
+			?>
+			<script type="text/javascript">
+				window.print();
+			</script>
+			<?php
+		}
 	}
 
 	public function list()

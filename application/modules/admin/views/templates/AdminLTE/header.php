@@ -93,33 +93,17 @@ $message = $this->esg->get_esg('pesan');
                 <small>Member since <?php echo content_date($user['created']) ?></small>
               </p>
             </li>
-            <!-- Menu Body -->
-            <li class="user-body">
-              <div class="row">
-                <div class="col-xs-4 text-center">
-                  <a href="#">Followers</a>
-                </div>
-                <div class="col-xs-4 text-center">
-                  <a href="#">Sales</a>
-                </div>
-                <div class="col-xs-4 text-center">
-                  <a href="#">Friends</a>
-                </div>
-              </div>
-              <!-- /.row -->
-            </li>
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-left">
-                <a href="<?php echo base_url('admin/user/edit/?id='.$user['id']) ?>" class="btn btn-default btn-flat">Profile</a>
+                <a href="<?php echo base_url('admin/user/edit/?id='.$user['id']) ?>" class="btn btn-default btn-flat"><i class="fa fa-portrait"></i> Profile</a>
               </div>
               <div class="pull-right">
-                <a href="<?php echo base_url('admin/logout') ?>" class="btn btn-default btn-flat">Sign out</a>
+                <a href="<?php echo base_url('admin/logout') ?>" class="btn btn-default btn-flat"><i class="fa fa-sign-out-alt"></i> Sign out</a>
               </div>
             </li>
           </ul>
         </li>
-        <!-- Control Sidebar Toggle Button -->
         <li>
           <a href="#" data-toggle="control-sidebar"><i class="fa fa-cogs"></i></a>
         </li>

@@ -47,6 +47,17 @@ class Sipapat_model extends CI_Model
 		}
 	}
 
+	public function get_image_kab()
+	{
+		$data = $this->db->query('SELECT id,image FROM user WHERE user_role_id = 2')->row_array();
+		if(!empty($data))
+		{
+			$image = $data['image'];
+			$id = $data['id'];
+			return image_module('user', $id.'/'.$image);
+		}
+	}
+
 	public function kepdes_alert()
 	{
 		$user = $this->session->userdata(base_url().'_logged_in');
