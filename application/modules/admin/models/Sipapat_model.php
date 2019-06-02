@@ -127,8 +127,36 @@ class Sipapat_model extends CI_Model
 				}
 				return $amj;
 			}
+		}else if(is_admin())
+		{
+			$amj = array();
+			$perangkat = $this->db->query('SELECT perangkat_desa.*,desa.nama AS nama_desa FROM perangkat_desa,desa WHERE desa.id=perangkat_desa.desa_id AND kelompok = 1 AND jabatan = 1')->result_array();
+			if(!empty($perangkat))
+			{
+				foreach ($perangkat as $key => $value)
+				{
+					if(!empty($value['akhir_masa_jabatan']) && $value['akhir_masa_jabatan'] != '0000-00-00')
+					{
+						$alert_time = date('Y-m-d', strtotime($value['akhir_masa_jabatan'].' -3 month'));
+						$current = date('Y-m-d');
+						if($current>=$alert_time)
+						{
+							$amj[$value['id']]['amj'] = $value['akhir_masa_jabatan'];
+							$amj[$value['id']]['kelompok'] = $value['kelompok'];
+							$amj[$value['id']]['nama'] = $value['nama'];
+							$amj[$value['id']]['desa'] = $value['nama_desa'];
+							if($value['kelompok'] == 6 || $value['kelompok'] == 7)
+							{
+								$amj[$value['id']]['rt'] = $value['rt'];
+								$amj[$value['id']]['rw'] = $value['rw'];
+							}
+							$amj[$value['id']]['jabatan'] = $this->get_jabatan($value['kelompok'], $value['jabatan']);
+						}
+					}
+				}
+				return $amj;
+			}
 		}
-
 	}
 
 	public function get_jabatan($kelompok_id = 0 , $jabatan_id = 0)

@@ -4,7 +4,7 @@ $pengumuman = $this->esg->get_config('pengumuman');
 <style type="text/css">
 	.content-wrapper{
 		background: url(<?php echo image_module('config','pengumuman'.'/'.$pengumuman['background_image']) ?>) center top no-repeat;
-    height: 100vh;
+    /*height: 100vh;*/
     background-size: cover;
     position: relative;
 	}	
@@ -104,7 +104,7 @@ if(!empty($amj_alert))
 						<div class="alert alert-danger alert-dismissible">
 					    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 					    <h4><i class="icon fa fa-ban"></i> Perhatian!</h4>
-					    <?php echo 'Masa Jabatan '.$jabatan.' dg Nama '.$amj_value['nama'].' '.$status.' pada '.$amj_value['amj'] ?>
+					    <?php echo 'Masa Jabatan '.$jabatan.' '.$amj_value['desa'].' dg Nama '.$amj_value['nama'].' '.$status.' pada '.$amj_value['amj'] ?>
 					    <?php if ($is_desa): ?>
 					    || <a href="<?php echo $link ?>" class="btn btn-default btn-sm btn-success"><i class="fa fa-pencil-alt"></i> Perbarui</a>
 					    <?php endif ?>
