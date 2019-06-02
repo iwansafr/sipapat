@@ -12,50 +12,6 @@ $pengumuman = $this->esg->get_config('pengumuman');
 <h1 style="text-align: center; color: <?php echo @$pengumuman['header_color']; ?>; font-weight: bold;"><?php echo @$pengumuman['header'] ?></h1>
 <?php
 echo '<div class="row">';
-if(!empty($amj_alert))
-{
-	$is_desa = is_desa();
-	if(!$is_desa)
-	{
-
-	}
-	?>
-	<div class="box-body">
-		<?php
-		foreach ($amj_alert as $amj_key => $amj_value) 
-		{
-			$jabatan = $amj_value['jabatan']['jabatan'];
-			if($amj_value['kelompok'] == 6)
-			{
-				$jabatan .= ' '.$amj_value['rt'];
-			}else if($amj_value['kelompok'] == 7)
-			{
-				$jabatan .= ' '.$amj_value['rw'];
-			}else{
-				$jabatan .= ' '.$amj_value['jabatan']['kelompok'];
-			}
-			$jabatan_title = $amj_value['jabatan']['kelompok'].'/';
-			if($amj_value['kelompok'] == 1)
-			{
-				$jabatan_title = '/';
-				$jabatan = $amj_value['jabatan']['jabatan'];
-			}
-			$link = base_url('admin/perangkat/'.$jabatan_title.'edit?id='.$amj_key);
-			?>
-				<div class="alert alert-danger alert-dismissible">
-			    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-			    <h4><i class="icon fa fa-ban"></i> Perhatian!</h4>
-			    <?php echo 'Masa Jabatan '.$jabatan.' dg Nama '.$amj_value['nama'].' Akan berakhir pada '.$amj_value['amj'] ?>
-			    <?php if ($is_desa): ?>
-			    || <a href="<?php echo $link ?>" class="btn btn-default btn-sm btn-success"><i class="fa fa-pencil-alt"></i> Perbarui</a>
-			    <?php endif ?>
-			  </div>
-			<?php
-		}
-		?>
-	</div>
-	<?php
-}
 if(!empty($pengumuman))
 {
 		?>
@@ -103,6 +59,58 @@ if(!empty($home))
 		</div>
 		<?php
 	}
+}
+if(!empty($amj_alert))
+{
+	$is_desa = is_desa();
+	?>
+	<div class="box-body">
+		<div class="box box-danger collapsed-box box-solid">
+	    <div class="box-header with-border">
+	      <h3 class="box-title">Masa Jabatan Segera Berakhir</h3>
+	      <div class="box-tools pull-right">
+	        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+	        </button>
+	      </div>
+	    </div>
+			<div class="box-body">
+				<?php
+				foreach ($amj_alert as $amj_key => $amj_value) 
+				{
+					$jabatan = $amj_value['jabatan']['jabatan'];
+					if($amj_value['kelompok'] == 6)
+					{
+						$jabatan .= ' '.$amj_value['rt'];
+					}else if($amj_value['kelompok'] == 7)
+					{
+						$jabatan .= ' '.$amj_value['rw'];
+					}else{
+						$jabatan .= ' '.$amj_value['jabatan']['kelompok'];
+					}
+					$jabatan_title = $amj_value['jabatan']['kelompok'].'/';
+					if($amj_value['kelompok'] == 1)
+					{
+						$jabatan_title = '/';
+						$jabatan = $amj_value['jabatan']['jabatan'];
+					}
+					$link = base_url('admin/perangkat/'.$jabatan_title.'edit?id='.$amj_key);
+					?>
+						<div class="alert alert-danger alert-dismissible">
+					    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+					    <h4><i class="icon fa fa-ban"></i> Perhatian!</h4>
+					    <?php echo 'Masa Jabatan '.$jabatan.' dg Nama '.$amj_value['nama'].' Akan berakhir pada '.$amj_value['amj'] ?>
+					    <?php if ($is_desa): ?>
+					    || <a href="<?php echo $link ?>" class="btn btn-default btn-sm btn-success"><i class="fa fa-pencil-alt"></i> Perbarui</a>
+					    <?php endif ?>
+					  </div>
+					<?php
+				}
+				?>
+			</div>
+	  </div>
+		
+	</div>
+	<?php
 }
 echo '</div>';
 if(is_root())

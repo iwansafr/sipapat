@@ -99,7 +99,7 @@ class Sipapat_model extends CI_Model
 				$amj = array();
 				foreach ($desa_ids as $desa_ids_key => $desa_ids_value) 
 				{
-					$perangkat = $this->db->query('SELECT * FROM perangkat_desa WHERE desa_id = ?', $desa_ids_value['id'])->result_array();
+					$perangkat = $this->db->query('SELECT * FROM perangkat_desa WHERE desa_id = ? AND kelompok = 1 AND jabatan = 1', $desa_ids_value['id'])->result_array();
 					if(!empty($perangkat))
 					{
 						foreach ($perangkat as $key => $value)
