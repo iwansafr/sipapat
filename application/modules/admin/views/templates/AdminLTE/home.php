@@ -94,11 +94,17 @@ if(!empty($amj_alert))
 						$jabatan = $amj_value['jabatan']['jabatan'];
 					}
 					$link = base_url('admin/perangkat/'.$jabatan_title.'edit?id='.$amj_key);
+					if($amj_value['amj']<date('Y-m-d'))
+					{
+						$status = 'Akan Berakhir';
+					}else{
+						$status = 'Telah Berakhir';
+					}
 					?>
 						<div class="alert alert-danger alert-dismissible">
 					    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 					    <h4><i class="icon fa fa-ban"></i> Perhatian!</h4>
-					    <?php echo 'Masa Jabatan '.$jabatan.' dg Nama '.$amj_value['nama'].' Akan berakhir pada '.$amj_value['amj'] ?>
+					    <?php echo 'Masa Jabatan '.$jabatan.' dg Nama '.$amj_value['nama'].' '.$status.' pada '.$amj_value['amj'] ?>
 					    <?php if ($is_desa): ?>
 					    || <a href="<?php echo $link ?>" class="btn btn-default btn-sm btn-success"><i class="fa fa-pencil-alt"></i> Perbarui</a>
 					    <?php endif ?>
