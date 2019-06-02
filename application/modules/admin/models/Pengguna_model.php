@@ -94,7 +94,10 @@ class Pengguna_model extends CI_Model
 								'5'=>strtoupper('bendahara i'),
 								'6'=>strtoupper('bendahara ii'),
 								'7'=>strtoupper('anggota')
-							]
+							],
+			'6' => ['Ketua Rt'],
+			'7' => ['Ketua Rw'],
+			'8' => ['KPMD']
 		];
 		return $data;
 	}

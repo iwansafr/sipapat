@@ -28,16 +28,15 @@ if($mod['name'] == 'admin' && $mod['task'] == 'index')
 	if(!empty($desa))
 	{
 		$pengumuman = $this->sipapat_model->get_pengumuman(strtolower($desa['kecamatan']));
-		$kepdes_alert = $this->sipapat_model->kepdes_alert();
 	}
-	if(!empty($kepdes_alert))
+	$amj_alert = $this->sipapat_model->perangkat_alert();
+	if(!empty($amj_alert))
 	{
-		$this->esg->set_esg('kepdes_alert', $kepdes_alert);
+		$this->esg->set_esg('amj_alert', $amj_alert);
 	}
 	if(!empty($pengumuman))
 	{
 		$this->esg->set_esg('pengumuman_kecamatan', $pengumuman);
 	}
-	$this->sipapat_model->perangkat_alert();
 }
 $this->load->view('templates'.DIRECTORY_SEPARATOR.$this->esg->get_esg('templates')['admin_template'].DIRECTORY_SEPARATOR.'index', $this->esg->get_esg());

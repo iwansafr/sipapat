@@ -19,7 +19,7 @@ if(!empty($id) && is_numeric($id))
 			<div class="row">
 				<div class="col-md-12">
 					<div class="col-md-3 col-xs-5">
-						<img src="<?php echo $image;?>" alt="" style="object-fit: cover; height: 350px;" class="img-responsive image-thumbnail image" >
+						<img src="<?php echo $image;?>" alt="" style="object-fit: cover; height: 250px;" class="img-responsive image-thumbnail image" >
 					</div>
 					<div class="col-md-5 col-xs-7">
 						<table class="table table-responsive">

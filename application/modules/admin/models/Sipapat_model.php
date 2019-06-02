@@ -60,20 +60,86 @@ class Sipapat_model extends CI_Model
 
 	public function perangkat_alert()
 	{
+		$user = $this->session->userdata(base_url().'_logged_in');
 		if(is_desa())
 		{
-			$user = $this->session->userdata(base_url().'_logged_in');
 			$perangkat = $this->db->query('SELECT * FROM perangkat_desa WHERE user_id = ?', $user['id'])->result_array();
 			if(!empty($perangkat))
 			{
 				$amj = array();
 				foreach ($perangkat as $key => $value)
 				{
-					$amj[$value['id']]['amj'] = $value['akhir_masa_jabatan'];
+					if(!empty($value['akhir_masa_jabatan']) && $value['akhir_masa_jabatan'] != '0000-00-00')
+					{
+						$alert_time = date('Y-m-d', strtotime($value['akhir_masa_jabatan'].' -3 month'));
+						$current = date('Y-m-d');
+						if($current>=$alert_time)
+						{
+							$amj[$value['id']]['amj'] = $value['akhir_masa_jabatan'];
+							$amj[$value['id']]['kelompok'] = $value['kelompok'];
+							$amj[$value['id']]['jabatan'] = $value['jabatan'];
+							$amj[$value['id']]['nama'] = $value['nama'];
+							if($value['kelompok'] == 6 || $value['kelompok'] == 7)
+							{
+								$amj[$value['id']]['rt'] = $value['rt'];
+								$amj[$value['id']]['rw'] = $value['rw'];
+							}
+							$amj[$value['id']]['jabatan'] = $this->get_jabatan($value['kelompok'], $value['jabatan']);
+						}
+					}
 				}
+				return $amj;
+			}
+		}else if(is_kecamatan())
+		{
+			$kecamatan_name = strtoupper(str_replace('kec_', '', $user['username']));
+			$desa_ids = $this->db->query('SELECT id,nama FROM desa WHERE kecamatan = ?', $kecamatan_name)->result_array();
+			if(!empty($desa_ids))
+			{
+				$amj = array();
+				foreach ($desa_ids as $desa_ids_key => $desa_ids_value) 
+				{
+					$perangkat = $this->db->query('SELECT * FROM perangkat_desa WHERE desa_id = ?', $desa_ids_value['id'])->result_array();
+					if(!empty($perangkat))
+					{
+						foreach ($perangkat as $key => $value)
+						{
+							if(!empty($value['akhir_masa_jabatan']) && $value['akhir_masa_jabatan'] != '0000-00-00')
+							{
+								$alert_time = date('Y-m-d', strtotime($value['akhir_masa_jabatan'].' -3 month'));
+								$current = date('Y-m-d');
+								if($current>=$alert_time)
+								{
+									$amj[$value['id']]['amj'] = $value['akhir_masa_jabatan'];
+									$amj[$value['id']]['kelompok'] = $value['kelompok'];
+									$amj[$value['id']]['nama'] = $value['nama'];
+									$amj[$value['id']]['desa'] = $desa_ids_value['nama'];
+									if($value['kelompok'] == 6 || $value['kelompok'] == 7)
+									{
+										$amj[$value['id']]['rt'] = $value['rt'];
+										$amj[$value['id']]['rw'] = $value['rw'];
+									}
+									$amj[$value['id']]['jabatan'] = $this->get_jabatan($value['kelompok'], $value['jabatan']);
+								}
+							}
+						}
+					}
+				}
+				return $amj;
 			}
 		}
 
+	}
+
+	public function get_jabatan($kelompok_id = 0 , $jabatan_id = 0)
+	{
+		if(!empty($kelompok_id))
+		{
+			$this->load->model('pengguna_model');
+			$kelompok = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd'];
+			$jabatan = $this->pengguna_model->jabatan();
+			return ['kelompok'=>$kelompok[$kelompok_id], 'jabatan'=>$jabatan[$kelompok_id][$jabatan_id]];
+		}
 	}
 
 	public function kepdes_alert()
@@ -83,7 +149,7 @@ class Sipapat_model extends CI_Model
 		{
 			$data = $this->db->query('SELECT * FROM perangkat_desa WHERE user_id = ? AND kelompok = 1 AND jabatan = 1 LIMIT 1', $user['id'])->row_array();
 			$akhir_masa_jabatan = @$data['akhir_masa_jabatan'];
-			if(!empty($akhir_masa_jabatan))
+			if(!empty($akhir_masa_jabatan) && $akhir_masa_jabatan != '0000-00-00')
 			{
 				$alert_time = date('Y-m-d', strtotime($akhir_masa_jabatan.' -3 month'));
 				$current = date('Y-m-d');
