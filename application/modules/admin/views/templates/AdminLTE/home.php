@@ -96,9 +96,9 @@ if(!empty($amj_alert))
 					$link = base_url('admin/perangkat/'.$jabatan_title.'edit?id='.$amj_key);
 					if($amj_value['amj']<date('Y-m-d'))
 					{
-						$status = 'Akan Berakhir';
-					}else{
 						$status = 'Telah Berakhir';
+					}else{
+						$status = 'Akan Berakhir';
 					}
 					?>
 						<div class="alert alert-danger alert-dismissible">
