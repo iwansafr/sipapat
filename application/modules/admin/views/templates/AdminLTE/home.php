@@ -67,7 +67,7 @@ if(!empty($amj_alert))
 	<div class="box-body">
 		<div class="box box-danger collapsed-box box-solid">
 	    <div class="box-header with-border">
-	      <h3 class="box-title">Masa Jabatan Segera Berakhir</h3>
+	      <h3 class="box-title"><?php echo count($amj_alert) ?> Masa Jabatan Segera Berakhir</h3>
 	      <div class="box-tools pull-right">
 	        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
 	        </button>
@@ -96,12 +96,14 @@ if(!empty($amj_alert))
 					$link = base_url('admin/perangkat/'.$jabatan_title.'edit?id='.$amj_key);
 					if($amj_value['amj']<date('Y-m-d'))
 					{
+						$alert = 'warning';
 						$status = 'Telah Berakhir';
 					}else{
+						$alert = 'danger';
 						$status = 'Akan Berakhir';
 					}
 					?>
-						<div class="alert alert-danger alert-dismissible">
+						<div class="alert alert-<?php echo $alert;?> alert-dismissible">
 					    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 					    <h4><i class="icon fa fa-ban"></i> Perhatian!</h4>
 					    <?php echo 'Masa Jabatan '.$jabatan.' '.$amj_value['desa'].' dg Nama '.$amj_value['nama'].' '.$status.' pada '.$amj_value['amj'] ?>
