@@ -7,7 +7,7 @@ if(!empty($task) && in_array($task, $module))
 	$kelompok = array_keys($module,$task);
 	$kelompok = $kelompok[0];
 }
-if(is_admin() || is_root() || is_kecamatan())
+if(!is_desa())
 {
 	?>
 	<a href="<?php echo base_url('admin/perangkat/desa/'.$module[$kelompok]) ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> data perdesa</a>

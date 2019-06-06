@@ -22,4 +22,11 @@ class Pembangunan_model extends CI_Model
 			'4'=>'Ekonomi dan TTG'
 		];
 	}
+	public function get_pembangunan($id=0)
+	{
+		if(!empty(@intval($id)))
+		{
+			return $this->db->get_where('pembangunan', ['id'=>$id])->row_array();
+		}
+	}
 }

@@ -1,10 +1,26 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-
-if(!empty($view))
+if(!is_desa())
 {
+	?>
+	<a href="<?php echo base_url('admin/pembangunan/clear_desa/'.$view) ?>" class="load_link btn btn-sm btn-default"><i class="fa fa-sort"></i> data perdesa</a>
+	<?php
+}
+if($view =='fisik' || $view == 'non-fisik')
+{
+	$where = 'jenis = 0';
+	if($view == 'fisik')
+	{
+		$where = 'jenis = 1';
+	}
+	if(!empty($desa_id))
+	{
+		$where .= ' AND desa_id = '.$desa_id;
+	}
 	$form = new zea();
 	$form->setTable('pembangunan');
 	$form->init('roll');
+	$form->setWhere($where);
+	$form->search();
 	$form->addInput('id','link');
 	$form->setLink('id',base_url('admin/pembangunan/detail/'),'id');
 	$form->setClearGet('id');
@@ -29,25 +45,17 @@ if(!empty($view))
 	$form->addInput('anggaran','plaintext');
 	$form->setType('anggaran','number');
 
-	if($view == 'fisik')
-	{
-		// $form->addInput('doc_0','file');
-		// $form->setLabel('doc_0','Dokumantasi 0 %');
-		// $form->addInput('doc_50','file');
-		// $form->setLabel('doc_50','Dokumantasi 50 %');
-		// $form->addInput('doc_100','file');
-		// $form->setLabel('doc_100','Dokumantasi 100 %');
-	}else{
-		$form->addInput('doc','file');
-	}
-
 	$form->addInput('tahap','dropdown');
 	$form->setAttribute('tahap','disabled');
 	$form->setOptions('tahap', ['-1'=>'1 X tahapan','1'=>'Kegiatan Tahap 1','2'=>'Kegiatan Tahap 2','3'=>'Kegiatan Tahap 3']);
 	$form->addInput('th_anggaran','plaintext');
 	$form->setLabel('th_anggaran','Tahun Anggaran');
-
-
+	$form->setUrl('admin/pembangunan/clear_list/'.$view);
+	if(is_desa())
+	{
+		$form->setDelete(TRUE);
+		$form->setEdit(TRUE);
+	}
 	$form->form();
 }else{
 	msg('Maaf URL yg anda tuju tidak valid', 'danger');

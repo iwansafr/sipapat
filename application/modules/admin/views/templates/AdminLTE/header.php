@@ -99,7 +99,7 @@ $message = $this->esg->get_esg('pesan');
                 <a href="<?php echo base_url('admin/user/edit/?id='.$user['id']) ?>" class="btn btn-default btn-flat"><i class="fa fa-portrait"></i> Profile</a>
               </div>
               <div class="pull-right">
-                <a href="<?php echo base_url('admin/logout') ?>" class="btn btn-default btn-flat"><i class="fa fa-sign-out-alt"></i> Sign out</a>
+                <a href="<?php echo base_url('admin/logout') ?>" no_load="no_load" onclick="if(confirm('apakah anda yakin ingin logout ?')){}else{return false;};" class="btn btn-default btn-flat"><i class="fa fa-sign-out-alt"></i> Sign out</a>
               </div>
             </li>
           </ul>
