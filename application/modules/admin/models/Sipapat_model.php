@@ -26,6 +26,19 @@ class Sipapat_model extends CI_Model
 		$this->esg->set_esg('meta', $data);
 	}
 
+	public function get_desa_id()
+	{
+		$user = $this->session->userdata(base_url().'_logged_in');
+		if(!empty($user))
+		{
+			$desa = $this->db->query('SELECT desa_id FROM user_desa WHERE user_id = ?', $user['id'])->row_array();
+			if(!empty($desa))
+			{
+				return $desa['desa_id'];
+			}
+		}
+	}
+
 	public function get_pengumuman($name = '')
   {
 		$data = array();
@@ -84,6 +97,7 @@ class Sipapat_model extends CI_Model
 								$amj[$value['id']]['rt'] = $value['rt'];
 								$amj[$value['id']]['rw'] = $value['rw'];
 							}
+							$amj[$value['id']]['desa'] = $user['username'];
 							$amj[$value['id']]['jabatan'] = $this->get_jabatan($value['kelompok'], $value['jabatan']);
 						}
 					}
