@@ -1,7 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 $module_kelompok = $module_title[$data['kelompok']] == 'perangkat' ? '': $module_title[$data['kelompok']];
+$class = '';
 if(!empty(@$_GET['s']))
 {
+	$class = 'table-sm';
 	?>
 	<style type="text/css">
 		td{
@@ -56,7 +58,7 @@ if(!empty($id) && is_numeric($id))
 							</div>
 						</div>
 						<div class="col-md-4 col-xs-7">
-							<table class="table table-responsive">
+							<table class="table table-responsive <?php echo $class ?>">
 								<tr>
 									<td>Nama</td>
 									<td>:</td>
@@ -100,7 +102,7 @@ if(!empty($id) && is_numeric($id))
 							</table>
 						</div>
 						<div class="col-md-4">
-							<table class="table table-responsive">
+							<table class="table table-responsive <?php echo $class ?>">
 								<tr>
 									<td>Pendidikan Terakhir</td>
 									<td>:</td>
@@ -182,7 +184,7 @@ if(!empty($id) && is_numeric($id))
 								$riwayat_pendidikan = explode("\n", $riwayat_pendidikan);
 								?>
 								<h3>Riwayat Pendidikan</h3>
-								<table class="table table-responsive">
+								<table class="table table-responsive <?php echo $class ?>">
 									<tr>
 										<th>No</th>
 										<th>Jenjang</th>
@@ -214,25 +216,28 @@ if(!empty($id) && is_numeric($id))
 								$riwayat_diklat = explode("\n", $riwayat_diklat);
 								?>
 								<h3>Riwayat Diklat</h3>
-								<table class="table table-responsive">
-									<tr>
-										<th>No</th>
-										<th>Diklat</th>
-									</tr>
-									<?php 
-									$i = 1;
-									foreach ($riwayat_diklat as $key => $value) 
-									{
-										?>
+								<table class="table table-responsive <?php echo $class ?>">
+									<thead>
 										<tr>
-											<td><?php echo $i ?></td>
-											<td><?php echo $value ?></td>
+											<th>No</th>
+											<th>Diklat</th>
 										</tr>
-										<?php
-										$i++;
-									}
-									?>
-									
+									</thead>
+									<tbody>
+										<?php 
+										$i = 1;
+										foreach ($riwayat_diklat as $key => $value) 
+										{
+											?>
+											<tr>
+												<td><?php echo $i ?></td>
+												<td><?php echo $value ?></td>
+											</tr>
+											<?php
+											$i++;
+										}
+										?>
+									</tbody>
 								</table>
 								<?php
 							}

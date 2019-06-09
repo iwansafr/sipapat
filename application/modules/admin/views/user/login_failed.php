@@ -6,7 +6,7 @@ $this->zea->setTable('user_login_failed');
 $this->zea->addInput('id','plaintext');
 $this->zea->addInput('user_login_id','dropdown');
 $this->zea->tableOptions('user_login_id', 'user_login','id','ip');
-$this->zea->setAttribute('user_login_id',['disabled'=>'disabled']);
+$this->zea->setAttribute('user_login_id','disabled');
 $this->zea->addInput('username','plaintext');
 $this->zea->addInput('password','plaintext');
 $this->zea->setDelete(TRUE);

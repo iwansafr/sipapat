@@ -18,6 +18,15 @@ function array_to_string($data = array())
 	}
 }
 
+function money($number = 0, $type = 'Rp')
+{
+	if(is_numeric($number))
+	{
+		$number = $type.'. '.number_format($number,2,',','.');
+		return $number;
+	}
+}
+
 function array_start_one($data = array())
 {
 	if(!empty($data) && is_array($data))

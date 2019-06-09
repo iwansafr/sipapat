@@ -16,8 +16,8 @@ if(!is_desa())
 $form = new zea();
 $form->init('roll');
 // $form->setId(@intval($_GET['id']));
-$ext = (!is_root() && !is_admin() && !is_kecamatan()) ? ' AND desa_id = '.$pengguna['desa_id'] : '';
-if(!empty($_GET['desa_id']) && (is_root() || is_admin() || is_kecamatan()))
+$ext = (is_desa()) ? ' AND desa_id = '.$pengguna['desa_id'] : '';
+if(!empty($_GET['desa_id']) && (!is_desa()))
 {
 	$ext = ' AND desa_id = '.@intval($_GET['desa_id']);
 }

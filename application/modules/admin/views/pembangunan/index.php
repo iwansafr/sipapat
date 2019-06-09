@@ -44,10 +44,15 @@ if($view =='fisik' || $view == 'non-fisik')
 
 	$form->addInput('anggaran','plaintext');
 	$form->setType('anggaran','number');
+	$form->setMoney('anggaran');
 
-	$form->addInput('tahap','dropdown');
-	$form->setAttribute('tahap','disabled');
-	$form->setOptions('tahap', ['-1'=>'1 X tahapan','1'=>'Kegiatan Tahap 1','2'=>'Kegiatan Tahap 2','3'=>'Kegiatan Tahap 3']);
+	if($view=='non-fisik')
+	{
+		$form->addInput('peserta','text');
+		$form->addInput('tahap','dropdown');
+		$form->setAttribute('tahap','disabled');
+		$form->setOptions('tahap', ['-1'=>'1 X tahapan','1'=>'Kegiatan Tahap 1','2'=>'Kegiatan Tahap 2','3'=>'Kegiatan Tahap 3']);
+	}
 	$form->addInput('th_anggaran','plaintext');
 	$form->setLabel('th_anggaran','Tahun Anggaran');
 	$form->setUrl('admin/pembangunan/clear_list/'.$view);
@@ -55,6 +60,7 @@ if($view =='fisik' || $view == 'non-fisik')
 	{
 		$form->setDelete(TRUE);
 		$form->setEdit(TRUE);
+		$form->setEditLink(base_url('admin/pembangunan/edit/'.$view.'?id='));
 	}
 	$form->form();
 }else{

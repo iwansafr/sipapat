@@ -18,42 +18,46 @@ class Pembangunan extends CI_Controller
 	public function detail($id=0)
 	{
 		$pembangunan = $this->pembangunan_model->get_pembangunan($id);
+		$sumber_dana = $this->pembangunan_model->sumber_dana();
+		$bidang = $this->pembangunan_model->bidang();
+		$desa = $this->sipapat_model->get_desa($pembangunan['desa_id']);
 		$this->esg_model->set_nav_title('detail pembangunan '.$pembangunan['item']);
-		$this->load->view('index',['data'=>$pembangunan]);
+		$this->load->view('index',['data'=>$pembangunan,'desa'=>$desa,'sumber_dana'=>$sumber_dana,'bidang'=>$bidang]);
 	}
 
-	public function desa($view = 'fisik')
+	public function desa($type = '')
 	{
-		switch ($view) {
+		switch($type)
+		{
 			case 'fisik':
-				$view = $view;
-				break;
-			case 'non-fisik';
-				$view = $view;
+				$view = $type;
+			break;
+			case 'non-fisik':
+				$view = $type;
+			break;
 			default:
-				$view = 'fisik';
-				break;
+				$view = false;
+			break;
 		}
 		$this->load->view('index', ['view'=>$view,'desa_option'=>$this->pengguna_model->get_desa()]);
 	}
 	public function test()
 	{
-		$desa = $this->db->query('SELECT id,nama FROM desa')->result_array();
-		echo json_encode($desa);
-		$user = $this->db->query('SELECT id,username FROM user')->result_array();
-		echo json_encode($user);
+		
 	}
-	public function clear_desa($view = 'fisik')
+	public function clear_desa($type = '')
 	{
-		switch ($view) {
+		switch($type)
+		{
 			case 'fisik':
-				$view = $view;
-				break;
-			case 'non-fisik';
-				$view = $view;
+				$view = $type;
+			break;
+			case 'non-fisik':
+				$view = $type;
+			break;
 			default:
-				$view = 'fisik';
-				break;
+				$view = false;
+			break;
 		}
 		$this->load->view('pembangunan/desa', ['view'=>$view,'desa_option'=>$this->pengguna_model->get_desa()]);
 	}

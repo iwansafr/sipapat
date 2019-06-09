@@ -6,7 +6,7 @@ $this->zea->setTable('user_login');
 $this->zea->addInput('id','plaintext');
 $this->zea->addInput('user_id','dropdown');
 $this->zea->tableOptions('user_id','user','id','username');
-$this->zea->setAttribute('user_id',['disabled'=>'disabled']);
+$this->zea->setAttribute('user_id','disabled');
 $this->zea->setLabel('user_id','username');
 $this->zea->addInput('browser','plaintext');
 $this->zea->addInput('created','plaintext');

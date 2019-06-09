@@ -5,6 +5,7 @@ if(!empty($view) || is_desa() || is_root())
 	$form = new zea();
 	$form->setTable('pembangunan');
 	$form->init('edit');
+	$form->setId(@intval($_GET['id']));
 	$form->addInput('item','text');
 	$form->addInput('sumber_dana','dropdown');
 	$form->setOptions('sumber_dana', $sumber);
@@ -31,11 +32,14 @@ if(!empty($view) || is_desa() || is_root())
 		$form->addInput('doc_100','file');
 		$form->setLabel('doc_100','Dokumantasi 100 %');
 	}else{
+		$form->addInput('peserta','text');
+		$form->addInput('jenis','static');
+		$form->setValue('jenis',0);
 		$form->addInput('doc','file');
+		$form->addInput('tahap','dropdown');
+		$form->setOptions('tahap', ['-1'=>'1 X tahapan','1'=>'Kegiatan Tahap 1','2'=>'Kegiatan Tahap 2','3'=>'Kegiatan Tahap 3']);
 	}
 
-	$form->addInput('tahap','dropdown');
-	$form->setOptions('tahap', ['-1'=>'1 X tahapan','1'=>'Kegiatan Tahap 1','2'=>'Kegiatan Tahap 2','3'=>'Kegiatan Tahap 3']);
 	$form->addInput('th_anggaran','text');
 	$form->setLabel('th_anggaran','Tahun Anggaran');
 	$form->setType('th_anggaran','number');
