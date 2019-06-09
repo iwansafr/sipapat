@@ -43,6 +43,7 @@ $form->setType('volume','number');
 $form->addInput('waktu','dropdown');
 $form->setOptions('waktu',$waktu);
 $form->setAttribute('waktu','disabled');
+$form->setUrl('admin/potensi/clear_list');
 
 $form->setFormName('potensi_form');
 $form->form();
