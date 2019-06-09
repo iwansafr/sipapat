@@ -1,5 +1,10 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-
+if(!is_desa())
+{
+	?>
+	<a href="<?php echo base_url('admin/potensi/desa') ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> data perdesa</a>
+	<?php
+}
 $form = new zea();
 
 $form->init('roll');
@@ -9,12 +14,19 @@ $form->search();
 
 if(!is_desa())
 {
+	$desa_id = @intval($_GET['desa_id']);
+	if(!empty($desa_id))
+	{
+		$form->setWhere(' desa_id = '.$desa_id);
+	}
 	$form->addInput('desa_id','dropdown');
 	$form->tableOptions('desa_id','desa','id','nama');
 	$form->setAttribute('desa_id','disabled');
 	$form->addInput('user_id','dropdown');
 	$form->tableOptions('user_id','user','id','username');
 	$form->setAttribute('user_id','disabled');
+}else{
+	$form->setHeading('<a href="'.base_url('admin/potensi/edit').'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>');
 }
 
 $form->setNumbering(TRUE);

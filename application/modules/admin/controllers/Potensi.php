@@ -23,6 +23,10 @@ class Potensi extends CI_Controller
 		$waktu = $this->potensi_model->waktu();
 		$this->load->view('index',['desa_id'=>$desa_id,'kategori'=>$kategori,'satuan'=>$satuan,'waktu'=>$waktu]);
 	}
+	public function desa()
+	{
+		$this->load->view('index',['desa_option'=>$this->pengguna_model->get_desa()]);
+	}
 	public function list()
 	{
 		$desa_id = $this->sipapat_model->get_desa_id();
@@ -41,7 +45,11 @@ class Potensi extends CI_Controller
 	}
 	public function index()
 	{
-		$this->load->viwe('index');
+		$desa_id = $this->sipapat_model->get_desa_id();
+		$kategori = $this->potensi_model->kategori();
+		$satuan = $this->potensi_model->satuan();
+		$waktu = $this->potensi_model->waktu();
+		$this->load->view('index',['desa_id'=>$desa_id,'kategori'=>$kategori,'satuan'=>$satuan,'waktu'=>$waktu]);$this->load->view('index');
 	}
 	public function detail()
 	{
