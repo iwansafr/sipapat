@@ -51,13 +51,17 @@
     <div class="tab-content">
       <!-- Home tab content -->
       <div class="tab-pane" id="control-sidebar-home-tab">
-        <?php $this->load->view('config/subscriber') ?>
+        <?php 
+        // $this->load->view('config/subscriber') 
+        ?>
       </div>
       <div class="tab-pane active" id="control-sidebar-settings-tab">
-        <a href="<?php echo base_url() ?>" target="_blank" class="btn btn-default"><i class="fa fa-image"></i> preview website</a><hr>
+        <!-- <a href="<?php echo base_url() ?>" target="_blank" class="btn btn-default"><i class="fa fa-image"></i> preview website</a><hr>
         <form method="post">
-          <?php $this->load->view('config/templates') ?>
-        </form>
+          <?php 
+          // $this->load->view('config/templates') 
+          ?>
+        </form> -->
       </div>
     </div>
   </aside>
