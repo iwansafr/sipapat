@@ -22,9 +22,11 @@ if(!is_desa())
 	$form->addInput('desa_id','dropdown');
 	$form->tableOptions('desa_id','desa','id','nama');
 	$form->setAttribute('desa_id','disabled');
+	$form->setLabel('desa_id','desa');
 	$form->addInput('user_id','dropdown');
 	$form->tableOptions('user_id','user','id','username');
 	$form->setAttribute('user_id','disabled');
+	$form->setLabel('user_id','pengguna');
 }else{
 	$form->setHeading('<a href="'.base_url('admin/potensi/edit').'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>');
 }
@@ -56,6 +58,12 @@ $form->addInput('waktu','dropdown');
 $form->setOptions('waktu',$waktu);
 $form->setAttribute('waktu','disabled');
 $form->setUrl('admin/potensi/clear_list');
+
+if(is_desa())
+{
+	$form->setDelete(TRUE);
+	$form->setEdit(TRUE);
+}
 
 $form->setFormName('potensi_form');
 $form->form();

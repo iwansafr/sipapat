@@ -60,10 +60,10 @@ $message = $this->esg->get_esg('pesan');
             <i class="fa fa-bell"></i>
           </a>
           <ul class="dropdown-menu">
-            <li class="header">You dont have notifications</li>
+            <li class="header">tidak ada pemberitahuan</li>
             <li>
             </li>
-            <li class="footer"><a href="#">View all</a></li>
+            <li class="footer"><a href="#">Lihat semua pemberitahuan</a></li>
           </ul>
         </li>
         <li class="dropdown tasks-menu">
@@ -71,11 +71,11 @@ $message = $this->esg->get_esg('pesan');
             <i class="fa fa-flag"></i>
           </a>
           <ul class="dropdown-menu">
-            <li class="header">you dont have task</li>
+            <li class="header">tidak ada tugas baru</li>
             <li>
             </li>
             <li class="footer">
-              <a href="#">View all tasks</a>
+              <a href="#">Lihat semua tugas</a>
             </li>
           </ul>
         </li>

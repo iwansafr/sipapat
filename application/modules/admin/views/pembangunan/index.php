@@ -21,6 +21,10 @@ if($view =='fisik' || $view == 'non-fisik')
 	$form->init('roll');
 	$form->setWhere($where);
 	$form->search();
+	if(is_desa())
+	{
+		$form->setHeading('<a href="'.base_url('admin/pembangunan/edit/'.$view).'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>');
+	}
 	$form->addInput('id','link');
 	$form->setLink('id',base_url('admin/pembangunan/detail/'),'id');
 	$form->setClearGet('id');
@@ -48,7 +52,7 @@ if($view =='fisik' || $view == 'non-fisik')
 
 	if($view=='non-fisik')
 	{
-		$form->addInput('peserta','text');
+		$form->addInput('peserta','plaintext');
 		$form->addInput('tahap','dropdown');
 		$form->setAttribute('tahap','disabled');
 		$form->setOptions('tahap', ['-1'=>'1 X tahapan','1'=>'Kegiatan Tahap 1','2'=>'Kegiatan Tahap 2','3'=>'Kegiatan Tahap 3']);
