@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 $navigation = $this->esg->get_esg('navigation');
 $title = end($navigation['array']);
-$title = $title == 'admin' ? 'beranda' : $title;
+$title = $title == 'admin' ? 'BERANDA' : strtoupper($title);
 ?>
 <h1>
 	<?php echo str_replace('_',' ',$title) ?>
