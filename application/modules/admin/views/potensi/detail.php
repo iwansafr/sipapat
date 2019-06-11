@@ -21,7 +21,7 @@ if(!empty($data))
 							<tr>
 								<td>kategori</td>
 								<td>:</td>
-								<td><?php echo $kategori[$data['kategori']] ?></td>
+								<td><?php echo strtoupper($kategori[$data['kategori']]) ?></td>
 							</tr>
 							<tr>
 								<td>produk desa</td>
@@ -49,15 +49,15 @@ if(!empty($data))
 						<div class="row">
 							<div class="col-md-4">
 								<table class="table table-hover table-striped">
-									<thead>
+									<!-- <thead>
 										<tr>
 											<th>Dokumentasi</th>
 										</tr>
-									</thead>
+									</thead> -->
 									<tbody>
 										<tr>
 											<td>
-												<img src="<?php echo image_module('potensi_desa',$data['id'].'/'.$data['doc']) ?>" class="img img-responsive" style="object-fit: cover;width: 100%; min-height: 200px;">
+												<img src="<?php echo image_module('potensi_desa',$data['id'].'/'.$data['doc']) ?>" class="img img-responsive" style="object-fit: cover;width: 100%; min-height: 300px;">
 											</td>
 										</tr>
 									</tbody>

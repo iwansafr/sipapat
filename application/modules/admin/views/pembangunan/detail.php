@@ -84,7 +84,7 @@ if(!empty($data))
 							</div>
 						<?php else: ?>
 							<div class="row">
-								<div class="col-md-4">
+								<div class="col-md-6">
 									<table class="table table-hover table-striped">
 										<!-- <thead>
 											<tr>
@@ -94,7 +94,7 @@ if(!empty($data))
 										<tbody>
 											<tr>
 												<td>
-													<img src="<?php echo image_module('pembangunan',$data['id'].'/'.$data['doc']) ?>" class="img img-responsive" style="object-fit: cover;width: 100%; min-height: 200px;">
+													<img src="<?php echo image_module('pembangunan',$data['id'].'/'.$data['doc']) ?>" class="img img-responsive" style="object-fit: cover;width: 100%; min-height: 300px;">
 												</td>
 											</tr>
 										</tbody>
