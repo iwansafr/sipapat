@@ -84,7 +84,7 @@ if(!empty($data))
 							</div>
 						<?php else: ?>
 							<div class="row">
-								<div class="col-md-4">
+								<div class="col-md-7">
 									<table class="table table-hover table-striped">
 										<!-- <thead>
 											<tr>
