@@ -9,7 +9,9 @@ class Pembangunan_model extends CI_Model
 			'1' => 'DD',
 			'2' => 'ADD',
 			'3' => 'PAD',
-			'4' => 'BANKEU_PROV'
+			'4' => 'BKP',
+			'5' => 'BKK',
+			'6' => 'BHPR'
 		];
 	}
 	public function bidang()

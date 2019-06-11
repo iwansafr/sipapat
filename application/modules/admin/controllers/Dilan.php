@@ -10,16 +10,25 @@ class Dilan extends CI_Controller{
 		parent::__construct();
 		$this->load->model('esg_model');
 		$this->load->model('admin_model');
-		$this->load->model('pembangunan_model');
-		$this->load->model('pengguna_model');
 		$this->load->model('sipapat_model');
+		$this->load->model('dilan_model');
 		$this->load->library('esg');
 		$this->load->library('ZEA/zea');
 		$this->esg_model->init();
 	}
 	public function index()
 	{
-		$spreadsheet = new Spreadsheet();
+		if(!empty($_FILES['doc']['name']))
+		{
+			$file = $this->dilan_model->upload($_FILES['doc']);
+			$reader = PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xls');
+			$reader->setReadDataOnly(TRUE);
+
+			$spreadsheet = $reader->load($file);
+			$worksheet = $spreadsheet->getActiveSheet();
+			pr($worksheet);
+
+		}
 		$this->load->view('index');
 	}
 }
