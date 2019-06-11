@@ -57,7 +57,7 @@ if(!empty($data))
 									<tbody>
 										<tr>
 											<td>
-												<img src="<?php echo image_module('potensi_desa',$data['id'].'/'.$data['doc']) ?>" class="img img-responsive" style="object-fit: cover;width: 100%; min-height: 300px;">
+												<img src="<?php echo image_module('potensi_desa',$data['id'].'/'.$data['doc']) ?>" class="img img-responsive" style="object-fit: cover;width: 100%; min-height: 250px;">
 											</td>
 										</tr>
 									</tbody>
