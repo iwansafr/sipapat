@@ -36,6 +36,7 @@ if(!empty($view) || is_desa() || is_root())
 		$form->addInput('jenis','static');
 		$form->setValue('jenis',0);
 		$form->addInput('doc','file');
+		$form->setLabel('doc','Foto Kegiatan');
 		$form->addInput('tahap','dropdown');
 		$form->setOptions('tahap', ['-1'=>'1 X tahapan','1'=>'Kegiatan Tahap 1','2'=>'Kegiatan Tahap 2','3'=>'Kegiatan Tahap 3']);
 	}
