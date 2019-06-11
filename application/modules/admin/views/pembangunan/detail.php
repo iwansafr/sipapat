@@ -84,13 +84,13 @@ if(!empty($data))
 							</div>
 						<?php else: ?>
 							<div class="row">
-								<div class="col-md-12">
+								<div class="col-md-5">
 									<table class="table table-hover table-striped">
-										<thead>
+										<!-- <thead>
 											<tr>
 												<th>Dokumentasi</th>
 											</tr>
-										</thead>
+										</thead> -->
 										<tbody>
 											<tr>
 												<td>
