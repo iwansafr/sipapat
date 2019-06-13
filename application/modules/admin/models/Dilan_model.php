@@ -13,7 +13,7 @@ class Dilan_model extends CI_Model
 			}
 			if(copy($file['tmp_name'] , $dir.$_SESSION[base_url().'_logged_in']['username'].'.xls'))
 			{
-				return $dir.$_SESSION[base_url().'_logged_in']['username'].'.xls';
+				return $_SESSION[base_url().'_logged_in']['username'].'.xls';
 			}
 		}
 	}

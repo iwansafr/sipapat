@@ -107,6 +107,7 @@ class Dilan extends CI_Controller{
 		if(!empty($_POST['file']))
 		{
 			$file = $_POST['file'];
+			$file = FCPATH.'images/modules/dilan/'.$file;
 			$reader = PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
 			$reader->setReadDataOnly(TRUE);
 
