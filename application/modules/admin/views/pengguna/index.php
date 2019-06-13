@@ -27,7 +27,7 @@ $form->setLabel('id','detail');
 $form->setPlaintext('id','detail');
 $form->setLink('id',base_url('admin/pengguna/detail'),'id');
 $form->setClearGet(['id']);
-$form->addInput('nama','plaintext');
+// $form->addInput('nama','plaintext');
 $form->addInput('username','plaintext');
 $form->addInput('user_role_id','dropdown');
 $form->setAttribute('user_role_id','disabled');
