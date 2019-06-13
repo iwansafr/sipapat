@@ -139,4 +139,8 @@ class Dilan extends CI_Controller{
 			// echo output_json(array('status'=>1,'data'=>$data));
 		}
 	}
+	public function form()
+	{
+		$this->load->view('index');
+	}
 }
