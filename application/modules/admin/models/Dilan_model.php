@@ -11,9 +11,9 @@ class Dilan_model extends CI_Model
 			{
 				mkdir($dir, 0777);
 			}
-			if(copy($file['tmp_name'] , $dir.$_SESSION[base_url().'_logged_in']['username'].'.xls'))
+			if(copy($file['tmp_name'] , $dir.$_SESSION[base_url().'_logged_in']['username'].'.xlsx'))
 			{
-				return $_SESSION[base_url().'_logged_in']['username'].'.xls';
+				return $_SESSION[base_url().'_logged_in']['username'].'.xlsx';
 			}
 		}
 	}
