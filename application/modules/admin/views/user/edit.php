@@ -15,7 +15,13 @@ if(($user['id'] == @intval($_GET['id'])) || is_admin() || is_root())
 	}
 	$this->zea->init('edit');
 	$this->zea->setTable('user');
-	$this->zea->addInput('username','text');
+	if(is_desa())
+	{
+		$this->zea->addInput('username','static');
+		$this->zea->setValue('username',$user['username']);
+	}else{
+		$this->zea->addInput('username','text');
+	}
 	$this->zea->addInput('password','password');
 	$this->zea->addInput('email','text');
 	$this->zea->setType('emial','email');
@@ -40,6 +46,14 @@ if(($user['id'] == @intval($_GET['id'])) || is_admin() || is_root())
 	if(!empty($_POST['password']))
 	{
 		$this->db->update('user_desa',['sandi'=>@$_POST['password']], ' user_id= '.$user['id']);
+	}
+	if(!empty($_POST['username']))
+	{
+		$this->db->update('user_desa',['username'=>@$_POST['username']], ' user_id= '.$user['id']);
+	}
+	if(!empty($_POST['email']))
+	{
+		$this->db->update('user_desa',['email'=>@$_POST['email']], ' user_id= '.$user['id']);
 	}
 }else{
 	echo msg('Forbiden and dangerous menu', 'danger');
