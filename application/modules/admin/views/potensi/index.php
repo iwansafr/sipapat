@@ -29,6 +29,7 @@ if(!is_desa())
 	$form->setLabel('user_id','pengguna');
 }else{
 	$form->setHeading('<a href="'.base_url('admin/potensi/edit').'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>');
+	$form->setWhere(' desa_id = '.$desa_id);
 }
 
 $form->setNumbering(TRUE);

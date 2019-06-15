@@ -6,7 +6,7 @@ if(!empty($data))
 	?>
 	<div class="panel panel-default card card-default">
 		<div class="panel-heading card-header">
-			Detail Potensi Desa <?php echo $data['item'] ?>
+			Detail Potensi Desa Item <?php echo $data['item'] ?>
 		</div>
 		<div class="panel-body card-body">
 			<div class="row">
