@@ -22,7 +22,7 @@ if(!empty($id) && is_numeric($id))
 		?>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				Profile <?php echo $module_title[$data['kelompok']].' '.$data['nama'] ?>
+				PROFIL <?php echo strtoupper($module_title[$data['kelompok']].' '.$data['nama']); ?>
 				<?php 
 				if(empty($_GET['s']))
 				{
@@ -62,42 +62,42 @@ if(!empty($id) && is_numeric($id))
 								<tr>
 									<td>Nama</td>
 									<td>:</td>
-									<td><?php echo $data['nama'] ?></td>
+									<td><?php echo strtoupper($data['nama']); ?></td>
 								</tr>
 								<tr>
 									<td>Tempat Lahir</td>
 									<td>:</td>
-									<td><?php echo $data['tempat_lahir'] ?></td>
+									<td><?php echo strtoupper($data['tempat_lahir']); ?></td>
 								</tr>
 								<tr>
 									<td>Tgl Lahir</td>
 									<td>:</td>
-									<td><?php echo $data['tgl_lahir']; ?></td>
+									<td><?php echo strtoupper($data['tgl_lahir']); ?></td>
 								</tr>
 								<tr>
 									<td>Jenis Kelamin</td>
 									<td>:</td>
-									<td><?php echo $kelamin[$data['kelamin']] ?></td>
+									<td><?php echo strtoupper($kelamin[$data['kelamin']]); ?></td>
 								</tr>
 								<tr>
 									<td>Agama</td>
 									<td>:</td>
-									<td><?php echo $agama[$data['agama']] ?></td>
+									<td><?php echo strtoupper($agama[$data['agama']]); ?></td>
 								</tr>
 								<tr>
 									<td>Telepon</td>
 									<td>:</td>
-									<td><?php echo $data['telepon'] ?></td>
+									<td><?php echo strtoupper($data['telepon']); ?></td>
 								</tr>
 								<tr>
 									<td>Alamat</td>
 									<td>:</td>
-									<td><?php echo $data['alamat'] ?></td>
+									<td><?php echo strtoupper($data['alamat']); ?></td>
 								</tr>
 								<tr>
 									<td>Status Perkawinan</td>
 									<td>:</td>
-									<td><?php echo $status_perkawinan[$data['status_perkawinan']] ?></td>
+									<td><?php echo strtoupper($status_perkawinan[$data['status_perkawinan']]); ?></td>
 								</tr>
 							</table>
 						</div>
@@ -106,7 +106,7 @@ if(!empty($id) && is_numeric($id))
 								<tr>
 									<td>Pendidikan Terakhir</td>
 									<td>:</td>
-									<td><?php echo $pendidikan_terakhir[$data['pendidikan_terakhir']] ?></td>
+									<td><?php echo strtoupper($pendidikan_terakhir[$data['pendidikan_terakhir']]) ?></td>
 								</tr>
 								<?php 
 								if(!empty($jabatan[$kelompok]))
@@ -115,7 +115,7 @@ if(!empty($id) && is_numeric($id))
 									<tr>
 										<td>Jabatan</td>
 										<td>:</td>
-										<td><?php echo $jabatan[$kelompok][$data['jabatan']] ?></td>
+										<td><?php echo strtoupper($jabatan[$kelompok][$data['jabatan']]); ?></td>
 									</tr>
 									<?php
 								}
@@ -126,7 +126,7 @@ if(!empty($id) && is_numeric($id))
 									<tr>
 										<td>RW</td>
 										<td>:</td>
-										<td><?php echo $data['rw'] ?></td>
+										<td><?php echo strtoupper($data['rw']); ?></td>
 									</tr>
 									<?php
 									if($module_title[$kelompok] == 'rt')
@@ -135,7 +135,7 @@ if(!empty($id) && is_numeric($id))
 										<tr>
 											<td>RT</td>
 											<td>:</td>
-											<td><?php echo $data['rt'] ?></td>
+											<td><?php echo strtoupper($data['rt']); ?></td>
 										</tr>
 										<?php
 									}
@@ -145,7 +145,7 @@ if(!empty($id) && is_numeric($id))
 									<tr>
 										<td>Bengkok</td>
 										<td>:</td>
-										<td><?php echo $data['bengkok'] ?></td>
+										<td><?php echo strtoupper($data['bengkok']); ?></td>
 									</tr>
 									<?php
 								}
@@ -153,22 +153,22 @@ if(!empty($id) && is_numeric($id))
 								<tr>
 									<td>NO SK</td>
 									<td>:</td>
-									<td><?php echo $data['no_sk'] ?></td>
+									<td><?php echo strtoupper($data['no_sk']); ?></td>
 								</tr>
 								<tr>
 									<td>Tgl Pelantikan</td>
 									<td>:</td>
-									<td><?php echo $data['tgl_pelantikan'] ?></td>
+									<td><?php echo strtoupper($data['tgl_pelantikan']); ?></td>
 								</tr>
 								<tr>
 									<td>Pelantik</td>
 									<td>:</td>
-									<td><?php echo $data['pelantik'] ?></td>
+									<td><?php echo strtoupper($data['pelantik']); ?></td>
 								</tr>
 								<tr>
-									<td><?php echo $penghasilan_title ?></td>
+									<td><?php echo strtoupper($penghasilan_title); ?></td>
 									<td>:</td>
-									<td><?php echo $data['penghasilan'] ?></td>
+									<td><?php echo strtoupper($data['penghasilan']); ?></td>
 								</tr>
 							</table>
 						</div>
@@ -195,8 +195,8 @@ if(!empty($id) && is_numeric($id))
 									{
 										?>
 										<tr>
-											<td><?php echo $i ?></td>
-											<td><?php echo $value ?></td>
+											<td><?php echo strtoupper($i); ?></td>
+											<td><?php echo strtoupper($value); ?></td>
 										</tr>
 										<?php
 										$i++;
@@ -230,8 +230,8 @@ if(!empty($id) && is_numeric($id))
 										{
 											?>
 											<tr>
-												<td><?php echo $i ?></td>
-												<td><?php echo $value ?></td>
+												<td><?php echo strtoupper($i); ?></td>
+												<td><?php echo strtoupper($value); ?></td>
 											</tr>
 											<?php
 											$i++;
