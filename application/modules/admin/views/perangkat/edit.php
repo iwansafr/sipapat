@@ -9,12 +9,22 @@ if(!is_admin() && !is_kecamatan())
 	$form->init('edit');
 	$form->setId(@intval($_GET['id']));
 	$form->setTable('perangkat_desa');
-	$form->setWhere(' AND desa_id = '.@intval($pengguna['desa_id']));
-	$form->addInput('desa_id','static');
-	$form->setValue('desa_id', @$pengguna['desa_id']);
+	if(is_desa())
+	{
+		$form->setWhere(' AND desa_id = '.@intval($pengguna['desa_id']));
+		$form->addInput('desa_id','static');
+		$form->setValue('desa_id', @$pengguna['desa_id']);
+	}else{
+		$form->addInput('desa_id','dropdown');
+		$form->tableOptions('desa_id','desa','id','nama');
+		$form->setLabel('desa_id','nama desa');
+	}
 	$form->setHeading($module_title[$kelompok].' Desa '.@$pengguna['username']);
 	$form->addInput('kelompok','static');
 	$form->setValue('kelompok',$kelompok);
+	$form->addInput('nik','text');
+	$form->setType('nik','number');
+	$form->setLabel('nik','NIK');
 	$form->addInput('nama','text');
 	$form->addInput('foto','upload');
 	$form->setAccept('foto', '.jpg,.jpeg,.png');

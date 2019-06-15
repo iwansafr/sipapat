@@ -215,7 +215,13 @@ class Perangkat extends CI_Controller
 
 	public function desa($group = '')
 	{
-		$this->load->view('index', ['desa_option'=>$this->pengguna_model->get_desa(),'group'=>$group]);
+		$kec = !empty(@$_GET['kec']) ? $_GET['kec'] : '';
+		$this->load->view('index', ['desa_option'=>$this->pengguna_model->get_desa($kec),'group'=>$group]);
+	}
+
+	public function kecamatan($group = '')
+	{
+		$this->load->view('index', ['kec_option'=>$this->pengguna_model->get_kecamatan(),'group'=>$group]);
 	}
 
 	public function edit()

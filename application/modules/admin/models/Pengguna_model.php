@@ -8,7 +8,7 @@ class Pengguna_model extends CI_Model
 		parent::__construct();
 	}
 
-	public function get_desa()
+	public function get_desa($kec = '')
 	{
 		$this->db->select('id');
 		$this->db->select('nama');
@@ -17,7 +17,22 @@ class Pengguna_model extends CI_Model
 			$kecamatan = strtoupper(str_replace('kec_','', $this->session->userdata(base_url().'_logged_in')['username']));
 			$this->db->where("kecamatan = '{$kecamatan}'");
 		}
+		if(!empty($kec))
+		{
+			$this->db->where("kecamatan = '{$kec}'");
+		}
 		return $this->db->get('desa')->result_array();
+	}
+
+	public function get_kecamatan()
+	{
+		$q = "SELECT id,username AS nama FROM user WHERE username LIKE 'kec_%'";
+		if(is_kecamatan())
+		{
+			$kecamatan = strtoupper(str_replace('kec_','', $this->session->userdata(base_url().'_logged_in')['username']));
+			$q = "SELECT id,username AS nama FROM user WHERE username = {$kecamatan}";
+		}
+		return $this->db->query($q)->result_array();
 	}
 
 	public function get_pengguna($id = 0)

@@ -10,7 +10,7 @@ if(!empty($task) && in_array($task, $module))
 if(!is_desa())
 {
 	?>
-	<a href="<?php echo base_url('admin/perangkat/desa/'.$module[$kelompok]) ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> data perdesa</a>
+	<a href="<?php echo base_url('admin/perangkat/kecamatan/'.$module[$kelompok]) ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Filter Data</a>
 	<?php
 }
 $form = new zea();
