@@ -36,7 +36,7 @@ $form->setNumbering(TRUE);
 $form->setWhere(' kelompok = '.$kelompok.' '.$ext);
 if(!is_desa())
 {
-	if(!empty(@$_GET['kec']))
+	if(!empty(@$_GET['kec']) && empty(@intval($_GET['desa_id'])))
 	{
 		$kecamatan = @$_GET['kec'];
 		$form->join('desa','ON(perangkat_desa.desa_id=desa.id)','perangkat_desa.*,desa.kecamatan');
