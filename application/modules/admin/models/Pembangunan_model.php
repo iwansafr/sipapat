@@ -6,12 +6,14 @@ class Pembangunan_model extends CI_Model
 	{
 		return 
 		[
-			'1' => 'DD',
-			'2' => 'ADD',
-			'3' => 'PAD',
-			'4' => 'BKP',
-			'5' => 'BKK',
-			'6' => 'BHPR'
+			'1'=> 'PAD ( Pendapatan Asli Desa )',
+			'2'=> 'DD ( Dana Desa )',
+			'3'=> 'ADD ( Alokasi Dana Desa )',
+			'4'=> 'PDRD ( Pajak Daerah Dan Retribusi Daerah )',
+			'5'=> 'Bankeu Provinsi',
+			'6'=> 'Bankeu Kabupaten',
+			'7'=> 'Hibah Dan Sumbangan Pihak ketiga',
+			'8'=> 'Lain Lain Pendapatan Yang Sah'
 		];
 	}
 	public function bidang()
