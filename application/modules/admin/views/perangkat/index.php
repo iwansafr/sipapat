@@ -34,9 +34,20 @@ $form->search();
 $form->setTable('perangkat_desa');
 $form->setNumbering(TRUE);
 $form->setWhere(' kelompok = '.$kelompok.' '.$ext);
+if(!is_desa())
+{
+	if(!empty(@$_GET['kec']))
+	{
+		$kecamatan = @$_GET['kec'];
+		$form->join('desa','ON(perangkat_desa.desa_id=desa.id)','perangkat_desa.*,desa.kecamatan');
+		$form->setWhere(" kelompok = {$kelompok} AND kecamatan = '{$kecamatan}'");
+		$form->addInput('kecamatan','plaintext');
+	}
+}
 if(is_root() || is_admin())
 {
 	$desa_id_get = !empty($_GET['desa_id']) ? '?desa_id='.@intval($_GET['desa_id']) : '';
+	$desa_id_get = !empty($_GET['kec']) ? '?kec='.$_GET['kec'] : '';
 	$form->setHeading
 	(
 		'data '.$module[$kelompok].' '.

@@ -23,8 +23,43 @@ class Perangkat extends CI_Controller
 		$this->load->view('index', ['pengguna'=>$pengguna,'jabatan'=>$jabatan]);
 	}
 
-	public function excel()
+	public function excel($kelompok = '')
 	{
+		$jabatan = $this->pengguna_model->jabatan();
+		$kelamin = ['Perempuan','Laki-laki'];
+		$agama = 
+			[
+				'1'=>'Islam',
+				'2'=>'Kristen',
+				'3'=>'Katholik',
+				'4'=>'Hindu',
+				'5'=>'Budha',
+				'6'=>'Khonghucu',
+				'7'=>'Kepercayaan thd Tuhan yang Maha Esa Lainnya'
+			];
+		$status_perkawinan = ['Belum Kawin','Cerai Hidup','Cerai Mati','Kawin'];
+		$pendidikan_terakhir = 
+			[
+				'1'=>strtoupper('akademi/diploma iii/s.muda'),
+				'2'=>strtoupper('belum tamat sd/sederajat'),
+				'3'=>strtoupper('diploma i/ii'),
+				'4'=>strtoupper('diploma iv/strata i'),
+				'5'=>strtoupper('slta/sederajat'),
+				'6'=>strtoupper('sltp/sederajat'),
+				'7'=>strtoupper('strata ii'),
+				'8'=>strtoupper('strata iii'),
+				'9'=>strtoupper('tamat sd/sederajat'),
+				'10'=>strtoupper('tidak/belum sekolah')
+			];
+		$kelompok = empty($kelompok) ? 1: $kelompok;
+		$module = ['1'=>'','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd'];
+		$module_title = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd'];
+		$kelompok = array_keys($module,$kelompok);
+		$kelompok = $kelompok[0];
+		$jabatan = $jabatan[$kelompok];
+		$where = !empty(@intval($_GET['desa_id'])) ? ' AND perangkat_desa.desa_id = '.$_GET['desa_id'] : '';
+		$where = !empty(@$_GET['kec']) ? " AND desa.kecamatan = '".$_GET['kec']."'" : '';
+		
 		$data = $this->db->query
 		('
 			SELECT 
@@ -40,8 +75,10 @@ class Perangkat extends CI_Controller
 			AND 
 				perangkat_desa.desa_id = desa.id
 			AND 
-				kelompok = 1
-		')->result_array();
+				kelompok = ?
+		'.$where, $kelompok)->result_array();
+		// pr($data);
+		// pr($this->db->last_query());die();
 		$spreadsheet = new Spreadsheet();
 
 		// Set document properties
@@ -91,14 +128,14 @@ class Perangkat extends CI_Controller
 			->setCellValue('D'.$i,$value['nama'])
 			->setCellValue('E'.$i,$value['tempat_lahir'])
 			->setCellValue('F'.$i,$value['tgl_lahir'])
-			->setCellValue('G'.$i,$value['kelamin'])
+			->setCellValue('G'.$i,$kelamin[$value['kelamin']])
 			->setCellValue('H'.$i,$value['alamat'])
 			->setCellValue('I'.$i,$value['telepon'])
-			->setCellValue('J'.$i,$value['agama'])
-			->setCellValue('K'.$i,$value['status_perkawinan'])
-			->setCellValue('L'.$i,$value['pendidikan_terakhir'])
+			->setCellValue('J'.$i,$agama[$value['agama']])
+			->setCellValue('K'.$i,$status_perkawinan[$value['status_perkawinan']])
+			->setCellValue('L'.$i,$pendidikan_terakhir[$value['pendidikan_terakhir']])
 			->setCellValue('M'.$i,$value['jamkes'])
-			->setCellValue('N'.$i,$value['jabatan'])
+			->setCellValue('N'.$i,$jabatan[$value['jabatan']])
 			->setCellValue('O'.$i,$value['no_sk'])
 			->setCellValue('P'.$i,$value['sk_penetapan_kembali'])
 			->setCellValue('Q'.$i,$value['tgl_pelantikan'])
@@ -138,11 +175,39 @@ class Perangkat extends CI_Controller
 
 	public function pdf($kelompok = 'perangkat')
 	{
+		$jabatan = $this->pengguna_model->jabatan();
+		$kelamin = ['Perempuan','Laki-laki'];
+		$agama = 
+			[
+				'1'=>'Islam',
+				'2'=>'Kristen',
+				'3'=>'Katholik',
+				'4'=>'Hindu',
+				'5'=>'Budha',
+				'6'=>'Khonghucu',
+				'7'=>'Kepercayaan thd Tuhan yang Maha Esa Lainnya'
+			];
+		$status_perkawinan = ['Belum Kawin','Cerai Hidup','Cerai Mati','Kawin'];
+		$pendidikan_terakhir = 
+			[
+				'1'=>strtoupper('akademi/diploma iii/s.muda'),
+				'2'=>strtoupper('belum tamat sd/sederajat'),
+				'3'=>strtoupper('diploma i/ii'),
+				'4'=>strtoupper('diploma iv/strata i'),
+				'5'=>strtoupper('slta/sederajat'),
+				'6'=>strtoupper('sltp/sederajat'),
+				'7'=>strtoupper('strata ii'),
+				'8'=>strtoupper('strata iii'),
+				'9'=>strtoupper('tamat sd/sederajat'),
+				'10'=>strtoupper('tidak/belum sekolah')
+			];
 		$kelompok = empty($kelompok) ? 1: $kelompok;
 		$module = ['1'=>'','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd'];
 		$module_title = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd'];
-		$kelompok = array_keys($module,$kelompok);
+
+		$kelompok = array_keys($module_title,$kelompok);
 		$kelompok = $kelompok[0];
+		$jabatan = $jabatan[$kelompok];
 
 		$this->load->library('pdf');
 		$pdf = new FPDF('L','mm','A4');
@@ -151,16 +216,16 @@ class Perangkat extends CI_Controller
     // setting jenis font yang akan digunakan
     $pdf->SetFont('Arial','B',7);
     // mencetak string 
-    $pdf->Cell(200,10,'SIPAPAT',0,1,'C');
+    $pdf->Cell(250,10,'SIPAPAT',0,1,'C');
     $pdf->SetFont('Arial','B',6);
-    $pdf->Cell(200,10,'DATA '.$kelompok ,0,1,'C');
+    $pdf->Cell(250,10,'DATA '.$kelompok ,0,1,'C');
     // Memberikan space kebawah agar tidak terlalu rapat
     $pdf->Cell(10,7,'',0,1);
     $pdf->SetFont('Arial','B',7);
 
 		$pdf->Cell(8,6,'no',1,0);
-		$pdf->Cell(18,6,'nama desa',1,0);
-		$pdf->Cell(18,6,'nama',1,0);
+		$pdf->Cell(22,6,'nama desa',1,0);
+		$pdf->Cell(45,6,'nama',1,0);
 		$pdf->Cell(18,6,'tempat lahir',1,0);
 		$pdf->Cell(18,6,'tgl lahir',1,0);
 		$pdf->Cell(18,6,'kelamin',1,0);
@@ -169,10 +234,13 @@ class Perangkat extends CI_Controller
 		$pdf->Cell(18,6,'status',1,0);
 		$pdf->Cell(25,6,'pendidikan terakhir',1,0);
 		$pdf->Cell(18,6,'jabatan',1,0);
-		$pdf->Cell(18,6,'no sk',1,0);
-		$pdf->Cell(25,6,'akhir masa jabatan',1,1);
+		$pdf->Cell(30,6,'no sk',1,0);
+		$pdf->Cell(20,6,'akhir m jabatan',1,1);
 
     $pdf->SetFont('Arial','',7);
+
+    $where = !empty(@intval($_GET['desa_id'])) ? ' AND perangkat_desa.desa_id = '.$_GET['desa_id'] : '';
+    $where = !empty(@$_GET['kec']) ? " AND desa.kecamatan = '".$_GET['kec']."'" : '';
     $data = $this->db->query
 		('
 			SELECT 
@@ -189,24 +257,24 @@ class Perangkat extends CI_Controller
 				perangkat_desa.desa_id = desa.id
 			AND 
 				kelompok = ?
-		', @intval($kelompok))->result_array();
-		// pr($this->db->last_query());
+		'.$where, @intval($kelompok))->result_array();
+		// pr($this->db->last_query());die();
     $i = 1;
     foreach ($data as $key => $value)
     {
     	$pdf->Cell(8,6,$i,1,0);
-			$pdf->Cell(18,6,$value['nama_desa'],1,0);
-			$pdf->Cell(18,6,$value['nama'],1,0);
+			$pdf->Cell(22,6,$value['nama_desa'],1,0);
+			$pdf->Cell(45,6,$value['nama'],1,0);
 			$pdf->Cell(18,6,$value['tempat_lahir'],1,0);
 			$pdf->Cell(18,6,$value['tgl_lahir'],1,0);
-			$pdf->Cell(18,6,$value['kelamin'],1,0);
+			$pdf->Cell(18,6,$kelamin[$value['kelamin']],1,0);
 			$pdf->Cell(18,6,$value['telepon'],1,0);
-			$pdf->Cell(18,6,$value['agama'],1,0);
-			$pdf->Cell(18,6,$value['status_perkawinan'],1,0);
-			$pdf->Cell(25,6,$value['pendidikan_terakhir'],1,0);
-			$pdf->Cell(18,6,$value['jabatan'],1,0);
-			$pdf->Cell(18,6,$value['no_sk'],1,0);
-			$pdf->Cell(25,6,$value['akhir_masa_jabatan'],1,1);
+			$pdf->Cell(18,6,$agama[$value['agama']],1,0);
+			$pdf->Cell(18,6,$status_perkawinan[$value['status_perkawinan']],1,0);
+			$pdf->Cell(25,6,$pendidikan_terakhir[$value['pendidikan_terakhir']],1,0);
+			$pdf->Cell(18,6,$jabatan[$value['jabatan']],1,0);
+			$pdf->Cell(30,6,$value['no_sk'],1,0);
+			$pdf->Cell(20,6,$value['akhir_masa_jabatan'],1,1);
       $i++;
     }
     $pdf->Output();

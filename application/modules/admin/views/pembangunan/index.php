@@ -5,12 +5,16 @@ if(!is_desa())
 	<a href="<?php echo base_url('admin/pembangunan/clear_desa/'.$view) ?>" class="load_link btn btn-sm btn-default"><i class="fa fa-sort"></i> data perdesa</a>
 	<?php
 }
-if($view =='fisik' || $view == 'non-fisik')
+if($view)
 {
-	$where = 'jenis = 0';
 	if($view == 'fisik')
 	{
 		$where = 'jenis = 1';
+	}else if($view == 'non-fisik')
+	{
+		$where = 'jenis = 0';
+	}else{
+		$where = 'bidang='.$bidang_id;
 	}
 	if(!empty($desa_id))
 	{

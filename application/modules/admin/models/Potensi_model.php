@@ -4,11 +4,11 @@ class Potensi_model extends CI_Model
 {
 	public function kategori()
 	{
-		return ['1'=>'perikanan','2'=>'pertanian','3'=>'peternakan','4'=>'perkebunan','5'=>'home indsutri','6'=>'perdagangan','7'=>'wisata','8'=>'jasa'];
+		return ['1'=>'perikanan','2'=>'pertanian','3'=>'peternakan','4'=>'perkebunan','5'=>'home indsutri','6'=>'perdagangan','7'=>'wisata','8'=>'jasa','9'=>'seni budaya'];
 	}
 	public function satuan()
 	{
-		return ['0'=>'nihil','1'=>'Ton','2'=>'Kg','3'=>'Kw','4'=>'ekor','5'=>'lembar','6'=>'liter'];
+		return ['0'=>'nihil','1'=>'Ton','2'=>'Kg','3'=>'Kw','4'=>'ekor','5'=>'lembar','6'=>'liter','7'=>'butir','8'=>'buah','9'=>'unit'];
 	}
 	public function waktu()
 	{

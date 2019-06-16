@@ -47,6 +47,8 @@ class Pembangunan extends CI_Controller
 	}
 	public function clear_desa($type = '')
 	{
+		$bidang    = $this->pembangunan_model->bidang();
+		$bidang_id = 0;
 		switch($type)
 		{
 			case 'fisik':
@@ -58,6 +60,14 @@ class Pembangunan extends CI_Controller
 			default:
 				$view = false;
 			break;
+		}
+		foreach ($bidang as $key => $value) 
+		{
+			if(strtolower($value) == str_replace('_',' ',$type))
+			{
+				$view      = $type;
+				$bidang_id = $key;
+			}
 		}
 		$this->load->view('pembangunan/desa', ['view'=>$view,'desa_option'=>$this->pengguna_model->get_desa()]);
 	}
@@ -68,51 +78,75 @@ class Pembangunan extends CI_Controller
 	}
 	public function list($type = '')
 	{
-		switch($type)
-		{
-			case 'fisik':
-				$view = $type;
-			break;
-			case 'non-fisik':
-				$view = $type;
-			break;
-			default:
-				$view = false;
-			break;
-		}
-		$sumber = $this->pembangunan_model->sumber_dana();
-		$bidang = $this->pembangunan_model->bidang();
-		if(is_desa())
-		{
-			$desa_id = $this->sipapat_model->get_desa_id();
-		}else{
-			$desa_id = @intval($_GET['desa_id']);
-		}
-		$this->load->view('index',['view'=>$view,'sumber'=>$sumber,'bidang'=>$bidang,'desa_id'=>$desa_id]);
-	}
-	public function clear_list($type = '')
-	{
-		switch($type)
-		{
-			case 'fisik':
-				$view = $type;
-			break;
-			case 'non-fisik':
-				$view = $type;
-			break;
-			default:
-				$view = false;
-			break;
-		}
-		$sumber = $this->pembangunan_model->sumber_dana();
-		$bidang = $this->pembangunan_model->bidang();
+		$sumber    = $this->pembangunan_model->sumber_dana();
+		$bidang    = $this->pembangunan_model->bidang();
+		$bidang_id = 0;
+
 		if(is_desa())
 		{
 			$desa_id = $this->sipapat_model->get_desa_id();
 		}else{
 			$desa_id = $this->input->get('desa_id');
 		}
-		$this->load->view('pembangunan/index',['view'=>$view,'sumber'=>$sumber,'bidang'=>$bidang,'desa_id'=>$desa_id]);
+		switch($type)
+		{
+			case 'fisik':
+				$view = $type;
+			break;
+			case 'non-fisik':
+				$view = $type;
+			break;
+			default:
+				$view = false;
+			break;
+		}
+		foreach ($bidang as $key => $value) 
+		{
+			if(strtolower($value) == str_replace('_',' ',$type))
+			{
+				$view      = $type;
+				$bidang_id = $key;
+			}
+		}
+		$this->load->view('index',['view'=>$view,'sumber'=>$sumber,'bidang'=>$bidang,'bidang_id'=>$bidang_id,'desa_id'=>$desa_id]);
+	}
+	public function clear_list($type = '')
+	{
+		$sumber    = $this->pembangunan_model->sumber_dana();
+		$bidang    = $this->pembangunan_model->bidang();
+		$bidang_id = 0;
+		if(is_desa())
+		{
+			$desa_id = $this->sipapat_model->get_desa_id();
+		}else{
+			$desa_id = $this->input->get('desa_id');
+		}
+		switch($type)
+		{
+			case 'fisik':
+				$view = $type;
+			break;
+			case 'non-fisik':
+				$view = $type;
+			break;
+			default:
+				$view = false;
+			break;
+		}
+		foreach ($bidang as $key => $value) 
+		{
+			if(strtolower($value) == str_replace('_',' ',$type))
+			{
+				$view      = $type;
+				$bidang_id = $key;
+			}
+		}
+		$this->load->view('pembangunan/index',['view'=>$view,'sumber'=>$sumber,'bidang_id'=>$bidang_id,'bidang'=>$bidang,'desa_id'=>$desa_id]);
+	}
+	public function buat()
+	{
+		$this->esg_model->set_nav_title('buat laporan pembangunan');
+		$this->load->view('index');
 	}
 	public function edit($type = '')
 	{

@@ -1,11 +1,18 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
+if(empty($_GET['id']))
+{
+	?>
+	<a class="btn btn-warning btn-sm" href="<?php echo base_url('admin/pembangunan/buat');?>"><i class="fa fa-arrow-left"></i>Kembali</a>
+	<?php
+}
 if(!empty($view) || is_desa() || is_root())
 {
 	$form = new zea();
 	$form->setTable('pembangunan');
 	$form->init('edit');
 	$form->setId(@intval($_GET['id']));
+
 	$form->addInput('item','text');
 	$form->addInput('sumber_dana','dropdown');
 	$form->setOptions('sumber_dana', $sumber);
@@ -23,12 +30,19 @@ if(!empty($view) || is_desa() || is_root())
 	$form->addInput('anggaran','text');
 	$form->setType('anggaran','number');
 
+	$form->addInput('lokasi','text');
+
 	if($view == 'fisik')
 	{
 		$form->addInput('doc_0','file');
 		$form->setLabel('doc_0','Dokumantasi 0 %');
+		$form->addInput('doc_40','file');
+		$form->setLabel('doc_40','Dokumantasi 40 %');
 		$form->addInput('doc_50','file');
 		$form->setLabel('doc_50','Dokumantasi 50 %');
+		$form->setAttribute('doc_50',['bankeu_prov'=>'true']);
+		$form->addInput('doc_80','file');
+		$form->setLabel('doc_80','Dokumantasi 80 %');
 		$form->addInput('doc_100','file');
 		$form->setLabel('doc_100','Dokumantasi 100 %');
 	}else{
