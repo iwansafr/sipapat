@@ -47,7 +47,7 @@ if(!is_desa())
 if(is_root() || is_admin())
 {
 	$desa_id_get = !empty($_GET['desa_id']) ? '?desa_id='.@intval($_GET['desa_id']) : '';
-	$desa_id_get = !empty($_GET['kec']) ? '?kec='.$_GET['kec'] : '';
+	$desa_id_get = !empty($_GET['kec']) && empty(@intval($_GET['desa_id'])) ? '?kec='.$_GET['kec'] : $desa_id_get;
 	$form->setHeading
 	(
 		'data '.$module[$kelompok].' '.

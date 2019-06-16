@@ -51,15 +51,14 @@ class Perangkat extends CI_Controller
 				'9'=>strtoupper('tamat sd/sederajat'),
 				'10'=>strtoupper('tidak/belum sekolah')
 			];
-		$kelompok = empty($kelompok) ? 1: $kelompok;
+		$kelompok = empty($kelompok) ? 'perangkat': $kelompok;
 		$module = ['1'=>'','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd'];
 		$module_title = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd'];
-		$kelompok = array_keys($module,$kelompok);
+		$kelompok = array_keys($module_title,$kelompok);
 		$kelompok = $kelompok[0];
 		$jabatan = $jabatan[$kelompok];
 		$where = !empty(@intval($_GET['desa_id'])) ? ' AND perangkat_desa.desa_id = '.$_GET['desa_id'] : '';
-		$where = !empty(@$_GET['kec']) ? " AND desa.kecamatan = '".$_GET['kec']."'" : '';
-		
+		$where = !empty(@$_GET['kec']) && empty(@intval($_GET['desa_id'])) ? " AND desa.kecamatan = '".$_GET['kec']."'" : $where;
 		$data = $this->db->query
 		('
 			SELECT 
