@@ -6,12 +6,12 @@ class Pembangunan_model extends CI_Model
 	{
 		return 
 		[
-			'1'=> 'PAD ( Pendapatan Asli Desa )',
-			'2'=> 'DD ( Dana Desa )',
-			'3'=> 'ADD ( Alokasi Dana Desa )',
-			'4'=> 'PDRD ( Pajak Daerah Dan Retribusi Daerah )',
-			'5'=> 'Bankeu Provinsi',
-			'6'=> 'Bankeu Kabupaten',
+			'3'=> 'PAD ( Pendapatan Asli Desa )',
+			'1'=> 'DD ( Dana Desa )',
+			'2'=> 'ADD ( Alokasi Dana Desa )',
+			'6'=> 'PDRD ( Pajak Daerah Dan Retribusi Daerah )',
+			'4'=> 'Bankeu Provinsi',
+			'5'=> 'Bankeu Kabupaten',
 			'7'=> 'Hibah Dan Sumbangan Pihak ketiga',
 			'8'=> 'Lain Lain Pendapatan Yang Sah'
 		];
