@@ -52,8 +52,8 @@ class Perangkat extends CI_Controller
 				'10'=>strtoupper('tidak/belum sekolah')
 			];
 		$kelompok = empty($kelompok) ? 'perangkat': $kelompok;
-		$module = ['1'=>'','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd'];
-		$module_title = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd'];
+		$module = ['1'=>'','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd','9'=>'linmas'];
+		$module_title = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd','9'=>'linmas'];
 		$kelompok = array_keys($module_title,$kelompok);
 		$kelompok = $kelompok[0];
 		$jabatan = $jabatan[$kelompok];
@@ -201,8 +201,8 @@ class Perangkat extends CI_Controller
 				'10'=>strtoupper('tidak/belum sekolah')
 			];
 		$kelompok = empty($kelompok) ? 1: $kelompok;
-		$module = ['1'=>'','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd'];
-		$module_title = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd'];
+		$module = ['1'=>'','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd','9'=>'linmas'];
+		$module_title = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd','9'=>'linmas'];
 
 		$kelompok = array_keys($module_title,$kelompok);
 		$kelompok = $kelompok[0];
@@ -302,7 +302,8 @@ class Perangkat extends CI_Controller
 	{
 		$pengguna = $this->pengguna_model->get_pengguna();
 		$jabatan = $this->pengguna_model->jabatan();
-		$module_title = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd'];
+		$module = ['1'=>'','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd','9'=>'linmas'];
+		$module_title = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd','9'=>'linmas'];
 		$data = $this->db->query('SELECT * FROM perangkat_desa WHERE id = ?', $id)->row_array();
 		$this->esg_model->set_nav_title('Detail '.$module_title[$data['kelompok']]);
 		$kelamin = ['Perempuan','Laki-laki'];
@@ -432,6 +433,13 @@ class Perangkat extends CI_Controller
 		$pengguna = $this->pengguna_model->get_pengguna();
 		$jabatan = $this->pengguna_model->jabatan();
 		$this->esg_model->set_nav_title($task.' kpmd ');
+		$this->load->view('index', ['pengguna'=>$pengguna,'jabatan'=>$jabatan,'task'=>$task,'id'=>$id]);
+	}
+	public function linmas($task = 'list', $id=0)
+	{
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$jabatan = $this->pengguna_model->jabatan();
+		$this->esg_model->set_nav_title($task.' linmas ');
 		$this->load->view('index', ['pengguna'=>$pengguna,'jabatan'=>$jabatan,'task'=>$task,'id'=>$id]);
 	}
 }

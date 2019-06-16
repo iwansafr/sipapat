@@ -13,3 +13,4 @@ ALTER TABLE `perangkat_desa` ADD `nik` BIGINT(20) NOT NULL AFTER `kelompok`;
 ALTER TABLE `pembangunan` ADD `lokasi` VARCHAR(255) NOT NULL AFTER `item`;
 ALTER TABLE `pembangunan` ADD `doc_40` VARCHAR(255) NOT NULL AFTER `doc_0`;
 ALTER TABLE `pembangunan` ADD `doc_80` VARCHAR(255) NOT NULL AFTER `doc_50`;
+ALTER TABLE `pembangunan` ADD `vol` VARCHAR(255) NOT NULL COMMENT 'volume PxLxT' AFTER `lokasi`;

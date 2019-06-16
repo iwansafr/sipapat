@@ -41,6 +41,9 @@ if(!empty($view) || is_desa() || is_root())
 
 	if($view == 'fisik')
 	{
+		$form->addInput('vol','textarea');
+		$form->setLabel('vol','Volume');
+		$form->setAttribute('vol',['placeholder'=>"Panjang : ...m\nLebar : ...m\nTinggi : ...m"]);
 		if(!empty($_GET['bankeu_prov'])){
 			$form->addInput('doc_0','file');
 			$form->setLabel('doc_0','Dokumantasi 0 %');
