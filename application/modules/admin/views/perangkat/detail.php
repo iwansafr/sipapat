@@ -60,6 +60,11 @@ if(!empty($id) && is_numeric($id))
 						<div class="col-md-4 col-xs-7">
 							<table class="table table-responsive <?php echo $class ?>">
 								<tr>
+									<td>NIK</td>
+									<td>:</td>
+									<td><?php echo strtoupper($data['nik']); ?></td>
+								</tr>
+								<tr>
 									<td>Nama</td>
 									<td>:</td>
 									<td><?php echo strtoupper($data['nama']); ?></td>
