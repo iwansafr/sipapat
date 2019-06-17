@@ -25,7 +25,12 @@ class Potensi extends CI_Controller
 	}
 	public function desa()
 	{
-		$this->load->view('index',['desa_option'=>$this->pengguna_model->get_desa()]);
+		$kec = !empty(@$_GET['kec']) ? $_GET['kec'] : '';
+		$this->load->view('index',['desa_option'=>$this->pengguna_model->get_desa($kec)]);
+	}
+	public function kecamatan()
+	{
+		$this->load->view('index', ['kec_option'=>$this->pengguna_model->get_kecamatan()]);
 	}
 	public function list()
 	{

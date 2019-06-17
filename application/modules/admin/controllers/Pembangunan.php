@@ -39,7 +39,42 @@ class Pembangunan extends CI_Controller
 				$view = false;
 			break;
 		}
-		$this->load->view('index', ['view'=>$view,'desa_option'=>$this->pengguna_model->get_desa()]);
+		$bidang    = $this->pembangunan_model->bidang();
+		foreach ($bidang as $key => $value) 
+		{
+			if(strtolower($value) == str_replace('_',' ',$type))
+			{
+				$view      = $type;
+				$bidang_id = $key;
+			}
+		}
+		$kec = !empty(@$_GET['kec']) ? $_GET['kec'] : '';
+		$this->load->view('index', ['view'=>$view,'desa_option'=>$this->pengguna_model->get_desa($kec)]);
+	}
+	public function kecamatan($type = '')
+	{
+		switch($type)
+		{
+			case 'fisik':
+				$view = $type;
+			break;
+			case 'non-fisik':
+				$view = $type;
+			break;
+			default:
+				$view = false;
+			break;
+		}
+		$bidang    = $this->pembangunan_model->bidang();
+		foreach ($bidang as $key => $value) 
+		{
+			if(strtolower($value) == str_replace('_',' ',$type))
+			{
+				$view      = $type;
+				$bidang_id = $key;
+			}
+		}
+		$this->load->view('index', ['kec_option'=>$this->pengguna_model->get_kecamatan(),'view'=>$view]);
 	}
 	public function test()
 	{
@@ -86,7 +121,7 @@ class Pembangunan extends CI_Controller
 		{
 			$desa_id = $this->sipapat_model->get_desa_id();
 		}else{
-			$desa_id = $this->input->get('desa_id');
+			$desa_id = @intval($this->input->get('desa_id'));
 		}
 		switch($type)
 		{
@@ -119,7 +154,7 @@ class Pembangunan extends CI_Controller
 		{
 			$desa_id = $this->sipapat_model->get_desa_id();
 		}else{
-			$desa_id = $this->input->get('desa_id');
+			$desa_id = @intval($this->input->get('desa_id'));
 		}
 		switch($type)
 		{

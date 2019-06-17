@@ -2,7 +2,7 @@
 if(!is_desa())
 {
 	?>
-	<a href="<?php echo base_url('admin/pembangunan/clear_desa/'.$view) ?>" class="load_link btn btn-sm btn-default"><i class="fa fa-sort"></i> data perdesa</a>
+	<a href="<?php echo base_url('admin/pembangunan/kecamatan/'.$view) ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Filter Data</a>
 	<?php
 }
 if($view)
@@ -23,6 +23,25 @@ if($view)
 	$form = new zea();
 	$form->setTable('pembangunan');
 	$form->init('roll');
+	if(is_kecamatan())
+	{
+		$kecamatan = strtoupper(str_replace('kec_','', $this->session->userdata(base_url().'_logged_in')['username']));
+		if(empty(@intval($_GET['desa_id'])))
+		{
+			$where = " bidang = {$bidang_id} AND kecamatan = '{$kecamatan}'";
+			$form->join('desa','ON(pembangunan.desa_id=desa.id)','pembangunan.*,desa.kecamatan');
+		}
+	}
+	if(!is_desa())
+	{
+		if(!empty(@$_GET['kec']) && empty(@intval($_GET['desa_id'])))
+		{
+			$kecamatan = @$_GET['kec'];
+			$form->join('desa','ON(pembangunan.desa_id=desa.id)','pembangunan.*,desa.kecamatan');
+			$where = "kecamatan = '{$kecamatan}'";
+			$form->addInput('kecamatan','plaintext');
+		}
+	}
 	$form->setWhere($where);
 	$form->search();
 	if(is_desa())
@@ -71,6 +90,10 @@ if($view)
 		$form->setEditLink(base_url('admin/pembangunan/edit/'.$view.'?id='));
 	}
 	$form->form();
+	if(is_root())
+	{
+		pr($form->getData()['query']);
+	}
 }else{
 	msg('Maaf URL yg anda tuju tidak valid', 'danger');
 }
