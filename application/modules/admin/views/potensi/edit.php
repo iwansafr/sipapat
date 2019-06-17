@@ -7,6 +7,7 @@ $form = new zea();
 
 $form->init('edit');
 $form->setTable('potensi_desa');
+$form->setId(@intval($_GET['id']));
 
 if(is_desa())
 {
