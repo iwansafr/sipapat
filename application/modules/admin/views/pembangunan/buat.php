@@ -8,8 +8,9 @@
       </a>
       <ul class="dropdown-menu" role="menu">
         <li><a href="<?php echo base_url('admin/pembangunan/edit/fisik?bankeu_prov=true')  ?>">Bankeu Prov</a></li>
+        <li><a href="<?php echo base_url('admin/pembangunan/edit/fisik?bankeu_kab=true')  ?>">Bankeu Kab</a></li>
         <li class="divider"></li>
-        <li><a href="<?php echo base_url('admin/pembangunan/edit/fisik') ?>">Selain Bankeu Prov</a></li>
+        <li><a href="<?php echo base_url('admin/pembangunan/edit/fisik') ?>">Selain Bankeu</a></li>
       </ul>
     <hr>
   </div>

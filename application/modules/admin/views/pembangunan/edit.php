@@ -17,8 +17,11 @@ if(!empty($view) || is_desa() || is_root())
 	
 	if(!empty($_GET['bankeu_prov'])){
 		$sumber = ['4'=>$sumber['4']];
+	}else if(!empty($_GET['bankeu_kab'])){
+		$sumber = ['5'=>$sumber['5']];
 	}else{
 		unset($sumber['4']);
+		unset($sumber['5']);
 	}
 
 	$form->addInput('sumber_dana','dropdown');
@@ -44,7 +47,7 @@ if(!empty($view) || is_desa() || is_root())
 		$form->addInput('vol','textarea');
 		$form->setLabel('vol','Volume');
 		$form->setAttribute('vol',['placeholder'=>"Panjang : ...m\nLebar : ...m\nTinggi : ...m"]);
-		if(!empty($_GET['bankeu_prov'])){
+		if(!empty($_GET['bankeu_prov']) || !empty($_GET['bankeu_kab'])){
 			$form->addInput('doc_0','file');
 			$form->setLabel('doc_0','Dokumantasi 0 %');
 			$form->addInput('doc_50','file');
