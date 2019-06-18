@@ -3,6 +3,7 @@
 if(!empty($data))
 {
 	// pr($data);
+	$class = '';
 	$jenis = ['Non Fisik','Fisik'];
 	$tahap = $data['tahap']<0 ? '1x Tahap' : 'Kegiatan Tahap '.$data['tahap'];
 	?>
@@ -58,6 +59,41 @@ if(!empty($data))
 								<td><?php echo $data['th_anggaran'];?></td>
 							</tr>
 						</table>
+						<div class="col-xs-12">
+							<?php 
+							$volume = $data['vol'];
+							if (!empty($volume))
+							{
+								$volume = explode("\n", $volume);
+								?>
+								<h3>Volume</h3>
+								<table class="table table-striped table-hover table-sm">
+									<thead>
+										<tr>
+											<th>No</th>
+											<th>Diklat</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php 
+										$i = 1;
+										foreach ($volume as $key => $value) 
+										{
+											?>
+											<tr>
+												<td><?php echo strtoupper($i); ?></td>
+												<td><?php echo strtoupper($value); ?></td>
+											</tr>
+											<?php
+											$i++;
+										}
+										?>
+									</tbody>
+								</table>
+								<?php
+							}
+							?>
+						</div>
 					</div>
 					<div class="col-md-8">
 						<?php if ($data['jenis']==1): ?>
