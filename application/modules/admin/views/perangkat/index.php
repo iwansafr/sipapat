@@ -55,7 +55,9 @@ if(is_root() || is_admin())
 		'<a target="_blank" href="'.base_url('admin/perangkat/excel/'.$module[$kelompok]).$desa_id_get.'" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i></a>'
 	);
 }else{
-	$form->setHeading('<a href="'.base_url('admin/perangkat/'.$module[$kelompok].'/edit').'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>');
+	$form->setHeading('<a href="'.base_url('admin/perangkat/'.$module[$kelompok].'/edit').'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>'.'data '.$module[$kelompok].' '.
+		'<a target="_blank" href="'.base_url('admin/perangkat/pdf/'.$module[$kelompok]).'" class="btn btn-sm btn-default"><i class="fa fa-file-pdf-o"></i>/<i class="fa fa-print"></i></a>'.
+		'<a target="_blank" href="'.base_url('admin/perangkat/excel/'.$module[$kelompok]).'" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i></a>');
 }
 $form->addInput('desa_id','dropdown');
 $form->tableOptions('desa_id','desa','id','nama');

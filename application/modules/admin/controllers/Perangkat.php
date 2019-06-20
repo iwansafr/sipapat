@@ -26,6 +26,7 @@ class Perangkat extends CI_Controller
 	public function excel($kelompok = '')
 	{
 		$jabatan = $this->pengguna_model->jabatan();
+		$pengguna = $this->pengguna_model->get_pengguna();
 		$kelamin = ['Perempuan','Laki-laki'];
 		$agama = 
 			[
@@ -57,8 +58,9 @@ class Perangkat extends CI_Controller
 		$kelompok = array_keys($module_title,$kelompok);
 		$kelompok = $kelompok[0];
 		$jabatan = $jabatan[$kelompok];
-		$where = !empty(@intval($_GET['desa_id'])) ? ' AND perangkat_desa.desa_id = '.$_GET['desa_id'] : '';
-		$where = !empty(@$_GET['kec']) && empty(@intval($_GET['desa_id'])) ? " AND desa.kecamatan = '".$_GET['kec']."'" : $where;
+		$desa_id = empty($_GET['desa_id']) && is_desa() ? $pengguna['desa_id'] : @intval($_GET['desa_id']);
+		$where = !empty(@intval($desa_id)) ? ' AND perangkat_desa.desa_id = '.$desa_id : '';
+		$where = !empty(@$_GET['kec']) && empty(@intval($desa_id)) ? " AND desa.kecamatan = '".$_GET['kec']."'" : $where;
 		$data = $this->db->query
 		('
 			SELECT 
@@ -175,6 +177,7 @@ class Perangkat extends CI_Controller
 	public function pdf($kelompok = 'perangkat')
 	{
 		$jabatan = $this->pengguna_model->jabatan();
+		$pengguna = $this->pengguna_model->get_pengguna();
 		$kelamin = ['Perempuan','Laki-laki'];
 		$agama = 
 			[
@@ -238,8 +241,9 @@ class Perangkat extends CI_Controller
 
     $pdf->SetFont('Arial','',7);
 
-    $where = !empty(@intval($_GET['desa_id'])) ? ' AND perangkat_desa.desa_id = '.$_GET['desa_id'] : '';
-    $where = !empty(@$_GET['kec']) ? " AND desa.kecamatan = '".$_GET['kec']."'" : '';
+    $desa_id = empty($_GET['desa_id']) && is_desa() ? $pengguna['desa_id'] : @intval($_GET['desa_id']);
+		$where = !empty(@intval($desa_id)) ? ' AND perangkat_desa.desa_id = '.$desa_id : '';
+		$where = !empty(@$_GET['kec']) && empty(@intval($desa_id)) ? " AND desa.kecamatan = '".$_GET['kec']."'" : $where;
     $data = $this->db->query
 		('
 			SELECT 
