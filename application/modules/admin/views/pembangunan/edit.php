@@ -8,10 +8,18 @@ if(empty($_GET['id']))
 }
 if(!empty($view) || is_desa() || is_root())
 {
+	$id   = @intval($_GET['id']);
 	$form = new zea();
 	$form->setTable('pembangunan');
 	$form->init('edit');
-	$form->setId(@intval($_GET['id']));
+	$form->setId($id);
+
+	$data = array();
+	if(!empty($id))
+	{
+		$data = $form->getData();
+	}
+	pr($data);
 
 	$form->addInput('item','text');
 	
@@ -42,7 +50,7 @@ if(!empty($view) || is_desa() || is_root())
 
 	$form->addInput('lokasi','text');
 
-	if($view == 'fisik')
+	if($view == 'fisik' || @$data['jenis'] == 1)
 	{
 		$form->addInput('vol','textarea');
 		$form->setLabel('vol','Volume');
