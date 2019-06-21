@@ -19,8 +19,6 @@ if(!empty($view) || is_desa() || is_root())
 	{
 		$data = $form->getData();
 	}
-	pr($data);
-
 	$form->addInput('item','text');
 	
 	if(!empty($_GET['bankeu_prov'])){

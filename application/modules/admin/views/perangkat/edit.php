@@ -73,7 +73,6 @@ if(!is_admin() && !is_kecamatan())
 			'10'=>strtoupper('tidak/belum sekolah')
 		]
 	);
-
 	if(!empty($jabatan[$kelompok]))
 	{
 		$form->addInput('jamkes','text');
@@ -94,12 +93,14 @@ if(!is_admin() && !is_kecamatan())
 			$form->setLabel('rt','Ketua RT');
 			$form->setLabel('rw','Wilayah RW');
 		}
-	}else{
-		$penghasilan_title = 'Penghasilan Tetap';
+	}else if($kelompok == 1){
+		$penghasilan_title = 'Gaji';
 		$form->setType('bengkok','number');
 		$form->setLabel('bengkok','Luas Bengkok');
 		$form->setAttribute('bengkok',['placeholder'=>'Meter']);
 		$form->addInput('bengkok','text');
+	}else{
+		$penghasilan_title = 'Insentif';
 	}
 
 	$form->addInput('no_sk','text');
