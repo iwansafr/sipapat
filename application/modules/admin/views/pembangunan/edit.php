@@ -13,6 +13,10 @@ if(!empty($view) || is_desa() || is_root())
 	$form->setTable('pembangunan');
 	$form->init('edit');
 	$form->setId($id);
+	if(!empty($id))
+	{
+		$data = $form->getData();
+	}
 
 	$data = array();
 	if(!empty($id))
@@ -21,9 +25,9 @@ if(!empty($view) || is_desa() || is_root())
 	}
 	$form->addInput('item','text');
 	
-	if(!empty($_GET['bankeu_prov'])){
+	if(!empty($_GET['bankeu_prov']) || (@$data['sumber_dana']=='4')){
 		$sumber = ['4'=>$sumber['4']];
-	}else if(!empty($_GET['bankeu_kab'])){
+	}else if(!empty($_GET['bankeu_kab']) || (@$data['sumber_dana']=='5')){
 		$sumber = ['5'=>$sumber['5']];
 	}else{
 		unset($sumber['4']);
@@ -46,13 +50,14 @@ if(!empty($view) || is_desa() || is_root())
 	$form->addInput('anggaran','text');
 	$form->setType('anggaran','number');
 
-	$form->addInput('lokasi','text');
+	$form->addInput('lokasi','textarea');
+	$form->setAttribute('lokasi',['placeholder'=>"Dukuh : ...\nRT : ...\nRW : ...m"]);
 
 	if($view == 'fisik' || @$data['jenis'] == 1)
 	{
 		$form->addInput('vol','textarea');
 		$form->setLabel('vol','Volume');
-		$form->setAttribute('vol',['placeholder'=>"Panjang : ...m\nLebar : ...m\nTinggi : ...m"]);
+		$form->setAttribute('vol',['placeholder'=>"Panjang : ...m\nLebar : ...m\nTinggi : ...m\nTebal : ...m"]);
 		if(!empty($_GET['bankeu_prov']) || !empty($_GET['bankeu_kab'])){
 			$form->addInput('doc_0','file');
 			$form->setLabel('doc_0','Dokumantasi 0 %');

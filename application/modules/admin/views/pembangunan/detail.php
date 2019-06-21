@@ -68,21 +68,17 @@ if(!empty($data))
 								?>
 								<h3>Volume</h3>
 								<table class="table table-striped table-hover table-sm">
-									<thead>
-										<tr>
-											<th>No</th>
-											<th>Diklat</th>
-										</tr>
-									</thead>
 									<tbody>
 										<?php 
 										$i = 1;
 										foreach ($volume as $key => $value) 
 										{
+											$vol_val = explode(':', $value);
 											?>
 											<tr>
-												<td><?php echo strtoupper($i); ?></td>
-												<td><?php echo strtoupper($value); ?></td>
+												<?php foreach ($vol_val as $lvkey => $lvvalue): ?>
+													<td><?php echo $lvvalue ?></td>
+												<?php endforeach ?>
 											</tr>
 											<?php
 											$i++;
@@ -118,6 +114,40 @@ if(!empty($data))
 									</div>
 								<?php endforeach ?>
 							</div>
+							<div class="row">
+								<div class="col-xs-6">
+									<?php 
+									$lokasi = $data['lokasi'];
+									if (!empty($lokasi))
+									{
+										$lokasi = explode("\n", $lokasi);
+										?>
+										<h3>lokasi</h3>
+										<table class="table table-striped table-hover table-sm">
+											<tbody>
+												<?php 
+												$i = 1;
+												foreach ($lokasi as $key => $value) 
+												{
+													$lok_val = explode(':', $value);
+													?>
+													<tr>
+														<?php foreach ($lok_val as $lvkey => $lvvalue): ?>
+															<td><?php echo $lvvalue ?></td>
+														<?php endforeach ?>
+													</tr>
+													<?php
+													$i++;
+												}
+												?>
+											</tbody>
+										</table>
+										<?php
+									}
+									?>
+								</div>
+							</div>
+
 						<?php else: ?>
 							<div class="row">
 								<div class="col-md-7">
