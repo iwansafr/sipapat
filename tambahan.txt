@@ -14,3 +14,5 @@ ALTER TABLE `pembangunan` ADD `lokasi` VARCHAR(255) NOT NULL AFTER `item`;
 ALTER TABLE `pembangunan` ADD `doc_40` VARCHAR(255) NOT NULL AFTER `doc_0`;
 ALTER TABLE `pembangunan` ADD `doc_80` VARCHAR(255) NOT NULL AFTER `doc_50`;
 ALTER TABLE `pembangunan` ADD `vol` VARCHAR(255) NOT NULL COMMENT 'volume PxLxT' AFTER `lokasi`;
+
+ALTER TABLE `pembangunan` ADD `from_date` DATE NOT NULL DEFAULT '1000-01-01' AFTER `vol`, ADD `to_date` DATE NOT NULL DEFAULT '1000-01-01' AFTER `from_date`;

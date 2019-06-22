@@ -58,7 +58,14 @@ if(!empty($view) || is_desa() || is_root())
 		$form->addInput('vol','textarea');
 		$form->setLabel('vol','Volume');
 		$form->setAttribute('vol',['placeholder'=>"Panjang : ...m\nLebar : ...m\nTinggi : ...m\nTebal : ...m"]);
-		if(!empty($_GET['bankeu_prov']) || !empty($_GET['bankeu_kab'])){
+
+		$form->addInput('from_date','text');
+		$form->setLabel('from_date','dari tgl');
+		$form->setType('from_date','date');
+		$form->addInput('to_date','text');
+		$form->setLabel('to_date','sampai tgl');
+		$form->setType('to_date','date');
+		if((!empty($_GET['bankeu_prov']) || !empty($_GET['bankeu_kab'])) || (@$data['sumber_dana'] == 4 || @$data['sumber_dana'] == 5) ){
 			$form->addInput('doc_0','file');
 			$form->setLabel('doc_0','Dokumantasi 0 %');
 			$form->addInput('doc_50','file');

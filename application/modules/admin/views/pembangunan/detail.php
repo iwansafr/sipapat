@@ -52,6 +52,12 @@ if(!empty($data))
 									<td>:</td>
 									<td><?php echo $tahap ?></td>
 								</tr>
+							<?php else: ?>
+								<tr>
+									<td>pengerjaan</td>
+									<td>:</td>
+									<td><?php echo content_date($data['from_date']) ?> <br>sampai<br> <?php echo content_date($data['to_date']) ?></td>
+								</tr>
 							<?php endif ?>
 							<tr>
 								<td>Th Anggaran</td>
@@ -90,6 +96,38 @@ if(!empty($data))
 							}
 							?>
 						</div>
+						<div class="col-xs-12">
+							<?php 
+							$lokasi = $data['lokasi'];
+							if (!empty($lokasi))
+							{
+								$lokasi .= "\nDesa : ".@$desa['nama']."\nKecamatan : ".@$desa['kecamatan']."\n";
+								$lokasi = explode("\n", $lokasi);
+								?>
+								<h3>lokasi</h3>
+								<table class="table table-striped table-hover table-sm">
+									<tbody>
+										<?php 
+										$i = 1;
+										foreach ($lokasi as $key => $value) 
+										{
+											$lok_val = explode(':', $value);
+											?>
+											<tr>
+												<?php foreach ($lok_val as $lvkey => $lvvalue): ?>
+													<td><?php echo $lvvalue ?></td>
+												<?php endforeach ?>
+											</tr>
+											<?php
+											$i++;
+										}
+										?>
+									</tbody>
+								</table>
+								<?php
+							}
+							?>
+						</div>
 					</div>
 					<div class="col-md-8">
 						<?php if ($data['jenis']==1): ?>
@@ -114,40 +152,6 @@ if(!empty($data))
 									</div>
 								<?php endforeach ?>
 							</div>
-							<div class="row">
-								<div class="col-xs-6">
-									<?php 
-									$lokasi = $data['lokasi'];
-									if (!empty($lokasi))
-									{
-										$lokasi = explode("\n", $lokasi);
-										?>
-										<h3>lokasi</h3>
-										<table class="table table-striped table-hover table-sm">
-											<tbody>
-												<?php 
-												$i = 1;
-												foreach ($lokasi as $key => $value) 
-												{
-													$lok_val = explode(':', $value);
-													?>
-													<tr>
-														<?php foreach ($lok_val as $lvkey => $lvvalue): ?>
-															<td><?php echo $lvvalue ?></td>
-														<?php endforeach ?>
-													</tr>
-													<?php
-													$i++;
-												}
-												?>
-											</tbody>
-										</table>
-										<?php
-									}
-									?>
-								</div>
-							</div>
-
 						<?php else: ?>
 							<div class="row">
 								<div class="col-md-7">
