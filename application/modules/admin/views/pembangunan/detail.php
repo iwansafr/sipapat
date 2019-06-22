@@ -15,25 +15,27 @@ if(!empty($data))
 			<div class="row">
 				<div class="col-md-12">
 					<?php if ($data['jenis']==1): ?>
-						<?php $gambar = [0,50,100]; ?>
+						<?php $gambar = [0,40,50,80,100]; ?>
 						<div class="row">
 							<?php foreach ($gambar as $key => $value): ?>
-								<div class="col-md-4">
-									<table class="table table-hover table-striped">
-										<thead>
-											<tr>
-												<th>gambar <?php echo $value ?>%</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>
-													<img src="<?php echo image_module('pembangunan',$data['id'].'/'.$data['doc_'.$value]) ?>" class="img img-responsive" style="object-fit: cover;width: 100%;min-height:200px;">
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
+								<?php if (!empty($data['doc_'.$value])): ?>
+									<div class="col-md-4">
+										<table class="table table-hover table-striped">
+											<thead>
+												<tr>
+													<th>gambar <?php echo $value ?>%</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>
+														<img src="<?php echo image_module('pembangunan',$data['id'].'/'.$data['doc_'.$value]) ?>" class="img img-responsive" style="object-fit: cover;width: 100%;min-height:200px;">
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								<?php endif ?>
 							<?php endforeach ?>
 						</div>
 					<?php else: ?>
@@ -79,6 +81,13 @@ if(!empty($data))
 									<td style="width:2%;">:</td>
 									<td><?php echo $sumber_dana[$data['sumber_dana']] ?></td>
 								</tr>
+								<?php if (!empty($data['sumber_dana_alt'])): ?>
+									<tr>
+										<td style="width=50%;">Sumber Dana Kedua</td>
+										<td style="width:2%;">:</td>
+										<td><?php echo $sumber_dana[$data['sumber_dana_alt']] ?></td>
+									</tr>
+								<?php endif ?>
 								<tr>
 									<td style="width=50%;">Anggaran</td>
 									<td style="width:2%;">:</td>

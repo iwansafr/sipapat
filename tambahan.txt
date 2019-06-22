@@ -17,3 +17,6 @@ ALTER TABLE `pembangunan` ADD `vol` VARCHAR(255) NOT NULL COMMENT 'volume PxLxT'
 
 ALTER TABLE `pembangunan` ADD `from_date` DATE NOT NULL DEFAULT '1000-01-01' AFTER `vol`, ADD `to_date` DATE NOT NULL DEFAULT '1000-01-01' AFTER `from_date`;
 ALTER TABLE `pembangunan` ADD `koordinat` VARCHAR(255) NOT NULL AFTER `lokasi`;
+
+
+ALTER TABLE `pembangunan` ADD `sumber_dana_alt` TINYINT(1) NOT NULL AFTER `sumber_dana`;

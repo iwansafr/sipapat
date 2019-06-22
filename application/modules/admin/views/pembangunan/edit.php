@@ -38,6 +38,16 @@ if(!empty($view) || is_desa() || is_root())
 	$form->setOptions('sumber_dana', $sumber);
 	$form->setLabel('sumber_dana', 'Sumber Dana');
 
+	if(count($sumber) > 1)
+	{
+		$sumber_alt = array();
+		$sumber_alt[0] = 'TIDAK ADA';
+		$sumber_alt = array_merge($sumber_alt,$sumber);
+		$form->addInput('sumber_dana_alt','dropdown');
+		$form->setOptions('sumber_dana_alt', $sumber_alt);
+		$form->setLabel('sumber_dana_alt', 'Sumber Dana Kedua');
+	}
+
 	$form->addInput('bidang','dropdown');
 	$form->setOptions('bidang', $bidang);
 
