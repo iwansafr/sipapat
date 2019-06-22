@@ -43,6 +43,13 @@ if(!empty($data))
 								<td>:</td>
 								<td><?php echo $waktu[$data['waktu']];?></td>
 							</tr>
+							<?php if (!empty($data['from_month']) && !empty($data['to_month'])): ?>
+								<tr>
+									<td>Periode</td>
+									<td>:</td>
+									<td><?php echo $bulan[$data['from_month']].' - '.$bulan[$data['to_month']];?></td>
+								</tr>
+							<?php endif ?>
 						</table>
 					</div>
 					<div class="col-md-8">

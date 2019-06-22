@@ -65,6 +65,8 @@ class Potensi extends CI_Controller
 		$satuan = $this->potensi_model->satuan();
 		$waktu = $this->potensi_model->waktu();
 		$data = $this->potensi_model->get_potensi($id);
-		$this->load->view('index', ['data'=>$data,'kategori'=>$kategori,'satuan'=>$satuan,'waktu'=>$waktu]);
+		$bulan = ['januari','februari','maret','april','mei','juni','juli','agustus','septemper','oktober','november','desember'];
+		$bulan = array_start_one($bulan);
+		$this->load->view('index', ['data'=>$data,'kategori'=>$kategori,'satuan'=>$satuan,'waktu'=>$waktu,'bulan'=>$bulan]);
 	}
 }
