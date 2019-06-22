@@ -21,7 +21,9 @@ class Potensi extends CI_Controller
 		$kategori = $this->potensi_model->kategori();
 		$satuan = $this->potensi_model->satuan();
 		$waktu = $this->potensi_model->waktu();
-		$this->load->view('index',['desa_id'=>$desa_id,'kategori'=>$kategori,'satuan'=>$satuan,'waktu'=>$waktu]);
+		$bulan = ['januari','februari','maret','april','mei','juni','juli','agustus','septemper','oktober','november','desember'];
+		$bulan = array_start_one($bulan);
+		$this->load->view('index',['desa_id'=>$desa_id,'kategori'=>$kategori,'satuan'=>$satuan,'waktu'=>$waktu,'bulan'=>$bulan]);
 	}
 	public function desa()
 	{

@@ -12,7 +12,7 @@ class Potensi_model extends CI_Model
 	}
 	public function waktu()
 	{
-		return ['1'=>'januari-desember','2'=>'setiap hari','3'=>'setiap minggu'];
+		return ['1'=>'setiap tahun','2'=>'setiap hari','3'=>'setiap minggu'];
 	}
 	public function get_potensi($id = 0)
 	{

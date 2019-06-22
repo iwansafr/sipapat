@@ -20,3 +20,6 @@ ALTER TABLE `pembangunan` ADD `koordinat` VARCHAR(255) NOT NULL AFTER `lokasi`;
 
 
 ALTER TABLE `pembangunan` ADD `sumber_dana_alt` TINYINT(1) NOT NULL AFTER `sumber_dana`;
+
+
+ALTER TABLE `potensi_desa` ADD `from_month` TINYINT(2) NOT NULL AFTER `waktu`, ADD `to_month` TINYINT(2) NOT NULL AFTER `from_month`;

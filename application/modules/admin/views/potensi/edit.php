@@ -38,5 +38,13 @@ $form->setType('volume','number');
 $form->addInput('waktu','dropdown');
 $form->setOptions('waktu',$waktu);
 
+$form->addInput('from_month','dropdown');
+$form->setLabel('from_month','dari');
+$form->setOptions('from_month',$bulan);
+
+$form->addInput('to_month','dropdown');
+$form->setLabel('to_month','sampai');
+$form->setOptions('to_month',$bulan);
+
 $form->setFormName('potensi_form');
 $form->form();
