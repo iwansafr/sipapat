@@ -54,6 +54,8 @@ if(!empty($view) || is_desa() || is_root())
 	$form->addInput('lokasi','textarea');
 	$form->setAttribute('lokasi',['placeholder'=>"Dukuh : ...\nRT : ...\nRW : ...m"]);
 
+	$file_type = empty($id) ? 'file' : 'thumbnail';
+
 	if($view == 'fisik' || @$data['jenis'] == 1)
 	{
 		$form->addInput('vol','textarea');
@@ -86,36 +88,42 @@ if(!empty($view) || is_desa() || is_root())
 		});
 		');
 		if((!empty($_GET['bankeu_prov']) || !empty($_GET['bankeu_kab'])) || (@$data['sumber_dana'] == 4 || @$data['sumber_dana'] == 5) ){
-			$form->addInput('doc_0','file');
+			$form->addInput('doc_0',$file_type);
 			$form->setLabel('doc_0','Dokumantasi 0 %');
-			$form->setAttribute('doc_0',['oninvalid'=>"this.setCustomValidity('gambar tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
-			$form->addInput('doc_50','file');
+			$form->addInput('doc_50',$file_type);
 			$form->setLabel('doc_50','Dokumantasi 50 %');
-			$form->setAttribute('doc_50',['oninvalid'=>"this.setCustomValidity('gambar tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
-			$form->addInput('doc_100','file');
+			$form->addInput('doc_100',$file_type);
 			$form->setLabel('doc_100','Dokumantasi 100 %');
-			$form->setAttribute('doc_100',['oninvalid'=>"this.setCustomValidity('gambar tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
-			$form->setRequired(['doc_0','doc_50','doc_100','anggaran']);
+			if(empty($id))
+			{
+				$form->setAttribute('doc_0',['oninvalid'=>"this.setCustomValidity('gambar tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
+				$form->setAttribute('doc_50',['oninvalid'=>"this.setCustomValidity('gambar tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
+				$form->setAttribute('doc_100',['oninvalid'=>"this.setCustomValidity('gambar tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
+				$form->setRequired(['doc_0','doc_50','doc_100','anggaran']);
+			}
 		}else{
-			$form->addInput('doc_0','file');
-			$form->setAttribute('doc_0',['oninvalid'=>"this.setCustomValidity('gambar tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
+			$form->addInput('doc_0',$file_type);
 			$form->setLabel('doc_0','Dokumantasi 0 %');
-			$form->addInput('doc_40','file');
+			$form->addInput('doc_40',$file_type);
 			$form->setLabel('doc_40','Dokumantasi 40 %');
-			$form->setAttribute('doc_40',['oninvalid'=>"this.setCustomValidity('gambar tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
-			$form->addInput('doc_80','file');
+			$form->addInput('doc_80',$file_type);
 			$form->setLabel('doc_80','Dokumantasi 80 %');
-			$form->setAttribute('doc_80',['oninvalid'=>"this.setCustomValidity('gambar tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
-			$form->addInput('doc_100','file');
+			$form->addInput('doc_100',$file_type);
 			$form->setLabel('doc_100','Dokumantasi 100 %');
-			$form->setAttribute('doc_100',['oninvalid'=>"this.setCustomValidity('gambar tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
-			$form->setRequired(['doc_0','doc_40','doc_80','doc_100','anggaran']);
+			if(empty($id))
+			{
+				$form->setAttribute('doc_0',['oninvalid'=>"this.setCustomValidity('gambar tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
+				$form->setAttribute('doc_40',['oninvalid'=>"this.setCustomValidity('gambar tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
+				$form->setAttribute('doc_80',['oninvalid'=>"this.setCustomValidity('gambar tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
+				$form->setAttribute('doc_100',['oninvalid'=>"this.setCustomValidity('gambar tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
+				$form->setRequired(['doc_0','doc_40','doc_80','doc_100','anggaran']);
+			}
 		}
 	}else{
 		$form->addInput('peserta','text');
 		$form->addInput('jenis','static');
 		$form->setValue('jenis',0);
-		$form->addInput('doc','file');
+		$form->addInput('doc',$file_type);
 		$form->setLabel('doc','Foto Kegiatan');
 		$form->setAttribute('doc',['oninvalid'=>"this.setCustomValidity('gambar tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
 		$form->setRequired(['doc','anggaran']);

@@ -83,7 +83,7 @@ if($view)
 	$form->addInput('th_anggaran','plaintext');
 	$form->setLabel('th_anggaran','Tahun Anggaran');
 	$form->setUrl('admin/pembangunan/clear_list/'.$view);
-	if(is_desa())
+	if(is_desa() || is_root())
 	{
 		$form->setDelete(TRUE);
 		$form->setEdit(TRUE);
