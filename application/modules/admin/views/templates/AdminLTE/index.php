@@ -5,6 +5,11 @@
   $user = $this->session->userdata(base_url().'_logged_in');
   $this->load->view('templates/'.$templates['admin_template'].'/meta');
   ?>
+  <style>
+    div{
+      text-transform: uppercase;
+    }
+  </style>
 </head>
 <body class="hold-transition skin-black sidebar-mini">
 <div id="loading" class="hidden">
@@ -68,5 +73,11 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <?php $this->load->view('js') ?>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('input[type="text"]').attr('onkeyup',"this.value = this.value.toUpperCase();");
+    $('textarea').attr('onkeyup',"this.value = this.value.toUpperCase();");
+  });
+</script>
 </body>
 </html>
