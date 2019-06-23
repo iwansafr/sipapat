@@ -94,11 +94,33 @@ if(!empty($data))
 									<td><?php echo money($data['anggaran'], 'Rp')?></td>
 								</tr>
 								<?php if ($data['jenis'] == 0): ?>
-									<tr>
-										<td style="width=50%;">Peserta</td>
-										<td style="width:2%;">:</td>
-										<td><?php echo $data['peserta'] ?></td>
-									</tr>
+									<?php 
+									$data_peserta = [];
+									$data['peserta'] = !empty($data['peserta']) ? string_to_array($data['peserta']) :'';
+									foreach ($data['peserta'] as $pkey => $pvalue) 
+									{
+										if(!empty($peserta[$pvalue-1]))
+										{
+											$data_peserta[] = $peserta[$pvalue-1]['title'];
+										}
+									}
+									if(!empty($data_peserta))
+									{
+										?>
+										<tr>
+											<td style="width=50%;">Peserta</td>
+											<td style="width:2%;">:</td>
+											<td>
+												<?php echo implode(' | ',$data_peserta) ?>
+											</td>
+										</tr>
+										<tr>
+											<td style="width=50%;">Jumlah Peserta</td>
+											<td style="width:2%;">:</td>
+											<td><?php echo $data['jml_peserta'] ?></td>
+										</tr>
+										<?php
+									}?>
 									<tr>
 										<td style="width=50%;">Tahap Kegiatan</td>
 										<td style="width:2%;">:</td>

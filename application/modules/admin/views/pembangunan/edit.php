@@ -25,18 +25,30 @@ if(!empty($view) || is_desa() || is_root())
 	}
 	$form->addInput('item','text');
 	
-	if(!empty($_GET['bankeu_prov']) || (@$data['sumber_dana']=='4')){
+	if((!empty($_GET['bankeu_prov']) || (@$data['sumber_dana']=='4')) && @$data['jenis']==1){
 		$sumber = ['4'=>$sumber['4']];
 	}else if(!empty($_GET['bankeu_kab']) || (@$data['sumber_dana']=='5')){
 		$sumber = ['5'=>$sumber['5']];
+	}else if(!empty($_GET['dd']) || (@$data['sumber_dana']=='1')){
+		$sumber = ['1'=>$sumber['1']];
 	}else{
-		unset($sumber['4']);
+		if($view == 'fisik' || @$data['jenis']==1)
+		{
+			unset($sumber['4']);
+		}
 		unset($sumber['5']);
+		unset($sumber['1']);
 	}
 
 	$form->addInput('sumber_dana','dropdown');
 	$form->setOptions('sumber_dana', $sumber);
 	$form->setLabel('sumber_dana', 'Sumber Dana');
+
+	if((!empty($_GET['dd']) || (@$data['sumber_dana']=='1')))
+	{
+		$form->addInput('tahap','dropdown');
+		$form->setOptions('tahap', ['1'=>'Tahap I','2'=>'Tahap II','3'=>'Tahap III']);
+	}
 
 	if(count($sumber) > 1)
 	{
@@ -130,13 +142,21 @@ if(!empty($view) || is_desa() || is_root())
 			}
 		}
 	}else{
-		$form->addInput('peserta','text');
+		$form->addInput('date','text');
+		$form->setType('date','date');
+		$form->setLabel('date','tgl Pelaksanaan');
+		$form->addInput('peserta','multiselect');
+		$form->setHelp('peserta','CTRL+click untuk memilih lebih dari 1 peserta');
+		$form->setMultiSelect('peserta',$peserta, 'id,par_id,title');
+		$form->addInput('jml_peserta','text');
+		$form->setType('jml_peserta','number');
+		$form->setLabel('jml_peserta','Jumlah Peserta');
 		$form->addInput('jenis','static');
 		$form->setValue('jenis',0);
 		$form->addInput('doc',$file_type);
 		$form->setLabel('doc','Foto Kegiatan');
 		$form->setAttribute('doc',['oninvalid'=>"this.setCustomValidity('gambar tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
-		$form->setRequired(['doc','anggaran']);
+		$form->setRequired(['doc','anggaran','peserta']);
 		$form->addInput('tahap','dropdown');
 		$form->setOptions('tahap', ['-1'=>'1 X tahapan','1'=>'Kegiatan Tahap 1','2'=>'Kegiatan Tahap 2','3'=>'Kegiatan Tahap 3']);
 	}

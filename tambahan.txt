@@ -23,3 +23,6 @@ ALTER TABLE `pembangunan` ADD `sumber_dana_alt` TINYINT(1) NOT NULL AFTER `sumbe
 
 
 ALTER TABLE `potensi_desa` ADD `from_month` TINYINT(2) NOT NULL AFTER `waktu`, ADD `to_month` TINYINT(2) NOT NULL AFTER `from_month`;
+
+ALTER TABLE `pembangunan` ADD `date` DATE NOT NULL DEFAULT '1000-01-01' AFTER `from_date`;
+ALTER TABLE `pembangunan` ADD `jml_peserta` INT(11) NOT NULL AFTER `peserta`;

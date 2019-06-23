@@ -19,10 +19,11 @@ class Pembangunan extends CI_Controller
 	{
 		$pembangunan = $this->pembangunan_model->get_pembangunan($id);
 		$sumber_dana = $this->pembangunan_model->sumber_dana();
+		$peserta = $this->pembangunan_model->peserta();
 		$bidang = $this->pembangunan_model->bidang();
 		$desa = $this->sipapat_model->get_desa($pembangunan['desa_id']);
 		$this->esg_model->set_nav_title('detail pembangunan '.$pembangunan['item']);
-		$this->load->view('index',['data'=>$pembangunan,'desa'=>$desa,'sumber_dana'=>$sumber_dana,'bidang'=>$bidang]);
+		$this->load->view('index',['data'=>$pembangunan,'desa'=>$desa,'sumber_dana'=>$sumber_dana,'bidang'=>$bidang,'peserta'=>$peserta]);
 	}
 
 	public function desa($type = '')
@@ -201,7 +202,8 @@ class Pembangunan extends CI_Controller
 		$sumber = $this->pembangunan_model->sumber_dana();
 		$bidang = $this->pembangunan_model->bidang();
 		$desa_id = $this->sipapat_model->get_desa_id();
-		$this->load->view('index',['view'=>$view,'sumber'=>$sumber,'bidang'=>$bidang,'desa_id'=>$desa_id]);
+		$peserta = $this->pembangunan_model->peserta();
+		$this->load->view('index',['view'=>$view,'sumber'=>$sumber,'bidang'=>$bidang,'desa_id'=>$desa_id,'peserta'=>$peserta]);
 	}
 	public function excel($type = '')
 	{

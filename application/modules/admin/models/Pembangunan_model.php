@@ -16,6 +16,32 @@ class Pembangunan_model extends CI_Model
 			'8'=> 'Lain Lain Pendapatan Yang Sah'
 		];
 	}
+	public function peserta()
+	{
+		return
+		[
+			[
+				'id'=>'1',
+				'par_id'=>'0',
+				'title'=>'Kepala Desa'
+			],
+			[
+				'id'=>'2',
+				'par_id'=>'0',
+				'title'=>'Perangkat Desa'
+			],
+			[
+				'id'=>'3',
+				'par_id'=>'0',
+				'title'=>'Lembaga Desa'
+			],
+			[
+				'id'=>'4',
+				'par_id'=>'0',
+				'title'=>'Warga Desa'
+			],
+		];
+	}
 	public function bidang()
 	{
 		return 
