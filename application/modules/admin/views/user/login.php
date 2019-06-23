@@ -124,10 +124,14 @@
         $('input[name="password"]').attr('type','password');
         $(this).removeAttr('is_cek');
         $(this).attr('title','Tampilkan Sandi');
+        $(this).addClass('fa-eye');
+        $(this).removeClass('fa-eye-slash');
       }else{
         $('input[name="password"]').attr('type','text');
         $(this).attr('is_cek','is_cek');
         $(this).attr('title','Sembunyikan Sandi');
+        $(this).removeClass('fa-eye');
+        $(this).addClass('fa-eye-slash');
       }
 
     });
