@@ -49,6 +49,7 @@ class Pengguna_model extends CI_Model
 
 	public function jabatan()
 	{
+		// 1=perangkat desa, 2=bpd,3=lpmp,4=pkk,5=karang taruna,6=rt,7=rw,8=kpmd,9=linmas
 		$data = 
 		[
 			'1' => 	[
@@ -91,6 +92,7 @@ class Pengguna_model extends CI_Model
 							],
 			'4' =>  [
 								'1'=>strtoupper('ketua'),
+								'11'=>strtoupper('wakil ketua'),
 								'2'=>strtoupper('sekretaris i'),
 								'3'=>strtoupper('sekretaris ii'),
 								'4'=>strtoupper('bendahara i'),
