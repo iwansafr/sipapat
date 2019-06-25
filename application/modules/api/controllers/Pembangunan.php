@@ -56,6 +56,10 @@ class Pembangunan extends CI_Controller
 					$data[$key]['doc_'.$dvalue] = image_module('pembangunan',$value['id'].'/'.$value['doc_'.$dvalue]);
 				}
 			}
+			if(!empty($value['tahap']))
+			{
+				$data[$key]['tahap'] = $tahap[$value['tahap']];
+			}
 		}
 		output_json($data);
 	}

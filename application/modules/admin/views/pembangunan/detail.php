@@ -5,7 +5,7 @@ if(!empty($data))
 	// pr($data);
 	$class = '';
 	$jenis = ['Non Fisik','Fisik'];
-	$tahap = $data['tahap']<0 ? '1x Tahap' : 'Kegiatan Tahap '.$data['tahap'];
+	$tahap = ($data['tahap']<0) ? '1x Tahap' : 'Kegiatan Tahap '.$data['tahap'];
 	?>
 	<div class="panel panel-default card card-default">
 		<div class="panel-heading card-header">
