@@ -4,12 +4,16 @@
   <?php
   $user = $this->session->userdata(base_url().'_logged_in');
   $this->load->view('templates/'.$templates['admin_template'].'/meta');
+  if ($mod['name'] != 'user' || $mod['name'] != 'pengguna') {
+    ?>
+    <style>
+      div{
+        text-transform: uppercase;
+      }
+    </style>
+    <?php
+  }
   ?>
-  <style>
-    div{
-      text-transform: uppercase;
-    }
-  </style>
 </head>
 <body class="hold-transition skin-black sidebar-mini">
 <div id="loading" class="hidden">
@@ -73,7 +77,7 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <?php $this->load->view('js') ?>
-<?php if ($content!='user/edit'): ?>
+<?php if ($content!='user/edit' || $content != 'pengguna/edit'): ?>
   <script type="text/javascript">
     $(document).ready(function(){
       $('input[type="text"]').attr('onkeyup',"this.value = this.value.toUpperCase();");
