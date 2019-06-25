@@ -4,7 +4,7 @@
   <?php
   $user = $this->session->userdata(base_url().'_logged_in');
   $this->load->view('templates/'.$templates['admin_template'].'/meta');
-  if ($this->router->fetch_class() != 'user' || $this->router->fetch_class() != 'pengguna') {
+  if ($this->router->fetch_class() != 'user' && $this->router->fetch_class() != 'pengguna') {
     ?>
     <style>
       div{
