@@ -88,6 +88,12 @@ class Pengguna_model extends CI_Model
 								'8'=>strtoupper('bendahara ii'),
 								'2'=>strtoupper('seksi agama'),
 								'3'=>strtoupper('seksi pemuda'),
+								'9'=>strtoupper('seksi keamanan & ketertiban'),
+								'10'=>strtoupper('pendidikan & penerangan'),
+								'11'=>strtoupper('seksi lingkungan hidup'),
+								'12'=>strtoupper('seksi pembangunan ekonomi & koperasi'),
+								'13'=>strtoupper('seksi kesehatan & kependudukan'),
+								'14'=>strtoupper('seksi kesejahteraan sosial'),
 								'4'=>strtoupper('anggota')
 							],
 			'4' =>  [
