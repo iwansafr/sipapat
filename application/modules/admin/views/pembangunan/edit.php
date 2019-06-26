@@ -24,8 +24,7 @@ if(!empty($view) || is_desa() || is_root())
 		$data = $form->getData();
 	}
 	$form->addInput('item','text');
-	
-	if((!empty($_GET['bankeu_prov']) || (@$data['sumber_dana']=='4')) && @$data['jenis']==1){
+	if((!empty($_GET['bankeu_prov']) || (@$data['sumber_dana']=='4') && @$data['jenis']==1)){
 		$sumber = ['4'=>$sumber['4']];
 	}else if(!empty($_GET['bankeu_kab']) || (@$data['sumber_dana']=='5')){
 		$sumber = ['5'=>$sumber['5']];
