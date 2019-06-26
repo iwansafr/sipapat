@@ -89,25 +89,7 @@ if(!empty($view) || is_desa() || is_root())
 		$form->addInput('to_date','text');
 		$form->setLabel('to_date','sampai tgl');
 		$form->setType('to_date','date');
-		$value_koor = 'long:"+position.coords.longitude+",lat:"+position.coords.latitude+"';
-		$script = "'<input type='hidden' name='koordinat' value='".$value_koor."'>'";
-		$this->esg->add_script('
-		$(document).ready(function(){
-			function getLocation() {
-			  if (navigator.geolocation) {
-			    navigator.geolocation.getCurrentPosition(showPosition);
-			  } else { 
-			    alert("browser anda tidak mendukung untuk menangkap lokasi anda");
-			  }
-			}
-
-			function showPosition(position) {
-				$("#form_1").find(".panel-body").append("<label>LOKASI</label><br>Latitude: " + position.coords.latitude + 
-			  "<br>Longitude: " + position.coords.longitude+"'.$script.'");
-			}
-			getLocation();
-		});
-		');
+		$this->esg->add_js(base_url('assets/pembangunan/script.js'));
 		if((!empty($_GET['bankeu_prov']) || !empty($_GET['bankeu_kab'])) || (@$data['sumber_dana'] == 4 || @$data['sumber_dana'] == 5) ){
 			$form->addInput('doc_0',$file_type);
 			$form->setLabel('doc_0','Dokumantasi 0 %');
