@@ -16,10 +16,13 @@ if(!empty($data))
 				<div class="col-md-12">
 					<?php if ($data['jenis']==1): ?>
 						<?php $gambar = [0,40,50,80,100]; ?>
+						<?php 
+						$col_class = (@$data['sumber_dana'] == 4 || @$data['sumber_dana'] == 5) ? 'col-md-4' : 'col-md-3';
+						?>
 						<div class="row">
 							<?php foreach ($gambar as $key => $value): ?>
 								<?php if (!empty($data['doc_'.$value])): ?>
-									<div class="col-md-4">
+									<div class="<?php echo $col_class ?>">
 										<table class="table table-hover table-striped">
 											<thead>
 												<tr>
@@ -97,11 +100,14 @@ if(!empty($data))
 									<?php 
 									$data_peserta = [];
 									$data['peserta'] = !empty($data['peserta']) ? string_to_array($data['peserta']) :'';
-									foreach ($data['peserta'] as $pkey => $pvalue) 
+									if(!empty($data['peserta']))
 									{
-										if(!empty($peserta[$pvalue-1]))
+										foreach ($data['peserta'] as $pkey => $pvalue) 
 										{
-											$data_peserta[] = $peserta[$pvalue-1]['title'];
+											if(!empty($peserta[$pvalue-1]))
+											{
+												$data_peserta[] = $peserta[$pvalue-1]['title'];
+											}
 										}
 									}
 									if(!empty($data_peserta))
@@ -183,9 +189,12 @@ if(!empty($data))
 						if (!empty($lokasi))
 						{
 							$koordinat = $data['koordinat'];
-							$koordinat = explode(",", $koordinat);
 							$lokasi .= "\nDesa : ".@$desa['nama']."\nKecamatan : ".@$desa['kecamatan'];
-							$lokasi .= "\n".$koordinat[0]."\n".$koordinat[1];
+							if(!empty($koordinat))
+							{
+								$koordinat = explode(",", $koordinat);
+								$lokasi .= "\n".$koordinat[0]."\n".$koordinat[1];
+							}
 							$lokasi = explode("\n", $lokasi);
 							?>
 							<h3>lokasi</h3>

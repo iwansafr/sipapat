@@ -21,10 +21,11 @@ class Pembangunan extends CI_Controller
 		$doc = [0,40,50,80,100];
 		foreach ($data as $key => $value) 
 		{
-			$desa                          = $this->sipapat_model->get_desa($value['desa_id']);
-			$data[$key]['desa']            = $desa;
-			$data[$key]['jenis']           = $jenis[$value['jenis']];
-			$data[$key]['sumber_dana']     = $sumber_dana[$value['sumber_dana']];
+			$desa                         = $this->sipapat_model->get_desa($value['desa_id']);
+			$data[$key]['desa']           = $desa;
+			$data[$key]['jenis']          = $jenis[$value['jenis']];
+			$data[$key]['sumber_dana_id'] = $value['sumber_dana'];
+			$data[$key]['sumber_dana']    = $sumber_dana[$value['sumber_dana']];
 			if(!empty($value['sumber_dana_alt']))
 			{
 				$data[$key]['sumber_dana_alt'] = $sumber_dana[$value['sumber_dana_alt']];
