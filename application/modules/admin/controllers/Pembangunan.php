@@ -205,6 +205,10 @@ class Pembangunan extends CI_Controller
 		$peserta = $this->pembangunan_model->peserta();
 		$this->load->view('index',['view'=>$view,'sumber'=>$sumber,'bidang'=>$bidang,'desa_id'=>$desa_id,'peserta'=>$peserta]);
 	}
+	public function edit_gambar()
+	{
+		$this->load->view('index');
+	}
 	public function excel($type = '')
 	{
 		$sumber = $this->pembangunan_model->sumber_dana();
