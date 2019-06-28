@@ -2,7 +2,7 @@
 
 $form = new zea();
 $form->setTable('desa');
-if(!is_admin() && !is_root() && !is_kecamatan())
+if(is_desa())
 {
 	// $form->setWhere(' id = '.$pengguna['desa_id']);
 	$form->setId($pengguna['desa_id']);
@@ -24,19 +24,29 @@ if(!is_admin() && !is_root() && !is_kecamatan())
 	$form->setSave(FALSE);
 	$form->form();
 }else{
+	?>
+	<a href="<?php echo base_url('admin/desa/kecamatan/') ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Filter Data</a>
+	<?php
 	$where = '';
 	if(is_kecamatan())
 	{
 		$kecamatan = strtoupper(str_replace('kec_','', $this->session->userdata(base_url().'_logged_in')['username']));
 		$where = " kecamatan = '{$kecamatan}'";
+	}	
+	if(!empty(@$_GET['kec']))
+	{
+		$kecamatan = @$_GET['kec'];
+		$where = " kecamatan = '{$kecamatan}'";
 	}
 	$form->init('roll');
 	$form->search();
+	$desa_id_get = !empty($_GET['desa_id']) ? '?desa_id='.@intval($_GET['desa_id']) : '';
+	$desa_id_get = !empty($_GET['kec']) && empty(@intval($_GET['desa_id'])) ? '?kec='.$_GET['kec'] : $desa_id_get;
 	$form->setHeading
 		(
 			'<a href="'.base_url('admin/desa/edit').'"><button class="btn btn-sm btn-default"><i class="fa fa-plus-circle"></i></button></a>'.
-			'<a target="_blank" href="'.base_url('admin/desa/pdf').'" class="btn btn-sm btn-default"><i class="fa fa-file-pdf-o"></i>/<i class="fa fa-print"></i></a>'.
-			'<a target="_blank" href="'.base_url('admin/desa/excel').'" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i></a>'
+			'<a target="_blank" href="'.base_url('admin/desa/pdf').$desa_id_get.'" class="btn btn-sm btn-default"><i class="fa fa-file-pdf-o"></i>/<i class="fa fa-print"></i></a>'.
+			'<a target="_blank" href="'.base_url('admin/desa/excel').$desa_id_get.'" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i></a>'
 		);
 	$form->setWhere($where);
 	$form->setNumbering(TRUE);

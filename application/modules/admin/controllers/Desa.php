@@ -24,6 +24,11 @@ class Desa extends CI_Controller
 		$this->load->view('index');
 	}
 
+	public function kecamatan()
+	{
+		$this->load->view('index', ['kec_option'=>$this->pengguna_model->get_kecamatan()]);
+	}
+
 	public function edit()
 	{
 		$pengguna = $this->pengguna_model->get_pengguna();
@@ -87,6 +92,10 @@ class Desa extends CI_Controller
 	public function excel()
 	{
 		// Create new Spreadsheet object
+		if(!empty($_GET['kec']))
+		{
+			$this->db->where(['kecamatan'=>$_GET['kec']]);
+		}
 		$data['desa'] = $this->db->get('desa')->result_array();
 		$spreadsheet = new Spreadsheet();
 
@@ -188,7 +197,11 @@ class Desa extends CI_Controller
 		$pdf->Cell(45,6,'alamat balai desa',1,1);
 
     $pdf->SetFont('Arial','',7);
-    $desa = $this->db->get('desa')->result_array();
+    if(!empty($_GET['kec']))
+		{
+			$this->db->where(['kecamatan'=>$_GET['kec']]);
+		}
+		$desa = $this->db->get('desa')->result_array();
     $i = 1;
     foreach ($desa as $key => $value)
     {
