@@ -60,8 +60,8 @@ if (!empty($msg))
 							<div class="form-group">
 								<label for="wifi">APAKAH DESA SUDAH MEMPUNYAI WIFI?</label>
 								<select name="wifi" class="form-control">
-									<option value="0" <?php echo (empty(@$data['wifi'])) ? 'selected' : ''; ?>>BELUM</option>
 									<option value="1" <?php echo (!empty(@$data['wifi'])) ? 'selected' : ''; ?>>SUDAH</option>
+									<option value="0" <?php echo (empty(@$data['wifi'])) ? 'selected' : ''; ?>>BELUM</option>
 								</select>
 							</div>
 							<div class="form-group">
