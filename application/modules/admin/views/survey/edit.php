@@ -120,11 +120,11 @@ if (!empty($msg))
 			</div>
 			<div class="form-group">
 				<label for="desa">DESA</label>
-				<input type="text" name="desa" class="form-control" value="<?php echo @$data['desa'] ?>">
+				<input type="text" name="desa" disabled class="form-control" value="<?php echo @$desa['nama'] ?>">
 			</div>
 			<div class="form-group">
 				<label for="kecamatan">KECAMATAN</label>
-				<input type="text" name="kecamatan" class="form-control" value="<?php echo @$data['kecamatan'] ?>">
+				<input type="text" name="kecamatan" disabled class="form-control" value="<?php echo @$desa['kecamatan'] ?>">
 			</div>
 			<div class="form-group">
 				<label for="nama">NAMA</label>
@@ -132,7 +132,7 @@ if (!empty($msg))
 			</div>
 			<div class="form-group">
 				<label for="jabatan">JABATAN</label>
-				<input type="text" name="jabatan" class="form-control" value="<?php echo @$data['jabatan'] ?>">
+				<input type="text" name="jabatan" class="form-control" placeholder="JABATAN PENGISI SURVEY" value="<?php echo @$data['jabatan'] ?>">
 			</div>
 
 		</div>

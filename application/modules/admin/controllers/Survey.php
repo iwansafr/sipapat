@@ -8,6 +8,7 @@ class Survey extends CI_Controller
 		$this->load->model('esg_model');
 		$this->load->model('admin_model');
 		$this->load->model('survey_model');
+		$this->load->model('pengguna_model');
 		$this->load->library('esg');
 		$this->load->library('ZEA/zea');
 		$this->esg_model->init();
@@ -15,6 +16,15 @@ class Survey extends CI_Controller
 	public function index()
 	{
 		$this->load->view('index');
+	}
+	public function chart()
+	{
+		$data = $this->survey_model->get_chart();
+		$this->load->view('index',['data'=>$data]);
+	}
+	public function kecamatan()
+	{
+		$this->load->view('index', ['kec_option'=>$this->pengguna_model->get_kecamatan()]);
 	}
 	public function edit()
 	{
@@ -30,11 +40,13 @@ class Survey extends CI_Controller
 			}
 		}
 		$data = $this->survey_model->get_survey();
-		$this->load->view('index',['msg'=>$msg,'data'=>$data]);
+		$desa = $this->survey_model->getDesa();
+		$this->esg_model->set_nav_title('survey');
+		$this->load->view('index',['msg'=>$msg,'data'=>$data,'desa'=>$desa]);
 	}
-	public function clear_list($type = '')
+	public function clear_list()
 	{
-		$this->load->view('survey/index',['type'=>$type]);
+		$this->load->view('survey/index');
 	}
 	public function isi()
 	{
