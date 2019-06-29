@@ -18,7 +18,17 @@ class Survey extends CI_Controller
 	}
 	public function edit()
 	{
-		$this->load->view('index');
+		$msg = [];
+		if(!empty($_POST))
+		{
+			if($this->survey_model->save())
+			{
+				$msg = ['status'=>'success','msg'=>'Survey Berhasil Dikirim'];
+			}else{
+				$msg = ['status'=>'danger','msg'=>'Survey Gagal Dikirim'];
+			}
+		}
+		$this->load->view('index',['msg'=>$msg]);
 	}
 	public function clear_list($type = '')
 	{
@@ -28,7 +38,6 @@ class Survey extends CI_Controller
 	{
 		$name = @($_GET['name']);
 		$form = $this->survey_model->get_survey($name);
-
 		$this->load->view('index');
 	}
 }

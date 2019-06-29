@@ -77,7 +77,7 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <?php $this->load->view('js') ?>
-<?php if ($content!='user/edit' || $content != 'pengguna/edit'): ?>
+<?php if ($content!='user/edit' && $content!='pengguna/edit' && $content!='survey/edit'): ?>
   <script type="text/javascript">
     $(document).ready(function(){
       $('input[type="text"]').attr('onkeyup',"this.value = this.value.toUpperCase();");

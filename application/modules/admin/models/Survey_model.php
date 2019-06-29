@@ -13,7 +13,19 @@ class Survey_model extends CI_Model
 				$data = json_decode($data,1);
 			}
 
-			pr($data);
+			return $data;
+		}
+	}
+	public function save()
+	{
+		if(!empty($_POST))
+		{
+			if($this->db->insert('survey_laptop', $_POST))
+			{
+				return true;
+			}else{
+				return false;
+			}
 		}
 	}
 }
