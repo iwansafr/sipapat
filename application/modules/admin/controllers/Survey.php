@@ -19,6 +19,7 @@ class Survey extends CI_Controller
 	public function edit()
 	{
 		$msg = [];
+		$this->esg->add_js(base_url('assets/survey/script.js'));
 		if(!empty($_POST))
 		{
 			if($this->survey_model->save())

@@ -10,6 +10,7 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `survey_laptop`;
 CREATE TABLE `survey_laptop` (
   `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `desa` varchar(100) NOT NULL,
   `kecamatan` varchar(100) NOT NULL,
   `nama` varchar(100) NOT NULL,
