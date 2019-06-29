@@ -29,7 +29,8 @@ class Survey extends CI_Controller
 				$msg = ['status'=>'danger','msg'=>'Survey Gagal Dikirim'];
 			}
 		}
-		$this->load->view('index',['msg'=>$msg]);
+		$data = $this->survey_model->get_survey();
+		$this->load->view('index',['msg'=>$msg,'data'=>$data]);
 	}
 	public function clear_list($type = '')
 	{

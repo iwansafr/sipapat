@@ -24,22 +24,22 @@ if (!empty($msg))
 							<div class="form-group">
 								<label for="laptop">APAKAH OPERATOR SID SUDAH PUNYA LEPTOP ?</label>
 								<select name="laptop" class="form-control">
-									<option value="0">BELUM</option>
-									<option value="1">SUDAH</option>
+									<option value="0" <?php echo (empty(@$data['laptop'])) ? 'selected' : ''; ?>>BELUM</option>
+									<option value="1" <?php echo (!empty(@$data['laptop'])) ? 'selected' : ''; ?>>SUDAH</option>
 								</select>
 							</div>
 							<div class="form-group">
 								<label for="anggaran">APAKAH SUDAH DI ANGGARAN LEPTOP DI TAHUN ANGGARAN 2019 ?</label>
 								<select name="anggaran" class="form-control">
-									<option value="0">BELUM</option>
-									<option value="1">SUDAH</option>
+									<option value="0" <?php echo (empty(@$data['anggaran'])) ? 'selected' : ''; ?>>BELUM</option>
+									<option value="1" <?php echo (!empty(@$data['anggaran'])) ? 'selected' : ''; ?>>SUDAH</option>
 								</select>
 							</div>
 							<div class="form-group">
 								<label for="surat">APAKAH OPERATOR SID SUDAH TAU KALO ADA SURAT KOORDINASI DARI DINAS TERKAIT KEPADA DESA, BAHWA OPERATOR SID DI WAJIBKAN UNTUK DI ANGGARKAN LEPTOP DI TAHUN ANGGARAN 2019???</label>
 								<select name="surat" class="form-control">
-									<option value="0">BELUM</option>
-									<option value="1">SUDAH</option>
+									<option value="0" <?php echo (empty(@$data['surat'])) ? 'selected' : ''; ?>>BELUM</option>
+									<option value="1" <?php echo (!empty(@$data['surat'])) ? 'selected' : ''; ?>>SUDAH</option>
 								</select>
 							</div>
 							<div class="card-footer panel-footer">Panel Footer</div>
@@ -60,22 +60,22 @@ if (!empty($msg))
 							<div class="form-group">
 								<label for="wifi">APAKAH DESA SUDAH MEMPUNYAI WIFI?</label>
 								<select name="wifi" class="form-control">
-									<option value="0">BELUM</option>
-									<option value="1">SUDAH</option>
+									<option value="0" <?php echo (empty(@$data['wifi'])) ? 'selected' : ''; ?>>BELUM</option>
+									<option value="1" <?php echo (!empty(@$data['wifi'])) ? 'selected' : ''; ?>>SUDAH</option>
 								</select>
 							</div>
 							<div class="form-group">
 								<label for="letak_jaringan">DIMANA LETAK JARINGAN WIFI ?</label>
 								<select name="letak_jaringan" class="form-control">
-									<option value="kantor kepala desa">KANTOR KEPALA DESA</option>
-									<option value="rumah operator sid">RUMAH OPERATOR SID</option>
+									<option value="kantor kepala desa" <?php echo (@$data['letak_jaringan']=='kantor kepala desa') ? 'selected' : ''; ?>>KANTOR KEPALA DESA</option>
+									<option value="rumah operator sid" <?php echo (@$data['letak_jaringan']=='rumah operator sid') ? 'selected' : ''; ?>>RUMAH OPERATOR SID</option>
 								</select>
 							</div>
 							<div class="form-group">
 								<label for="sumber_biaya">DARI MANA BIAYA WIFI ?</label>
 								<select name="sumber_biaya" class="form-control">
-									<option value="anggaran desa">ANGGARAN DESA</option>
-									<option value="anggaran pribadi">ANGGARAN PRIBADI</option>
+									<option value="anggaran desa" <?php echo (@$data['sumber_biaya']=='anggaran desa') ? 'selected' : ''; ?>>ANGGARAN DESA</option>
+									<option value="anggaran pribadi" <?php echo (@$data['sumber_biaya']=='anggaran pribadi') ? 'selected' : ''; ?>>ANGGARAN PRIBADI</option>
 								</select>
 							</div>
 							<div class="card-footer panel-footer">Panel Footer</div>
@@ -96,15 +96,15 @@ if (!empty($msg))
 							<div class="form-group">
 								<label for="honor">APAKAH OPERATOR SID DAPAT HONOR DARI DESA ?</label>
 								<select name="honor" class="form-control">
-									<option value="0">BELUM</option>
-									<option value="1">SUDAH</option>
+									<option value="0" <?php echo (empty(@$data['honor'])) ? 'selected' : ''; ?>>BELUM</option>
+									<option value="1" <?php echo (!empty(@$data['honor'])) ? 'selected' : ''; ?>>SUDAH</option>
 								</select>
 							</div>
 							<div class="form-group">
 								<label for="skema">SKEMA LEGAL APAKAH YANG DI PAKE UNTUK HONOR OPERATOR SID ?</label>
 								<select name="skema" class="form-control">
-									<option value="perdes">PERDES</option>
-									<option value="belum ada sk">BELUM ADA SK</option>
+									<option value="perdes" <?php echo (@$data['skema']=='perdes') ? 'selected' : ''; ?>>PERDES</option>
+									<option value="belum ada sk" <?php echo (@$data['skema']=='belum ada sk') ? 'selected' : ''; ?>>BELUM ADA SK</option>
 								</select>
 							</div>
 							<div class="card-footer panel-footer">Panel Footer</div>
@@ -120,19 +120,19 @@ if (!empty($msg))
 			</div>
 			<div class="form-group">
 				<label for="desa">DESA</label>
-				<input type="text" name="desa" class="form-control">
+				<input type="text" name="desa" class="form-control" value="<?php echo @$data['desa'] ?>">
 			</div>
 			<div class="form-group">
 				<label for="kecamatan">KECAMATAN</label>
-				<input type="text" name="kecamatan" class="form-control">
+				<input type="text" name="kecamatan" class="form-control" value="<?php echo @$data['kecamatan'] ?>">
 			</div>
 			<div class="form-group">
 				<label for="nama">NAMA</label>
-				<input type="text" name="nama" class="form-control" placeholder="NAMA OPERATOR">
+				<input type="text" name="nama" class="form-control" placeholder="NAMA OPERATOR" value="<?php echo @$data['nama'] ?>">
 			</div>
 			<div class="form-group">
 				<label for="jabatan">JABATAN</label>
-				<input type="text" name="jabatan" class="form-control">
+				<input type="text" name="jabatan" class="form-control" value="<?php echo @$data['jabatan'] ?>">
 			</div>
 
 		</div>
