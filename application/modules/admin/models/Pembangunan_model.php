@@ -6,14 +6,15 @@ class Pembangunan_model extends CI_Model
 	{
 		return 
 		[
-			'3'=> 'PAD ( Pendapatan Asli Desa )',
-			'1'=> 'DD ( Dana Desa )',
-			'2'=> 'ADD ( Alokasi Dana Desa )',
-			'6'=> 'PDRD ( Pajak Daerah Dan Retribusi Daerah )',
-			'4'=> 'Bankeu Provinsi',
-			'5'=> 'Bankeu Kabupaten',
-			'7'=> 'Hibah Dan Sumbangan Pihak ketiga',
-			'8'=> 'Lain Lain Pendapatan Yang Sah'
+			'3'=> strtoupper('PAD ( Pendapatan Asli Desa )'),
+			'1'=> strtoupper('DD ( Dana Desa )'),
+			'2'=> strtoupper('ADD ( Alokasi Dana Desa )'),
+			'6'=> strtoupper('PDRD ( Pajak Daerah Dan Retribusi Daerah )'),
+			'4'=> strtoupper('Bankeu Provinsi'),
+			'5'=> strtoupper('Bankeu Kabupaten'),
+			'7'=> strtoupper('Hibah Dan Sumbangan Pihak ketiga'),
+			'9'=> strtoupper('Dana Iuran Warga'),
+			'8'=> strtoupper('Lain Lain Pendapatan Yang Sah'),
 		];
 	}
 	public function peserta()

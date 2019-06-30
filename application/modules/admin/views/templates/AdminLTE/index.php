@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
   <?php
   $user = $this->session->userdata(base_url().'_logged_in');

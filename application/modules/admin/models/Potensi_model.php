@@ -8,7 +8,7 @@ class Potensi_model extends CI_Model
 	}
 	public function satuan()
 	{
-		return ['0'=>'nihil','1'=>'Ton','2'=>'Kg','3'=>'Kw','4'=>'ekor','5'=>'lembar','6'=>'liter','7'=>'butir','8'=>'buah','9'=>'unit'];
+		return ['0'=>'nihil','1'=>'Ton','2'=>'Kg','3'=>'Kw','4'=>'ekor','5'=>'lembar','6'=>'liter','7'=>'butir','8'=>'buah','9'=>'unit','10'=>'potong','11'=>'kodi'];
 	}
 	public function waktu()
 	{
