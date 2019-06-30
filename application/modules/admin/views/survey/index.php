@@ -19,11 +19,13 @@ if(!is_desa())
 	}
 	$form->setWhere($where);
 	$form->addInput('id','hidden');
+	$form->search();
 	// $form->setLabel('id','edit');
 	// $form->setLink('id',base_url('admin/survey/detail'),'id');
 	// $form->setPlainText('id','<i class="fa fa-eye"></i> detail');
 	// $form->setAttribute('id',['class'=>'btn btn-default']);
 	// $form->addInput('desa','plaintext');
+	$form->addInput('desa','plaintext');
 	$form->addInput('kecamatan','plaintext');
 	$form->addInput('nama','plaintext');
 	$form->addInput('jabatan','plaintext');
