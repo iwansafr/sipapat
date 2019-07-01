@@ -26,3 +26,6 @@ ALTER TABLE `potensi_desa` ADD `from_month` TINYINT(2) NOT NULL AFTER `waktu`, A
 
 ALTER TABLE `pembangunan` ADD `date` DATE NOT NULL DEFAULT '1000-01-01' AFTER `from_date`;
 ALTER TABLE `pembangunan` ADD `jml_peserta` INT(11) NOT NULL AFTER `peserta`;
+
+
+ALTER TABLE `survey_laptop` ADD `op_sikeudes` VARCHAR(100) NOT NULL AFTER `nama`;

@@ -127,8 +127,12 @@ if (!empty($msg))
 				<input type="text" name="kecamatan" disabled class="form-control" value="<?php echo @$desa['kecamatan'] ?>">
 			</div>
 			<div class="form-group">
-				<label for="nama">NAMA</label>
+				<label for="nama">NAMA OPERATOR</label>
 				<input type="text" name="nama" class="form-control" placeholder="NAMA OPERATOR" value="<?php echo @$data['nama'] ?>">
+			</div>
+			<div class="form-group">
+				<label for="nama">NAMA OPERATOR SIKEUDES</label>
+				<input type="text" name="op_sikeudes" class="form-control" placeholder="NAMA OPERATOR SIKEUDES" value="<?php echo @$data['op_sikeudes'] ?>">
 			</div>
 			<div class="form-group">
 				<label for="jabatan">JABATAN</label>
