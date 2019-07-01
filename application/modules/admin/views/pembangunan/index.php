@@ -46,7 +46,7 @@ if($view)
 	$form->search();
 	if(is_desa())
 	{
-		$form->setHeading('<a href="'.base_url('admin/pembangunan/edit/'.$view).'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>');
+		// $form->setHeading('<a href="'.base_url('admin/pembangunan/edit/'.$view).'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>');
 	}
 	$form->addInput('id','link');
 	$form->setLink('id',base_url('admin/pembangunan/detail/'),'id');
