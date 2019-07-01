@@ -3,9 +3,13 @@ $navigation = $this->esg->get_esg('navigation');
 $title = end($navigation['array']);
 $title = $title == 'admin' ? 'BERANDA' : strtoupper($title);
 ?>
-<h1>
-	<?php echo str_replace('_',' ',$title) ?>
-</h1>
+<div class="row">
+	<div class="col-md-6">
+		<h4>
+			<?php echo str_replace('_',' ',$title) ?>
+		</h4>
+	</div>
+</div>
 <ol class="breadcrumb">
 	<?php
 	echo '<li><a href="'.base_url('admin').'"> <i class="fa fa-home"></i> BERANDA</a></li>';
@@ -20,7 +24,8 @@ $title = $title == 'admin' ? 'BERANDA' : strtoupper($title);
 			{
 				echo '<li><a href="'.base_url($url).'">'.$value.'</a></li>';
 			}else{
-				echo '<li>'.$value.'</li>';
+				$sep = strlen($value)>=15 ? '_' : '';
+				echo '<li>'.substr($value,0, 15).$sep.'</li>';
 			}
 		}
 	}
