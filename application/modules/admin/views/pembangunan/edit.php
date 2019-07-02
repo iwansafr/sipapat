@@ -77,7 +77,7 @@ if(!empty($view) || is_desa() || is_root())
 	$form->setAttribute('anggaran',['oninvalid'=>"this.setCustomValidity('Anggaran tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
 
 	$form->addInput('lokasi','textarea');
-	$form->setAttribute('lokasi',['placeholder'=>"Dukuh : ...\nRT : ...\nRW : ...m"]);
+	$form->setAttribute('lokasi',['placeholder'=>"Dukuh : ...\nRT : ...\nRW : ..."]);
 
 	$file_type = empty($id) ? 'file' : 'thumbnail';
 

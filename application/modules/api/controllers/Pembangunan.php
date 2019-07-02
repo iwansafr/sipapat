@@ -64,4 +64,8 @@ class Pembangunan extends CI_Controller
 		}
 		output_json($data);
 	}
+	public function pengembangan_desa()
+	{
+
+	}
 }
