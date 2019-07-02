@@ -78,6 +78,10 @@ if(!empty($view) || is_desa() || is_root())
 
 	$form->addInput('lokasi','textarea');
 	$form->setAttribute('lokasi',['placeholder'=>"Dukuh : ...\nRT : ...\nRW : ..."]);
+	if(empty($id))
+	{
+		$form->setValue('lokasi',strtoupper("Dukuh : ...\nRT : ...\nRW : ..."));
+	}
 
 	$file_type = empty($id) ? 'file' : 'thumbnail';
 
@@ -86,6 +90,10 @@ if(!empty($view) || is_desa() || is_root())
 		$form->addInput('vol','textarea');
 		$form->setLabel('vol','Volume');
 		$form->setAttribute('vol',['placeholder'=>"Panjang : ...m\nLebar : ...m\nTinggi : ...m\nTebal : ...m"]);
+		if(empty($id))
+		{
+			$form->setValue('vol', strtoupper("Panjang : ...m\nLebar : ...m\nTinggi : ...m\nTebal : ...m"));
+		}
 
 		$form->addInput('from_date','text');
 		$form->setLabel('from_date','dari tgl');
