@@ -125,7 +125,8 @@ class Perangkat extends CI_Controller
 		{
 			$spreadsheet->setActiveSheetIndex(0)
 			->setCellValue('A'.$i,$j)
-			->setCellValue('B'.$i,strtoupper($value['nik']))
+			// ->setCellValueExplicit('B'.$i, strtoupper($value['nik']),PHPExcel_Cell_DataType::TYPE_STRING)
+			->setCellValue('B'.$i,"'".strtoupper($value['nik']))
 			->setCellValue('C'.$i,strtoupper($value['username']))
 			->setCellValue('D'.$i,strtoupper($value['nama_desa']))
 			->setCellValue('E'.$i,strtoupper($value['nama']))
