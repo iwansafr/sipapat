@@ -77,7 +77,7 @@ class Perangkat extends CI_Controller
 				perangkat_desa.desa_id = desa.id
 			AND 
 				kelompok = ?
-		'.$where, $kelompok)->result_array();
+		'.$where.' ORDER BY jabatan ASC', $kelompok)->result_array();
 		// pr($data);
 		// pr($this->db->last_query());die();
 		$spreadsheet = new Spreadsheet();

@@ -47,10 +47,11 @@ class Pembangunan_model extends CI_Model
 	{
 		return 
 		[
-			'1'=>'Pengembangan Desa',
-			'2'=>'Pembangunan Desa',
-			'3'=>'Pembinaan Kemasyarakatan',
-			'4'=>'Ekonomi dan TTG'
+			'1'=>strtoupper('Pengembangan Desa'),
+			'2'=>strtoupper('Pembangunan Desa'),
+			'3'=>strtoupper('Pembinaan Kemasyarakatan'),
+			'4'=>strtoupper('Ekonomi dan TTG'),
+			'5'=>strtoupper('Penyelenggaraan Pemerintah Desa'),
 		];
 	}
 	public function get_pembangunan($id=0)
