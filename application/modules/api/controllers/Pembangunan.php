@@ -12,13 +12,25 @@ class Pembangunan extends CI_Controller
 	}
 	public function index()
 	{
-		$data = $this->db->query("SELECT * FROM pembangunan where doc != '' OR doc_0 != '' OR doc_40 != '' OR doc_50 != '' OR doc_80 != '' OR doc_100 != '' ORDER BY id DESC LIMIT 12")->result_array();
+		$bidang_get = @intval($_GET['b']);
+		$page       = (@intval($_GET['page']) > 0 ) ? $_GET['page']-1 : @intval($_GET['page']);
+		$limit      = 12;
+		$where      = !empty($bidang_get) ? ' AND (bidang = '.$bidang_get.')' : '';
+		$url_get    = base_url('api/pembangunan');
+		if(!empty($bidang_get))
+		{
+			$url_get .= '?b='.$bidang_get;
+		}
+		$total  = $this->db->query("SELECT * FROM pembangunan where (doc != '' OR doc_0 != '' OR doc_40 != '' OR doc_50 != '' OR doc_80 != '' OR doc_100 != '') {$where}")->num_rows();
+		$data   = $this->db->query("SELECT * FROM pembangunan where (doc != '' OR doc_0 != '' OR doc_40 != '' OR doc_50 != '' OR doc_80 != '' OR doc_100 != '') {$where} ORDER BY id DESC LIMIT 12")->result_array();
+
 		$sumber_dana = $this->pembangunan_model->sumber_dana();
-		$peserta = $this->pembangunan_model->peserta();
-		$bidang = $this->pembangunan_model->bidang();
-		$tahap = ['-1'=>'1x Tahapan','1'=>'Tahap I','2'=>'Tahap II','3'=>'Tahap III'];
-		$jenis = ['non fisik','fisik'];
-		$doc = [0,40,50,80,100];
+		$peserta     = $this->pembangunan_model->peserta();
+		$bidang      = $this->pembangunan_model->bidang();
+		$tahap       = ['-1'=>'1x Tahapan','1'=>'Tahap I','2'=>'Tahap II','3'=>'Tahap III'];
+		$jenis       = ['non fisik','fisik'];
+		$doc         = [0,40,50,80,100];
+		
 		foreach ($data as $key => $value) 
 		{
 			$desa                         = $this->sipapat_model->get_desa($value['desa_id']);
@@ -62,10 +74,15 @@ class Pembangunan extends CI_Controller
 				$data[$key]['tahap'] = $tahap[$value['tahap']];
 			}
 		}
+		if(!empty($bidang_get))
+		{
+			$data_tmp = [];
+			$data_tmp['data'] = $data;
+			$data_tmp['total'] = $total;
+			$data_tmp['url'] = $url_get;
+			$data_tmp['page'] = $page;
+			$data = $data_tmp;
+		}
 		output_json($data);
-	}
-	public function pengembangan_desa()
-	{
-
 	}
 }
