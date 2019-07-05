@@ -76,12 +76,13 @@ class Pembangunan extends CI_Controller
 		}
 		if(!empty($bidang_get))
 		{
-			$data_tmp = [];
-			$data_tmp['data'] = $data;
+			$data_tmp          = [];
+			$data_tmp['data']  = $data;
 			$data_tmp['total'] = $total;
-			$data_tmp['url'] = $url_get;
-			$data_tmp['page'] = $page;
-			$data = $data_tmp;
+			$data_tmp['url']   = $url_get;
+			$data_tmp['page']  = $page;
+			$data_tmp['limit'] = $limit;
+			$data              = $data_tmp;
 		}
 		output_json($data);
 	}
