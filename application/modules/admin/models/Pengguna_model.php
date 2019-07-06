@@ -129,7 +129,8 @@ class Pengguna_model extends CI_Model
 			'6' => ['Ketua Rt'],
 			'7' => ['Ketua Rw'],
 			'8' => ['KPMD'],
-			'9' => ['LinMas']
+			'9' => ['LinMas'],
+			// '10' => 
 		];
 		return $data;
 	}

@@ -449,4 +449,11 @@ class Perangkat extends CI_Controller
 		$this->esg_model->set_nav_title($task.' linmas ');
 		$this->load->view('index', ['pengguna'=>$pengguna,'jabatan'=>$jabatan,'task'=>$task,'id'=>$id]);
 	}
+	public function posyandu($task = 'list', $id=0)
+	{
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$jabatan = $this->pengguna_model->jabatan();
+		$this->esg_model->set_nav_title($task.' linmas ');
+		$this->load->view('index', ['pengguna'=>$pengguna,'jabatan'=>$jabatan,'task'=>$task,'id'=>$id]);
+	}
 }
