@@ -5,7 +5,7 @@ class Desa_model extends CI_Model
 	public function tanpa_perangkat()
 	{
 		$data = array();
-		$desa = $this->db->query('SELECT id FROM desa')->result_array();
+		$desa = $this->db->query('SELECT id,nama FROM desa')->result_array();
 
 		$desa_perangkat = $this->db->query('SELECT desa_id FROM perangkat_desa GROUP BY desa_id')->result_array();
 
@@ -15,20 +15,22 @@ class Desa_model extends CI_Model
 			$desa_tmp[] = $value['desa_id'];
 		}
 
-		$desa_id = array();
+		$data_desa = array();
 		foreach ($desa as $key => $value) 
 		{
 			if(!in_array($value['id'], $desa_tmp))
 			{
-				$desa_id[] = $value['id'];
+				$data_desa['uncomplete'][] = ['id'=>$value['id'],'nama'=>$value['nama']];
+			}else{
+				$data_desa['complete'][] = ['id'=>$value['id'],'nama'=>$value['nama']];
 			}
 		}
-		if(!empty($desa_id))
+		if(!empty($data_desa))
 		{
-			// $desa_id = implode(',',$desa_id);
-			$this->db->select('id,nama');
-			$this->db->where_in('id', $desa_id);
-			$data = $this->db->get('desa')->result_array();
+			$data['uncomplete']['data']    = $data_desa['uncomplete'];
+			$data['uncomplete']['total']   = count($data_desa['uncomplete']);
+			$data['complete']['data']      = $data_desa['complete'];
+			$data['complete']['total']     = count($data_desa['complete']);
 		}
 		return $data;
 	}
