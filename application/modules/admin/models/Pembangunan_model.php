@@ -51,7 +51,6 @@ class Pembangunan_model extends CI_Model
 			'2'=>strtoupper('Pembangunan Desa'),
 			'3'=>strtoupper('Pembinaan Kemasyarakatan'),
 			'4'=>strtoupper('Ekonomi dan TTG'),
-			'5'=>strtoupper('Penyelenggaraan Pemerintah Desa'),
 		];
 	}
 	public function get_pembangunan($id=0)
