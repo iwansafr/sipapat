@@ -1,0 +1,23 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+$form = new zea();
+$form->setTable('perdes');
+$form->init('edit');
+$form->addInput('item','dropdown');
+$form->setOptions('item',$perdes_options);
+$form->addInput('no','text');
+$form->setLabel('no','Nomor');
+$form->addInput('tgl_penetapan','text');
+$form->setType('tgl_penetapan','date');
+$form->setHelp('tgl_penetapan','dd = tgl, mm = bulan, yyyy = tahun');
+$form->addInput('tgl_pelaksanaan','text');
+$form->setType('tgl_pelaksanaan','date');
+$form->setHelp('tgl_pelaksanaan','dd = tgl, mm = bulan, yyyy = tahun');
+
+$form->addInput('file_office','file');
+$form->setAccept('file_office','.doc,.docx,.xls,.xlsx');
+// $form->setAttribute('file_office',['accept'=>'.doc,.docx,.xls,.xlsx']);
+$form->addInput('progress','dropdown');
+$form->setOptions('progress',$perdes_progress);
+
+$form->form();
