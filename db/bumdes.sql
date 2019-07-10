@@ -24,7 +24,7 @@ CREATE TABLE `bumdes` (
   `pengawas` text NOT NULL,
   `jenis_usaha` varchar(255) NOT NULL,
   `kategori_usaha` tinyint(1) NOT NULL,
-  `tingkat_pemerintahan` tinyint(1) NOT NULL,
+  `tingkat_pemeringkatan` tinyint(1) NOT NULL,
   `tahun` int(11) NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
