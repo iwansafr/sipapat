@@ -33,6 +33,7 @@ if(is_root())
 	$form->addInput('title','plaintext');
 	// $form->addInput('level','hidden');
 	$form->addInput('description','plaintext');
+	$form->addInput('level','plaintext');
 	$form->setDelete(TRUE);
 	$form->setEdit(TRUE);
 	$form->setEditLink(base_url('admin/user/role/?id='));

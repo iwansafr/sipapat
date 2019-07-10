@@ -29,7 +29,7 @@ $(document).ready(function(){
 	}
 	var skema = $('select[name="honor"]').val();
 	var skemab = $('select[name="skema"]');
-	if(skema==1){
+	if(skema==0){
 		skemab.attr('disabled','disabled');
 		skemab.closest('.form-group').addClass('hidden');
 	}else{
@@ -71,7 +71,7 @@ $(document).ready(function(){
 	$('select[name="honor"]').on('change',function(){
 		var a = $(this).val();
 		var b = $('select[name="skema"]');
-		if(a==1){
+		if(a==0){
 			b.attr('disabled','disabled');
 			b.closest('.form-group').addClass('hidden');
 		}else{

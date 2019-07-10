@@ -2,26 +2,29 @@
 
 function is_kecamatan()
 {
-	$return = false;
-	$role   = @$_SESSION[base_url().'_logged_in']['level'];
-	if(!empty($role))
-	{
-		if($role==4)
-		{
-			$return = true;
-		}
-	}
-	return $return;
+	return set_user(4);
 }
 function is_desa()
 {
+	return set_user(5);
+}
+function is_bumdes()
+{
+	return set_user(3);
+}
+
+function set_user($level = 0)
+{
 	$return = false;
-	$role   = @$_SESSION[base_url().'_logged_in']['level'];
-	if(!empty($role))
+	if(!empty($level))
 	{
-		if($role==5)
+		$role   = @$_SESSION[base_url().'_logged_in']['level'];
+		if(!empty($role))
 		{
-			$return = true;
+			if($role==$level)
+			{
+				$return = true;
+			}
 		}
 	}
 	return $return;
