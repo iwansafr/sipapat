@@ -23,4 +23,27 @@ class Bumdes_model extends CI_Model{
 			'4'=>'MAJU'
 		];
 	}
+
+	public function get_bumdes($id = 0)
+	{
+		if(!empty($id))
+		{
+			return $this->db->get_where('bumdes',['id'=>$id])->row_array();
+		}
+	}
+
+	public function get_alamat($alamat = '')
+	{
+		if(!empty($alamat))
+		{
+			$alamat = explode("\n",$alamat);
+			$alamat_array = [];
+			foreach ($alamat as $key => $value) 
+			{
+				$tmp_alamat = explode(':',$value);
+				$alamat_array[@$tmp_alamat[0]] = @$tmp_alamat[1];	
+			}
+			return $alamat_array;
+		}
+	}
 }

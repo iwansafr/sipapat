@@ -19,9 +19,6 @@ if(is_bumdes())
 	$form->addInput('nama','plaintext');
 	$form->setLabel('nama','nama bumdes');
 
-	$form->addInput('user_id','static');
-	$form->setValue('user_id', @intval($user['id']));
-
 	$form->addInput('tgl_berdiri','plaintext');
 	$form->setType('tgl_berdiri','date');
 	$form->setlabel('tgl_berdiri','tanggal berdiri');
@@ -40,20 +37,6 @@ if(is_bumdes())
 
 	$form->addInput('jangka_waktu','plaintext');
 	$form->setlabel('jangka_waktu','jangka waktu');
-
-	$form->addInput('alamat','plaintext');
-	$form->setHelp('alamat','alamat email tetap ditulis kapital');
-	if(empty($id))
-	{
-		$form->setValue('alamat', "JALAN : -\nDESA : -\nKODE POS: -\nTELEPON : -\nEMAIL : -");
-	}
-
-	$form->addInput('pengurus','plaintext');
-	$form->setHelp('pengurus','kolom yang kurang bisa ditambah sendiri');
-	if(empty($id))
-	{
-		$form->setValue('pengurus', "KETUA : -\nNO HP KETUA : -\nSEKRETARIS : -\nNO HP SEKRETARIS : -\nBENDAHARA : -\nNO HP BENDAHARA : -\n");
-	}
 
 	$form->addInput('jenis_usaha','plaintext');
 	$form->setlabel('jenis_usaha','jenis usaha');

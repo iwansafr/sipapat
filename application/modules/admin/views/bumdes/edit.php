@@ -7,7 +7,7 @@ if(is_bumdes())
 	$form->setTable('bumdes');
 	$form->init('edit');
 
-
+	$form->setId(@intval($_GET['id']));
 	$form->addInput('nama','text');
 	$form->setLabel('nama','nama bumdes');
 
@@ -44,7 +44,14 @@ if(is_bumdes())
 	$form->setHelp('pengurus','kolom yang kurang bisa ditambah sendiri');
 	if(empty($id))
 	{
-		$form->setValue('pengurus', "KETUA : -\nNO HP KETUA : -\nSEKRETARIS : -\nNO HP SEKRETARIS : -\nBENDAHARA : -\nNO HP BENDAHARA : -\n");
+		$form->setValue('pengurus', "KETUA : -\nNO HP KETUA : -\nSEKRETARIS : -\nNO HP SEKRETARIS : -\nBENDAHARA : -\nNO HP BENDAHARA : -");
+	}
+
+	$form->addInput('pengawas','textarea');
+	$form->setHelp('pengawas','kolom yang kurang bisa ditambah sendiri');
+	if(empty($id))
+	{
+		$form->setValue('pengawas', "KETUA : -\nANGGOTA 1 : -\nANGGOTA 2 : -");
 	}
 
 	$form->addInput('jenis_usaha','textarea');

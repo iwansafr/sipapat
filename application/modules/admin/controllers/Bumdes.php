@@ -16,7 +16,15 @@ class Bumdes extends CI_Controller{
 
 	public function detail()
 	{
-		$this->load->view('index');
+		$data             = $this->bumdes_model->get_bumdes(@intval($_GET['id']));
+		$alamat           = $this->bumdes_model->get_alamat($data['alamat']);
+		$pengurus         = $this->bumdes_model->get_alamat($data['pengurus']);
+		$pengawas         = $this->bumdes_model->get_alamat($data['pengawas']);
+		$data['alamat']   = $alamat;
+		$data['pengurus'] = $pengurus;
+		$data['pengawas'] = $pengawas;
+
+		$this->load->view('index',['data'=>$data,'kategori_usaha'=>$this->bumdes_model->kategori_usaha(),'tingkat_pemeringkatan'=>$this->bumdes_model->tingkat_pemeringkatan()]);
 	}
 
 	public function index()
