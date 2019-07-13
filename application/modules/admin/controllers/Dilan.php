@@ -16,6 +16,14 @@ class Dilan extends CI_Controller{
 		$this->load->library('ZEA/zea');
 		$this->esg_model->init();
 	}
+	public function upload()
+	{
+		if(!empty($_FILES))
+		{
+      $data = ['status'=>'success','data'=>$_FILES];
+      output_json($data);
+		}
+	}
 	public function index()
 	{
 		if(!empty($_FILES['doc']['name']))
@@ -53,7 +61,7 @@ class Dilan extends CI_Controller{
 				$this->esg->add_js(base_url('assets/dilan/script.js'));
 			}
 		}
-
+		$this->esg->add_js(base_url('assets/dilan/script.js'));
 		$this->load->view('index');
 	}
 	public function insert()
