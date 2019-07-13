@@ -2,6 +2,7 @@
 require('./vendor/autoload.php');
 
 use PhpOffice\PhpSpreadsheet\Helper\Sample;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 class Dilan extends CI_Controller{
@@ -18,10 +19,14 @@ class Dilan extends CI_Controller{
 	}
 	public function upload()
 	{
-		if(!empty($_FILES))
+		if(!empty($_FILES['doc']['name']))
 		{
-      $data = ['status'=>'success','data'=>$_FILES];
+			$file = $this->dilan_model->upload($_FILES['doc']);
+      $data = ['status'=>'success','data'=>$file];
       output_json($data);
+		}else{
+			$data = ['status'=>'error'];
+			outpur_json($data);
 		}
 	}
 	public function index()
@@ -90,12 +95,22 @@ class Dilan extends CI_Controller{
 		    		// $data[$cell->getValue()] = [];
 		    		$title[] = $cell->getValue();
 		    	}else{
-		    		$data[$i][$title[$j]] = $cell->getValue();
+						if($title[$j] == 'TGL_LHR'){
+							$dt = new DateTime();
+							$data[$i][$title[$j]] = date('Y-m-d', PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($cell->getValue()));
+						}else{
+							$data[$i][$title[$j]] = $cell->getValue();
+						}
+		    		
 		    	}
 		    	// $data[$i][] = $cell->getValue();
 	    		$j++;
 		    }
-		    $i++;
+				$i++;
+			}
+			if(!empty($data))
+			{
+				$this->db->insert_batch('penduduk', $data);
 			}
 			echo output_json(['status'=>1]);
 			// echo output_json(array('status'=>1,'data'=>$data));

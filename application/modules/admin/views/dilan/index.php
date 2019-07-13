@@ -16,3 +16,4 @@
     <span class="sr-only" id="dilan_span">0% Complete</span>
   </div>
 </div>
+<div id="error"></div>

@@ -4,25 +4,12 @@ $(document).ready(function(){
       e.preventDefault();
       $('#loading').addClass('hidden');
       $('#dilan_load').removeClass('hidden');
-      var elem = document.getElementById("dilan_pro");
-      var width = 1;
-      var id = setInterval(frame,100);
       var form = $('form')[0]; // You need to use standard javascript object here
       var formData = new FormData(form);
       upload_file(formData);
-      function frame(){
-        if(width>=100){
-          clearInterval(id);
-        }else{
-          width = width+1;
-          elem.style.width = width + "%";
-          var show = width;
-          elem.innerHTML = show + " % menyiapkan data";
-        }
-      }
     });
   }
-  function upload_file(postdata){
+  let upload_file = (postdata) => {
     $.ajax({
       url:_URL+'admin/dilan/upload',
       type:'post',
@@ -30,31 +17,50 @@ $(document).ready(function(){
       processData: false,
       contentType: false,
       success:function(re){
-        console.log(re);
+        if(re.status == 'success'){
+          var elem = document.getElementById("dilan_pro");
+          var width = 1;
+          var id = setInterval(frame,100);
+          $('#dilan_success_load').removeClass('hidden');
+          upload(re.data);
+          function frame(){
+            if(width>=100){
+              clearInterval(id);
+              
+            }else{
+              width = width+1;
+              elem.style.width = width + "%";
+              var show = width;
+              elem.innerHTML = show + " % menyiapkan data";
+            }
+          }
+        }else{
+
+        }
       }
     });
   }
   submit();
-  let upload = () =>{
+  let upload = (postfile) =>{
     $.ajax({
       type:"post",
-      data: {file:"'.$file.'"},
+      data: {file:postfile},
       url: _URL+"admin/dilan/insert",
-      beforeSend: function(){
-        var elem = document.getElementById("dilan_pro");
-        var width = 1;
-        var id = setInterval(frame,100);
-        function frame(){
-          if(width>=100){
-            clearInterval(id);
-          }else{
-            width = width+1;
-            elem.style.width = width + "%";
-            var show = width;
-            elem.innerHTML = show + " % menyiapkan data";
-          }
-        }
-      },
+      // beforeSend: function(){
+      //   var elem = document.getElementById("dilan_pro");
+      //   var width = 1;
+      //   var id = setInterval(frame,100);
+      //   function frame(){
+      //     if(width>=100){
+      //       clearInterval(id);
+      //     }else{
+      //       width = width+1;
+      //       elem.style.width = width + "%";
+      //       var show = width;
+      //       elem.innerHTML = show + " % menyiapkan data";
+      //     }
+      //   }
+      // },
       success:function(result){
         if(result.status)
         {
@@ -64,6 +70,7 @@ $(document).ready(function(){
           function frame(){
             if(width>=100){
               clearInterval(id);
+              console.log(result);
             }else{
               width = width+1;
               elem.style.width = width + "%";
@@ -73,8 +80,8 @@ $(document).ready(function(){
           }
         }
       },
-      error:function(){
-        console.log("error");
+      error:function(error){
+        console.log(error);
       }
     });
   }
