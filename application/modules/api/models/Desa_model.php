@@ -7,7 +7,16 @@ class Desa_model extends CI_Model
 		$data = array();
 		$desa = $this->db->query('SELECT id,nama FROM desa')->result_array();
 
-		$desa_perangkat = $this->db->query('SELECT desa_id FROM perangkat_desa GROUP BY desa_id')->result_array();
+		$desa_perangkat = $this->db->query('SELECT desa_id,COUNT(*) FROM perangkat_desa GROUP BY desa_id')->result_array();
+		// $tmp_desa_id = [];
+		
+		pr($desa_perangkat);
+
+		die();
+
+		$desa_perangkat = $this->db->query('SELECT desa_id FROM perangkat_desa WHERE count(desa_id) AS c_d_id > 5 GROUP BY desa_id')->result_array();
+		pr($desa_perangkat);
+		die();
 
 		$desa_tmp = array();
 		foreach ($desa_perangkat as $key => $value) 
