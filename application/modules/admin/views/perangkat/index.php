@@ -7,7 +7,7 @@ if(!empty($task) && in_array($task, $module))
 	$kelompok = array_keys($module,$task);
 	$kelompok = $kelompok[0];
 }
-if(!is_desa())
+if(!is_desa() && !is_kecamatan())
 {
 	?>
 	<a href="<?php echo base_url('admin/perangkat/kecamatan/'.$module[$kelompok]) ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Filter Data</a>
@@ -29,6 +29,7 @@ if(is_kecamatan())
 		$ext .= " AND kecamatan = '{$kecamatan}'";
 		$form->join('desa','ON(perangkat_desa.desa_id=desa.id)','perangkat_desa.*,desa.kecamatan');
 	}
+	$this->load->view('desa',['desa_option'=>$this->pengguna_model->get_desa($kecamatan),'group'=>$module[$kelompok]]);
 }	
 $form->search();
 $form->setTable('perangkat_desa');

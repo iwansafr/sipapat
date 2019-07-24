@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-if(!is_desa())
+if(!is_desa() && !is_kecamatan())
 {
 	?>
 	<a href="<?php echo base_url('admin/pembangunan/kecamatan/'.$view) ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Filter Data</a>
@@ -31,6 +31,7 @@ if($view)
 			$where = " bidang = {$bidang_id} AND kecamatan = '{$kecamatan}'";
 			$form->join('desa','ON(pembangunan.desa_id=desa.id)','pembangunan.*,desa.kecamatan');
 		}
+		$this->load->view('desa',['desa_option'=>$this->pengguna_model->get_desa($kecamatan),'view'=>$view]);
 	}
 	if(!is_desa())
 	{

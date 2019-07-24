@@ -24,9 +24,12 @@ if(is_desa())
 	$form->setSave(FALSE);
 	$form->form();
 }else{
-	?>
-	<a href="<?php echo base_url('admin/desa/kecamatan/') ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Filter Data</a>
-	<?php
+	if(!is_kecamatan())
+	{
+		?>
+		<a href="<?php echo base_url('admin/desa/kecamatan/') ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Filter Data</a>
+		<?php
+	}
 	$where = '';
 	if(is_kecamatan())
 	{

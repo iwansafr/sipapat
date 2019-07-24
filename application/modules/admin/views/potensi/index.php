@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-if(!is_desa())
+if(!is_desa() && !is_kecamatan())
 {
 	?>
 	<a href="<?php echo base_url('admin/potensi/kecamatan') ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> filter data</a>
@@ -22,6 +22,7 @@ if(is_kecamatan())
 		$form->join('desa','ON(potensi_desa.desa_id=desa.id)','potensi_desa.*,desa.kecamatan');
 		$form->addInput('kecamatan','plaintext');
 	}
+	$this->load->view('desa',['desa_option'=>$this->pengguna_model->get_desa($kecamatan)]);
 }
 if(!is_desa())
 {
