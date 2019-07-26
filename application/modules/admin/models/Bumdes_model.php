@@ -24,6 +24,15 @@ class Bumdes_model extends CI_Model{
 		];
 	}
 
+	public function get_bumdes_id($desa_id = 0)
+	{
+		if(!empty($desa_id))
+		{
+			$this->db->select('id');
+			return $this->db->get_where('bumdes',['desa_id'=>$desa_id])->row_array()['id'];
+		}
+	}
+
 	public function get_bumdes($id = 0)
 	{
 		if(!empty($id))

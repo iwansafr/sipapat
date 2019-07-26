@@ -81,9 +81,9 @@ if(!is_admin() && !is_kecamatan())
 		$form->addInput('jabatan', 'dropdown');
 		$form->setOptions('jabatan', $jabatan[$kelompok]);
 	}
+	$penghasilan_title = 'Insentif Pertahun';
 	if($module_title[$kelompok] == 'rt' || $module_title[$kelompok] == 'rw')
 	{
-		$penghasilan_title = 'Insentif Pertahun';
 		$form->addInput('rw','text');
 		$form->setType('rw','number');
 		$form->setLabel('rw','Ketua RW');
@@ -100,8 +100,6 @@ if(!is_admin() && !is_kecamatan())
 		$form->setLabel('bengkok','Luas Bengkok');
 		$form->setAttribute('bengkok',['placeholder'=>'Meter']);
 		$form->addInput('bengkok','text');
-	}else{
-		$penghasilan_title = 'Insentif';
 	}
 
 	$form->addInput('no_sk','text');

@@ -11,11 +11,13 @@ DROP TABLE IF EXISTS `bumdes`;
 CREATE TABLE `bumdes` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `desa_id` int(11) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `tgl_berdiri` date NOT NULL,
   `no_perdes` varchar(50) NOT NULL,
   `no_perkades` varchar(50) NOT NULL,
   `no_bdn_hkm` varchar(50) NOT NULL,
+  `notaris_bdn_hkm` varchar(100) NOT NULL,
   `no_rek_bumdes` varchar(50) NOT NULL,
   `jangka_waktu` varchar(255) NOT NULL,
   `alamat` text NOT NULL,

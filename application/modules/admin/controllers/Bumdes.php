@@ -8,6 +8,8 @@ class Bumdes extends CI_Controller{
 		$this->db->cache_off();
 		$this->load->model('esg_model');
 		$this->load->model('admin_model');
+		$this->load->model('sipapat_model');
+		$this->load->model('pengguna_model');
 		$this->load->model('bumdes_model');
 		$this->load->library('esg');
 		$this->load->library('ZEA/zea');
@@ -34,6 +36,7 @@ class Bumdes extends CI_Controller{
 
 	public function edit()
 	{
+		$this->esg->add_js(base_url('assets/bumdes/script.js'));
 		$this->load->view('index',['kategori_usaha'=>$this->bumdes_model->kategori_usaha(),'tingkat_pemeringkatan'=>$this->bumdes_model->tingkat_pemeringkatan()]);
 	}
 

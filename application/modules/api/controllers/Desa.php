@@ -11,6 +11,18 @@ class Desa extends CI_Controller
 
 	public function index()
 	{
+		$field = $_GET['field'];
+		if(!empty($field))
+		{
+			$field = explode('-',$field);
+			foreach ($field as $key => $value) 
+			{
+				if($value != 'page')
+				{
+					$this->db->select($value);
+				}
+			}
+		}
 		$data = $this->db->get('desa')->result_array();
 		output_json($data);
 	}
