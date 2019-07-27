@@ -22,4 +22,11 @@ class Perdes_model extends CI_Model{
 			'3'=>'BELUM DIBUAT',
 		];
 	}
+	public function get_perdes($id = 0)
+	{
+		if(!empty($id))
+		{
+			return $this->db->get_where('perdes',['id'=>$id])->row_array();
+		}
+	}
 }

@@ -37,12 +37,9 @@ $form->addInput('progress','dropdown');
 $form->setOptions('progress',$perdes_progress);
 $form->setAttribute('progress','disabled');
 
-if(!is_desa())
-{
-	$form->setDelete(TRUE);
-	$form->setEdit(TRUE);
-	$form->setEditLink(base_url('admin/perdes/edit?id='));
-}
+$form->setDelete(TRUE);
+$form->setEdit(TRUE);
+$form->setEditLink(base_url('admin/perdes/edit?id='));
 
 $form->setUrl('admin/perdes/clear_list');
 $form->form();
