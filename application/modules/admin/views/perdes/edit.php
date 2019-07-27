@@ -2,7 +2,7 @@
 
 if(is_desa() || is_root())
 {
-	if(@$perdes['desa_id'] == @$desa_id)
+	if((@$perdes['desa_id'] == @$desa_id) || empty($_GET['id']))
 	{
 		$form = new zea();
 		$form->setTable('perdes');
