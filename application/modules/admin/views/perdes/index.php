@@ -21,6 +21,8 @@ if(!empty(@$_GET['kec']))
 	$kecamatan = strtoupper(str_replace('kec_','', $this->session->userdata(base_url().'_logged_in')['username']));
 	$where = " kecamatan = '{$kecamatan}'";
 	$form->join('desa','ON(perdes.desa_id=desa.id)','perdes.*,desa.kecamatan');
+}else if(is_desa()){
+	$where = ' desa_id = '.$desa_id;
 }
 $form->setWhere($where);
 $form->init('roll');
