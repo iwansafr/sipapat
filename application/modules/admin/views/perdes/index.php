@@ -27,6 +27,13 @@ if(!empty(@$_GET['kec']))
 $form->setWhere($where);
 $form->init('roll');
 $form->addInput('id','hidden');
+if(!is_desa())
+{
+	$form->addInput('desa_id', 'dropdown');
+	$form->tableOptions('desa_id','desa','id','nama');
+	$form->setAttribute('desa_id','disabled');
+	$form->setLabel('desa_id','desa');
+}
 $form->setNumbering(TRUE);
 $form->addInput('item','dropdown');
 $form->setOptions('item',$perdes_options);
