@@ -285,7 +285,7 @@ class Perangkat extends CI_Controller
 			$pdf->Cell(20,6,$value['akhir_masa_jabatan'],1,1);
       $i++;
     }
-    $pdf->Cell(50,6,$last_query,1,0);
+    $pdf->Cell(100,6,$where,1,0);
     $pdf->Output();
 	}
 
