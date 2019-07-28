@@ -1,7 +1,10 @@
 $(document).ready(function(){
   let desa = () =>{
     $.get(_URL+'api/desa?field=id-nama',function(data){
-      var desa_id = document.getElementById('current_desa_id').getAttribute('data-id');
+      var desa_id = document.getElementById('current_desa_id');
+      if(desa_id != null){
+        desa_id = desa_id.getAttribute('data-id');
+      }
       var option = data;
       var tmp = [{'text':'None','value':'0'}];
       for(var i =0; i< option.length;i++){

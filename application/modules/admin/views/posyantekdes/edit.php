@@ -22,7 +22,6 @@ if(!is_kecamatan())
 		$form->addInput('desa_id','static');
 		$form->setValue('desa_id',$desa_id);
 		$id = $this->posyantekdes_model->get_posyantekdes_id($desa_id);
-		pr($id);
 	}else{
 		$form->addInput('desa_id','dropdown');
 		$form->setOptions('desa_id',['0'=>'none']);
