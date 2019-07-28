@@ -181,6 +181,7 @@ class Perangkat extends CI_Controller
 	{
 		$jabatan = $this->pengguna_model->jabatan();
 		$pengguna = $this->pengguna_model->get_pengguna();
+
 		$kelamin = ['Perempuan','Laki-laki'];
 		$agama = 
 			[
@@ -266,6 +267,7 @@ class Perangkat extends CI_Controller
 		'.$where, @intval($kelompok))->result_array();
 		// pr($this->db->last_query());die();
     $i = 1;
+    $last_query = $this->db->last_query();
     foreach ($data as $key => $value)
     {
     	$pdf->Cell(8,6,$i,1,0);
@@ -283,6 +285,7 @@ class Perangkat extends CI_Controller
 			$pdf->Cell(20,6,$value['akhir_masa_jabatan'],1,1);
       $i++;
     }
+    $pdf->Cell(50,6,$last_query,1,0);
     $pdf->Output();
 	}
 
