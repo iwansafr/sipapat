@@ -179,6 +179,7 @@ class Perangkat extends CI_Controller
 
 	public function pdf($kelompok = 'perangkat')
 	{
+		die();
 		$jabatan = $this->pengguna_model->jabatan();
 		$pengguna = $this->pengguna_model->get_pengguna();
 
