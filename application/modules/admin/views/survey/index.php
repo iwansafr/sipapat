@@ -28,6 +28,8 @@ if(!is_desa())
 	$form->addInput('desa','plaintext');
 	$form->addInput('kecamatan','plaintext');
 	$form->addInput('nama','plaintext');
+	$form->addInput('op_sikeudes','plaintext');
+	$form->setLabel('op_sikeudes','Operator Siskeudes');
 	$form->addInput('jabatan','plaintext');
 	$form->addInput('laptop','dropdown');
 	$form->setAttribute('laptop','disabled');
