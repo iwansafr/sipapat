@@ -11,7 +11,6 @@ $form->setNumbering(TRUE);
 
 if(is_desa())
 {
-	pr($bumdes_id);
 	$form->setWhere('bumdes_id = '.$bumdes_id);
 }
 
