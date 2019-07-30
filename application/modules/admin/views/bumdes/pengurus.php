@@ -10,6 +10,8 @@
 
 	$form->addInput('id','hidden');
 	
+	$form->setHeading('<a href="'.base_url('admin/bumdes/pengurus_edit').'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>');
+
 	$form->addInput('bumdes_id','dropdown');
 	$form->tableOptions('bumdes_id','bumdes','id','nama');
 	$form->setAttribute('bumdes_id','disabled');

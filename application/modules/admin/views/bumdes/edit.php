@@ -1,5 +1,4 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-pr(is_desa());
 if(is_desa() || is_root())
 {
 	$form = new zea();

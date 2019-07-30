@@ -9,6 +9,8 @@ $form->addInput('id','hidden');
 
 $form->setNumbering(TRUE);
 
+$form->setHeading('<a href="'.base_url('admin/bumdes/lembaga_edit').'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>');
+
 $form->setTable('bumdes_kelembagaan');
 $form->addInput('no','plaintext');
 $form->setLabel('no','nomor lembaga');
