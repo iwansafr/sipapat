@@ -7,30 +7,31 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 
-DROP TABLE IF EXISTS `bumdes`;
-CREATE TABLE `bumdes` (
+DROP TABLE IF EXISTS `bumdes_kelembagaan`;
+CREATE TABLE `bumdes_kelembagaan` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `desa_id` int(11) NOT NULL,
-  `nama` varchar(255) NOT NULL,
-  `tgl_berdiri` date NOT NULL,
-  `no_perdes` varchar(50) NOT NULL,
-  `no_perkades` varchar(50) NOT NULL,
-  `no_bdn_hkm` varchar(50) NOT NULL,
-  `notaris_bdn_hkm` varchar(100) NOT NULL,
-  `no_rek_bumdes` varchar(50) NOT NULL,
-  `jangka_waktu` varchar(255) NOT NULL,
-  `alamat` text NOT NULL,
+  `bumdes_id` int(11) NOT NULL,
+  `no` int(11) NOT NULL,
+  `investor_lk` int(11) NOT NULL,
+  `investor_pr` int(11) NOT NULL,
+  `jml_investor` int(11) NOT NULL,
+  `manajer_lk` int(11) NOT NULL,
+  `manajer_pr` int(11) NOT NULL,
+  `jml_manajer` int(11) NOT NULL,
+  `karyawan_lk` int(11) NOT NULL,
+  `karyawan_pr` int(11) NOT NULL,
+  `jml_karyawan` int(11) NOT NULL,
+  `lpj_terakhir` date NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-ALTER TABLE `bumdes`
+ALTER TABLE `bumdes_kelembagaan`
   ADD PRIMARY KEY (`id`);
 
 
-ALTER TABLE `bumdes`
+ALTER TABLE `bumdes_kelembagaan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

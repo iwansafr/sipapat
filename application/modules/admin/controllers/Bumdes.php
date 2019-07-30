@@ -49,4 +49,54 @@ class Bumdes extends CI_Controller{
 	{
 		$this->load->view('bumdes/list',['kategori_usaha'=>$this->bumdes_model->kategori_usaha(),'tingkat_pemeringkatan'=>$this->bumdes_model->tingkat_pemeringkatan()]);
 	}
+
+
+	public function pengurus_edit()
+	{
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$bumdes_id = $this->bumdes_model->get_bumdes_id($pengguna['desa_id']);
+		$this->esg->add_js(base_url('assets/bumdes/script.js'));
+		$this->load->view('index',['kategori_usaha'=>$this->bumdes_model->kategori_usaha(),'tingkat_pemeringkatan'=>$this->bumdes_model->tingkat_pemeringkatan(),'pengguna'=>$pengguna,'bumdes_id'=>$bumdes_id]);
+	}
+
+	public function pengurus()
+	{
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$bumdes_id = $this->bumdes_model->get_bumdes_id($pengguna['desa_id']);
+		// $this->esg->add_js(base_url('assets/bumdes/script.js'));
+		$this->load->view('index',['kategori_usaha'=>$this->bumdes_model->kategori_usaha(),'tingkat_pemeringkatan'=>$this->bumdes_model->tingkat_pemeringkatan(),'pengguna'=>$pengguna,'bumdes_id'=>$bumdes_id]);
+	}
+
+	public function pengurus_list()
+	{
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$bumdes_id = $this->bumdes_model->get_bumdes_id($pengguna['desa_id']);
+		// $this->esg->add_js(base_url('assets/bumdes/script.js'));
+		$this->load->view('bumdes/pengurus',['kategori_usaha'=>$this->bumdes_model->kategori_usaha(),'tingkat_pemeringkatan'=>$this->bumdes_model->tingkat_pemeringkatan(),'pengguna'=>$pengguna,'bumdes_id'=>$bumdes_id]);
+	}
+
+
+	public function lembaga_edit()
+	{
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$bumdes_id = $this->bumdes_model->get_bumdes_id($pengguna['desa_id']);
+		$this->esg->add_js(base_url('assets/bumdes/script.js'));
+		$this->load->view('index',['kategori_usaha'=>$this->bumdes_model->kategori_usaha(),'tingkat_pemeringkatan'=>$this->bumdes_model->tingkat_pemeringkatan(),'pengguna'=>$pengguna,'bumdes_id'=>$bumdes_id]);
+	}
+
+	public function lembaga()
+	{
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$bumdes_id = $this->bumdes_model->get_bumdes_id($pengguna['desa_id']);
+		// $this->esg->add_js(base_url('assets/bumdes/script.js'));
+		$this->load->view('index',['kategori_usaha'=>$this->bumdes_model->kategori_usaha(),'tingkat_pemeringkatan'=>$this->bumdes_model->tingkat_pemeringkatan(),'pengguna'=>$pengguna,'bumdes_id'=>$bumdes_id]);
+	}
+
+	public function lembaga_list()
+	{
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$bumdes_id = $this->bumdes_model->get_bumdes_id($pengguna['desa_id']);
+		// $this->esg->add_js(base_url('assets/bumdes/script.js'));
+		$this->load->view('bumdes/lembaga',['kategori_usaha'=>$this->bumdes_model->kategori_usaha(),'tingkat_pemeringkatan'=>$this->bumdes_model->tingkat_pemeringkatan(),'pengguna'=>$pengguna,'bumdes_id'=>$bumdes_id]);
+	}
 }
