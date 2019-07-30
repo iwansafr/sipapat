@@ -179,10 +179,8 @@ class Perangkat extends CI_Controller
 
 	public function pdf($kelompok = 'perangkat')
 	{
-		die();
 		$jabatan = $this->pengguna_model->jabatan();
 		$pengguna = $this->pengguna_model->get_pengguna();
-
 		$kelamin = ['Perempuan','Laki-laki'];
 		$agama = 
 			[
@@ -249,6 +247,9 @@ class Perangkat extends CI_Controller
     $desa_id = empty($_GET['desa_id']) && is_desa() ? $pengguna['desa_id'] : @intval($_GET['desa_id']);
 		$where = !empty(@intval($desa_id)) ? ' AND perangkat_desa.desa_id = '.$desa_id : '';
 		$where = !empty(@$_GET['kec']) && empty(@intval($desa_id)) ? " AND desa.kecamatan = '".$_GET['kec']."'" : $where;
+		echo form_hidden('desa_id',$desa_id);
+		echo form_hidden('where', $where);
+		die();
     $data = $this->db->query
 		('
 			SELECT 
