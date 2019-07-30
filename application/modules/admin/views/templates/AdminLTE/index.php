@@ -85,7 +85,5 @@
     });
   </script>
 <?php endif ?>
-<?php pr($_SESSION) ?>
-<?php pr($this->session->userdata()) ?>
 </body>
 </html>
