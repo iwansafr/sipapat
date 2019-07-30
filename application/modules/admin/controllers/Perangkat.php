@@ -287,7 +287,7 @@ class Perangkat extends CI_Controller
 			$pdf->Cell(20,6,$value['akhir_masa_jabatan'],1,1);
       $i++;
     }
-    $this->load->view('index', ['pdf'=>$pdf]);
+    $this->load->view('perangkat/pdf', ['pdf'=>$pdf]);
 	}
 
 
