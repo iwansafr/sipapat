@@ -250,8 +250,7 @@ class Perangkat extends CI_Controller
 		// echo form_hidden('desa_id',$desa_id);
 		// echo form_hidden('where', $where);
 		// die();
-    $data = $this->db->query
-		('
+		$sql = '
 			SELECT 
 				perangkat_desa.*,user.username,desa.nama AS nama_desa
 			FROM 
@@ -266,7 +265,8 @@ class Perangkat extends CI_Controller
 				perangkat_desa.desa_id = desa.id
 			AND 
 				kelompok = ?
-		'.$where, @intval($kelompok))->result_array();
+		'.$where;
+    $data = $this->db->query($sql, @intval($kelompok))->result_array();
 		// pr($this->db->last_query());die();
     $i = 1;
     $last_query = $this->db->last_query();
