@@ -1,5 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
+if(empty($bumdes_id)){
+	msg('anda belum memiliki bumdes, silahkan mengisi data bumdes terlebih dahulu <a class="btn btn-sm btn-primary" href="'.base_url('admin/bumdes/edit').'">di sini</a>','danger');
+	die();
+}
 $form = new zea();
 
 $form->init('roll');
@@ -9,9 +13,10 @@ $form->addInput('id','hidden');
 
 $form->setNumbering(TRUE);
 
+
 if(is_desa())
 {
-	$form->setWhere('bumdes_id = '.$bumdes_id);
+	$form->setWhere('bumdes_id = '.@intval($bumdes_id));
 }
 
 $form->setHeading('<a href="'.base_url('admin/bumdes/lembaga_edit').'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>');
