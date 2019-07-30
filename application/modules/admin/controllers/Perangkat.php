@@ -263,7 +263,7 @@ class Perangkat extends CI_Controller
 			AND 
 				kelompok = ?
 		'.$where;
-		if(is_desa() && empty($where)){
+		if(!is_admin() && empty($where)){
 			$sql = '';
 		}
     $data = $this->db->query($sql, @intval($kelompok))->result_array();
