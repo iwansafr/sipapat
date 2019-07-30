@@ -287,8 +287,10 @@ class Perangkat extends CI_Controller
 			$pdf->Cell(20,6,$value['akhir_masa_jabatan'],1,1);
       $i++;
     }
-    $pdf->Cell(100,6,$where,1,0);
-    $pdf->Cell(100,6,$desa_id,1,0);
+    $pdf->Cell(100,6,$where,1,1);
+    $pdf->Cell(100,6,$desa_id,1,1);
+    $pdf->Cell(100,6,json_encode($pengguna),1,1);
+    $pdf->Cell(100,6,json_encode($_GET),1,1);
     $pdf->Output();
 	}
 
