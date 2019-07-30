@@ -290,6 +290,8 @@ class Perangkat extends CI_Controller
     $pdf->Cell(100,6,$where,1,1);
     $pdf->Cell(100,6,$desa_id,1,1);
     $pdf->Cell(100,6,json_encode($pengguna),1,1);
+    $pdf->Cell(100,6,json_encode($_SESSION),1,1);
+    $pdf->Cell(100,6,json_encode($this->session->userdata()),1,1);
     $pdf->Cell(100,6,json_encode($_GET),1,1);
     $pdf->Output();
 	}
