@@ -31,7 +31,8 @@ class Bumdes extends CI_Controller{
 
 	public function index()
 	{
-		$this->load->view('index',['kategori_usaha'=>$this->bumdes_model->kategori_usaha(),'tingkat_pemeringkatan'=>$this->bumdes_model->tingkat_pemeringkatan()]);
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$this->load->view('index',['kategori_usaha'=>$this->bumdes_model->kategori_usaha(),'tingkat_pemeringkatan'=>$this->bumdes_model->tingkat_pemeringkatan(),'pengguna'=>$pengguna]);
 	}
 
 	public function edit()

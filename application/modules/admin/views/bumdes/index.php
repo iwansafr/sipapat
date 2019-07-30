@@ -8,6 +8,11 @@ if(is_desa() || is_root())
 
 	$form->setHeading('<a href="'.base_url('admin/bumdes/edit').'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>');
 
+	if(is_desa())
+	{
+		$form->setWhere('desa_id = '.$pengguna['desa_id']);
+	}
+
 	$form->addInput('id','hidden');
 	$form->setNumbering(true);
 

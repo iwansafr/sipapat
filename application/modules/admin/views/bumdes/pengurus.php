@@ -8,6 +8,12 @@
 
 	$form->search();
 
+	if(is_desa())
+	{
+		pr($bumdes_id);
+		$form->setWhere('bumdes_id = '.$bumdes_id);
+	}
+
 	$form->addInput('id','hidden');
 	
 	$form->setHeading('<a href="'.base_url('admin/bumdes/pengurus_edit').'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>');
