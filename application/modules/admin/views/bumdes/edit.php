@@ -31,15 +31,15 @@ if(is_desa() || is_root())
 	$form->setlabel('tgl_berdiri','tanggal berdiri');
 
 	$form->addInput('no_perdes','text');
-	$form->settype('no_perdes','number');
+	// $form->settype('no_perdes','number');
 	$form->setLabel('no_perdes','Nomor Perdes');
 
 	$form->addInput('no_perkades','text');
-	$form->settype('no_perkades','number');
+	// $form->settype('no_perkades','number');
 	$form->setLabel('no_perkades','Nomor Perkades');
 
 	$form->addInput('no_rek_bumdes','text');
-	$form->settype('no_rek_bumdes','number');
+	// $form->settype('no_rek_bumdes','number');
 	$form->setLabel('no_rek_bumdes','Nomor Rekening Bumdes');
 
 	$form->addInput('jangka_waktu','text');
