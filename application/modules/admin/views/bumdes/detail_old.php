@@ -41,6 +41,26 @@
 			    				<td>JANGKA WAKTU</td>
 			    				<td>: <?php echo $data['jangka_waktu'] ?></td>
 			    			</tr>
+			    			<tr>
+			    				<td>PENASEHAT</td>
+			    				<td>: <?php echo $data['penasehat'] ?></td>
+			    			</tr>
+			    			<tr>
+			    				<td>JENIS USAHA</td>
+			    				<td>: <?php echo $data['jenis_usaha'] ?></td>
+			    			</tr>
+			    			<tr>
+			    				<td>KATEGORI USAHA</td>
+			    				<td>: <?php echo $kategori_usaha[$data['kategori_usaha']] ?></td>
+			    			</tr>
+			    			<tr>
+			    				<td>TINGKAT PEMERINGKATAN</td>
+			    				<td>: <?php echo $tingkat_pemeringkatan[$data['tingkat_pemeringkatan']] ?></td>
+			    			</tr>
+			    			<tr>
+			    				<td>TAHUN</td>
+			    				<td>: <?php echo $data['tahun'] ?></td>
+			    			</tr>
 			    		</tbody>
 			    	</table>
 			    </div>
@@ -54,6 +74,40 @@
 			    		<tbody>
 			    			<?php if (is_array($data['alamat'])): ?>
 				    			<?php foreach ($data['alamat'] as $key => $value): ?>
+				    				<tr>
+				    					<td><?php echo $key ?></td>
+				    					<td>:<?php echo $value ?></td>
+				    				</tr>
+				    			<?php endforeach ?>
+			    			<?php endif ?>
+			    		</tbody>
+			    	</table>
+			    </div>
+			    <div class="table-responsive">
+			    	<table class="table table-hover table-striped ">
+			    		<thead class="bg-aqua">
+			    			<td colspan="2">PENGURUS</td>
+			    		</thead>
+			    		<tbody>
+			    			<?php if (is_array($data['pengurus'])): ?>
+				    			<?php foreach ($data['pengurus'] as $key => $value): ?>
+				    				<tr>
+				    					<td><?php echo $key ?></td>
+				    					<td>:<?php echo $value ?></td>
+				    				</tr>
+				    			<?php endforeach ?>
+			    			<?php endif ?>
+			    		</tbody>
+			    	</table>
+			    </div>
+			    <div class="table-responsive">
+			    	<table class="table table-hover table-striped ">
+			    		<thead class="bg-aqua">
+			    			<td colspan="2">PENGAWAS</td>
+			    		</thead>
+			    		<tbody>
+			    			<?php if (is_array($data['pengawas'])): ?>
+				    			<?php foreach ($data['pengawas'] as $key => $value): ?>
 				    				<tr>
 				    					<td><?php echo $key ?></td>
 				    					<td>:<?php echo $value ?></td>

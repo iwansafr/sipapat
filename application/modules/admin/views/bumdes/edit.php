@@ -42,6 +42,14 @@ if(is_desa() || is_root())
 	// $form->settype('no_rek_bumdes','number');
 	$form->setLabel('no_rek_bumdes','Nomor Rekening Bumdes');
 
+	$form->addInput('no_bdn_hkm','text');
+	// $form->settype('no_bdn_hkm','number');
+	$form->setLabel('no_bdn_hkm','Nomor Badan Hukum');
+
+	$form->addInput('notaris_bdn_hkm','text');
+	// $form->settype('notaris_bdn_hkm','number');
+	$form->setLabel('notaris_bdn_hkm','Notaris Badan Hukum');
+
 	$form->addInput('jangka_waktu','text');
 	$form->setlabel('jangka_waktu','jangka waktu');
 

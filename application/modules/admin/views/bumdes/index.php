@@ -13,7 +13,10 @@ if(is_desa() || is_root())
 		$form->setWhere('desa_id = '.$pengguna['desa_id']);
 	}
 
-	$form->addInput('id','hidden');
+	$form->addInput('id','link');
+	$form->setLabel('id','detail');
+	$form->setPlaintext('id','<i class="fa fa-eye"></i> Detail');
+	$form->setLink('id',base_url('admin/bumdes/detail/'),'id');
 	$form->setNumbering(true);
 
 	$form->addInput('nama','plaintext');
