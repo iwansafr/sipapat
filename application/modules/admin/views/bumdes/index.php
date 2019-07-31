@@ -47,8 +47,9 @@ if(is_desa() || is_root())
 	$form->addInput('jangka_waktu','plaintext');
 	$form->setlabel('jangka_waktu','jangka waktu');
 
-		$form->setEdit(TRUE);
+	$form->setEdit(TRUE);
 	$form->setDelete(TRUE);
+	$form->setEditLink('bumdes/edit?id=');
 
 	$form->setUrl('admin/bumdes/clear_list');
 
