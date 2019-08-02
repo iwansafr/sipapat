@@ -20,7 +20,12 @@ if(is_desa() || is_root())
 		$id = $this->bumdes_model->get_bumdes_id($desa_id);
 		$form->setId($id);
 	}else{
-		$form->setId(@intval($_GET['id']));
+		$id = @intval($_GET['id']);
+		$form->setId($id);
+		if(!empty($id))
+		{
+			$data = $form->getData();
+		}
 		$form->addInput('desa_id','dropdown');
 		$form->setOptions('desa_id',['0'=>'None']);
 		$form->setLabel('desa_id','Desa');
@@ -58,6 +63,18 @@ if(is_desa() || is_root())
 	if(empty($id))
 	{
 		$form->setValue('alamat', "JALAN : -\nDESA : -\nKODE POS: -\nTELEPON : -\nEMAIL : -");
+	}
+
+	if(!empty($desa_id))
+	{
+		?>
+		<div class="hidden" id="current_desa_id" data-id="<?php echo $desa_id ?>"></div>
+		<?php
+	}else if(!empty($data['desa_id']))
+	{
+		?>
+		<div class="hidden" id="current_desa_id" data-id="<?php echo $data['desa_id'] ?>"></div>
+		<?php
 	}
 
 	// $form->addInput('pengurus','textarea');

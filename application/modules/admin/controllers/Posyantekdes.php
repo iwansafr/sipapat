@@ -16,10 +16,23 @@ class Posyantekdes extends CI_Controller{
 	}
 
 	public function index(){
-		$this->load->view('index');
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$this->load->view('index',['pengguna'=>$pengguna]);
+	}
+	public function clear_list(){
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$this->load->view('posyantekdes/index',['pengguna'=>$pengguna]);
 	}
 	public function edit(){
 		$this->esg->add_js(base_url('assets/posyantekdes/script.js'));
-		$this->load->view('index');
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$data = ['id'=>@intval($_GET['id']),'pengguna'=>$pengguna];
+		$this->load->view('index', $data);
+	}
+
+	public function detail(){
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$data = ['id'=>@intval($_GET['id']),'pengguna'=>$pengguna];
+		$this->load->view('index', $data);
 	}
 }

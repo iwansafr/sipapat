@@ -49,7 +49,7 @@ if(is_desa() || is_root())
 
 	$form->setEdit(TRUE);
 	$form->setDelete(TRUE);
-	$form->setEditLink('bumdes/edit?id=');
+	$form->setEditLink(base_url('admin/bumdes/edit?id='));
 
 	$form->setUrl('admin/bumdes/clear_list');
 
