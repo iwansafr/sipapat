@@ -24,7 +24,7 @@ if(is_desa() || is_root())
 
 	$form->setId(@intval($_GET['id']));
 	$form->addInput('desa_id','dropdown');
-	$form->setOptions('desa_id',['0'=>'None']);
+	$form->tableOptions('desa_id','desa','id','nama');
 	$form->setLabel('desa_id','Desa');
 	$form->setAttribute('desa_id','disabled');
 

@@ -145,7 +145,7 @@ if(!empty($id) && is_numeric($id))
 										<?php
 									}
 								}else{
-									$penghasilan_title = 'Penghasilan';
+									$penghasilan_title = $kelompok == 1 ? 'Gaji' : 'Insentif/Tahun';
 									?>
 									<tr>
 										<td>Bengkok</td>
