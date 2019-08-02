@@ -65,6 +65,7 @@ if(!empty($_GET['id']))
 			$form->setRequired(['doc','anggaran','peserta']);
 		}
 
+		$form->setRequired('All');
 		$form->form();
 	}else{
 		msg('Maaf URL yg anda tuju tidak valid', 'danger');

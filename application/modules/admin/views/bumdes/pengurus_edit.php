@@ -44,4 +44,5 @@
 	$form->addInput('tahun','text');
 	$form->setType('tahun','number');
 
+	$form->setRequired('All');
 	$form->form();

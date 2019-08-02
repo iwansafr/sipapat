@@ -29,3 +29,6 @@ ALTER TABLE `pembangunan` ADD `jml_peserta` INT(11) NOT NULL AFTER `peserta`;
 
 
 ALTER TABLE `survey_laptop` ADD `op_sikeudes` VARCHAR(100) NOT NULL AFTER `nama`;
+
+
+ALTER TABLE `pembangunan` ADD `realisasi` INT(11) NOT NULL AFTER `anggaran`;

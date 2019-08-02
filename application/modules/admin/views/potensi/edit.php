@@ -47,4 +47,5 @@ $form->setLabel('to_month','sampai');
 $form->setOptions('to_month',$bulan);
 
 $form->setFormName('potensi_form');
+$form->setRequired('All');
 $form->form();

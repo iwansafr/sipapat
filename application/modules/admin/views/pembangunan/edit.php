@@ -76,6 +76,10 @@ if(!empty($view) || is_desa() || is_root())
 	$form->setType('anggaran','number');
 	$form->setAttribute('anggaran',['oninvalid'=>"this.setCustomValidity('Anggaran tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
 
+	$form->addInput('realisasi','text');
+	$form->setType('realisasi','number');
+	$form->setAttribute('realisasi',['oninvalid'=>"this.setCustomValidity('Realisasi tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
+
 	$form->addInput('lokasi','textarea');
 	$form->setAttribute('lokasi',['placeholder'=>"Dukuh : ...\nRT : ...\nRW : ..."]);
 	if(empty($id))
@@ -114,7 +118,7 @@ if(!empty($view) || is_desa() || is_root())
 				$form->setAttribute('doc_0',['oninvalid'=>"this.setCustomValidity('gambar tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
 				$form->setAttribute('doc_50',['oninvalid'=>"this.setCustomValidity('gambar tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
 				$form->setAttribute('doc_100',['oninvalid'=>"this.setCustomValidity('gambar tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
-				$form->setRequired(['doc_0','doc_50','doc_100','anggaran']);
+				// $form->setRequired(['doc_0','doc_50','doc_100','anggaran']);
 			}
 		}else{
 			$form->addInput('doc_0',$file_type);
@@ -131,7 +135,7 @@ if(!empty($view) || is_desa() || is_root())
 				$form->setAttribute('doc_40',['oninvalid'=>"this.setCustomValidity('gambar tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
 				$form->setAttribute('doc_80',['oninvalid'=>"this.setCustomValidity('gambar tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
 				$form->setAttribute('doc_100',['oninvalid'=>"this.setCustomValidity('gambar tidak boleh kosong')",'oninput'=>"setCustomValidity('')"]);
-				$form->setRequired(['doc_0','doc_40','doc_80','doc_100','anggaran']);
+				// $form->setRequired(['doc_0','doc_40','doc_80','doc_100','anggaran']);
 			}
 		}
 	}else{
@@ -159,6 +163,7 @@ if(!empty($view) || is_desa() || is_root())
 	$form->setType('th_anggaran','number');
 
 	$form->addInput('koordinat','hidden');
+	$form->setRequired('All');
 
 	$form->form();
 }else{

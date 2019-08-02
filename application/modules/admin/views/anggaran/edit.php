@@ -17,4 +17,5 @@ $form->setLabel('type','Jenis pembangunan');
 $form->setRadio('type',['Non Fisik','Fisik']);
 $form->setEdit(TRUE);
 $form->setDelete(TRUE);
+$form->setRequired('All');
 $form->form();

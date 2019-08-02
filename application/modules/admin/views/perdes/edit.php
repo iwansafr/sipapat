@@ -29,6 +29,7 @@ if(is_desa() || is_root())
 		$form->setValue('user_id',@intval($user['id']));
 		$form->setOptions('progress',$perdes_progress);
 
+		$form->setRequired('All');
 		$form->form();
 	}else{
 		msg('anda tidak punya akses ke halaman ini ', 'danger');

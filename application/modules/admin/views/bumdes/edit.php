@@ -85,6 +85,6 @@ if(is_desa() || is_root())
 	// $form->addInput('tingkat_pemeringkatan','dropdown');
 	// $form->setOptions('tingkat_pemeringkatan',$tingkat_pemeringkatan);
 	// $form->setlabel('tingkat_pemeringkatan', 'TINGKAT PEMERINGKATAN');
-
+	$form->setRequired('All');
 	$form->form();
 }

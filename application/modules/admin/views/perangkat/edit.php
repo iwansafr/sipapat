@@ -138,6 +138,7 @@ if(!is_admin() && !is_kecamatan())
 		msg('Anda tidak punya Akses ke halaman ini', 'danger');
 		exit();
 	}
+	$form->setRequired('All');
 	$form->form();
 }else{
 	msg('hanya petugas desa yang bisa menambah '.$module_title[$kelompok],'danger');

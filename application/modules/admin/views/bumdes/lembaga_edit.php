@@ -51,4 +51,6 @@ $form->addInput('lpj_terakhir','text');
 $form->setType('lpj_terakhir','date');
 $form->setLabel('lpj_terakhir','lpj terakhir');
 
+
+$form->setRequired('All');
 $form->form();
