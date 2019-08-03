@@ -5,9 +5,10 @@ $module = ['1'=>'','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'
 $module_title = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd','9'=>'linmas'];
 if(!is_admin() && !is_kecamatan())
 {
+	$id = @intval($_GET['id']);
 	$form = new zea();
 	$form->init('edit');
-	$form->setId(@intval($_GET['id']));
+	$form->setId($id);
 	$form->setTable('perangkat_desa');
 	if(is_desa())
 	{
@@ -138,7 +139,10 @@ if(!is_admin() && !is_kecamatan())
 		msg('Anda tidak punya Akses ke halaman ini', 'danger');
 		exit();
 	}
-	$form->setRequired('All');
+	if(empty($id))
+	{
+		$form->setRequired('All');
+	}
 	$form->form();
 }else{
 	msg('hanya petugas desa yang bisa menambah '.$module_title[$kelompok],'danger');

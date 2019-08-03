@@ -4,10 +4,10 @@
 
 
 $form = new zea();
-
+$id = @intval($_GET['id']);
 $form->init('edit');
 $form->setTable('potensi_desa');
-$form->setId(@intval($_GET['id']));
+$form->setId($id);
 
 if(is_desa())
 {
@@ -47,5 +47,8 @@ $form->setLabel('to_month','sampai');
 $form->setOptions('to_month',$bulan);
 
 $form->setFormName('potensi_form');
-$form->setRequired('All');
+if(empty($id))
+{
+	$form->setRequired('All');
+}
 $form->form();

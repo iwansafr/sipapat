@@ -19,6 +19,20 @@ class Posyantekdes extends CI_Controller{
 		$pengguna = $this->pengguna_model->get_pengguna();
 		$this->load->view('index',['pengguna'=>$pengguna]);
 	}
+
+	public function pengurus($key = '')
+	{
+		if(!empty($key))
+		{
+			$this->load->view('index');
+		}
+	}
+
+	public function ketua($task = '')
+	{
+
+	}
+
 	public function clear_list(){
 		$pengguna = $this->pengguna_model->get_pengguna();
 		$this->load->view('posyantekdes/index',['pengguna'=>$pengguna]);

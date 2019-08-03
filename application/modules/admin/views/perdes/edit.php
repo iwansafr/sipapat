@@ -4,10 +4,11 @@ if(is_desa() || is_root())
 {
 	if((@$perdes['desa_id'] == @$desa_id) || empty($_GET['id']))
 	{
+		$id = @intval($_GET['id']);
 		$form = new zea();
 		$form->setTable('perdes');
 		$form->init('edit');
-		$form->setId(@intval($_GET['id']));
+		$form->setId($id);
 		$form->addInput('item','dropdown');
 		$form->setOptions('item',$perdes_options);
 		$form->addInput('no','text');
@@ -29,7 +30,10 @@ if(is_desa() || is_root())
 		$form->setValue('user_id',@intval($user['id']));
 		$form->setOptions('progress',$perdes_progress);
 
-		$form->setRequired('All');
+		if(empty($id))
+		{
+			$form->setRequired('All');
+		}
 		$form->form();
 	}else{
 		msg('anda tidak punya akses ke halaman ini ', 'danger');

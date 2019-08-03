@@ -163,7 +163,10 @@ if(!empty($view) || is_desa() || is_root())
 	$form->setType('th_anggaran','number');
 
 	$form->addInput('koordinat','hidden');
-	$form->setRequired('All');
+	if(empty($id))
+	{
+		$form->setRequired('All');
+	}
 
 	$form->form();
 }else{
