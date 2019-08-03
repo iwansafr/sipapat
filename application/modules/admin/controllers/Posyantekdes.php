@@ -20,17 +20,20 @@ class Posyantekdes extends CI_Controller{
 		$this->load->view('index',['pengguna'=>$pengguna]);
 	}
 
-	public function pengurus($key = '')
+	public function pengurus($posy_id = 0)
 	{
-		if(!empty($key))
-		{
-			$this->load->view('index');
+		$status = false;
+		if(!empty($posy_id)){
+			$id = @intval($_GET['id']);
+			$this->esg_model->set_nav_title('pengaturan pengurus');
+			$pengguna = $this->pengguna_model->get_pengguna();
+			$posyantekdes = $this->posyantekdes_model->get_posyantekdes($posy_id);
+			$jabatan = $this->posyantekdes_model->jabatan();
+			if($pengguna['desa_id'] == $posyantekdes['desa_id']){
+				$status = true;
+			}
 		}
-	}
-
-	public function ketua($task = '')
-	{
-
+		$this->load->view('index',['id'=>@$id,'status'=>@$status,'posy_id'=>@@$posy_id,'pengguna'=>@@$pengguna,'jabatan'=>@$jabatan,'posyantekdes'=>@$posyantekdes]);
 	}
 
 	public function clear_list(){

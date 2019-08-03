@@ -2,6 +2,9 @@
 
 if(!is_kecamatan())
 {
+	if(!empty($id)){
+		echo '<a href="'.base_url('admin/posyantekdes/pengurus/').$id.'" class="btn btn-warning"><i class="fa fa-pencil-alt"></i> Pengurus</a>';		
+	}
 	$form = new zea();
 	$form->setTable('posyantekdes');
 
@@ -14,10 +17,10 @@ if(!is_kecamatan())
 	$form->addInput('user_id','static');
 	$form->setValue('user_id',$user['id']);
 
-	if(!empty($desa_id))
+	if(!empty($pengguna['desa_id']))
 	{
 		$form->addInput('desa_id','static');
-		$form->setValue('desa_id',$desa_id);
+		$form->setValue('desa_id',$pengguna['desa_id']);
 	}else{
 		$form->addInput('desa_id','dropdown');
 		$form->setOptions('desa_id',['0'=>'none']);
@@ -52,15 +55,15 @@ if(!is_kecamatan())
 	$form->setLabel('masa_berlaku','masa berlaku');
 	$form->addInput('alamat','textarea');
 	$form->setLabel('alamat','alamat');
-	$form->addInput('pengurus','textarea');
-	$form->setLabel('pengurus','pengurus');
+	// $form->addInput('pengurus','textarea');
+	// $form->setLabel('pengurus','pengurus');
 
-	$form->setHelp('pengurus','nyalakan capslock saat mengetik');
-	if(empty($id))
-	{
-		$form->setValue('pengurus', 
-			"KETUA : -\nNO HP KETUA : -\nDOMISILI KETUA: -\nSK KETUA : -\nSEKRETARIS : -\nNO HP SEKRETARIS : -\nDOMISILI SEKRETARIS: -\nSK SEKRETARIS : -\nSEKSI PELAYANAN & USAHA TTG : -\nNO HP SEKSI PELAYANAN & USAHA TTG : -\nDOMISILI SEKSI PELAYANAN & USAHA TTG: -\nSK SEKSI PELAYANAN & USAHA TTG : -\nSEKSI KEMITRAAN : -\nNO HP SEKSI KEMITRAAN : -\nDOMISILI SEKSI KEMITRAAN: -\nSK SEKSI KEMITRAAN : -\nSEKSI PENGEMBANGAN TTG : -\nNO HP SEKSI PENGEMBANGAN TTG : -\nDOMISILI SEKSI PENGEMBANGAN TTG: -\nSK SEKSI PENGEMBANGAN TTG : -\n");
-	}
+	// $form->setHelp('pengurus','nyalakan capslock saat mengetik');
+	// if(empty($id))
+	// {
+	// 	$form->setValue('pengurus', 
+	// 		"KETUA : -\nNO HP KETUA : -\nDOMISILI KETUA: -\nSK KETUA : -\nSEKRETARIS : -\nNO HP SEKRETARIS : -\nDOMISILI SEKRETARIS: -\nSK SEKRETARIS : -\nSEKSI PELAYANAN & USAHA TTG : -\nNO HP SEKSI PELAYANAN & USAHA TTG : -\nDOMISILI SEKSI PELAYANAN & USAHA TTG: -\nSK SEKSI PELAYANAN & USAHA TTG : -\nSEKSI KEMITRAAN : -\nNO HP SEKSI KEMITRAAN : -\nDOMISILI SEKSI KEMITRAAN: -\nSK SEKSI KEMITRAAN : -\nSEKSI PENGEMBANGAN TTG : -\nNO HP SEKSI PENGEMBANGAN TTG : -\nDOMISILI SEKSI PENGEMBANGAN TTG: -\nSK SEKSI PENGEMBANGAN TTG : -\n");
+	// }
 	$form->addInput('jns_kegiatan','text');
 	$form->setLabel('jns_kegiatan','jenis kegiatan');
 	$form->addInput('TTG','text');
