@@ -49,7 +49,37 @@ class Posyantekdes extends CI_Controller{
 
 	public function detail(){
 		$pengguna = $this->pengguna_model->get_pengguna();
-		$data = ['id'=>@intval($_GET['id']),'pengguna'=>$pengguna];
+		$id = @intval($_GET['id']);
+		$posyantekdes = $this->posyantekdes_model->get_posyantekdes($id);
+		$alamat = $posyantekdes['alamat'];
+		$alamat_tmp = [];
+		if(preg_match('~:~',$alamat)){
+			$alamat = explode("\n", $alamat);
+			foreach($alamat as $al_key => $al_value){
+				$al_value = explode(':',$al_value);
+				$alamat_tmp[@$al_value[0]] = @$al_value[1];
+			}
+		}else if(preg_match('~=~',$alanat)){
+			$alamat = explode("\n", $alamat);
+			foreach($alamat as $al_key => $al_value){
+				$al_value = explode('=',$al_value);
+				$alamat_tmp[@$al_value[0]] = @$al_value[1];
+			}
+		}
+		$pengurus = $this->posyantekdes_model->get_pengurus($posyantekdes['id']);
+		$desa = $this->sipapat_model->get_desa($pengguna['desa_id']);
+		$jabatan = $this->posyantekdes_model->jabatan();
+		unset($posyantekdes['user_id'],$posyantekdes['desa_id'],$posyantekdes['id'],$posyantekdes['created'],$posyantekdes['updated'], $posyantekdes['alamat']);
+		$data = 
+		[
+			'id'=>@intval($_GET['id']),
+			'pengguna'=>$pengguna,
+			'pengurus'=>$pengurus,
+			'posyantekdes'=>$posyantekdes,
+			'desa'=>$desa,
+			'jabatan'=>$jabatan,
+			'alamat'=>$alamat_tmp
+		];
 		$this->load->view('index', $data);
 	}
 }

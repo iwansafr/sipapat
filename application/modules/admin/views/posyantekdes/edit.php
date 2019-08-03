@@ -5,6 +5,7 @@ if(!is_kecamatan())
 	if(!empty($id)){
 		echo '<a href="'.base_url('admin/posyantekdes/pengurus/').$id.'" class="btn btn-warning"><i class="fa fa-pencil-alt"></i> Pengurus</a>';		
 	}
+	echo ' | <a class="btn btn-warning" href="'.base_url('admin/posyantekdes').'"><i class="fa fa-backward"></i> kembali</a>';
 	$form = new zea();
 	$form->setTable('posyantekdes');
 

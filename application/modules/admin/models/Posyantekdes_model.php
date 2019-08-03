@@ -31,6 +31,15 @@ class Posyantekdes_model extends CI_Model{
 		}
 	}
 
+	public function get_pengurus($id)
+	{
+		if(!empty($id))
+		{
+			$this->db->order_by('jabatan','ASC');
+			return $this->db->get_where('posyantekdes_pengurus', ['posyantekdes_id'=>$id])->result_array();
+		}
+	}
+
 	public function get_alamat($alamat = '')
 	{
 		if(!empty($alamat))
