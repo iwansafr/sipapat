@@ -20,7 +20,7 @@ class Posyantekdes_model extends CI_Model{
 			'3'=>'SEKSI PELAYANAN DAN USAHA TTG',
 			'4'=>'SEKSI KEMITRAAN',
 			'5'=>'SEKSI PENGEMBAN TTG'
-		]
+		];
 	}
 
 	public function get_posyantekdes($id = 0)
