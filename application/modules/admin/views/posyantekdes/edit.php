@@ -69,7 +69,7 @@ if(!is_kecamatan())
 	$form->setLabel('jns_kegiatan','jenis kegiatan');
 	$form->addInput('TTG','text');
 	$form->setLabel('TTG','TTG yg dihasilkan');
-
+	$form->setRequired('All');
 	$form->form();
 
 }

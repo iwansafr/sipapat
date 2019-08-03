@@ -20,7 +20,7 @@ if(!empty($posy_id) && $status)
 		$form->addInput('domisili','text');
 		$form->addInput('sk','text');
 		$form->setFormName('pengurus_edit');
-
+		$form->setRequired('All');
 
 		$form2 = new zea();
 
