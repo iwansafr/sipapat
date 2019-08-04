@@ -33,3 +33,131 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-primary card card-primary">
+      <div class="panel-heading card-header">
+        DATA SURVEY LAPTOP
+      </div>
+      <div class="panel-body card-body">
+        <div class="col-md-6">
+          <div class="panel panel-primary card card-primary">
+            <div class="panel-heading card-header">
+              desa yg punya laptop
+            </div>
+            <div class="panel-body card-body">
+              <?php foreach ($data['data_laptop']['sudah'] as $key => $value): ?>
+                <small class="label label-success"><i class="fa fa-clock-o"></i> <?php echo $value['desa'] ?></small>
+              <?php endforeach ?>
+            </div>
+            <div class="panel-footer card-footer">
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="panel panel-primary card card-primary">
+            <div class="panel-heading card-header">
+              desa yg belum punya laptop
+            </div>
+            <div class="panel-body card-body">
+              <?php foreach ($data['data_laptop']['belum'] as $key => $value): ?>
+                <small class="label label-danger"><i class="fa fa-clock-o"></i> <?php echo $value['desa'] ?></small>
+              <?php endforeach ?>
+            </div>
+            <div class="panel-footer card-footer">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer card-footer">
+        
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="panel panel-warning card card-warning">
+      <div class="panel-heading card-header">
+        DATA SURVEY WIFI
+      </div>
+      <div class="panel-body card-body">
+        <div class="col-md-6">
+          <div class="panel panel-warning card card-warning">
+            <div class="panel-heading card-header">
+              desa yg punya wifi
+            </div>
+            <div class="panel-body card-body">
+              <?php foreach ($data['data_wifi']['sudah'] as $key => $value): ?>
+                <small class="label label-success"><i class="fa fa-clock-o"></i> <?php echo $value['desa'] ?></small>
+              <?php endforeach ?>
+            </div>
+            <div class="panel-footer card-footer">
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="panel panel-warning card card-warning">
+            <div class="panel-heading card-header">
+              desa yg belum punya wifi
+            </div>
+            <div class="panel-body card-body">
+              <?php foreach ($data['data_wifi']['belum'] as $key => $value): ?>
+                <small class="label label-danger"><i class="fa fa-clock-o"></i> <?php echo $value['desa'] ?></small>
+              <?php endforeach ?>
+            </div>
+            <div class="panel-footer card-footer">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer card-footer">
+        
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="panel panel-success card card-success">
+      <div class="panel-heading card-header">
+        DATA SURVEY HONOR
+      </div>
+      <div class="panel-body card-body">
+        <div class="col-md-6">
+          <div class="panel panel-success card card-success">
+            <div class="panel-heading card-header">
+              desa yg punya honor
+            </div>
+            <div class="panel-body card-body">
+              <?php foreach ($data['data_laptop']['sudah'] as $key => $value): ?>
+                <small class="label label-success"><i class="fa fa-clock-o"></i> <?php echo $value['desa'] ?></small>
+              <?php endforeach ?>
+            </div>
+            <div class="panel-footer card-footer">
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="panel panel-success card card-success">
+            <div class="panel-heading card-header">
+              desa yg belum punya honor
+            </div>
+            <div class="panel-body card-body">
+              <?php foreach ($data['data_laptop']['belum'] as $key => $value): ?>
+                <small class="label label-danger"><i class="fa fa-clock-o"></i> <?php echo $value['desa'] ?></small>
+              <?php endforeach ?>
+            </div>
+            <div class="panel-footer card-footer">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer card-footer">
+        
+      </div>
+    </div>
+  </div>
+</div>

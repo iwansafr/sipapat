@@ -13,9 +13,24 @@ class Survey_model extends CI_Model
 	{
 		$kec = !empty($_GET['kec']) ? @$_GET['kec'] : '';
 		$data = [];
-		$data['laptop'] = @$this->db->query('SELECT count(id) AS total FROM survey_laptop WHERE laptop = 1')->row_array()['total'];
-		$data['wifi'] = @$this->db->query('SELECT count(id) AS total FROM survey_laptop WHERE wifi = 1')->row_array()['total'];
+		// $data['laptop'] = @$this->db->query('SELECT count(id) AS total FROM survey_laptop WHERE laptop = 1')->row_array()['total'];
+		// $data['wifi'] = @$this->db->query('SELECT count(id) AS total FROM survey_laptop WHERE wifi = 1')->row_array()['total'];
 		$data['honor'] = @$this->db->query('SELECT count(id) AS total FROM survey_laptop WHERE honor = 1')->row_array()['total'];
+
+		$data['data_laptop'] = [];
+		$data['data_laptop']['sudah'] = $this->db->query('SELECT desa FROM survey_laptop WHERE laptop = 1')->result_array();
+		$data['data_laptop']['belum'] = $this->db->query('SELECT desa FROM survey_laptop WHERE laptop = 0')->result_array();
+		$data['laptop'] = count($data['data_laptop']['sudah']);
+
+		$data['data_wifi'] = [];
+		$data['data_wifi']['sudah'] = $this->db->query('SELECT desa FROM survey_laptop WHERE wifi = 1')->result_array();
+		$data['data_wifi']['belum'] = $this->db->query('SELECT desa FROM survey_laptop WHERE wifi = 0')->result_array();
+		$data['wifi'] = count($data['data_wifi']['sudah']);
+
+		$data['data_honor'] = [];
+		$data['data_honor']['sudah'] = $this->db->query('SELECT desa FROM survey_laptop WHERE honor = 1')->result_array();
+		$data['data_honor']['belum'] = $this->db->query('SELECT desa FROM survey_laptop WHERE honor = 0')->result_array();
+		$data['honor'] = count($data['data_honor']['sudah']);
 		return $data;
 	}
 
