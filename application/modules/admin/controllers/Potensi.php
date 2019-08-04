@@ -91,7 +91,7 @@ class Potensi extends CI_Controller
 			$waktu = $this->potensi_model->waktu();
 			$this->load->view("index",["desa_id"=>$desa_id,"kategori"=>$kategori,"satuan"=>$satuan,"waktu"=>$waktu,'item'=>4]);
 	}
-	public function home_indsutri() 
+	public function home_industri() 
 	{
 			$desa_id = $this->sipapat_model->get_desa_id();
 			$kategori = $this->potensi_model->kategori();
