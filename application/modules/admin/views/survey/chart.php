@@ -127,7 +127,7 @@
         <div class="col-md-6">
           <div class="panel panel-success card card-success">
             <div class="panel-heading card-header">
-              desa yg punya honor
+              desa yg dapat honor
             </div>
             <div class="panel-body card-body">
               <?php foreach ($data['data_laptop']['sudah'] as $key => $value): ?>
@@ -142,7 +142,7 @@
         <div class="col-md-6">
           <div class="panel panel-success card card-success">
             <div class="panel-heading card-header">
-              desa yg belum punya honor
+              desa yg belum dapat honor
             </div>
             <div class="panel-body card-body">
               <?php foreach ($data['data_laptop']['belum'] as $key => $value): ?>
