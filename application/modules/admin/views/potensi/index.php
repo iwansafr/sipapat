@@ -9,9 +9,13 @@ $form = new zea();
 $where = '';
 $form->init('roll');
 $desa_id = !empty($_GET['desa_id']) ? @intval($_GET['desa_id']) : $desa_id;
+$where = '';
 if(!empty($desa_id))
 {
 	$where = ' desa_id = '.$desa_id;
+	if(!empty($item)){
+		$where .= ' AND kategori = '.$item;
+	}
 }
 if(is_kecamatan())
 {
@@ -19,6 +23,9 @@ if(is_kecamatan())
 	if(empty(@intval($_GET['desa_id'])))
 	{
 		$where = " kecamatan = '{$kecamatan}'";
+		if(!empty($item)){
+			$where .= ' AND kategori = '.$item;
+		}
 		$form->join('desa','ON(potensi_desa.desa_id=desa.id)','potensi_desa.*,desa.kecamatan');
 		$form->addInput('kecamatan','plaintext');
 	}
@@ -31,7 +38,12 @@ if(!is_desa())
 		$kecamatan = @$_GET['kec'];
 		$form->join('desa','ON(potensi_desa.desa_id=desa.id)','potensi_desa.*,desa.kecamatan');
 		$where = "kecamatan = '{$kecamatan}'";
+		if(!empty($item)){
+			$where .= ' AND kategori = '.$item;
+		}
 		$form->addInput('kecamatan','plaintext');
+	}else{
+		$where = ' kategori = '.$item;
 	}
 }
 $form->setTable('potensi_desa');

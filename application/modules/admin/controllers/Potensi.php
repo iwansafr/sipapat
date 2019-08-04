@@ -56,8 +56,82 @@ class Potensi extends CI_Controller
 		$kategori = $this->potensi_model->kategori();
 		$satuan = $this->potensi_model->satuan();
 		$waktu = $this->potensi_model->waktu();
-		$this->load->view('index',['desa_id'=>$desa_id,'kategori'=>$kategori,'satuan'=>$satuan,'waktu'=>$waktu]);$this->load->view('index');
+		$this->load->view('index',['desa_id'=>$desa_id,'kategori'=>$kategori,'satuan'=>$satuan,'waktu'=>$waktu]);
 	}
+
+	public function perikanan() 
+	{
+			$desa_id = $this->sipapat_model->get_desa_id();
+			$kategori = $this->potensi_model->kategori();
+			$satuan = $this->potensi_model->satuan();
+			$waktu = $this->potensi_model->waktu();
+			$this->load->view("index",["desa_id"=>$desa_id,"kategori"=>$kategori,"satuan"=>$satuan,"waktu"=>$waktu,'item'=>1]);
+	}
+	public function pertanian() 
+	{
+			$desa_id = $this->sipapat_model->get_desa_id();
+			$kategori = $this->potensi_model->kategori();
+			$satuan = $this->potensi_model->satuan();
+			$waktu = $this->potensi_model->waktu();
+			$this->load->view("index",["desa_id"=>$desa_id,"kategori"=>$kategori,"satuan"=>$satuan,"waktu"=>$waktu,'item'=>2]);
+	}
+	public function peternakan() 
+	{
+			$desa_id = $this->sipapat_model->get_desa_id();
+			$kategori = $this->potensi_model->kategori();
+			$satuan = $this->potensi_model->satuan();
+			$waktu = $this->potensi_model->waktu();
+			$this->load->view("index",["desa_id"=>$desa_id,"kategori"=>$kategori,"satuan"=>$satuan,"waktu"=>$waktu,'item'=>3]);
+	}
+	public function perkebunan() 
+	{
+			$desa_id = $this->sipapat_model->get_desa_id();
+			$kategori = $this->potensi_model->kategori();
+			$satuan = $this->potensi_model->satuan();
+			$waktu = $this->potensi_model->waktu();
+			$this->load->view("index",["desa_id"=>$desa_id,"kategori"=>$kategori,"satuan"=>$satuan,"waktu"=>$waktu,'item'=>4]);
+	}
+	public function home_indsutri() 
+	{
+			$desa_id = $this->sipapat_model->get_desa_id();
+			$kategori = $this->potensi_model->kategori();
+			$satuan = $this->potensi_model->satuan();
+			$waktu = $this->potensi_model->waktu();
+			$this->load->view("index",["desa_id"=>$desa_id,"kategori"=>$kategori,"satuan"=>$satuan,"waktu"=>$waktu,'item'=>5]);
+	}
+	public function perdagangan() 
+	{
+			$desa_id = $this->sipapat_model->get_desa_id();
+			$kategori = $this->potensi_model->kategori();
+			$satuan = $this->potensi_model->satuan();
+			$waktu = $this->potensi_model->waktu();
+			$this->load->view("index",["desa_id"=>$desa_id,"kategori"=>$kategori,"satuan"=>$satuan,"waktu"=>$waktu,'item'=>6]);
+	}
+	public function wisata() 
+	{
+			$desa_id = $this->sipapat_model->get_desa_id();
+			$kategori = $this->potensi_model->kategori();
+			$satuan = $this->potensi_model->satuan();
+			$waktu = $this->potensi_model->waktu();
+			$this->load->view("index",["desa_id"=>$desa_id,"kategori"=>$kategori,"satuan"=>$satuan,"waktu"=>$waktu,'item'=>7]);
+	}
+	public function jasa() 
+	{
+			$desa_id = $this->sipapat_model->get_desa_id();
+			$kategori = $this->potensi_model->kategori();
+			$satuan = $this->potensi_model->satuan();
+			$waktu = $this->potensi_model->waktu();
+			$this->load->view("index",["desa_id"=>$desa_id,"kategori"=>$kategori,"satuan"=>$satuan,"waktu"=>$waktu,'item'=>8]);
+	}
+	public function seni_budaya() 
+	{
+			$desa_id = $this->sipapat_model->get_desa_id();
+			$kategori = $this->potensi_model->kategori();
+			$satuan = $this->potensi_model->satuan();
+			$waktu = $this->potensi_model->waktu();
+			$this->load->view("index",["desa_id"=>$desa_id,"kategori"=>$kategori,"satuan"=>$satuan,"waktu"=>$waktu,'item'=>9]);
+	}
+
 	public function detail()
 	{
 		$id = @intval($_GET['id']);
