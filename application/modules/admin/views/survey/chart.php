@@ -8,6 +8,8 @@
       <div class="info-box-content">
         <span class="info-box-text">PUNYA LAPTOP</span>
         <span class="info-box-number"><?php echo $data['laptop'] ?><small> DESA</small></span>
+        <span class="info-box-text">BELUM PUNYA LAPTOP</span>
+        <span class="info-box-number"><?php echo count($data['data_laptop']['belum']) ?><small> DESA</small></span>
       </div>
     </div>
   </div>
@@ -17,6 +19,8 @@
       <div class="info-box-content">
         <span class="info-box-text">PUNYA WIFI</span>
         <span class="info-box-number"><?php echo $data['wifi'] ?><small> DESA</small></span>
+        <span class="info-box-text">BELUM PUNYA WIFI</span>
+        <span class="info-box-number"><?php echo count($data['data_wifi']['belum']) ?><small> DESA</small></span>
       </div>
     </div>
   </div>
@@ -29,16 +33,33 @@
       <div class="info-box-content">
         <span class="info-box-text">DAPAT HONOR</span>
         <span class="info-box-number"><?php echo $data['honor'] ?><small> DESA</small></span>
+        <span class="info-box-text">BELUM DAPAT HONOR</span>
+        <span class="info-box-number"><?php echo count($data['data_honor']['belum']) ?><small> DESA</small></span>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix visible-sm-block"></div>
+
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-green"><i class="fa fa-money"></i></span>
+
+      <div class="info-box-content">
+        <span class="info-box-text">SUDAH ISI SURVEY</span>
+        <span class="info-box-number"><?php echo $data['isi_survey']['desa_sudah'] ?><small> DESA</small></span>
+        <span class="info-box-text">BELUM ISI SURVEY</span>
+        <span class="info-box-number"><?php echo $data['isi_survey']['desa_belum'] ?><small> DESA</small></span>
       </div>
     </div>
   </div>
 </div>
 <div class="row">
   <?php 
-  $survey_data = ['data_laptop','data_wifi','data_honor'];
+  $survey_data = ['data_laptop','data_wifi','data_honor','isi_survey'];
   foreach ($survey_data as $sdkey => $sdvalue) 
   {
     $title = str_replace('data_', '', $sdvalue);
+    $title = str_replace('isi_', '', $title);
     ?>
     <div class="col-md-12">
       <div class="card-group panel-group">
@@ -57,7 +78,14 @@
                   </div>
                   <div class="panel-body card-body">
                     <?php foreach ($data[$sdvalue]['sudah'] as $key => $value): ?>
-                      <small class="label label-success"><i class="fa fa-clock-o"></i> <?php echo $value['desa'] ?></small>
+                      <?php 
+                      if($sdvalue=='isi_survey'){
+                        
+                      }else{
+                        $value = $value['desa'];
+                      }
+                      ?>
+                      <small class="label label-success"><i class="fa fa-clock-o"></i> <?php echo $value ?></small>
                     <?php endforeach ?>
                   </div>
                   <div class="panel-footer card-footer">
@@ -72,7 +100,14 @@
                   </div>
                   <div class="panel-body card-body">
                     <?php foreach ($data[$sdvalue]['belum'] as $key => $value): ?>
-                      <small class="label label-danger"><i class="fa fa-clock-o"></i> <?php echo $value['desa'] ?></small>
+                      <?php 
+                      if($sdvalue=='isi_survey'){
+                        
+                      }else{
+                        $value = $value['desa'];
+                      }
+                      ?>
+                      <small class="label label-danger"><i class="fa fa-clock-o"></i> <?php echo $value ?></small>
                     <?php endforeach ?>
                   </div>
                   <div class="panel-footer card-footer">
