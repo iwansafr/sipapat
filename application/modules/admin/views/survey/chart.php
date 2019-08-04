@@ -42,7 +42,7 @@
 
   <div class="col-md-3 col-sm-6 col-xs-12">
     <div class="info-box">
-      <span class="info-box-icon bg-green"><i class="fa fa-money"></i></span>
+      <span class="info-box-icon bg-yellow"><i class="fa fa-chart-bar"></i></span>
 
       <div class="info-box-content">
         <span class="info-box-text">SUDAH ISI SURVEY</span>
@@ -60,13 +60,14 @@
   {
     $title = str_replace('data_', '', $sdvalue);
     $title = str_replace('isi_', '', $title);
+    $survey_title = $title == 'survey' ? '' : 'survey';
     ?>
     <div class="col-md-12">
       <div class="card-group panel-group">
         <div class="panel panel-default card card-default">
           <div class="panel-heading card-header">
             <h6 class="card-title panel-title m-0 font-weight-bold text-primary">
-              <a data-toggle="collapse" href="#<?php echo $sdvalue ?>" class="collapsed" aria-expanded="false">DATA SURVEY <?php echo $title ?></a>
+              <a data-toggle="collapse" href="#<?php echo $sdvalue ?>" class="collapsed" aria-expanded="false">DATA <?php echo $survey_title ?> <?php echo $title ?></a>
             </h6>
           </div>
           <div id="<?php echo $sdvalue ?>" class="card-collapse panel-collapse collapse" aria-expanded="false" style="height: 0px;">
