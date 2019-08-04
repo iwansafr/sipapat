@@ -34,6 +34,10 @@ if(!empty(@$_GET['kec']))
 	if(!empty($item)){
 		$where .= ' AND item = '.$item.' ';
 	}
+}else{
+	if(!empty($item)){
+		$where = ' item = '.$item.' ';
+	}
 }
 $form->setWhere($where);
 $form->init('roll');
