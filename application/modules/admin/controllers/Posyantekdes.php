@@ -36,6 +36,22 @@ class Posyantekdes extends CI_Controller{
 		$this->load->view('index',['id'=>@$id,'status'=>@$status,'posy_id'=>@@$posy_id,'pengguna'=>@@$pengguna,'jabatan'=>@$jabatan,'posyantekdes'=>@$posyantekdes]);
 	}
 
+	public function clear_pengurus()
+	{
+		$status = false;
+		if(!empty($posy_id)){
+			$id = @intval($_GET['id']);
+			$this->esg_model->set_nav_title('pengaturan pengurus');
+			$pengguna = $this->pengguna_model->get_pengguna();
+			$posyantekdes = $this->posyantekdes_model->get_posyantekdes($posy_id);
+			$jabatan = $this->posyantekdes_model->jabatan();
+			if($pengguna['desa_id'] == $posyantekdes['desa_id']){
+				$status = true;
+			}
+		}
+		$this->load->view('posyantekdes/pengurus',['id'=>@$id,'status'=>@$status,'posy_id'=>@@$posy_id,'pengguna'=>@@$pengguna,'jabatan'=>@$jabatan,'posyantekdes'=>@$posyantekdes]);
+	}
+
 	public function clear_list(){
 		$pengguna = $this->pengguna_model->get_pengguna();
 		$this->load->view('posyantekdes/index',['pengguna'=>$pengguna]);

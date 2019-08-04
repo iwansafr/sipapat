@@ -24,6 +24,49 @@ class Bumdes_model extends CI_Model{
 		];
 	}
 
+	public function get_usaha($bumdes_id = 0)
+	{
+		if(!empty($bumdes_id))
+		{
+			return $this->db->get_where('bumdes_usaha',['bumdes_id'=>$bumdes_id])->row_array();
+		}
+	}
+
+	public function get_dana_kat()
+	{
+		$this->db->select('id,title');
+		$kat = $this->db->get('bumdes_dana_kat')->result_array();
+		$kategori = [];
+		foreach($kat AS $key => $value)
+		{
+			$kategori[$value['id']] = $value['title'];
+		}
+		$this->db->select('id,bumdes_dana_kat_id, value');
+		$dana = $this->db->get('bumdes_dana')->result_array();
+		$data = [];
+		$i = 0;
+		foreach($dana AS $key => $value)
+		{
+			$data[$i]['id'] = $value['id'];
+			$data[$i]['value'] = $value['value'];
+			$data[$i]['kat'] = @$kategori[$value['bumdes_dana_kat_id']];
+			$data[$i]['kat_id'] = @intval($value['bumdes_dana_kat_id']);
+			$i ++;
+		}
+		$data_list = [];
+		foreach($data AS $key => $value)
+		{
+			if(!empty($value['kat']))
+			{
+				$data_list[$value['kat']][] = $value;
+			}else{
+				$data_list['lainnya'][] = $value;
+			}
+		}
+
+		return $data_list;
+	}
+
 	public function get_bumdes_id($desa_id = 0)
 	{
 		if(!empty($desa_id))

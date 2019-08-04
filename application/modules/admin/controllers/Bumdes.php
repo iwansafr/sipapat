@@ -125,4 +125,40 @@ class Bumdes extends CI_Controller{
 		// $this->esg->add_js(base_url('assets/bumdes/script.js'));
 		$this->load->view('bumdes/lembaga',['kategori_usaha'=>$this->bumdes_model->kategori_usaha(),'tingkat_pemeringkatan'=>$this->bumdes_model->tingkat_pemeringkatan(),'pengguna'=>$pengguna,'bumdes_id'=>$bumdes_id]);
 	}
+
+	public function dana()
+	{
+		$this->load->view('index');
+	}
+	
+	public function dana_kat()
+	{
+		$this->load->view('index');
+	}
+	public function clear_dana()
+	{
+		$this->load->view('bumdes/dana');
+	}
+
+	public function clear_dana_kat()
+	{
+		$this->load->view('bumdes/dana_kat');
+	}
+
+	public function usaha()
+	{
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$bumdes_id = $this->bumdes_model->get_bumdes_id($pengguna['desa_id']);
+		$usaha = $this->bumdes_model->get_usaha($bumdes_id);
+		$this->load->view('index',['pengguna'=>$pengguna,'bumdes_id'=>$bumdes_id,'usaha'=>$usaha]);
+	}
+
+	public function indikator_usaha()
+	{
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$bumdes_id = $this->bumdes_model->get_bumdes_id($pengguna['desa_id']);
+		$dana_kat = $this->bumdes_model->get_dana_kat();
+		$this->load->view('index',['dana_kat'=>$dana_kat,'bumdes_id'=>$bumdes_id,'desa_id'=>$pengguna['desa_id']]);
+	}
+
 }
