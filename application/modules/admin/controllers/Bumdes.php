@@ -158,7 +158,7 @@ class Bumdes extends CI_Controller{
 		$pengguna = $this->pengguna_model->get_pengguna();
 		$bumdes_id = $this->bumdes_model->get_bumdes_id($pengguna['desa_id']);
 		$dana_kat = $this->bumdes_model->get_dana_kat();
-		$this->load->view('index',['dana_kat'=>$dana_kat,'bumdes_id'=>$bumdes_id,'desa_id'=>$pengguna['desa_id']]);
+		$this->load->view('index',['dana_kat'=>$dana_kat,'bumdes_id'=>$bumdes_id,'desa_id'=>$pengguna['desa_id'],'user_id'=>$pengguna['user_id']]);
 	}
 
 }

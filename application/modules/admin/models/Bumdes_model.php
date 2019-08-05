@@ -98,4 +98,12 @@ class Bumdes_model extends CI_Model{
 			return $alamat_array;
 		}
 	}
+
+	public function update_indikator_usaha($data = array(), $name = '')
+	{
+		if(!empty($data) && !empty($name))
+		{
+			$this->db->update('bumdes_indikator_usaha', $data, "name = '$name'");
+		}
+	}
 }
