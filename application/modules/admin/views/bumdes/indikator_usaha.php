@@ -6,6 +6,7 @@ $form->init('param');
 $form->setTable('bumdes_indikator_usaha');
 $paramname = $bumdes_id.'_'.$user_id.'_'.$desa_id;
 $form->setParamName($paramname);
+$form->addInput('unit_usaha','textarea');
 foreach($dana_kat AS $key => $value)
 {
   $form_title = str_replace(' ','_',$key);
