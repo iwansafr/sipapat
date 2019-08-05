@@ -106,4 +106,12 @@ class Bumdes_model extends CI_Model{
 			$this->db->update('bumdes_indikator_usaha', $data, "name = '$name'");
 		}
 	}
+
+	public function update_simpan_pinjam($data = array(), $name = '')
+	{
+		if(!empty($data) && !empty($name))
+		{
+			$this->db->update('bumdes_simpan_pinjam', $data, "name = '$name'");
+		}	
+	}
 }
