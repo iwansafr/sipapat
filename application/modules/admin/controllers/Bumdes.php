@@ -169,4 +169,15 @@ class Bumdes extends CI_Controller{
 		$this->load->view('index',['dana_kat'=>$dana_kat,'bumdes_id'=>$bumdes_id,'desa_id'=>$pengguna['desa_id'],'user_id'=>$pengguna['user_id']]);
 	}
 
+	public function bumdesma_mandiri_sejahtera()
+	{
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$this->load->view('index',['pengguna'=>$pengguna]);
+	}
+
+	public function clear_bumdesma_mandiri_sejahtera()
+	{
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$this->load->view('bumdes/bumdesma_mandiri_sejahtera',['pengguna'=>$pengguna]);
+	}
 }
