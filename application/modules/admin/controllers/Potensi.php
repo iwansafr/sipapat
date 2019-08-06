@@ -78,7 +78,7 @@ class Potensi extends CI_Controller
 			'seni_budaya',
 		];
 		$items = array_start_one($items);
-		$this->load->view("potensi/".$items[$item],["desa_id"=>$desa_id,"kategori"=>$kategori,"satuan"=>$satuan,"waktu"=>$waktu,'item'=>1]);
+		$this->load->view("potensi/".$items[$item],["desa_id"=>$desa_id,"kategori"=>$kategori,"satuan"=>$satuan,"waktu"=>$waktu,'item'=>$item]);
 	}
 
 	public function perikanan() 
