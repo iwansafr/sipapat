@@ -99,6 +99,14 @@ class Bumdes_model extends CI_Model{
 		}
 	}
 
+	public function get_bumdesma($id)
+	{
+		if(!empty($id))
+		{
+			return $this->db->get_where('bumdesma',['id'=>$id])->row_array();
+		}
+	}
+
 	public function update_indikator_usaha($data = array(), $name = '')
 	{
 		if(!empty($data) && !empty($name))

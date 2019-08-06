@@ -173,14 +173,28 @@ class Bumdes extends CI_Controller{
 	public function bumdesma_mandiri_sejahtera()
 	{
 		$sumber = $this->pembangunan_model->sumber_dana();
+		$id = @intval($_GET['id']);
 		$pengguna = $this->pengguna_model->get_pengguna();
-		$this->load->view('index',['pengguna'=>$pengguna,'sumber'=>$sumber]);
+		$sumber_selected = @$_GET['sumber'];
+		$bumdesma = [];
+		if(!empty($id))
+		{
+			$bumdesma = $this->bumdes_model->get_bumdesma($id);
+		}
+		$this->load->view('index',['pengguna'=>$pengguna,'sumber'=>$sumber,'sumber_selected'=>$sumber_selected,'bumdesma'=>$bumdesma]);
 	}
 
 	public function clear_bumdesma_mandiri_sejahtera()
 	{
 		$sumber = $this->pembangunan_model->sumber_dana();
+		$id = @intval($_GET['id']);
 		$pengguna = $this->pengguna_model->get_pengguna();
-		$this->load->view('bumdes/bumdesma_mandiri_sejahtera',['pengguna'=>$pengguna,'sumber'=>$sumber]);
+		$sumber_selected = @$_GET['sumber'];
+		$bumdesma = [];
+		if(!empty($id))
+		{
+			$bumdesma = $this->bumdes_model->get_bumdesma($id);
+		}
+		$this->load->view('bumdes/bumdesma_mandiri_sejahtera',['pengguna'=>$pengguna,'sumber'=>$sumber,'sumber_selected'=>$sumber_selected,'bumdesma'=>$bumdesma]);
 	}
 }

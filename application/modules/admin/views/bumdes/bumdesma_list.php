@@ -1,6 +1,10 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-<a class="btn btn-warning load_link" href="<?php echo base_url('admin/bumdes/clear_bumdesma_mandiri_sejahtera') ?>"><i class="fa fa-plus"></i> reload</a>
+<div class="form-group">
+	<div class="btn-group">
+		<a class="btn btn-default btn-sm" href="<?php echo base_url('admin/bumdes/bumdesma_mandiri_sejahtera') ?>"><i class="fa fa-refresh"></i> reload</a>
+	</div>
+</div>
 <?php
 $form2 = new zea();
 $form2->init('roll');
@@ -17,20 +21,24 @@ $form2->setType('modal','number');
 $form2->setLabel('modal','Penyertaan Modal');
 
 $form2->addInput('sumber_dana', 'dropdown');
-$form2->setOptions('sumber_dana',['dd','add']);
+$form2->setOptions('sumber_dana',$sumber);
 $form2->setLabel('sumber_dana','sumber dana');
+$form2->setAttribute('sumber_dana', 'disabled');
 
 $form2->addInput('th_anggaran','plaintext');
 $form2->setLabel('th_anggaran','tahun anggaran');
 $form2->setType('th_anggaran','number');
 
 $form2->addInput('termin','dropdown');
-$form2->setOptions('termin',['1'=>'termin 1','2'=>'termin 2','3'=>'termin 3']);
+$form2->setOptions('termin',['0'=>'None','1'=>'termin 1','2'=>'termin 2','3'=>'termin 3']);
+$form2->setAttribute('termin', 'disabled');
 
-$form2->setEdit(true);
-$form2->setDelete(true);
-$form2->setEditLink(base_url('admin/bumdes/bumdesma_mandiri_sejahtera?id='));
-
+if(is_desa())
+{
+	$form2->setEdit(true);
+	$form2->setDelete(true);
+	$form2->setEditLink(base_url('admin/bumdes/bumdesma_mandiri_sejahtera?id='));
+}
 $form2->setUrl('admin/bumdes/clear_bumdesma_mandiri_sejahtera');
 $form2->setFormName('bumdesma_list');
 
