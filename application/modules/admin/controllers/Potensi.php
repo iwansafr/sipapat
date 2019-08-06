@@ -59,6 +59,28 @@ class Potensi extends CI_Controller
 		$this->load->view('index',['desa_id'=>$desa_id,'kategori'=>$kategori,'satuan'=>$satuan,'waktu'=>$waktu]);
 	}
 
+	public function clear_bidang($item = 0)
+	{
+		$desa_id = $this->sipapat_model->get_desa_id();
+		$kategori = $this->potensi_model->kategori();
+		$satuan = $this->potensi_model->satuan();
+		$waktu = $this->potensi_model->waktu();
+		$items =
+		[
+			'perikanan',
+			'pertanian',
+			'peternakan',
+			'perkebunan',
+			'home_industri',
+			'perdagangan',
+			'wisata',
+			'jasa',
+			'seni_budaya',
+		];
+		$items = array_start_one($items);
+		$this->load->view("potensi/".$items[$item],["desa_id"=>$desa_id,"kategori"=>$kategori,"satuan"=>$satuan,"waktu"=>$waktu,'item'=>1]);
+	}
+
 	public function perikanan() 
 	{
 			$desa_id = $this->sipapat_model->get_desa_id();

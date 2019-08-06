@@ -1,6 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-
-
+?>
+<a class="btn btn-warning load_link" href="<?php echo base_url('admin/bumdes/clear_bumdesma_mandiri_sejahtera') ?>"><i class="fa fa-plus"></i> reload</a>
+<?php
 $form2 = new zea();
 $form2->init('roll');
 if(is_desa())

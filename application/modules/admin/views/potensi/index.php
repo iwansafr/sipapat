@@ -96,6 +96,10 @@ $form->addInput('waktu','dropdown');
 $form->setOptions('waktu',$waktu);
 $form->setAttribute('waktu','disabled');
 $form->setUrl('admin/potensi/clear_list/'.@$item);
+if(!empty($item))
+{
+	$form->setUrl('admin/potensi/clear_bidang/'.@$item);
+}
 
 if(is_desa())
 {

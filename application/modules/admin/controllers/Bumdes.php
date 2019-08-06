@@ -11,6 +11,7 @@ class Bumdes extends CI_Controller{
 		$this->load->model('sipapat_model');
 		$this->load->model('pengguna_model');
 		$this->load->model('bumdes_model');
+		$this->load->model('pembangunan_model');
 		$this->load->library('esg');
 		$this->load->library('ZEA/zea');
 		$this->esg_model->init();
@@ -171,13 +172,15 @@ class Bumdes extends CI_Controller{
 
 	public function bumdesma_mandiri_sejahtera()
 	{
+		$sumber = $this->pembangunan_model->sumber_dana();
 		$pengguna = $this->pengguna_model->get_pengguna();
-		$this->load->view('index',['pengguna'=>$pengguna]);
+		$this->load->view('index',['pengguna'=>$pengguna,'sumber'=>$sumber]);
 	}
 
 	public function clear_bumdesma_mandiri_sejahtera()
 	{
+		$sumber = $this->pembangunan_model->sumber_dana();
 		$pengguna = $this->pengguna_model->get_pengguna();
-		$this->load->view('bumdes/bumdesma_mandiri_sejahtera',['pengguna'=>$pengguna]);
+		$this->load->view('bumdes/bumdesma_mandiri_sejahtera',['pengguna'=>$pengguna,'sumber'=>$sumber]);
 	}
 }
