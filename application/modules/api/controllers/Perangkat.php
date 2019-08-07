@@ -26,8 +26,7 @@ class Perangkat extends CI_Controller
 		}
 
 		$data = $this->db->query("SELECT * FROM perangkat_desa where foto != '' AND jabatan = 1 AND kelompok = 1 $where ORDER BY id DESC LIMIT $limit ", $desa_id)->result_array();
-		pr($this->db->last_query());
-		pr($data);die();
+
 		$desa_ids = [];
 		foreach ($data as $key => $value) 
 		{
