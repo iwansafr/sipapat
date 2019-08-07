@@ -12,7 +12,16 @@ class Perangkat extends CI_Controller
 	}
 	public function index()
 	{
-		$data = $this->db->query("SELECT * FROM perangkat_desa where foto != '' AND jabatan = 1 AND kelompok = 1 ORDER BY id DESC LIMIT 12")->result_array();
+		$desa_id = @intval($_GET['d_id']);
+		$where = '';
+		if(!empty($desa_id))
+		{
+			$where = ' AND desa_id = ? ';
+		}else{
+			$desa_id = '';
+		}
+
+		$data = $this->db->query("SELECT * FROM perangkat_desa where foto != '' AND jabatan = 1 AND kelompok = 1 $where ORDER BY id DESC LIMIT 12", $desa_id)->result_array();
 		$kelamin = ['Perempuan','Laki-laki'];
 		$agama = 
 			[
