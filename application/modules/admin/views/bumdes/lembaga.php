@@ -76,4 +76,6 @@ $form->setUrl('admin/bumdes/lembaga_list');
 $form->setDelete(true);
 $form->setEdit(true);
 
+$form->setEditLink(base_url('admin/bumdes/lembaga_edit?id='));
+
 $form->form();

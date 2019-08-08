@@ -59,5 +59,6 @@
 
 	$form->setDelete(true);
 	$form->setEdit(true);
+	$form->setEditLink(base_url('admin/bumdes/pengurus_edit/?id='));
 
 	$form->form();

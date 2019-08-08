@@ -2,7 +2,10 @@
 
 $form = new zea();
 
+$id = @intval($_GET['id']);
+
 $form->init('edit');
+$form->setId($id);
 
 $form->setTable('bumdes_kelembagaan');
 $form->addInput('no','text');

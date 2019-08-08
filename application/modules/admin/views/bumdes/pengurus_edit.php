@@ -27,6 +27,8 @@
 	if(empty($id))
 	{
 		$form->setValue('pengawas', "KETUA : -\nANGGOTA 1 : -\nANGGOTA 2 : -");
+	}else{
+		$form->setId($id);
 	}
 
 	$form->addInput('jenis_usaha','textarea');
