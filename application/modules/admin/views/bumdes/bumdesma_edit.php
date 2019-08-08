@@ -1,24 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 if(is_desa())
 {
-	?>
-	<!-- <a class="btn btn-default btn-sm load_link" href="<?php echo base_url('admin/bumdes/clear_bumdesma_mandiri_sejahtera') ?>"><i class="fa fa-plus"></i> tambah baru</a> -->
-	<div class="form-group" style="margin-bottom: 0!important;">
-		<div class="btn-group">
-	    <a href="#" type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-	      <i class="fa fa-plus"></i> tambah baru
-	      <span class="caret"></span>
-	      <span class="sr-only">Toggle Dropdown</span>
-	    </a>
-	    <ul class="dropdown-menu" role="menu">
-	      <li><a href="<?php echo base_url('admin/bumdes/bumdesma_mandiri_sejahtera?sumber=dd') ?>">DD</a></li>
-	      <li class="divider"></li>
-	      <li><a href="<?php echo base_url('admin/bumdes/bumdesma_mandiri_sejahtera?sumber=other') ?>">Lainnya</a></li>
-	    </ul>
-	    <hr>
-	  </div>
-	</div>
-	<?php
 	$id = @intval($_GET['id']);
 	if(!empty($sumber_selected) || !empty($bumdesma))
 	{

@@ -1,17 +1,31 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-?>
-<div class="form-group">
-	<div class="btn-group">
-		<a class="btn btn-default btn-sm" href="<?php echo base_url('admin/bumdes/bumdesma_mandiri_sejahtera') ?>"><i class="fa fa-refresh"></i> reload</a>
+if (is_desa())
+{
+	?>
+	<div class="form-group">
+		<div class="btn-group">
+	    <a href="#" type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+	      <i class="fa fa-plus"></i> tambah baru
+	      <span class="caret"></span>
+	      <span class="sr-only">Toggle Dropdown</span>
+	    </a>
+	    <ul class="dropdown-menu" role="menu">
+	      <li><a href="<?php echo base_url('admin/bumdes/bumdesma_mandiri_sejahtera?sumber=dd') ?>">DD</a></li>
+	      <li class="divider"></li>
+	      <li><a href="<?php echo base_url('admin/bumdes/bumdesma_mandiri_sejahtera?sumber=other') ?>">Lainnya</a></li>
+	    </ul>
+	    <hr>
+	  </div>
 	</div>
-</div>
-<?php
+	<?php
+}
 $form2 = new zea();
 $form2->init('roll');
 if(is_desa())
 {
 	$form2->setWhere('desa_id = '.@intval($pengguna['desa_id']));	
 }
+$form2->setHeading('<a class="btn btn-default btn-sm" href="'.base_url('admin/bumdes/bumdesma_mandiri_sejahtera').'"><i class="fa fa-refresh"></i> reload</a>');
 $form2->setTable('bumdesma');
 $form2->setNumbering(true);
 $form2->search();
