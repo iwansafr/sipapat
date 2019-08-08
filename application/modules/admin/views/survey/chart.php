@@ -24,6 +24,17 @@
       </div>
     </div>
   </div>
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-red"><i class="fa fa-home"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">WIFI DI RUMAH</span>
+        <span class="info-box-number"><?php echo $data['data_wifi']['rumah_jml'] ?><small> DESA</small></span>
+        <span class="info-box-text">WIFI DI KANTOR</span>
+        <span class="info-box-number"><?php echo $data['data_wifi']['desa_jml'] ?><small> DESA</small></span>
+      </div>
+    </div>
+  </div>
   <div class="clearfix visible-sm-block"></div>
 
   <div class="col-md-3 col-sm-6 col-xs-12">

@@ -21,8 +21,11 @@ class Survey_model extends CI_Model
 
 		$data['data_wifi'] = [];
 		$data['data_wifi']['sudah'] = $this->db->query('SELECT desa FROM survey_laptop WHERE wifi = 1')->result_array();
+		$data['data_wifi']['rumah'] = $this->db->query('SELECT desa FROM survey_laptop WHERE wifi = 1 AND letak_jaringan = ?', ['rumah operator sid'])->result_array();
+		$data['data_wifi']['rumah_jml'] = count($data['data_wifi']['rumah']);
 		$data['data_wifi']['belum'] = $this->db->query('SELECT desa FROM survey_laptop WHERE wifi = 0')->result_array();
 		$data['wifi'] = count($data['data_wifi']['sudah']);
+		$data['data_wifi']['desa_jml'] = @intval($data['wifi']) - @intval($data['data_wifi']['rumah_jml']);
 
 		$data['data_honor'] = [];
 		$data['data_honor']['sudah'] = $this->db->query('SELECT desa FROM survey_laptop WHERE honor = 1')->result_array();
