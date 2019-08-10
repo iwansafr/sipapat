@@ -4,45 +4,103 @@ class Desa_model extends CI_Model
 {
 	public function tanpa_perangkat()
 	{
+		$kelompok_id = ['1'=>'perangkat desa', '2'=>'bpd','3'=>'lpmp','4'=>'pkk','5'=>'karang taruna','6'=>'rt','7'=>'rw','8'=>'kpmd','9'=>'linmas'];
+		$kelompok_min = ['1'=>5, '2'=>5,'3'=>5,'4'=>5,'5'=>5,'6'=>3,'7'=>2,'8'=>1,'9'=>5];
 		$data = array();
 		$desa = $this->db->query('SELECT id,nama FROM desa')->result_array();
 
-		$desa_perangkat = $this->db->query('SELECT desa_id,COUNT(*) AS tot FROM perangkat_desa GROUP BY desa_id')->result_array();
-		// $tmp_desa_id = [];
-		
-		// pr($desa_perangkat);
-
-		// die();
-
-		// $desa_perangkat = $this->db->query('SELECT desa_id FROM perangkat_desa WHERE count(desa_id) AS c_d_id > 5 GROUP BY desa_id')->result_array();
-		// pr($desa_perangkat);
-		// die();
-
+		// $desa_perangkat = $this->db->query('SELECT desa_id,COUNT(*) AS tot FROM perangkat_desa GROUP BY desa_id')->result_array();
+		$desa_perangkat = $this->db->query('SELECT desa_id,kelompok FROM perangkat_desa order by desa_id ASC')->result_array();
 		$desa_tmp = array();
+
 		foreach ($desa_perangkat as $key => $value) 
 		{
-			if($value['tot'] > 4)
-			{
-				$desa_tmp[] = $value['desa_id'];
-			}
+			$desa_tmp[$value['kelompok']][] = $value['desa_id'];
 		}
 
-		$data_desa = array();
-		foreach ($desa as $key => $value) 
+		$kelompok = [];
+		foreach($kelompok_id AS $kkey => $kvalue)
 		{
-			if(!in_array($value['id'], $desa_tmp))
+			$total = 1;
+			foreach ($desa_tmp[$kkey] as $key => $value) 
 			{
-				$data_desa['uncomplete'][] = ['id'=>$value['id'],'nama'=>$value['nama']];
-			}else{
-				$data_desa['complete'][] = ['id'=>$value['id'],'nama'=>$value['nama']];
+				if($key>0)
+				{
+					if($desa_tmp[$kkey][$key] == $desa_tmp[$kkey][$key-1])
+					{
+						$total++;
+						$kelompok[$kkey][$value] = $total;
+					}else{
+						$total = 1;
+					}
+				}
+			}
+		}
+		$data_desa = array();
+		foreach ($kelompok_id as $kkey => $kvalue)
+		{
+			foreach ($desa as $key => $value) 
+			{
+				$total = @intval($kelompok[$kkey][$value['id']]);
+				$desa_tmp[$kkey] = array_unique($desa_tmp[$kkey]);
+				if(!in_array($value['id'], $desa_tmp[$kkey]))
+				{
+					$data_desa['uncomplete'][$kkey][] = 
+					[
+						'id'=>$value['id'],
+						'nama'=>$value['nama'],
+						'total' => $total
+					];
+				}else{
+					if($total >= $kelompok_min[$kkey])
+					{
+						$data_desa['complete'][$kkey][] = 
+						[
+							'id'=>$value['id'],
+							'nama'=>$value['nama'],
+							'total' => $total
+						];
+					}else if($total == 0){
+						$data_desa['uncomplete'][$kkey][] = 
+						[
+							'id'=>$value['id'],
+							'nama'=>$value['nama'],
+							'total' => $total
+						];
+					}else{
+						$data_desa['kurang'][$kkey][] = 
+						[
+							'id'=>$value['id'],
+							'nama'=>$value['nama'],
+							'total' => $total
+						];
+					}
+				}
 			}
 		}
 		if(!empty($data_desa))
 		{
-			$data['uncomplete']['data']    = $data_desa['uncomplete'];
-			$data['uncomplete']['total']   = count($data_desa['uncomplete']);
-			$data['complete']['data']      = $data_desa['complete'];
-			$data['complete']['total']     = count($data_desa['complete']);
+			foreach ($kelompok_id as $key => $value)
+			{
+				if(!empty($data_desa['uncomplete'][$key]))
+				{
+					$data['uncomplete'][$key]['data']  = $data_desa['uncomplete'][$key];
+					$data['uncomplete'][$key]['title'] = $value;
+					$data['uncomplete'][$key]['total'] = count($data_desa['uncomplete'][$key]);
+				}
+				if(!empty($data_desa['kurang'][$key]))
+				{
+					$data['kurang'][$key]['data']  = $data_desa['kurang'][$key];
+					$data['kurang'][$key]['title'] = $value;
+					$data['kurang'][$key]['total'] = count($data_desa['kurang'][$key]);
+				}
+				if(!empty($data_desa['complete'][$key]))
+				{
+					$data['complete'][$key]['data']  = $data_desa['complete'][$key];
+					$data['complete'][$key]['title'] = $value;
+					$data['complete'][$key]['total'] = count($data_desa['complete'][$key]);
+				}
+			}
 		}
 		return $data;
 	}
