@@ -17,8 +17,13 @@ class Potensi extends CI_Controller
 
 	public function edit()
 	{
+		$item = @intval($_GET['item']);
 		$desa_id = $this->sipapat_model->get_desa_id();
 		$kategori = $this->potensi_model->kategori();
+		if(!empty($item))
+		{
+			$kategori=$kategori[$item];
+		}
 		$satuan = $this->potensi_model->satuan();
 		$waktu = $this->potensi_model->waktu();
 		$bulan = ['januari','februari','maret','april','mei','juni','juli','agustus','september','oktober','november','desember'];

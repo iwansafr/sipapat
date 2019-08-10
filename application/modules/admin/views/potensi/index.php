@@ -65,7 +65,7 @@ if(!is_desa())
 	$form->setAttribute('user_id','disabled');
 	$form->setLabel('user_id','pengguna');
 }else{
-	$form->setHeading('<a href="'.base_url('admin/potensi/edit').'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>');
+	$form->setHeading('<a href="'.base_url('admin/potensi/edit/?item='.@intval($item)).'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>');
 	$form->setWhere($where);
 }
 
@@ -105,6 +105,10 @@ if(is_desa())
 {
 	$form->setDelete(TRUE);
 	$form->setEdit(TRUE);
+	if(!empty($item))
+	{
+		$form->setEditLink(base_url('admin/potensi/edit?item='.$item.'&id='));
+	}
 }
 
 $form->setFormName('potensi_form');
