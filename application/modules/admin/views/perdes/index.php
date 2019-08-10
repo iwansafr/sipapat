@@ -41,7 +41,10 @@ if(!empty(@$_GET['kec']))
 }
 $form->setWhere($where);
 $form->init('roll');
-$form->addInput('id','hidden');
+$form->addInput('id','link');
+$form->setLabel('id','detail');
+$form->setPlainText('id','detail');
+$form->setLink('id',base_url('admin/perdes/detail/'),'id');
 if(!is_desa())
 {
 	$form->addInput('desa_id', 'dropdown');

@@ -76,6 +76,16 @@ class Perdes extends CI_Controller
 		$perdes = $this->perdes_model->get_perdes(@intval($_GET['id']));
 		$this->load->view('index',['perdes'=>$perdes,'perdes_options'=>$perdes_options,'perdes_progress'=>$perdes_progress,'desa_id'=>$desa_id]);
 	}
+
+	public function detail()
+	{
+		$desa_id = $this->sipapat_model->get_desa_id();
+		$perdes_options = $this->perdes_model->perdes_item();
+		$perdes_progress = $this->perdes_model->perdes_progress();
+		$perdes = $this->perdes_model->get_perdes(@intval($_GET['id']));
+		$this->load->view('index',['perdes'=>$perdes,'perdes_options'=>$perdes_options,'perdes_progress'=>$perdes_progress,'desa_id'=>$desa_id]);
+	}
+
 	public function clear_list($item = '')
 	{
 		$desa_id = $this->sipapat_model->get_desa_id();
