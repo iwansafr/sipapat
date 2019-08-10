@@ -4,6 +4,7 @@ class Desa_model extends CI_Model
 {
 	public function tanpa_perangkat()
 	{
+		$get = @intval($_GET['kelompok']);
 		$kelompok_id = ['1'=>'perangkat desa', '2'=>'bpd','3'=>'lpmp','4'=>'pkk','5'=>'karang taruna','6'=>'rt','7'=>'rw','8'=>'kpmd','9'=>'linmas'];
 		$kelompok_min = ['1'=>5, '2'=>5,'3'=>5,'4'=>5,'5'=>5,'6'=>3,'7'=>2,'8'=>1,'9'=>5];
 		$data = array();
@@ -80,25 +81,47 @@ class Desa_model extends CI_Model
 		}
 		if(!empty($data_desa))
 		{
-			foreach ($kelompok_id as $key => $value)
+			if(!empty($get))
 			{
-				if(!empty($data_desa['uncomplete'][$key]))
+					if(!empty($data_desa['uncomplete'][$get]))
+					{
+						$data['uncomplete'][$get]['data']  = $data_desa['uncomplete'][$get];
+						$data['uncomplete'][$get]['title'] = $kelompok_id[$get];
+						$data['uncomplete'][$get]['total'] = count($data_desa['uncomplete'][$get]);
+					}
+					if(!empty($data_desa['kurang'][$get]))
+					{
+						$data['kurang'][$get]['data']  = $data_desa['kurang'][$get];
+						$data['kurang'][$get]['title'] = $kelompok_id[$get];
+						$data['kurang'][$get]['total'] = count($data_desa['kurang'][$get]);
+					}
+					if(!empty($data_desa['complete'][$get]))
+					{
+						$data['complete'][$get]['data']  = $data_desa['complete'][$get];
+						$data['complete'][$get]['title'] = $kelompok_id[$get];
+						$data['complete'][$get]['total'] = count($data_desa['complete'][$get]);
+					}
+			}else{
+				foreach ($kelompok_id as $key => $value)
 				{
-					$data['uncomplete'][$key]['data']  = $data_desa['uncomplete'][$key];
-					$data['uncomplete'][$key]['title'] = $value;
-					$data['uncomplete'][$key]['total'] = count($data_desa['uncomplete'][$key]);
-				}
-				if(!empty($data_desa['kurang'][$key]))
-				{
-					$data['kurang'][$key]['data']  = $data_desa['kurang'][$key];
-					$data['kurang'][$key]['title'] = $value;
-					$data['kurang'][$key]['total'] = count($data_desa['kurang'][$key]);
-				}
-				if(!empty($data_desa['complete'][$key]))
-				{
-					$data['complete'][$key]['data']  = $data_desa['complete'][$key];
-					$data['complete'][$key]['title'] = $value;
-					$data['complete'][$key]['total'] = count($data_desa['complete'][$key]);
+					if(!empty($data_desa['uncomplete'][$key]))
+					{
+						$data['uncomplete'][$key]['data']  = $data_desa['uncomplete'][$key];
+						$data['uncomplete'][$key]['title'] = $value;
+						$data['uncomplete'][$key]['total'] = count($data_desa['uncomplete'][$key]);
+					}
+					if(!empty($data_desa['kurang'][$key]))
+					{
+						$data['kurang'][$key]['data']  = $data_desa['kurang'][$key];
+						$data['kurang'][$key]['title'] = $value;
+						$data['kurang'][$key]['total'] = count($data_desa['kurang'][$key]);
+					}
+					if(!empty($data_desa['complete'][$key]))
+					{
+						$data['complete'][$key]['data']  = $data_desa['complete'][$key];
+						$data['complete'][$key]['title'] = $value;
+						$data['complete'][$key]['total'] = count($data_desa['complete'][$key]);
+					}
 				}
 			}
 		}
