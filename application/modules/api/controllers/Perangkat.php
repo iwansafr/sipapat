@@ -90,4 +90,35 @@ class Perangkat extends CI_Controller
 		}
 		output_json($data);
 	}
+
+	public function all()
+	{
+		$desa_id = @intval($_GET['d_id']);
+		$full = @intval($_GET['full']);
+		$page = @intval($_GET['page']);
+		$page = (@intval($page) > 0 ) ? $page-1 : $page;
+		$limit = 12;
+		$limit = 'LIMIT '.$limit*$page.','.$limit;
+		$where = '';
+		if(!empty($desa_id))
+		{
+			$where = ' WHERE desa_id = ? ';
+			if(!empty($full))
+			{
+				$limit = '';
+			}
+		}else{
+			$desa_id = '';
+		}
+
+		$data = $this->db->query("SELECT * FROM perangkat_desa $where ORDER BY id DESC $limit", $desa_id)->result_array();
+		$data_tmp = [];
+
+		foreach ($data as $key => $value) 
+		{
+			$data_tmp[$value['kelompok']][] = $value;
+		}
+		$data = $data_tmp;
+		output_json($data);
+	}
 }

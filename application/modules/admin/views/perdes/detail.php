@@ -1,23 +1,4 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-//  [ID] => 74
-//     [DESA_ID] => 233
-//     [USER_ID] => 250
-//     [ITEM] => 1
-//     [NO] => 141.03  / VII  / 2015
-//     [TGL_PENETAPAN] => 2015-07-09
-//     [TGL_PELAKSANAAN] => 2015-07-09
-//     [FILE_OFFICE] => ["FILE_OFFICE_141.03__\/_VII__\/_2015_0_1565240747.DOC"]
-//     [PROGRESS] => 2
-//     [CREATED] => 2019-08-08 12:05:47
-//     [UPDATED] => 2019-08-08 12:05:47
-// [1] => RPJMDS
-//     [2] => RKP DESA
-//     [3] => APBDES
-//     [4] => PERDES KEWENANGAN
-//     [5] => PERDES ASET
-// [1] => DRAFTING DI DESA
-//     [2] => EVALUASI KECAMATAN
-//     [3] => BELUM DIBUAT
 ?>
 
 <div class="panel panel-default card card-default">
