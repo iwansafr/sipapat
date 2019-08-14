@@ -116,6 +116,7 @@ class Perangkat extends CI_Controller
 
 		foreach ($data as $key => $value) 
 		{
+			$value['foto'] = image_module('perangkat_desa', $value['id'].'/'.$value['foto']);
 			$data_tmp[$value['kelompok']][] = $value;
 		}
 		$data = $data_tmp;
