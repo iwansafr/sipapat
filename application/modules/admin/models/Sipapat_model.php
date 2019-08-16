@@ -178,7 +178,7 @@ class Sipapat_model extends CI_Model
 		if(!empty($kelompok_id))
 		{
 			$this->load->model('pengguna_model');
-			$kelompok = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd'];
+			$kelompok = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd','9'=>'linmas'];
 			$jabatan = $this->pengguna_model->jabatan();
 			return ['kelompok'=>$kelompok[$kelompok_id], 'jabatan'=>$jabatan[$kelompok_id][$jabatan_id]];
 		}
