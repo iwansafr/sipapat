@@ -96,6 +96,7 @@ class Perangkat extends CI_Controller
 		$desa_id = @intval($_GET['d_id']);
 		$full = @intval($_GET['full']);
 		$kelompok = @intval($_GET['kelompok']);
+		$jabatan = @intval($_GET['jabatan']);
 		$page = @intval($_GET['page']);
 		$page = (@intval($page) > 0 ) ? $page-1 : $page;
 		$limit = 12;
@@ -111,6 +112,10 @@ class Perangkat extends CI_Controller
 			if(!empty($kelompok))
 			{
 				$where .= ' AND kelompok = '.$kelompok;
+				if(!empty($jabatan))
+				{
+					$where .= ' AND jabatan = '.$jabatan;
+				}
 			}
 		}else{
 			$desa_id = '';
