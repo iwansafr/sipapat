@@ -38,3 +38,5 @@ ALTER TABLE `bumdes_kelembagaan` CHANGE `lpj_terakhir` `lpj_terakhir` DATE NULL 
 ALTER TABLE `bumdes_kelembagaan` CHANGE `no` `no` VARCHAR(50) NOT NULL;
 
 ALTER TABLE `survey_laptop` ADD `desa_id` INT(11) NOT NULL DEFAULT '0' AFTER `user_id`;
+
+ALTER TABLE `posyantekdes` CHANGE `no_permakades` `no_permakades` VARCHAR(50) NOT NULL, CHANGE `no_bdn_hkm` `no_bdn_hkm` VARCHAR(50) NOT NULL, CHANGE `masa_berlaku` `masa_berlaku` VARCHAR(50) NOT NULL;
