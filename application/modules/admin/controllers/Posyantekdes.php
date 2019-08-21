@@ -75,7 +75,7 @@ class Posyantekdes extends CI_Controller{
 				$al_value = explode(':',$al_value);
 				$alamat_tmp[@$al_value[0]] = @$al_value[1];
 			}
-		}else if(preg_match('~=~',$alanat)){
+		}else if(preg_match('~=~',$alamat)){
 			$alamat = explode("\n", $alamat);
 			foreach($alamat as $al_key => $al_value){
 				$al_value = explode('=',$al_value);
