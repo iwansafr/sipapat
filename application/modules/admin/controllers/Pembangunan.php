@@ -1,4 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
+require('./vendor/autoload.php');
+
+use PhpOffice\PhpSpreadsheet\Helper\Sample;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class Pembangunan extends CI_Controller
 {
@@ -145,7 +150,20 @@ class Pembangunan extends CI_Controller
 				$bidang_id = $key;
 			}
 		}
-		$this->load->view('index',['view'=>$view,'sumber'=>$sumber,'bidang'=>$bidang,'bidang_id'=>$bidang_id,'desa_id'=>$desa_id]);
+		$desa_id_get = '';
+		if(!empty($_GET))
+		{
+			$desa_id_get = [];
+			foreach($_GET AS $key => $value)
+			{
+				$desa_id_get[] = $key.'='.str_replace(' ','+',$value);
+			}
+			if(!empty($desa_id_get))
+			{
+				$desa_id_get = '?'.implode('&', $desa_id_get);
+			}
+		}
+		$this->load->view('index',['view'=>$view,'sumber'=>$sumber,'bidang'=>$bidang,'bidang_id'=>$bidang_id,'desa_id'=>$desa_id,'desa_id_get'=>$desa_id_get]);
 	}
 	public function clear_list($type = '')
 	{
@@ -227,8 +245,12 @@ class Pembangunan extends CI_Controller
 				$bidang_id = $key;
 			}
 		}
-		$where = !empty(@intval($_GET['desa_id'])) ? ' AND pembangunan.desa_id = '.$_GET['desa_id'] : '';
-		$where = !empty(@$_GET['kec']) && empty(@intval($_GET['desa_id'])) ? " AND desa.kecamatan = '".$_GET['kec']."'" : $where;
+		if(!empty($desa_id))
+		{
+			$where = ' AND pembangunan.desa_id = '.$desa_id;
+		}else{
+			$where =  " AND desa.kecamatan = '".$_GET['kec']."'";
+		}
 		$data = $this->db->query
 		('
 			SELECT 
@@ -259,27 +281,7 @@ class Pembangunan extends CI_Controller
 		$spreadsheet->setActiveSheetIndex(0)
 		->setCellValue('A1','no')
 		->setCellValue('B1','nama desa')
-		->setCellValue('C1','item')
-		->setCellValue('D1','nama')
-		->setCellValue('E1','tempat lahir')
-		->setCellValue('F1','tgl lahir')
-		->setCellValue('G1','kelamin')
-		->setCellValue('H1','alamat')
-		->setCellValue('I1','telepon')
-		->setCellValue('J1','agama')
-		->setCellValue('K1','status perkawinan')
-		->setCellValue('L1','pendidikan terakhir')
-		->setCellValue('M1','jamkes')
-		->setCellValue('N1','jabatan')
-		->setCellValue('O1','no sk')
-		->setCellValue('P1','sk penetapan kembali')
-		->setCellValue('Q1','tgl pelantikan')
-		->setCellValue('R1','akhir masa jabatan')
-		->setCellValue('S1','pelantik')
-		->setCellValue('T1','bengkok')
-		->setCellValue('U1','penghasilan')
-		->setCellValue('V1','riwayat pendidikan')
-		->setCellValue('W1','riwayat diklat');
+		->setCellValue('C1','item');
 
 		// Miscellaneous glyphs, UTF-8
 		$i=2;
@@ -288,28 +290,8 @@ class Pembangunan extends CI_Controller
 		{
 			$spreadsheet->setActiveSheetIndex(0)
 			->setCellValue('A'.$i,$j)
-			->setCellValue('B'.$i,$value['username'])
-			->setCellValue('C'.$i,$value['nama_desa'])
-			->setCellValue('D'.$i,$value['nama'])
-			->setCellValue('E'.$i,$value['tempat_lahir'])
-			->setCellValue('F'.$i,$value['tgl_lahir'])
-			->setCellValue('G'.$i,$kelamin[$value['kelamin']])
-			->setCellValue('H'.$i,$value['alamat'])
-			->setCellValue('I'.$i,$value['telepon'])
-			->setCellValue('J'.$i,$agama[$value['agama']])
-			->setCellValue('K'.$i,$status_perkawinan[$value['status_perkawinan']])
-			->setCellValue('L'.$i,$pendidikan_terakhir[$value['pendidikan_terakhir']])
-			->setCellValue('M'.$i,$value['jamkes'])
-			->setCellValue('N'.$i,$jabatan[$value['jabatan']])
-			->setCellValue('O'.$i,$value['no_sk'])
-			->setCellValue('P'.$i,$value['sk_penetapan_kembali'])
-			->setCellValue('Q'.$i,$value['tgl_pelantikan'])
-			->setCellValue('R'.$i,$value['akhir_masa_jabatan'])
-			->setCellValue('S'.$i,$value['pelantik'])
-			->setCellValue('T'.$i,$value['bengkok'])
-			->setCellValue('U'.$i,$value['penghasilan'])
-			->setCellValue('V'.$i,$value['riwayat_pendidikan'])
-			->setCellValue('W'.$i,$value['riwayat_diklat']);
+			->setCellValue('B'.$i,$value['nama_desa'])
+			->setCellValue('C'.$i,$value['item']);
 			$i++;
 			$j++;
 		}
@@ -322,7 +304,7 @@ class Pembangunan extends CI_Controller
 
 		// Redirect output to a client’s web browser (Xlsx)
 		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-		header('Content-Disposition: attachment;filename="data perangkat.xlsx"');
+		header('Content-Disposition: attachment;filename="Laporan Desa.xlsx"');
 		header('Cache-Control: max-age=0');
 		// If you're serving to IE 9, then the following may be needed
 		header('Cache-Control: max-age=1');
