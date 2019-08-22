@@ -34,7 +34,8 @@ if(!is_admin() && !is_kecamatan())
 	$form->addInput('tgl_lahir','text');
 	$form->setLabel('tgl_lahir','Tanggal Lahir');
 	// $form->setAttribute('tgl_lahir',['class'=>'form-control','data-date'=>"", 'data-date-format'=>"DD MMMM YYYY"]);
-	$form->setType('tgl_lahir','date');
+	// $form->setType('tgl_lahir','date');
+	$form->setAttribute('tgl_lahir',['id'=>'datepicker']);
 	$form->addInput('kelamin','radio');
 	$form->setLabel('kelamin','Jenis Kelamin');
 	$form->setRadio('kelamin',['Perempuan','Laki-laki']);
