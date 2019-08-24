@@ -9,6 +9,7 @@ class Perdes_model extends CI_Model{
 			'1'=>'RPJMDS',
 			'2'=>'RKP DESA',
 			'3'=>'APBDES',
+			'6'=>'REALISASI APBDES',
 			'4'=>'PERDES KEWENANGAN',
 			'5'=>'PERDES ASET'
 		];
