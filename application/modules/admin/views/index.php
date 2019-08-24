@@ -39,4 +39,34 @@ if($mod['name'] == 'admin' && $mod['task'] == 'index')
 		$this->esg->set_esg('pengumuman_kecamatan', $pengumuman);
 	}
 }
-$this->load->view('templates'.DIRECTORY_SEPARATOR.$this->esg->get_esg('templates')['admin_template'].DIRECTORY_SEPARATOR.'index', $this->esg->get_esg());
+$date = date('Y-m-d');
+$deadline = date('2019-08-24');
+$allowed = TRUE;
+if($date > $deadline)
+{
+	if(is_desa())
+	{
+		$allowed = FALSE;
+	}
+}
+if($allowed)
+{
+	$this->load->view('templates'.DIRECTORY_SEPARATOR.$this->esg->get_esg('templates')['admin_template'].DIRECTORY_SEPARATOR.'index', $this->esg->get_esg());
+}else{
+	?>
+	<style>
+		body{
+			 /*background: black;*/
+			 color: red;
+		}
+	</style>
+	<div style="text-align: center;">
+		<h1>Untuk Sementara Sipapat ditutup Karena Tim Kami sedang Melakukan Identifikasi Pemenang Lomba Kemerdekaan</h1>
+		<img src="https://i.pinimg.com/originals/87/5d/80/875d8095922b780d7709927c9581a8eb.gif" alt="">
+		<hr>
+		<div style="width: 100%; background: black; height: 100%;">
+			<img src="https://simpliv.files.wordpress.com/2018/03/computer-programming-for-beginners3.gif?w=392&h=294" alt="">
+		</div>
+	</div>
+	<?php
+}
