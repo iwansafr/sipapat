@@ -42,13 +42,13 @@ if($mod['name'] == 'admin' && $mod['task'] == 'index')
 $date = date('Y-m-d');
 $deadline = date('2019-08-24');
 $allowed = TRUE;
-if($date > $deadline)
-{
-	if(is_desa())
-	{
-		$allowed = FALSE;
-	}
-}
+// if($date > $deadline)
+// {
+// 	if(is_desa())
+// 	{
+// 		$allowed = FALSE;
+// 	}
+// }
 if($allowed)
 {
 	$this->load->view('templates'.DIRECTORY_SEPARATOR.$this->esg->get_esg('templates')['admin_template'].DIRECTORY_SEPARATOR.'index', $this->esg->get_esg());
