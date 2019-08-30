@@ -42,7 +42,7 @@ if(!empty($view) || is_desa() || is_root())
 		unset($sumber['4']);
 		unset($sumber['5']);
 		unset($sumber['1']);
-		pr($sumber);
+		// pr($sumber);
 	}
 
 	$form->addInput('sumber_dana','dropdown');
