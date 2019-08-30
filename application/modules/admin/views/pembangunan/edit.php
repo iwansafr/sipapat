@@ -35,12 +35,14 @@ if(!empty($view) || is_desa() || is_root())
 	}else if(!empty($_GET['dd']) || (@$data['sumber_dana']=='1')){
 		$sumber = ['1'=>$sumber['1']];
 	}else{
-		if($view == 'fisik' || @$data['jenis']==1)
-		{
-			unset($sumber['4']);
-		}
+		// if($view == 'fisik' || @$data['jenis']==1)
+		// {
+		// 	unset($sumber['4']);
+		// }
+		unset($sumber['4']);
 		unset($sumber['5']);
 		unset($sumber['1']);
+		pr($sumber);
 	}
 
 	$form->addInput('sumber_dana','dropdown');
