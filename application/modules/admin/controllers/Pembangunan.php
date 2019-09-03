@@ -196,7 +196,20 @@ class Pembangunan extends CI_Controller
 				$bidang_id = $key;
 			}
 		}
-		$this->load->view('pembangunan/index',['view'=>$view,'sumber'=>$sumber,'bidang_id'=>$bidang_id,'bidang'=>$bidang,'desa_id'=>$desa_id]);
+		$desa_id_get = '';
+		if(!empty($_GET))
+		{
+			$desa_id_get = [];
+			foreach($_GET AS $key => $value)
+			{
+				$desa_id_get[] = $key.'='.str_replace(' ','+',$value);
+			}
+			if(!empty($desa_id_get))
+			{
+				$desa_id_get = '?'.implode('&', $desa_id_get);
+			}
+		}
+		$this->load->view('pembangunan/index',['view'=>$view,'sumber'=>$sumber,'bidang_id'=>$bidang_id,'bidang'=>$bidang,'desa_id'=>$desa_id,'desa_id_get'=>$desa_id_get]);
 	}
 	public function buat()
 	{
@@ -230,8 +243,12 @@ class Pembangunan extends CI_Controller
 	}
 	public function excel($type = '')
 	{
+		$jenis = ['Non Fisik','Fisik'];
 		$sumber = $this->pembangunan_model->sumber_dana();
+		$sumber[0] = 'TIDAK ADA';
 		$bidang = $this->pembangunan_model->bidang();
+		$tahap = $this->pembangunan_model->tahap();
+		$tahap[0] = '';
 		if(is_desa())
 		{
 			$desa_id = $this->sipapat_model->get_desa_id();
@@ -245,11 +262,12 @@ class Pembangunan extends CI_Controller
 				$bidang_id = $key;
 			}
 		}
+		$where = '';
 		if(!empty($desa_id))
 		{
 			$where = ' AND pembangunan.desa_id = '.$desa_id;
-		}else{
-			$where =  " AND desa.kecamatan = '".$_GET['kec']."'";
+		}else if(!empty($_GET['kec'])){
+			$where =  " AND desa.kecamatan = '".@$_GET['kec']."'";
 		}
 		$data = $this->db->query
 		('
@@ -264,8 +282,7 @@ class Pembangunan extends CI_Controller
 			AND 
 				bidang = ?
 		'.$where, $bidang_id)->result_array();
-		// pr($data);
-		// pr($this->db->last_query());die();
+
 		$spreadsheet = new Spreadsheet();
 
 		// Set document properties
@@ -279,10 +296,25 @@ class Pembangunan extends CI_Controller
 
 		// Add some data
 		$spreadsheet->setActiveSheetIndex(0)
-		->setCellValue('A1','no')
-		->setCellValue('B1','nama desa')
-		->setCellValue('C1','item');
-
+		->setCellValue('A1',strtoupper('no'))
+		->setCellValue('B1',strtoupper('Jenis'))
+		->setCellValue('C1',strtoupper('nama desa'))
+		->setCellValue('D1',strtoupper('item'))
+		->setCellValue('E1',strtoupper('lokasi'))
+		->setCellValue('F1',strtoupper('koordinat'))
+		->setCellValue('G1',strtoupper('vol'))
+		->setCellValue('H1',strtoupper('tgl mulai'))
+		->setCellValue('I1',strtoupper('tgl'))
+		->setCellValue('J1',strtoupper('tgl selesai'))
+		->setCellValue('K1',strtoupper('sumber dana'))
+		->setCellValue('L1',strtoupper('sumber dana kedua'))
+		->setCellValue('M1',strtoupper('peserta'))
+		->setCellValue('N1',strtoupper('jml_peserta'))
+		->setCellValue('O1',strtoupper('bidang'))
+		->setCellValue('P1',strtoupper('anggaran'))
+		->setCellValue('Q1',strtoupper('realisasi'))
+		->setCellValue('R1',strtoupper('tahap'))
+		->setCellValue('Q1', strtoupper('th_anggaran'));
 		// Miscellaneous glyphs, UTF-8
 		$i=2;
 		$j = 1;
@@ -290,8 +322,24 @@ class Pembangunan extends CI_Controller
 		{
 			$spreadsheet->setActiveSheetIndex(0)
 			->setCellValue('A'.$i,$j)
-			->setCellValue('B'.$i,$value['nama_desa'])
-			->setCellValue('C'.$i,$value['item']);
+			->setCellValue('B'.$i, $jenis[$value['jenis']])
+			->setCellValue('C'.$i, $value['nama_desa'])
+			->setCellValue('D'.$i, $value['item'])
+			->setCellValue('E'.$i, $value['lokasi'])
+			->setCellValue('F'.$i, $value['koordinat'])
+			->setCellValue('G'.$i, $value['vol'])
+			->setCellValue('H'.$i, $value['from_date'])
+			->setCellValue('I'.$i, $value['date'])
+			->setCellValue('J'.$i, $value['to_date'])
+			->setCellValue('K'.$i, $sumber[$value['sumber_dana']])
+			->setCellValue('L'.$i, $sumber[$value['sumber_dana_alt']])
+			->setCellValue('M'.$i, $value['peserta'])
+			->setCellValue('N'.$i, $value['jml_peserta'])
+			->setCellValue('O'.$i, $bidang[$value['bidang']])
+			->setCellValue('P'.$i, $value['anggaran'])
+			->setCellValue('Q'.$i, $value['realisasi'])
+			->setCellValue('R'.$i, $tahap[$value['tahap']])
+			->setCellValue('Q'.$i, $value['th_anggaran']);
 			$i++;
 			$j++;
 		}

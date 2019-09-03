@@ -2,6 +2,11 @@
 
 class Pembangunan_model extends CI_Model
 {
+
+	public function tahap()
+	{
+		return ['-1'=>'1 X tahapan','1'=>'Kegiatan Tahap 1','2'=>'Kegiatan Tahap 2','3'=>'Kegiatan Tahap 3'];
+	}
 	public function sumber_dana()
 	{
 		return 

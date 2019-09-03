@@ -23,24 +23,24 @@ if($view)
 	$form = new zea();
 	$form->setTable('pembangunan');
 	$form->init('roll');
-	if(is_kecamatan())
-	{
-		$kecamatan = strtoupper(str_replace('kec_','', $this->session->userdata(base_url().'_logged_in')['username']));
-		if(empty(@intval($_GET['desa_id'])))
-		{
-			$where = " bidang = {$bidang_id} AND kecamatan = '{$kecamatan}'";
-			$form->join('desa','ON(pembangunan.desa_id=desa.id)','pembangunan.*,desa.kecamatan');
-		}
-		$this->load->view('desa',['desa_option'=>$this->pengguna_model->get_desa($kecamatan),'view'=>$view]);
-	}
 	if(!is_desa())
 	{
 		if(!empty(@$_GET['kec']) && empty(@intval($_GET['desa_id'])))
 		{
 			$kecamatan = @$_GET['kec'];
 			$form->join('desa','ON(pembangunan.desa_id=desa.id)','pembangunan.*,desa.kecamatan');
-			$where = "kecamatan = '{$kecamatan}'";
+			$where .= " AND kecamatan = '{$kecamatan}'";
 			$form->addInput('kecamatan','plaintext');
+		}
+		if(is_kecamatan())
+		{
+			$kecamatan = strtoupper(str_replace('kec_','', $this->session->userdata(base_url().'_logged_in')['username']));
+			if(empty(@intval($_GET['desa_id'])))
+			{
+				$where .= " AND kecamatan = '{$kecamatan}'";
+				$form->join('desa','ON(pembangunan.desa_id=desa.id)','pembangunan.*,desa.kecamatan');
+			}
+			$this->load->view('desa',['desa_option'=>$this->pengguna_model->get_desa($kecamatan),'view'=>$view]);
 		}
 	}
 	$form->setWhere($where);
@@ -84,7 +84,7 @@ if($view)
 		$form->addInput('peserta','plaintext');
 		$form->addInput('tahap','dropdown');
 		$form->setAttribute('tahap','disabled');
-		$form->setOptions('tahap', ['-1'=>'1 X tahapan','1'=>'Kegiatan Tahap 1','2'=>'Kegiatan Tahap 2','3'=>'Kegiatan Tahap 3']);
+		$form->setOptions('tahap', $this->pembangunan_model->tahap());
 	}
 	$form->addInput('th_anggaran','plaintext');
 	$form->setLabel('th_anggaran','Tahun Anggaran');
