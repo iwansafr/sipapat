@@ -1,8 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
+$kategori_item = @$kategori[$item];
 if(!is_desa() && !is_kecamatan())
 {
 	?>
-	<a href="<?php echo base_url('admin/potensi/kecamatan') ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> filter data</a>
+	<a href="<?php echo base_url('admin/potensi/kecamatan/'.$kategori_item) ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> filter data</a>
 	<?php
 }
 $form = new zea();
@@ -10,6 +11,19 @@ $where = '';
 $form->init('roll');
 $desa_id = !empty($_GET['desa_id']) ? @intval($_GET['desa_id']) : $desa_id;
 $where = '';
+$desa_id_get = '';
+if(!empty($_GET))
+{
+	$desa_id_get = [];
+	foreach($_GET AS $key => $value)
+	{
+		$desa_id_get[] = $key.'='.str_replace(' ','+',$value);
+	}
+	if(!empty($desa_id_get))
+	{
+		$desa_id_get = '?'.implode('&', $desa_id_get);
+	}
+}
 if(!empty($desa_id))
 {
 	$where = ' desa_id = '.$desa_id;
@@ -45,7 +59,10 @@ if(!is_desa())
 	}else{
 		if(!empty($item))
 		{
-			$where = ' kategori = '.$item;
+			if(empty($where))
+			{
+				$where = ' kategori = '.$item;
+			}
 		}
 	}
 }
@@ -55,6 +72,10 @@ $form->search();
 
 if(!is_desa())
 {
+	$form->setHeading
+	(
+		'<a target="_blank" href="'.base_url('admin/potensi/excel/'.@$kategori_item).$desa_id_get.'" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i></a>'
+	);
 	$form->setWhere($where);
 	$form->addInput('desa_id','dropdown');
 	$form->tableOptions('desa_id','desa','id','nama');
@@ -65,7 +86,8 @@ if(!is_desa())
 	$form->setAttribute('user_id','disabled');
 	$form->setLabel('user_id','pengguna');
 }else{
-	$form->setHeading('<a href="'.base_url('admin/potensi/edit/?item='.@intval($item)).'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>');
+	$form->setHeading('<a href="'.base_url('admin/potensi/edit/?item='.@intval($item)).'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>
+		<a target="_blank" href="'.base_url('admin/potensi/excel/'.@$kategori_item).$desa_id_get.'" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i></a>');
 	$form->setWhere($where);
 }
 
@@ -113,3 +135,4 @@ if(is_desa())
 
 $form->setFormName('potensi_form');
 $form->form();
+pr($form->getData()['query']);

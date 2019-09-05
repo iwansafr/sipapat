@@ -4,7 +4,7 @@ class Potensi_model extends CI_Model
 {
 	public function kategori()
 	{
-		return ['1'=>'perikanan','2'=>'pertanian','3'=>'peternakan','4'=>'perkebunan','5'=>'home indsutri','6'=>'perdagangan','7'=>'wisata','8'=>'jasa','9'=>'seni budaya'];
+		return ['1'=>'perikanan','2'=>'pertanian','3'=>'peternakan','4'=>'perkebunan','5'=>'home industri','6'=>'perdagangan','7'=>'wisata','8'=>'jasa','9'=>'seni budaya'];
 	}
 	public function satuan()
 	{

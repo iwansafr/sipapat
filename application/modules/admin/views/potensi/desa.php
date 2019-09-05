@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
-<form action="<?php echo base_url('admin/potensi/list/') ?>" method="get">
+<form action="<?php echo base_url('admin/potensi/'.$view) ?>" method="get">
 	<div class="form-group">
 		<label>sortir perdesa <?php echo !empty(@$_GET['kec']) ? 'di kecamatan '.strtoupper($_GET['kec']) : ''; ?></label>
 		<?php !empty($_GET['kec']) ? msg('jika tidak memilih salah satu desa maka akan menampilkan semua data Potensi di kecamatan '.$_GET['kec'],'warning') : ''; ?>

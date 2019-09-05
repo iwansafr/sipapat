@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
-<form action="<?php echo base_url('admin/potensi/desa/') ?>" method="get">
+<form action="<?php echo base_url('admin/potensi/desa/'.$view) ?>" method="get">
 	<div class="form-group">
 		<label>sortir kecamatan</label>
 	</div>
