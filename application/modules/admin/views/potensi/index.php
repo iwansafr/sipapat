@@ -74,7 +74,7 @@ if(!is_desa())
 {
 	$form->setHeading
 	(
-		'<a target="_blank" href="'.base_url('admin/potensi/excel/'.@$kategori_item).$desa_id_get.'" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i></a>'
+		'<a target="_blank" href="'.base_url('admin/potensi/excel/'.@$kategori_item).$desa_id_get.'" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i> EXCEL</a>'
 	);
 	$form->setWhere($where);
 	$form->addInput('desa_id','dropdown');
@@ -87,7 +87,7 @@ if(!is_desa())
 	$form->setLabel('user_id','pengguna');
 }else{
 	$form->setHeading('<a href="'.base_url('admin/potensi/edit/?item='.@intval($item)).'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>
-		<a target="_blank" href="'.base_url('admin/potensi/excel/'.@$kategori_item).$desa_id_get.'" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i></a>');
+		<a target="_blank" href="'.base_url('admin/potensi/excel/'.@$kategori_item).$desa_id_get.'" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i> EXCEL</a>');
 	$form->setWhere($where);
 }
 
@@ -135,4 +135,3 @@ if(is_desa())
 
 $form->setFormName('potensi_form');
 $form->form();
-pr($form->getData()['query']);

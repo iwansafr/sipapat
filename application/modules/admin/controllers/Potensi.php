@@ -141,8 +141,8 @@ class Potensi extends CI_Controller
 			->setCellValue('D'.$i, $kategori[$value['kategori']])
 			->setCellValue('E'.$i, $produk_desa[$value['produk_desa']])
 			->setCellValue('F'.$i, $value['volume'])
-			->setCellValue('G'.$i, $value['satuan'])
-			->setCellValue('H'.$i, $value['waktu'])
+			->setCellValue('G'.$i, $satuan[$value['satuan']])
+			->setCellValue('H'.$i, $waktu[$value['waktu']])
 			->setCellValue('I'.$i, $value['from_month'])
 			->setCellValue('J'.$i, $value['to_month']);
 			$i++;
