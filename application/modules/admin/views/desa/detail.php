@@ -11,6 +11,7 @@ if(!empty($id) && is_numeric($id))
 			{
 				?>
 				<a href="?s=print" target="_blank" class="pull-right btn btn-default btn-sm"><i class="fa fa-print"></i> Cetak</a>
+				<a href="<?php echo base_url('admin/desa/pdf_detail/'.$id.'/detail_desa') ?>" target="_blank" class="pull-right btn btn-default btn-sm"><i class="fa fa-file-pdf-o"></i> PDF</a>
 				<?php
 			}
 			?>

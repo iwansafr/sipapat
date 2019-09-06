@@ -150,7 +150,7 @@ class Desa extends CI_Controller
 		// Set active sheet index to the first sheet, so Excel opens this as the first sheet
 		$spreadsheet->setActiveSheetIndex(0);
 
-		// Redirect output to a client’s web browser (Xlsx)
+		// Redirect output to a client's web browser (Xlsx)
 		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 		header('Content-Disposition: attachment;filename="data desa.xlsx"');
 		header('Cache-Control: max-age=0');
@@ -166,6 +166,78 @@ class Desa extends CI_Controller
 		$writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
 		$writer->save('php://output');
 		exit;
+	}
+
+	public function pdf_detail($id = 0)
+	{
+		if(!empty($id))
+		{
+			$this->esg_model->set_nav_title('Detail Desa');
+			$data = $this->sipapat_model->get_desa($id);
+			$image = $this->sipapat_model->get_image_kab();
+
+			$teks1 = 'PEMERINTAH KABUPATEN PATI';
+			$teks2 = 'KECAMATAN '.@$data['kecamatan'];
+			$teks3 = 'DESA '.$data['nama'];
+			$teks4 = 'Alamat Kantor Kepala Desa '.strtolower(@$data['nama']).' '.substr(@$data['alamat'],0,20).' Kec. '.strtolower(@$data['kecamatan']).' kab. Pati';
+			$teks5 = ': '.@$data['telepon'];
+			$teks6 = ': '.@$data['email'];
+			$teks7 = ': '.@$data['kode_pos'];
+			$teks8 = ': '.@$data['website'];
+
+			$this->load->library('pdf');
+			$pdf = new FPDF('P','mm','A4');
+	    // membuat halaman baru
+	    $pdf->AddPage();
+	    // setting jenis font yang akan digunakan
+	    $pdf->SetFont('Arial','B',7);
+	    // mencetak string 
+	    $pdf->Image($image,18,10,23,28);
+	    $pdf->Cell(25);
+			$pdf->SetFont('Times','B','15');
+			$pdf->Cell(0,5,$teks1,0,1,'C');
+			$pdf->Cell(25);
+			$pdf->Cell(0,5,$teks2,0,1,'C');
+			$pdf->Cell(25);
+			$pdf->SetFont('Times','B','15');
+			$pdf->Cell(0,5,$teks3,0,1,'C');
+			$pdf->Cell(38);
+			$pdf->SetFont('Times','','13');
+			// $pdf->MultiCell(0,5,$teks4,0,1,false);
+			$pdf->Cell(0,5,$teks4,0,1,'L');
+			$pdf->Cell(38);
+			$pdf->Cell(20,5,'Telepon',0,0,'L');
+			$pdf->Cell(30,5,$teks5,0,0,'L');
+			$pdf->Cell(20);
+			$pdf->Cell(15,5,'Email',0,0,'L');
+			$pdf->Cell(60,5,$teks6,0,1,'L');
+			$pdf->Cell(38);
+			$pdf->Cell(20,5,'Kode Pos',0,0,'L');
+			$pdf->Cell(30,5,$teks7,0,0,'L');
+			$pdf->Cell(20);
+			$pdf->Cell(15,5,'Website',0,0,'L');
+			$pdf->Cell(60,5,$teks8,0,1,'L');
+			$pdf->SetLineWidth(1);
+			$pdf->Line(10,45,200,45);
+			$pdf->SetLineWidth(0);
+			$pdf->Line(10,46,200,46);
+			$pdf->Ln(10);
+
+			if(!empty($data))
+			{
+				unset($data['id']);
+				unset($data['created']);
+				unset($data['updated']);
+				foreach ($data as $key => $value) 
+				{
+					$pdf->Cell(38);
+					$pdf->Cell(20,5, $key, 0,0, 'L');
+					$pdf->Cell(30,5, ': '.$value,0,1,'L');
+				}
+			}
+	    
+	    $pdf->Output('Detail_DESA.pdf','I');
+		}
 	}
 
 	public function pdf()
