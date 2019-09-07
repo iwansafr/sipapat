@@ -192,7 +192,7 @@ class Desa extends CI_Controller
 	    // setting jenis font yang akan digunakan
 	    $pdf->SetFont('Arial','B',7);
 	    // mencetak string 
-	    $pdf->Image($image,18,10,23,28);
+	    $pdf->Image($image,10,10,40,30);
 	    $pdf->Cell(25);
 			$pdf->SetFont('Times','B','15');
 			$pdf->Cell(0,5,$teks1,0,1,'C');
