@@ -10,6 +10,7 @@ if(!empty($data))
 	<div class="panel panel-default card card-default">
 		<div class="panel-heading card-header">
 			Detail Pembangunan <?php echo $data['item'] ?>
+			<a href="<?php echo base_url('admin/pembangunan/pdf_detail/'.$data['id'].'/detail_laporan') ?>" target="_blank" class="pull-right btn btn-default btn-sm"><i class="fa fa-file-pdf-o"></i> PDF</a>
 		</div>
 		<div class="panel-body card-body">
 			<div class="row">

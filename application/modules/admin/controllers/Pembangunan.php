@@ -241,6 +241,189 @@ class Pembangunan extends CI_Controller
 	{
 		$this->load->view('index');
 	}
+	public function pdf_detail($id = 0)
+	{
+		if(!empty($id))
+		{
+			$jenis          = ['Non Fisik','Fisik'];
+			$pembangunan    = $this->pembangunan_model->get_pembangunan($id);
+			$tahap          = $this->pembangunan_model->tahap();
+			$sumber_dana    = $this->pembangunan_model->sumber_dana();
+			$sumber_dana[0] = 'Tidak Ada';
+			$peserta        = $this->pembangunan_model->peserta();
+			$bidang         = $this->pembangunan_model->bidang();
+			$desa           = $this->sipapat_model->get_desa($pembangunan['desa_id']);
+			$image          = $this->sipapat_model->get_image_kab();
+
+			$teks1 = 'PEMERINTAH KABUPATEN PATI';
+			$teks2 = 'KECAMATAN '.@$desa['kecamatan'];
+			$teks3 = 'DESA '.$desa['nama'];
+			$teks4 = 'Alamat Kantor Kepala Desa '.strtolower(@$desa['nama']).' '.substr(@$desa['alamat'],0,20).' Kec. '.strtolower(@$desa['kecamatan']).' kab. Pati';
+			$teks5 = ': '.@$desa['telepon'];
+			$teks6 = ': '.@$desa['email'];
+			$teks7 = ': '.@$desa['kode_pos'];
+			$teks8 = ': '.@$desa['website'];
+
+			$this->load->library('pdf');
+			$pdf = new FPDF('P','mm','A4');
+	    // membuat halaman baru
+	    $pdf->AddPage();
+	    // setting jenis font yang akan digunakan
+	    $pdf->SetFont('Arial','B',7);
+	    // mencetak string 
+	    $pdf->Image($image,18,10,23,28);
+	    $pdf->Cell(25);
+			$pdf->SetFont('Times','B','15');
+			$pdf->Cell(0,5,$teks1,0,1,'C');
+			$pdf->Cell(25);
+			$pdf->Cell(0,5,$teks2,0,1,'C');
+			$pdf->Cell(25);
+			$pdf->SetFont('Times','B','15');
+			$pdf->Cell(0,5,$teks3,0,1,'C');
+			$pdf->Cell(38);
+			$pdf->SetFont('Times','','13');
+			// $pdf->MultiCell(0,5,$teks4,0,1,false);
+			$pdf->Cell(0,5,$teks4,0,1,'L');
+			$pdf->Cell(38);
+			$pdf->Cell(20,5,'Telepon',0,0,'L');
+			$pdf->Cell(30,5,$teks5,0,0,'L');
+			$pdf->Cell(20);
+			$pdf->Cell(15,5,'Email',0,0,'L');
+			$pdf->Cell(60,5,$teks6,0,1,'L');
+			$pdf->Cell(38);
+			$pdf->Cell(20,5,'Kode Pos',0,0,'L');
+			$pdf->Cell(30,5,$teks7,0,0,'L');
+			$pdf->Cell(20);
+			$pdf->Cell(15,5,'Website',0,0,'L');
+			$pdf->Cell(60,5,$teks8,0,1,'L');
+			$pdf->SetLineWidth(1);
+			$pdf->Line(10,45,200,45);
+			$pdf->SetLineWidth(0);
+			$pdf->Line(10,46,200,46);
+			$pdf->Ln(10);
+
+			if(!empty($pembangunan))
+			{
+				unset($pembangunan['id']);
+				unset($pembangunan['user_id']);
+				unset($pembangunan['desa_id']);
+				unset($pembangunan['created']);
+				unset($pembangunan['updated']);
+				$doc = [0,40,50,80,100];
+
+				foreach ($pembangunan as $key => $value) 
+				{
+
+					if($key=='peserta')
+					{
+						if(!empty($value))
+						{
+							$value = @$peserta[$value];
+						}
+					}
+
+					if($key=='tahap')
+					{
+						if(!empty($value))
+						{
+							$value = $tahap[$value];
+						}
+					}
+
+					if($key=='jenis')
+					{
+						$value = $jenis[$value];
+					}
+
+					if($key=='bidang')
+					{
+						if(!empty($value))
+						{
+							$value = $bidang[$value];
+						}
+					}
+
+					if($key=='anggaran')
+					{
+						if(!empty($value))
+						{
+							$value = money($value);
+						}
+					}
+
+					if($key=='realisasi')
+					{
+						if(!empty($value))
+						{
+							$value = money($value);
+						}
+					}
+
+					if($key=='from_date')
+					{
+						$key = 'dari tanggal';
+						$value = content_date($value);
+					}
+
+					if($key=='to_date')
+					{
+						$key = 'sampai tanggal';
+						$value = content_date($value);
+					}
+
+					if($key=='date')
+					{
+						$key = 'tanggal';
+						$value = content_date($value);
+					}
+
+					if($key == 'sumber_dana')
+					{
+						$value = $sumber_dana[$value];
+					}
+					if($key == 'sumber_dana_alt')
+					{
+						$key = 'sumber dana kedua';
+						$value = $sumber_dana[$value];
+					}
+					if(preg_match('~doc~', $key))
+					{
+						$pdf->Cell(38);
+						$pdf->Cell(37,5, $key, 0,0, 'L');
+						if(!empty($value))
+						{
+							$value = image_module('pembangunan',$id.'/'.$value);
+							$image_format = strtolower(pathinfo($value, PATHINFO_EXTENSION));
+							if($image_format !='png')
+							{
+								$pdf->Cell(30,5,':',0,0);
+								$pdf->Image(@$value, null,null,50,50,$image_format);
+							}
+							$pdf->Ln(10);
+						}else{
+							$pdf->Cell(30,5, ': '.$value,0,1,'L');
+						}
+					}else{
+						if($key=='lokasi' || $key == 'vol')
+						{
+							$pdf->Cell(38);
+							// $pdf->MultiCell(31,5, $key, 1,'R', false);
+							$pdf->Cell(37,5, $key, 0,0, 'L');
+							$pdf->Cell(2,5, ':', 0,0, 'L');
+							$pdf->MultiCell(30,5,$value,0,'L',false);
+						}else{
+							$pdf->Cell(38);
+							$pdf->Cell(37,5, $key, 0,0, 'L');
+							$pdf->Cell(30,5, ': '.$value,0,1,'L');
+						}
+					}
+				}
+			}
+	    
+	    $pdf->Output('Detail_LAPORAN.pdf','I');
+		}
+	}
+
 	public function excel($type = '')
 	{
 		$jenis = ['Non Fisik','Fisik'];
