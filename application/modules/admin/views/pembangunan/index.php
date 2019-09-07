@@ -47,7 +47,7 @@ if($view)
 	$form->search();
 	$form->setHeading
 	(
-		// '<a target="_blank" href="'.base_url('admin/pembangunan/pdf/'.$module[$kelompok]).$desa_id_get.'" class="btn btn-sm btn-default"><i class="fa fa-file-pdf-o"></i>/<i class="fa fa-print"></i></a>'.
+		// '<a target="_blank" href="'.base_url('admin/pembangunan/pdf/'.@$view).$desa_id_get.'" class="btn btn-sm btn-default"><i class="fa fa-file-pdf-o"></i>/<i class="fa fa-print"></i></a>'.
 		'<a target="_blank" href="'.base_url('admin/pembangunan/excel/'.@$view).$desa_id_get.'" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i></a>'
 	);
 	if(is_desa())

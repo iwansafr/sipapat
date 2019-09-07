@@ -10,6 +10,7 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `penduduk`;
 CREATE TABLE `penduduk` (
   `id` int(11) UNSIGNED NOT NULL,
+  `desa_id` int(11) NOT NULL,
   `no_kk` bigint(20) DEFAULT NULL,
   `nik` bigint(20) NOT NULL,
   `no_paspor` varchar(100) DEFAULT NULL,

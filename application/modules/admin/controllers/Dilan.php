@@ -126,4 +126,23 @@ class Dilan extends CI_Controller{
 		}
 		$this->load->view('index');
 	}
+
+	public function surat_pengantar_form($id = 0)
+	{
+		if(!empty($id))
+		{
+			$this->load->view('index');
+		}
+
+	}
+
+	public function list()
+	{
+		$this->load->view('index');
+	}
+
+	public function clear_list()
+	{
+		$this->load->view('dilan/list');
+	}
 }
