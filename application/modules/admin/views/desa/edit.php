@@ -29,6 +29,8 @@ if(is_root() || is_admin() || @$pengguna['desa_id'] == $_GET['id'])
 	$form->setAttribute('website',['type'=>'url','placeholder'=>'http://website.com']);
 	$form->addInput('alamat','textarea');
 	$form->setLabel('alamat','Alamat Balai Desa');
+	$form->addInput('ttd_img','file');
+	$form->setLabel('ttd_img','gambar ttd dan stempel');
 	$form->setRequired(['nama','kecamatan','kabupaten']);
 	$form->form();
 }else{

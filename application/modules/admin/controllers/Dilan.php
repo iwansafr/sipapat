@@ -273,6 +273,7 @@ class Dilan extends CI_Controller{
 	    $pdf->Cell(60,5,'................................',0,0,'C');
 			$pdf->SetLineWidth(0);
 			$pdf->Line(123,196,87,196);
+			$pdf->Image(image_module('desa',$desa['id'].'/'.$desa['ttd_img']),130,165,40,30);
 	    $pdf->Cell(60,5,'................................',0,1,'C');
 			$pdf->SetLineWidth(0);
 			$pdf->Line(183,196,147,196);
