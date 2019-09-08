@@ -22,6 +22,7 @@ class Dilan extends CI_Controller{
 		if(!empty($_FILES['doc']['name']))
 		{
 			$file = $this->dilan_model->upload($_FILES['doc']);
+			// $file['desa_id'] = $_POST['desa_id'];
       $data = ['status'=>'success','data'=>$file];
       output_json($data);
 		}else{
@@ -83,18 +84,22 @@ class Dilan extends CI_Controller{
 			$data = array();
 			$title = array();
 			$i = 0;
+			$desa_id = $this->sipapat_model->get_desa_id();
 			foreach ($worksheet->getRowIterator() as $row) 
 			{
 		    $cellIterator = $row->getCellIterator();
 		    $cellIterator->setIterateOnlyExistingCells(FALSE);
-		    $j = 0;
+		    $j = 1;
+				$title[0] = 'desa_id';
 		    foreach ($cellIterator as $cell)
 		    {
 		    	if($i==0)
 		    	{
 		    		// $data[$cell->getValue()] = [];
 		    		$title[] = $cell->getValue();
+		    		// $title[] = 'desa_id';
 		    	}else{
+		    		$data[$i]['desa_id'] = $desa_id;
 						if($title[$j] == 'TGL_LHR'){
 							$dt = new DateTime();
 							$data[$i][$title[$j]] = date('Y-m-d', PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($cell->getValue()));
@@ -105,6 +110,7 @@ class Dilan extends CI_Controller{
 		    	}
 		    	// $data[$i][] = $cell->getValue();
 	    		$j++;
+	    		// $data[$i]['desa_id'] = $desa_id;
 		    }
 				$i++;
 			}
@@ -131,7 +137,8 @@ class Dilan extends CI_Controller{
 	{
 		if(!empty($id))
 		{
-			$this->load->view('index');
+			$penduduk = $this->dilan_model->get_penduduk($id);
+			$this->load->view('index',['penduduk' => $penduduk]);
 		}
 
 	}

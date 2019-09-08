@@ -39,7 +39,7 @@ $(document).ready(function(){
         }
       }
     });
-  }
+  }  
   submit();
   let upload = (postfile) =>{
     $.ajax({

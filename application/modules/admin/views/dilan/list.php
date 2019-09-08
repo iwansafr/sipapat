@@ -39,5 +39,8 @@ $form->addInput('jk','plaintext');
 
 $form->setUrl('admin/dilan/clear_list');
 
+$form->setDelete(true);
+$form->setEdit(true);
+
 
 $form->form();

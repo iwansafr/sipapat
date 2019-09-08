@@ -17,4 +17,8 @@ class Dilan_model extends CI_Model
 			}
 		}
 	}
+	public function get_penduduk($id = 0)
+	{
+		return $this->db->get_where('penduduk',['id'=>$id])->row_array();
+	}
 }

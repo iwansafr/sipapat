@@ -11,7 +11,7 @@ class Desa extends CI_Controller
 
 	public function index()
 	{
-		$field = $_GET['field'];
+		$field = @$_GET['field'];
 		if(!empty($field))
 		{
 			$field = explode('-',$field);
