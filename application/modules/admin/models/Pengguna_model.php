@@ -47,6 +47,19 @@ class Pengguna_model extends CI_Model
 		return $pengguna;		
 	}
 
+	public function agama()
+	{
+		return [
+				'1'=>'Islam',
+				'2'=>'Kristen',
+				'3'=>'Katholik',
+				'4'=>'Hindu',
+				'5'=>'Budha',
+				'6'=>'Khonghucu',
+				'7'=>'Kepercayaan thd Tuhan yang Maha Esa Lainnya'
+			];
+	}
+
 	public function jabatan()
 	{
 		// 1=perangkat desa, 2=bpd,3=lpmp,4=pkk,5=karang taruna,6=rt,7=rw,8=kpmd,9=linmas

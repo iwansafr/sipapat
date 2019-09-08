@@ -21,4 +21,8 @@ class Dilan_model extends CI_Model
 	{
 		return $this->db->get_where('penduduk',['id'=>$id])->row_array();
 	}
+	public function get_surat($id = 0)
+	{
+		return $this->db->get_where('dilan_surat',['id'=>$id])->row_array();
+	}
 }

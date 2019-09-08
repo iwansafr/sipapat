@@ -182,16 +182,7 @@ class Perangkat extends CI_Controller
 		$jabatan = $this->pengguna_model->jabatan();
 		$pengguna = $this->pengguna_model->get_pengguna();
 		$kelamin = ['Perempuan','Laki-laki'];
-		$agama = 
-			[
-				'1'=>'Islam',
-				'2'=>'Kristen',
-				'3'=>'Katholik',
-				'4'=>'Hindu',
-				'5'=>'Budha',
-				'6'=>'Khonghucu',
-				'7'=>'Kepercayaan thd Tuhan yang Maha Esa Lainnya'
-			];
+		$agama = $this->pengguna_model->agama();
 		$status_perkawinan = ['Belum Kawin','Cerai Hidup','Cerai Mati','Kawin'];
 		$pendidikan_terakhir = 
 			[
