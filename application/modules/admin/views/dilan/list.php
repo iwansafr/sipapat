@@ -11,6 +11,8 @@ $form->search();
 if(!is_desa())
 {
 
+}else{
+	$form->setWhere("desa_id = ".$this->sipapat_model->get_desa_id());
 }
 
 
