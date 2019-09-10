@@ -35,33 +35,6 @@ class Dilan extends CI_Controller{
 		if(!empty($_FILES['doc']['name']))
 		{
 			$file = $this->dilan_model->upload($_FILES['doc']);
-			// $reader = PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
-			// $reader->setReadDataOnly(TRUE);
-
-			// $spreadsheet = $reader->load($file);
-			// $worksheet = $spreadsheet->getActiveSheet();
-			// $data = array();
-			// $title = array();
-			// $i = 0;
-			// foreach ($worksheet->getRowIterator() as $row) 
-			// {
-		 //    $cellIterator = $row->getCellIterator();
-		 //    $cellIterator->setIterateOnlyExistingCells(FALSE);
-		 //    $j = 0;
-		 //    foreach ($cellIterator as $cell)
-		 //    {
-		 //    	if($i==0)
-		 //    	{
-		 //    		// $data[$cell->getValue()] = [];
-		 //    		$title[] = $cell->getValue();
-		 //    	}else{
-		 //    		$data[$i][$title[$j]] = $cell->getValue();
-		 //    	}
-		 //    	// $data[$i][] = $cell->getValue();
-	  //   		$j++;
-		 //    }
-		 //    $i++;
-			// }
 			if($file)
 			{
 				$this->esg->add_js(base_url('assets/dilan/script.js'));
@@ -285,6 +258,11 @@ class Dilan extends CI_Controller{
 	    $pdf->Cell(60,5,'NIP. .........................',0,1,'C');
 	    $pdf->Output('Surat_Keterangan_Pengantar.pdf','I');
 		}
+	}
+
+	public function surat_list()
+	{
+		$this->load->view('index');
 	}
 
 	public function list()
