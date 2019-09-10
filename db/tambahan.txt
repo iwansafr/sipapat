@@ -42,3 +42,4 @@ ALTER TABLE `survey_laptop` ADD `desa_id` INT(11) NOT NULL DEFAULT '0' AFTER `us
 ALTER TABLE `posyantekdes` CHANGE `no_permakades` `no_permakades` VARCHAR(50) NOT NULL, CHANGE `no_bdn_hkm` `no_bdn_hkm` VARCHAR(50) NOT NULL, CHANGE `masa_berlaku` `masa_berlaku` VARCHAR(50) NOT NULL;
 
 ALTER TABLE `desa` ADD `ttd_img` VARCHAR(255) NOT NULL AFTER `kode`;
+ALTER TABLE `dilan_surat` ADD `desa_id` INT(11) NOT NULL AFTER `id`;
