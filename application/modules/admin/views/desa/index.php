@@ -53,11 +53,28 @@ if(is_desa())
 		);
 	$form->setWhere($where);
 	$form->setNumbering(TRUE);
-	$form->addInput('id','link');
-	$form->setLabel('id','detail');
-	$form->setPlainText('id','lihat detail');
-	$form->setLink('id',base_url('admin/desa/detail'),'id');
-	$form->setClearGet('id');
+	// $form->addInput('id','link');
+	// $form->setLabel('id','detail');
+	// $form->setPlainText('id','lihat detail');
+	// $form->setLink('id',base_url('admin/desa/detail'),'id');
+	// $form->setClearGet('id');
+
+	$form->addInput('id','plaintext');
+	$form->setLabel('id','action');
+	$form->setPlainText('id','
+		<div class="dropdown">
+		  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				Action
+		    <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+		  	<li><a href="'.base_url('admin/desa/detail/').'{id}"><i class="fa fa-search"></i>Detail</a></li>
+		    <li><a href="'.base_url('admin/perangkat/?desa_id={id}').'"><i class="fa fa-search"></i>Perangkat Desa</a></li>
+		    <li role="separator" class="divider"></li>
+		    <li><a href="#{id}">dll</a></li>
+		  </ul>
+		</div>
+		');
 	$form->addInput('kode','plaintext');
 	$form->addInput('nama','plaintext');
 	$form->addInput('kecamatan','plaintext');
