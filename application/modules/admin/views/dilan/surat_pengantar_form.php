@@ -55,6 +55,9 @@ $this->zea->addInput('keperluan','textarea');
 $this->zea->addInput('penduduk_id','static');
 $this->zea->setValue('penduduk_id',@intval($penduduk['id']));
 
+$this->zea->addInput('desa_id','static');
+$this->zea->setValue('desa_id', $desa['id']);
+
 $this->zea->addInput('berlaku_mulai','text');
 $this->zea->addInput('berlaku_sampai','text');
 $this->zea->setType('berlaku_mulai','date');
