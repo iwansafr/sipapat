@@ -44,17 +44,17 @@ class Desa extends CI_Controller
 		$view = 'index';
 		if(@$_GET['s']=='print' || @$_GET['s']=='download')
 		{
-			$data_meta = array(
-						'title' => 'sipapat',
-						'keyword' => 'media nusa perkasa',
-						'description' => 'sistem informasi terpadu',
-						'developer' => 'esoftgreat',
-						'author' => 'sipapat',
-						'email' => 'iwan@esoftgreat.com , iwansafr@gmail.com',
-						'phone' => '6285290335332',
-						'icon' => base_url('images/icon.png'),
-					);
-			$this->esg->set_esg('meta', $data_meta);
+			// $data_meta = array(
+			// 			'title' => 'sipapat',
+			// 			'keyword' => 'media nusa perkasa',
+			// 			'description' => 'sistem informasi terpadu',
+			// 			'developer' => 'esoftgreat',
+			// 			'author' => 'sipapat',
+			// 			'email' => 'iwan@esoftgreat.com , iwansafr@gmail.com',
+			// 			'phone' => '6285290335332',
+			// 			'icon' => base_url('images/icon.png'),
+			// 		);
+			// $this->esg->set_esg('meta', $data_meta);
 			$view = 'desa/detail';
 			$this->load->view('templates/AdminLTE/meta');
 		}

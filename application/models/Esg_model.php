@@ -25,20 +25,20 @@ class Esg_model extends CI_Model
 
 	public function set_meta($data = array())
 	{
-		if(empty($data) || !is_array($data))
-		{
-			$data = array(
-						'title' => 'esoftgreat',
-						'keyword' => 'software development',
-						'description' => 'software development and it consultant',
-						'developer' => 'esoftgreat',
-						'author' => 'esoftgreat',
-						'email' => 'iwan@esoftgreat.com , iwansafr@gmail.com',
-						'phone' => '6285640510460',
-						'icon' => base_url('images/icon.png'),
-					);
-		}
-		$this->esg->set_esg('meta', $data);
+		// if(empty($data) || !is_array($data))
+		// {
+		// 	$data = array(
+		// 				'title' => 'esoftgreat',
+		// 				'keyword' => 'software development',
+		// 				'description' => 'software development and it consultant',
+		// 				'developer' => 'esoftgreat',
+		// 				'author' => 'esoftgreat',
+		// 				'email' => 'iwan@esoftgreat.com , iwansafr@gmail.com',
+		// 				'phone' => '6285640510460',
+		// 				'icon' => base_url('images/icon.png'),
+		// 			);
+		// }
+		// $this->esg->set_esg('meta', $data);
 	}
 
 	public function navigation()
