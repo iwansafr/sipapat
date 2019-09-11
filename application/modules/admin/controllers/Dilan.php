@@ -260,21 +260,22 @@ class Dilan extends CI_Controller{
 			$pdf->Cell(65,5,'Tandatangan Pemegang',0,0,'C');
 			$pdf->Cell(60,5,'Camat '.$desa['kecamatan'],0,0,'C');
 			$pdf->Cell(60,5,'Kepala Desa '.$desa['nama'],0,0,'C');
-			$pdf->Ln(30);
-	    
-	    $pdf->Cell(65,5,'................................',0,0,'C');
-			$pdf->SetLineWidth(0);
-			$pdf->Line(61,196,24,196);
-	    $pdf->Cell(60,5,'................................',0,0,'C');
-			$pdf->SetLineWidth(0);
-			$pdf->Line(123,196,87,196);
 			if(!empty($desa['ttd_img']))
 			{
 				$pdf->Image(image_module('desa',$desa['id'].'/'.$desa['ttd_img']),130,165,40,30);
 			}
+			$pdf->Ln(30);
+	    
+	    $pdf->Cell(65,5,'................................',0,0,'C');
+			$pdf->SetLineWidth(0);
+			$pdf->Line(61,191,24,191);
+	    $pdf->Cell(60,5,'................................',0,0,'C');
+			$pdf->SetLineWidth(0);
+			$pdf->Line(123,191,87,191);
 	    $pdf->Cell(60,5,'................................',0,1,'C');
 			$pdf->SetLineWidth(0);
-			$pdf->Line(183,196,147,196);
+			$pdf->Line(183,191,147,191);
+			$pdf->Ln(1);
 			$pdf->Cell(65);
 	    $pdf->Cell(60,5,'NIP. .........................',0,0,'C');
 	    $pdf->Cell(60,5,'NIP. .........................',0,1,'C');
