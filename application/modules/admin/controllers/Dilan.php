@@ -30,6 +30,15 @@ class Dilan extends CI_Controller{
 			outpur_json($data);
 		}
 	}
+
+	public function detail($id = 0)
+	{
+		if(!empty($id))
+		{
+			$this->load->view('index');
+		}
+	}
+
 	public function index()
 	{
 		if(!empty($_FILES['doc']['name']))
