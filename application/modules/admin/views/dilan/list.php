@@ -37,6 +37,8 @@ $form->setPlaintext('id','
 $form->addInput('no_kk','plaintext');
 $form->addInput('nik','plaintext');
 $form->addInput('nama','plaintext');
+$form->addInput('alamat','plaintext');
+$form->setLabel('alamat','desa');
 $form->addInput('jk','plaintext');
 
 $form->setUrl('admin/dilan/clear_list');

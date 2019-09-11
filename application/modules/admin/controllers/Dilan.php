@@ -43,6 +43,19 @@ class Dilan extends CI_Controller{
 		$this->esg->add_js(base_url('assets/dilan/script.js'));
 		$this->load->view('index');
 	}
+
+	public function edit()
+	{
+		$desa_id = 0;
+		$desa = [];
+		if(is_desa())
+		{
+			$desa_id = $this->sipapat_model->get_desa_id();
+			$desa = $this->sipapat_model->get_desa($desa_id);
+		}
+		$this->load->view('index',['desa'=>$desa]);
+	}
+
 	public function insert()
 	{
 		if(!empty($_POST['file']))
