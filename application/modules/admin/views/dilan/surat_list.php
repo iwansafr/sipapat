@@ -20,7 +20,7 @@ $form->setPlainText('id','<a class="btn btn-default btn-sm" href="'.base_url('ad
 $form->setNumbering(true);
 $form->addInput('keperluan','plaintext');
 
-$form->setEdit(true);
+// $form->setEdit(true);
 $form->setDelete(true);
 
 $form->form();
