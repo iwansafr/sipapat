@@ -46,6 +46,11 @@
 </div>
 <?php
 
+$cur_date = date_create();
+$current_date = date_format($cur_date, 'Y-m-d');
+date_add($cur_date, date_interval_create_from_date_string('1 month'));
+$next_date = date_format($cur_date, 'Y-m-d');
+
 $this->zea->setHeading('Surat Keterangan/Pengantar');
 $this->zea->setEditStatus(false);
 $this->zea->init('edit');
@@ -59,16 +64,16 @@ $this->zea->addInput('desa_id','static');
 $this->zea->setValue('desa_id', $desa['id']);
 
 $this->zea->addInput('berlaku_mulai','static');
-$this->zea->setValue('berlaku_mulai','0000-00-00');
+$this->zea->setValue('berlaku_mulai',$current_date);
 $this->zea->addInput('berlaku_sampai','static');
-$this->zea->setValue('berlaku_sampai','0000-00-00');
+$this->zea->setValue('berlaku_sampai',$next_date);
 
 $this->zea->addInput('keterangan','textarea');
 $this->zea->setLabel('keterangan','Keterangan Lain-lain');
 
 $this->zea->addInput('nomor','text');
 $this->zea->addInput('tgl','static');
-$this->zea->setValue('tgl','0000-00-00');
+$this->zea->setValue('tgl',$current_date);
 
 $this->zea->setFormName('form_surat_pengantar');
 

@@ -138,8 +138,6 @@ class Dilan extends CI_Controller{
 			if(!empty($_POST))
 			{
 				$last_id = $this->zea->get_insert_id();
-
-				$this->db->query('UPDATE dilan_surat SET berlaku_mulai = NOW(), berlaku_sampai = DATE_ADD(NOW(), INTERVAL 1 MONTH), tgl = NOW() WHERE id = ? ', $last_id);
 				redirect(base_url('admin/dilan/surat_pengantar/'.$last_id));
 			}
 		}
