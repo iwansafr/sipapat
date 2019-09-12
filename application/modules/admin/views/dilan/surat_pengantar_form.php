@@ -58,18 +58,19 @@ $this->zea->setValue('penduduk_id',@intval($penduduk['id']));
 $this->zea->addInput('desa_id','static');
 $this->zea->setValue('desa_id', $desa['id']);
 
-$this->zea->addInput('berlaku_mulai','text');
-$this->zea->addInput('berlaku_sampai','text');
-$this->zea->setType('berlaku_mulai','date');
-$this->zea->setType('berlaku_sampai','date');
+$this->zea->addInput('berlaku_mulai','static');
+$this->zea->setValue('berlaku_mulai','0000-00-00');
+$this->zea->addInput('berlaku_sampai','static');
+$this->zea->setValue('berlaku_sampai','0000-00-00');
 
 $this->zea->addInput('keterangan','textarea');
 $this->zea->setLabel('keterangan','Keterangan Lain-lain');
 
 $this->zea->addInput('nomor','text');
-$this->zea->addInput('tgl','text');
-$this->zea->setType('tgl','date');
+$this->zea->addInput('tgl','static');
+$this->zea->setValue('tgl','0000-00-00');
 
 $this->zea->setFormName('form_surat_pengantar');
 
 $this->zea->form();
+
