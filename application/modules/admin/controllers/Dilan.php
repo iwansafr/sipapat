@@ -176,7 +176,7 @@ class Dilan extends CI_Controller{
 			$teks2 = 'KECAMATAN '.@$desa['kecamatan'];
 			$teks3 = 'DESA '.$desa['nama'];
 			// $teks4 = 'Alamat Kantor Kepala Desa '.strtolower(@$desa['nama']).' '.substr(@$desa['alamat'],0,20).' Kec. '.strtolower(@$desa['kecamatan']).' kab. '.$desa['kabupaten'];
-			$teks4 = 'Alamat Kantor Kepala Desa '.strtolower(@$desa['nama']).' '.substr(@$desa['alamat'],0,20);
+			$teks4 = 'Alamat Kantor '.substr(@$desa['alamat'],0,20);
 			$teks5 = ': '.@$desa['telepon'];
 			$teks6 = ': '.@$desa['email'];
 			$teks7 = ': '.@$desa['kode_pos'];
