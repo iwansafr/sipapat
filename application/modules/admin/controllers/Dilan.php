@@ -152,11 +152,18 @@ class Dilan extends CI_Controller{
 	{
 		if(!empty($id))
 		{
-			$surat = $this->dilan_model->get_surat($id);
-			$penduduk = $this->dilan_model->get_penduduk($surat['penduduk_id']);
-			$desa = $this->sipapat_model->get_desa($penduduk['desa_id']);
 			$this->load->model('pengguna_model');
-			$agama = $this->pengguna_model->agama();
+			$this->load->model('perangkat_model');
+
+			$surat    = $this->dilan_model->get_surat($id);
+			$penduduk = $this->dilan_model->get_penduduk($surat['penduduk_id']);
+			$desa     = $this->sipapat_model->get_desa($penduduk['desa_id']);
+			$agama    = $this->pengguna_model->agama();
+			$kepdes   = [];
+			if(!empty($desa['id']))
+			{
+				$kepdes   = $this->perangkat_model->kepala_desa($desa['id']);
+			}
 
 			$penduduk['agama'] = $agama[$penduduk['agama']];
 			// pr($surat);
@@ -276,13 +283,13 @@ class Dilan extends CI_Controller{
 	    $pdf->Cell(60,5,'................................',0,0,'C');
 			$pdf->SetLineWidth(0);
 			$pdf->Line(123,191,87,191);
-	    $pdf->Cell(60,5,'................................',0,1,'C');
+	    $pdf->Cell(60,5,@$kepdes['nama'],0,1,'C');
 			$pdf->SetLineWidth(0);
 			$pdf->Line(183,191,147,191);
 			$pdf->Ln(1);
 			$pdf->Cell(65);
 	    $pdf->Cell(60,5,'NIP. .........................',0,0,'C');
-	    $pdf->Cell(60,5,'NIP. .........................',0,1,'C');
+	    $pdf->Cell(60,5,'NIP. '.@$kepdes['nik'],0,1,'C');
 	    $pdf->Output('Surat_Keterangan_Pengantar.pdf','I');
 		}
 	}

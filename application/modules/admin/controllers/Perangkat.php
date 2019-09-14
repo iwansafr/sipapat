@@ -12,6 +12,7 @@ class Perangkat extends CI_Controller
 		$this->load->model('esg_model');
 		$this->load->model('admin_model');
 		$this->load->model('pengguna_model');
+		$this->load->model('perangkat_model');
 		$this->load->library('esg');
 		$this->load->library('ZEA/zea');
 		$this->esg_model->init();
@@ -386,6 +387,11 @@ class Perangkat extends CI_Controller
 		$pengguna = $this->pengguna_model->get_pengguna();
 		$jabatan = $this->pengguna_model->jabatan();
 		$this->load->view('perangkat/index', ['pengguna'=>$pengguna,'jabatan'=>$jabatan,'task'=>$task]);
+	}
+
+	public function kepala_desa($desa_id = 0)
+	{
+		output_json($this->perangkat_model->kepala_desa($desa_id));
 	}
 
 	public function bpd($task = 'list', $id=0)
