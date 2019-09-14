@@ -201,7 +201,7 @@ class Dilan extends CI_Controller{
 			$pdf->Cell(38);
 			$pdf->SetFont('Times','','13');
 			// $pdf->MultiCell(0,5,$teks4,0,1,false);
-			$pdf->Cell(0,5,$teks4,0,1,'L');
+			$pdf->Cell(0,5,$teks4,0,1,'C');
 			$pdf->Cell(38);
 			$pdf->Cell(20,5,'Telepon',0,0,'L');
 			$pdf->Cell(30,5,$teks5,0,0,'L');
