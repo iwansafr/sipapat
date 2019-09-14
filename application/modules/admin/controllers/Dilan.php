@@ -175,7 +175,8 @@ class Dilan extends CI_Controller{
 			$teks1 = 'PEMERINTAH KABUPATEN PATI';
 			$teks2 = 'KECAMATAN '.@$desa['kecamatan'];
 			$teks3 = 'DESA '.$desa['nama'];
-			$teks4 = 'Alamat Kantor Kepala Desa '.strtolower(@$desa['nama']).' '.substr(@$desa['alamat'],0,20).' Kec. '.strtolower(@$desa['kecamatan']).' kab. '.$desa['kabupaten'];
+			// $teks4 = 'Alamat Kantor Kepala Desa '.strtolower(@$desa['nama']).' '.substr(@$desa['alamat'],0,20).' Kec. '.strtolower(@$desa['kecamatan']).' kab. '.$desa['kabupaten'];
+			$teks4 = 'Alamat Kantor Kepala Desa '.strtolower(@$desa['nama']);
 			$teks5 = ': '.@$desa['telepon'];
 			$teks6 = ': '.@$desa['email'];
 			$teks7 = ': '.@$desa['kode_pos'];
@@ -297,6 +298,11 @@ class Dilan extends CI_Controller{
 	public function surat_list()
 	{
 		$this->load->view('index');
+	}
+
+	public function clear_surat_list()
+	{
+		$this->load->view('dilan/surat_list');
 	}
 
 	public function list()

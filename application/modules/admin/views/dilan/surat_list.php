@@ -22,5 +22,6 @@ $form->addInput('keperluan','plaintext');
 
 // $form->setEdit(true);
 $form->setDelete(true);
+$form->setUrl('admin/dilan/clear_surat_list');
 
 $form->form();
