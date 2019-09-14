@@ -264,9 +264,11 @@ class Dilan extends CI_Controller{
 			$pdf->Ln(5);
 			$pdf->Cell(150,5,'Demikian untuk menjadikan maklum bagi yang berkepentingan',0,1,'C');
 			$pdf->Cell(50);
-			$pdf->Cell(150,5,'Nomor: '.$surat['nomor'],0,1,'L');
+			$pdf->Cell(18,5,'Nomor',0,0,'L');
+			$pdf->Cell(50,5,': '.$surat['nomor'],0,1,'L');
 			$pdf->Cell(50);
-			$pdf->Cell(150,5,'Tanggal: '.content_date($surat['tgl']),0,1,'L');
+			$pdf->Cell(18,5,'Tanggal',0,0,'L');
+			$pdf->Cell(50,5,': '.content_date($surat['tgl']),0,1,'L');
 			
 			$pdf->Ln(5);
 
