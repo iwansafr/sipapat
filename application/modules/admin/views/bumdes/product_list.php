@@ -33,9 +33,11 @@ $form->setHeading('<a href="'.base_url('admin/bumdes/product_edit').'" class="bt
 
 $form->addInput('desa_id','dropdown');
 $form->tableOptions('desa_id','desa','id','nama');
-// $form->setAttribute('desa_id','readonly');
+$form->setAttribute('desa_id','disabled');
+$form->setLabel('desa_id','desa');
 
 $form->addInput('title','plaintext');
+$form->setLabel('title','nama');
 
 $form->setUrl('admin/bumdes/clear_product_list');
 

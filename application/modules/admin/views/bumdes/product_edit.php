@@ -1,5 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
+?>
+<a href="<?php echo base_url('admin/bumdes/product_list/').@intval($cat_id) ?>" class="btn btn-sm btn-default pull-right"><i class='fa fa-list'></i></a>
+<?php
+
 $form = new zea();
 $form->init('edit');
 
