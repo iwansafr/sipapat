@@ -198,4 +198,14 @@ class Bumdes extends CI_Controller{
 		}
 		$this->load->view('bumdes/bumdesma_mandiri_sejahtera',['pengguna'=>$pengguna,'sumber'=>$sumber,'sumber_selected'=>$sumber_selected,'bumdesma'=>$bumdesma]);
 	}
+
+
+	public function product_cat()
+	{
+		$this->load->view('index');
+	}
+	public function clear_product_cat()
+	{
+		$this->load->view('bumdes/product_cat');
+	}
 }
