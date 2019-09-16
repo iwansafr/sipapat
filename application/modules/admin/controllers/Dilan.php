@@ -253,24 +253,24 @@ class Dilan extends CI_Controller{
 			$pdf->Cell(0,5,': '.$penduduk['no_kk'],0,1,'L');
 			// $pdf->Cell(5);
 			$pdf->Cell(60,5,'7. Keperluan',0,0,'L');
-			$pdf->Cell(2,5,':',0,0,'L');
-			$pdf->MultiCell(0,5,$surat['keperluan'],0,'L',false);
+			$pdf->Cell(2,5,': ',0,0,'L');
+			$pdf->MultiCell(0,5,strtolower($surat['keperluan']),0,'L',false);
 			$pdf->Cell(60,5,'8. Berlaku Mulai',0,0,'L');
 			$pdf->Cell(0,5,': '.content_date($surat['berlaku_mulai']).' s/d '.content_date($surat['berlaku_sampai']),0,1,'L');
 			$pdf->Cell(60,5,'9. Keterangan lain-lain *)',0,0,'L');
-			$pdf->Cell(2,5,':',0,0,'L');
-			$pdf->MultiCell(0,5,$surat['keterangan'],0,'L',false);
+			$pdf->Cell(2,5,': ',0,0,'L');
+			$pdf->MultiCell(0,5,strtolower($surat['keterangan']),0,'L',false);
 
 			$pdf->Ln(5);
 			$pdf->Cell(150,5,'Demikian untuk menjadikan maklum bagi yang berkepentingan',0,1,'C');
-			$pdf->Cell(50);
-			$pdf->Cell(18,5,'Nomor',0,0,'L');
-			$pdf->Cell(50,5,': '.$surat['nomor'],0,1,'L');
+			// $pdf->Cell(50);
+			// $pdf->Cell(18,5,'Nomor',0,0,'L');
+			// $pdf->Cell(50,5,': '.$surat['nomor'],0,1,'L');
 			$pdf->Cell(50);
 			$pdf->Cell(18,5,'Tanggal',0,0,'L');
 			$pdf->Cell(50,5,': '.content_date($surat['tgl']),0,1,'L');
 			
-			$pdf->Ln(5);
+			$pdf->Ln(10);
 
 			$pdf->Cell(190,5,'Mengetahui',0,1,'C');
 			$pdf->Cell(65,5,'Tandatangan Pemegang',0,0,'C');
