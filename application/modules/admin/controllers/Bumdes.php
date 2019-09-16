@@ -208,4 +208,18 @@ class Bumdes extends CI_Controller{
 	{
 		$this->load->view('bumdes/product_cat');
 	}
+
+	public function product_list($cat_id = 0)
+	{
+		$this->load->view('index',['desa_id'=>$this->sipapat_model->get_desa_id(),'cat_id'=>$cat_id]);
+	}
+	public function clear_product_list()
+	{
+		$this->load->view('bumdes/product_list');
+	}
+
+	public function product_edit($cat_id = 0)
+	{
+		$this->load->view('index',['desa_id'=>$this->sipapat_model->get_desa_id(),'cat_id'=>$cat_id]);
+	}
 }
