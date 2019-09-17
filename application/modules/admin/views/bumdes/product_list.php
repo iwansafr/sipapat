@@ -40,6 +40,7 @@ $form->addInput('title','plaintext');
 $form->setLabel('title','nama');
 
 $form->setUrl('admin/bumdes/clear_product_list');
+$form->setEditLink(base_url('admin/bumdes/product_edit?id='),'id');
 
 $form->setEdit(true);
 $form->setDelete(true);

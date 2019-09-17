@@ -10,7 +10,7 @@ $form->init('edit');
 $form->setTable('bumdes_product');
 
 $form->setHeading('produk bumdes');
-
+$form->setId(@intval($_GET['id']));
 if(!empty($desa_id))
 {
 	$form->addInput('desa_id','static');
