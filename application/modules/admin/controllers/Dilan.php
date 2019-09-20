@@ -31,6 +31,20 @@ class Dilan extends CI_Controller{
 		}
 	}
 
+	public function upload_modify()
+	{
+		if(!empty($_FILES['doc']['name']))
+		{
+			$file = $this->dilan_model->upload($_FILES['doc']);
+			// $file['desa_id'] = $_POST['desa_id'];
+      $data = ['status'=>'success','data'=>$file];
+      output_json($data);
+		}else{
+			$data = ['status'=>'error'];
+			outpur_json($data);
+		}
+	}
+
 	public function detail($id = 0)
 	{
 		if(!empty($id))
