@@ -234,6 +234,15 @@ class Dilan extends CI_Controller{
 
 	}
 
+	public function surat_pengantar_ket()
+	{
+		$this->load->view("index");
+	}
+	public function clear_surat_pengantar_ket()
+	{
+		$this->load->view('dilan/surat_pengantar_ket');
+	}
+
 	public function surat_pengantar($id = 0)
 	{
 		if(!empty($id))
