@@ -2,7 +2,7 @@
 
 class Dilan_model extends CI_Model
 {
-	public function upload($file = '')
+	public function upload($file = '', $mode = '')
 	{
 		if(!empty($file['tmp_name']))
 		{
@@ -11,7 +11,7 @@ class Dilan_model extends CI_Model
 			{
 				mkdir($dir, 0777);
 			}
-			if(copy($file['tmp_name'] , $dir.$_SESSION[base_url().'_logged_in']['username'].'.xlsx'))
+			if(copy($file['tmp_name'] , $dir.$_SESSION[base_url().'_logged_in']['username'].$mode.'.xlsx'))
 			{
 				return $_SESSION[base_url().'_logged_in']['username'].'.xlsx';
 			}

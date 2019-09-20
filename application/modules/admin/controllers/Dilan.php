@@ -53,6 +53,20 @@ class Dilan extends CI_Controller{
 		$this->load->view('index');
 	}
 
+	public function modify()
+	{
+		if(!empty($_FILES['doc']['name']))
+		{
+			$file = $this->dilan_model->upload($_FILES['doc'], '_update');
+			if($file)
+			{
+				$this->esg->add_js(base_url('assets/dilan/script.js'));
+			}
+		}
+		$this->esg->add_js(base_url('assets/dilan/script.js'));
+		$this->load->view('index');
+	}
+
 	public function edit()
 	{
 		$desa_id = 0;
@@ -121,6 +135,64 @@ class Dilan extends CI_Controller{
 			// echo output_json(array('status'=>1,'data'=>$data));
 		}
 	}
+
+	public function update()
+	{
+		if(!empty($_POST['file']))
+		{
+			$file = $_POST['file'];
+			$file = FCPATH.'images/modules/dilan/'.$file;
+			$reader = PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
+			$reader->setReadDataOnly(TRUE);
+
+			$spreadsheet = $reader->load($file);
+			$worksheet = $spreadsheet->getActiveSheet();
+			$data = array();
+			$title = array();
+			$i = 0;
+			$desa_id = $this->sipapat_model->get_desa_id();
+			foreach ($worksheet->getRowIterator() as $row) 
+			{
+		    $cellIterator = $row->getCellIterator();
+		    $cellIterator->setIterateOnlyExistingCells(FALSE);
+		    $j = 1;
+				$title[0] = 'desa_id';
+		    foreach ($cellIterator as $cell)
+		    {
+		    	if($i==0)
+		    	{
+		    		// $data[$cell->getValue()] = [];
+		    		$title[] = $cell->getValue();
+		    		// $title[] = 'desa_id';
+		    	}else{
+		    		$data[$i]['desa_id'] = $desa_id;
+						if($title[$j] == 'TGL_LHR'){
+							$dt = new DateTime();
+							$data[$i][$title[$j]] = date('Y-m-d', PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($cell->getValue()));
+						}else{
+							$data[$i][$title[$j]] = $cell->getValue();
+						}
+		    		
+		    	}
+		    	// $data[$i][] = $cell->getValue();
+	    		$j++;
+	    		// $data[$i]['desa_id'] = $desa_id;
+		    }
+				$i++;
+			}
+			if(!empty($data))
+			{
+				if($this->db->update_batch('penduduk', $data,'nik'))
+				{
+					echo output_json(['status'=>1]);
+				}else{
+					echo output_json(['status'=>0]);
+				}
+			}
+			// echo output_json(array('status'=>1,'data'=>$data));
+		}
+	}
+
 	public function form()
 	{
 		if(is_root())

@@ -40,6 +40,9 @@ $form->addInput('nama','plaintext');
 $form->addInput('alamat','plaintext');
 $form->setLabel('alamat','desa');
 $form->addInput('jk','plaintext');
+$form->addInput('status','dropdown');
+$form->setOptions('status',['Belum Kawin','Cerai Hidup','Cerai Mati','Kawin']);
+$form->setAttribute('status','disabled');
 
 $form->setUrl('admin/dilan/clear_list');
 
