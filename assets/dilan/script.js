@@ -81,7 +81,18 @@ $(document).ready(function(){
         }
       },
       error:function(error){
-        console.log(error);
+        var str = error.responseText;
+        var res = str.substring(1094,1142);
+        if(res == 'You have an error in your SQL syntax; check the ')
+        {
+          console.log('Format Excel tidak sesuai');
+          res = 'Format Excel tidak sesuai';
+          res = '<div class="alert alert-danger"><strong>danger !</strong> '+res+'</div>'
+        }else{
+          res = '<div class="alert alert-danger"><strong>danger !</strong> '+res+'</div>'
+        }
+        $('#error').html(res);
+
       }
     });
   }
@@ -169,7 +180,17 @@ $(document).ready(function(){
         }
       },
       error:function(error){
-        console.log(error);
+        var str = error.responseText;
+        var res = str.substring(1094,1142);
+        if(res == 'You have an error in your SQL syntax; check the ')
+        {
+          console.log('Format Excel tidak sesuai');
+          res = 'Format Excel tidak sesuai';
+          res = '<div class="alert alert-danger"><strong>danger !</strong> '+res+'</div>'
+        }else{
+          res = '<div class="alert alert-danger"><strong>danger !</strong> '+res+'</div>'
+        }
+        $('#error').html(res);
       }
     });
   }
