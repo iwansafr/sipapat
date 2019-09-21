@@ -262,7 +262,7 @@ class Dilan extends CI_Controller{
 					$kepdes   = $this->perangkat_model->kepala_desa($desa['id']);
 				}
 
-				$penduduk['agama'] = $agama[$penduduk['agama']];
+				$penduduk['agama'] = @$agama[$penduduk['agama']];
 				// pr($surat);
 				// pr($penduduk);
 				// pr($desa);
