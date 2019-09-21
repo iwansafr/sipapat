@@ -207,6 +207,57 @@ class Dilan extends CI_Controller{
 		}
 	}
 
+	public function download_template()
+	{
+		$data = $this->db->list_fields('penduduk');
+		unset($data[0],$data[1],$data[26],$data[25],$data[27]);
+		$alp = alphabet();
+		$tot = count($data);
+		$spreadsheet = new Spreadsheet();
+
+		// Set document properties
+		$spreadsheet->getProperties()->setCreator('esoftgreat - software development')
+		->setLastModifiedBy('esoftgreat - software development')
+		->setTitle('Office 2007 XLSX Test Document')
+		->setSubject('Office 2007 XLSX Test Document')
+		->setDescription('Test document for Office 2007 XLSX, generated using PHP classes.')
+		->setKeywords('office 2007 openxml php')
+		->setCategory('Test result file');
+
+		// Add some data
+		$i = 0;
+		$str = '$spreadsheet->setActiveSheetIndex(0)';
+		foreach ($data as $key => $value)
+		{
+			$j = $i+1;
+			$str .= '->setCellValue("'.$alp[$i].'1","'.strtoupper($value).'")';
+			$i++;
+		}
+		$str .= ';';
+		eval($str);
+		$spreadsheet->getActiveSheet()->setTitle('template '.date('d-m-Y H'));
+
+		// Set active sheet index to the first sheet, so Excel opens this as the first sheet
+		$spreadsheet->setActiveSheetIndex(0);
+
+		// Redirect output to a client’s web browser (Xlsx)
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment;filename="data penduduk.xlsx"');
+		header('Cache-Control: max-age=0');
+		// If you're serving to IE 9, then the following may be needed
+		header('Cache-Control: max-age=1');
+
+		// If you're serving to IE over SSL, then the following may be needed
+		header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+		header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); // always modified
+		header('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+		header('Pragma: public'); // HTTP/1.0
+
+		$writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+		$writer->save('php://output');
+		exit;
+	}
+
 	public function form()
 	{
 		if(is_root())
@@ -231,7 +282,6 @@ class Dilan extends CI_Controller{
 				redirect(base_url('admin/dilan/surat_pengantar/'.$last_id));
 			}
 		}
-
 	}
 
 	public function surat_pengantar_ket()

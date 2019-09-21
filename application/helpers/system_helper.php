@@ -8,6 +8,15 @@ function msg($msg = 'alert', $alert = 'default')
 	<?php
 }
 
+function alphabet()
+{
+	$data = [];
+	foreach (range('A', 'Z') as $char) {
+		$data[] = $char;
+	}
+	return $data;
+}
+
 function array_to_string($data = array())
 {
 	if(!empty($data) && is_array($data))
