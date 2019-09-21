@@ -251,146 +251,153 @@ class Dilan extends CI_Controller{
 			$this->load->model('perangkat_model');
 
 			$surat    = $this->dilan_model->get_surat($id);
-			$penduduk = $this->dilan_model->get_penduduk($surat['penduduk_id']);
-			$desa     = $this->sipapat_model->get_desa($penduduk['desa_id']);
-			$agama    = $this->pengguna_model->agama();
-			$kepdes   = [];
-			if(!empty($desa['id']))
+			pr($surat);
+			if(!empty($surat['penduduk_id']))
 			{
-				$kepdes   = $this->perangkat_model->kepala_desa($desa['id']);
+				$penduduk = $this->dilan_model->get_penduduk($surat['penduduk_id']);
+				pr($penduduk);
+				$desa     = $this->sipapat_model->get_desa($penduduk['desa_id']);
+				pr($desa);
+				die();
+				$agama    = $this->pengguna_model->agama();
+				$kepdes   = [];
+				if(!empty($desa['id']))
+				{
+					$kepdes   = $this->perangkat_model->kepala_desa($desa['id']);
+				}
+
+				$penduduk['agama'] = $agama[$penduduk['agama']];
+				// pr($surat);
+				// pr($penduduk);
+				// pr($desa);
+
+				$image = $this->sipapat_model->get_image_kab();
+
+				$teks1 = 'PEMERINTAH KABUPATEN PATI';
+				$teks2 = 'KECAMATAN '.@$desa['kecamatan'];
+				$teks3 = 'DESA '.$desa['nama'];
+				// $teks4 = 'Alamat Kantor Kepala Desa '.strtolower(@$desa['nama']).' '.substr(@$desa['alamat'],0,20).' Kec. '.strtolower(@$desa['kecamatan']).' kab. '.$desa['kabupaten'];
+				$teks4 = ': '.substr(@$desa['alamat'],0,20);
+				$teks5 = ': '.@$desa['telepon'];
+				$teks6 = ': '.@$desa['email'];
+				$teks7 = ': '.@$desa['kode_pos'];
+				$teks8 = ': '.@$desa['website'];
+
+				$this->load->library('pdf');
+				$pdf = new FPDF('P','mm','A4');
+		    // membuat halaman baru
+		    $pdf->AddPage();
+		    // setting jenis font yang akan digunakan
+		    $pdf->SetFont('Arial','B',7);
+		    // mencetak string 
+		    $pdf->Image($image,10,10,40,30);
+		    $pdf->Cell(25);
+				$pdf->SetFont('Times','B','15');
+				$pdf->Cell(0,5,$teks1,0,1,'C');
+				$pdf->Cell(25);
+				$pdf->Cell(0,5,$teks2,0,1,'C');
+				$pdf->Cell(25);
+				$pdf->SetFont('Times','B','15');
+				$pdf->Cell(0,5,$teks3,0,1,'C');
+				$pdf->Cell(38);
+				$pdf->SetFont('Times','','13');
+				// $pdf->MultiCell(0,5,$teks4,0,1,false);
+				// $pdf->Cell(0,5,$teks4,0,1,'L');
+				$pdf->Cell(30,5,'Alamat Kantor',0,0,'L');
+				$pdf->Cell(30,5,$teks4,0,0,'L');
+				$pdf->Cell(10);
+				$pdf->Cell(15,5,'Email',0,0,'L');
+				$pdf->Cell(60,5,$teks6,0,1,'L');
+				$pdf->Cell(38);
+				$pdf->Cell(30,5,'Telepon',0,0,'L');
+				$pdf->Cell(30,5,$teks5,0,0,'L');
+				$pdf->Cell(10);
+				$pdf->Cell(15,5,'Website',0,0,'L');
+				$pdf->Cell(60,5,$teks8,0,1,'L');
+				$pdf->Cell(38);
+				$pdf->Cell(30,5,'Kode Pos',0,0,'L');
+				$pdf->Cell(30,5,$teks7,0,1,'L');
+				$pdf->SetLineWidth(1);
+				$pdf->Line(10,45,200,45);
+				$pdf->SetLineWidth(0);
+				$pdf->Line(10,46,200,46);
+				$pdf->Ln(10);
+
+				$pdf->Cell(0,5,'No. Kode Desa : '.$desa['kode'],0,1,'L');
+				$pdf->Cell(200,5,'SURAT KETERANGAN/PENGANTAR',0,1,'C');
+				$pdf->SetLineWidth(0);
+				$pdf->Line(70,60,150,60);
+				$pdf->Ln(1);
+				$pdf->Cell(200,5,'Nomor: '.$surat['nomor'],0,1,'C');
+				$pdf->Ln(5);
+				$pdf->Cell(150,5,'Yang bertanda tangan di bawah ini, menerangkan bahwa : ',0,1,'C');
+				$pdf->Cell(60,5,'1. Nama',0,0,'L');
+				$pdf->Cell(0,5,': '.$penduduk['nama'],0,1,'L');
+				$pdf->Cell(60,5,'2. Tempat, tanggal lahir',0,0,'L');
+				$pdf->Cell(0,5,': '.$penduduk['tmpt_lhr'].', '.content_date($penduduk['tgl_lhr']),0,1,'L');
+				$pdf->Cell(60,5,'3. Kewarganegaraan/ Agama',0,0,'L');
+				$pdf->Cell(0,5,': Indonesia/ '.$penduduk['agama'],0,1,'L');
+				$pdf->Cell(60,5,'4. Pekerjaan',0,0,'L');
+				$pdf->Cell(0,5,': '.$penduduk['pekerjaan'],0,1,'L');
+				$pdf->Cell(60,5,'5. Tempat Tinggal',0,0,'L');
+				$pdf->Cell(0,5,': '.$penduduk['alamat'].' RT '.$penduduk['no_rt'].' RW '.$penduduk['no_rw'],0,1,'L');
+				$pdf->Cell(5);
+				$pdf->Cell(55,5,'Kabupaten',0,0,'L');
+				$pdf->Cell(40,5,': '.$desa['kabupaten'],0,0,'L');
+				$pdf->Cell(5);
+				$pdf->Cell(17,5,'Provinsi',0,0,'L');
+				$pdf->Cell(0,5,': '.$desa['provinsi'],0,1,'L');
+				$pdf->Cell(60,5,'6. Surat Bukti',0,0,'L');
+				$pdf->Cell(52,5,': KTP : '.$penduduk['nik'],0,0,'L');
+				// $pdf->Cell(5);
+				$pdf->Cell(10,5,'KK',0,0,'R');
+				$pdf->Cell(0,5,': '.$penduduk['no_kk'],0,1,'L');
+				// $pdf->Cell(5);
+				$pdf->Cell(60,5,'7. Keperluan',0,0,'L');
+				$pdf->Cell(2,5,': ',0,0,'L');
+				$pdf->MultiCell(0,5,strtolower($surat['keperluan']),0,'L',false);
+				$pdf->Cell(60,5,'8. Berlaku Mulai',0,0,'L');
+				$pdf->Cell(0,5,': '.content_date($surat['berlaku_mulai']).' s/d '.content_date($surat['berlaku_sampai']),0,1,'L');
+				$pdf->Cell(60,5,'9. Keterangan lain-lain *)',0,0,'L');
+				$pdf->Cell(2,5,': ',0,0,'L');
+				$pdf->MultiCell(0,5,strtolower($surat['keterangan']),0,'L',false);
+
+				$pdf->Ln(5);
+				$pdf->Cell(150,5,'Demikian untuk menjadikan maklum bagi yang berkepentingan',0,1,'C');
+				// $pdf->Cell(50);
+				// $pdf->Cell(18,5,'Nomor',0,0,'L');
+				// $pdf->Cell(50,5,': '.$surat['nomor'],0,1,'L');
+				$pdf->Cell(50);
+				$pdf->Cell(18,5,'Tanggal',0,0,'L');
+				$pdf->Cell(50,5,': '.content_date($surat['tgl']),0,1,'L');
+				
+				$pdf->Ln(10);
+
+				$pdf->Cell(190,5,'Mengetahui',0,1,'C');
+				$pdf->Cell(65,5,'Tandatangan Pemegang',0,0,'C');
+				$pdf->Cell(60,5,'Camat '.$desa['kecamatan'],0,0,'C');
+				$pdf->Cell(60,5,'Kepala Desa '.$desa['nama'],0,0,'C');
+				if(!empty($desa['ttd_img']))
+				{
+					$pdf->Image(image_module('desa',$desa['id'].'/'.$desa['ttd_img']),135,165,40,30);
+				}
+				$pdf->Ln(30);
+		    
+		    $pdf->Cell(65,5,'................................',0,0,'C');
+				$pdf->SetLineWidth(0);
+				$pdf->Line(61,191,24,191);
+		    $pdf->Cell(60,5,'................................',0,0,'C');
+				$pdf->SetLineWidth(0);
+				$pdf->Line(123,191,87,191);
+		    $pdf->Cell(60,5,@$kepdes['nama'],0,1,'C');
+				$pdf->SetLineWidth(0);
+				$pdf->Line(183,191,147,191);
+				$pdf->Ln(1);
+				$pdf->Cell(65);
+		    $pdf->Cell(60,5,'NIP. .........................',0,0,'C');
+		    $pdf->Cell(60,5,'NIP. '.@$kepdes['nik'],0,1,'C');
+		    $pdf->Output('Surat_Keterangan_Pengantar.pdf','I');
 			}
-
-			$penduduk['agama'] = $agama[$penduduk['agama']];
-			// pr($surat);
-			// pr($penduduk);
-			// pr($desa);
-
-			$image = $this->sipapat_model->get_image_kab();
-
-			$teks1 = 'PEMERINTAH KABUPATEN PATI';
-			$teks2 = 'KECAMATAN '.@$desa['kecamatan'];
-			$teks3 = 'DESA '.$desa['nama'];
-			// $teks4 = 'Alamat Kantor Kepala Desa '.strtolower(@$desa['nama']).' '.substr(@$desa['alamat'],0,20).' Kec. '.strtolower(@$desa['kecamatan']).' kab. '.$desa['kabupaten'];
-			$teks4 = ': '.substr(@$desa['alamat'],0,20);
-			$teks5 = ': '.@$desa['telepon'];
-			$teks6 = ': '.@$desa['email'];
-			$teks7 = ': '.@$desa['kode_pos'];
-			$teks8 = ': '.@$desa['website'];
-
-			$this->load->library('pdf');
-			$pdf = new FPDF('P','mm','A4');
-	    // membuat halaman baru
-	    $pdf->AddPage();
-	    // setting jenis font yang akan digunakan
-	    $pdf->SetFont('Arial','B',7);
-	    // mencetak string 
-	    $pdf->Image($image,10,10,40,30);
-	    $pdf->Cell(25);
-			$pdf->SetFont('Times','B','15');
-			$pdf->Cell(0,5,$teks1,0,1,'C');
-			$pdf->Cell(25);
-			$pdf->Cell(0,5,$teks2,0,1,'C');
-			$pdf->Cell(25);
-			$pdf->SetFont('Times','B','15');
-			$pdf->Cell(0,5,$teks3,0,1,'C');
-			$pdf->Cell(38);
-			$pdf->SetFont('Times','','13');
-			// $pdf->MultiCell(0,5,$teks4,0,1,false);
-			// $pdf->Cell(0,5,$teks4,0,1,'L');
-			$pdf->Cell(30,5,'Alamat Kantor',0,0,'L');
-			$pdf->Cell(30,5,$teks4,0,0,'L');
-			$pdf->Cell(10);
-			$pdf->Cell(15,5,'Email',0,0,'L');
-			$pdf->Cell(60,5,$teks6,0,1,'L');
-			$pdf->Cell(38);
-			$pdf->Cell(30,5,'Telepon',0,0,'L');
-			$pdf->Cell(30,5,$teks5,0,0,'L');
-			$pdf->Cell(10);
-			$pdf->Cell(15,5,'Website',0,0,'L');
-			$pdf->Cell(60,5,$teks8,0,1,'L');
-			$pdf->Cell(38);
-			$pdf->Cell(30,5,'Kode Pos',0,0,'L');
-			$pdf->Cell(30,5,$teks7,0,1,'L');
-			$pdf->SetLineWidth(1);
-			$pdf->Line(10,45,200,45);
-			$pdf->SetLineWidth(0);
-			$pdf->Line(10,46,200,46);
-			$pdf->Ln(10);
-
-			$pdf->Cell(0,5,'No. Kode Desa : '.$desa['kode'],0,1,'L');
-			$pdf->Cell(200,5,'SURAT KETERANGAN/PENGANTAR',0,1,'C');
-			$pdf->SetLineWidth(0);
-			$pdf->Line(70,60,150,60);
-			$pdf->Ln(1);
-			$pdf->Cell(200,5,'Nomor: '.$surat['nomor'],0,1,'C');
-			$pdf->Ln(5);
-			$pdf->Cell(150,5,'Yang bertanda tangan di bawah ini, menerangkan bahwa : ',0,1,'C');
-			$pdf->Cell(60,5,'1. Nama',0,0,'L');
-			$pdf->Cell(0,5,': '.$penduduk['nama'],0,1,'L');
-			$pdf->Cell(60,5,'2. Tempat, tanggal lahir',0,0,'L');
-			$pdf->Cell(0,5,': '.$penduduk['tmpt_lhr'].', '.content_date($penduduk['tgl_lhr']),0,1,'L');
-			$pdf->Cell(60,5,'3. Kewarganegaraan/ Agama',0,0,'L');
-			$pdf->Cell(0,5,': Indonesia/ '.$penduduk['agama'],0,1,'L');
-			$pdf->Cell(60,5,'4. Pekerjaan',0,0,'L');
-			$pdf->Cell(0,5,': '.$penduduk['pekerjaan'],0,1,'L');
-			$pdf->Cell(60,5,'5. Tempat Tinggal',0,0,'L');
-			$pdf->Cell(0,5,': '.$penduduk['alamat'].' RT '.$penduduk['no_rt'].' RW '.$penduduk['no_rw'],0,1,'L');
-			$pdf->Cell(5);
-			$pdf->Cell(55,5,'Kabupaten',0,0,'L');
-			$pdf->Cell(40,5,': '.$desa['kabupaten'],0,0,'L');
-			$pdf->Cell(5);
-			$pdf->Cell(17,5,'Provinsi',0,0,'L');
-			$pdf->Cell(0,5,': '.$desa['provinsi'],0,1,'L');
-			$pdf->Cell(60,5,'6. Surat Bukti',0,0,'L');
-			$pdf->Cell(52,5,': KTP : '.$penduduk['nik'],0,0,'L');
-			// $pdf->Cell(5);
-			$pdf->Cell(10,5,'KK',0,0,'R');
-			$pdf->Cell(0,5,': '.$penduduk['no_kk'],0,1,'L');
-			// $pdf->Cell(5);
-			$pdf->Cell(60,5,'7. Keperluan',0,0,'L');
-			$pdf->Cell(2,5,': ',0,0,'L');
-			$pdf->MultiCell(0,5,strtolower($surat['keperluan']),0,'L',false);
-			$pdf->Cell(60,5,'8. Berlaku Mulai',0,0,'L');
-			$pdf->Cell(0,5,': '.content_date($surat['berlaku_mulai']).' s/d '.content_date($surat['berlaku_sampai']),0,1,'L');
-			$pdf->Cell(60,5,'9. Keterangan lain-lain *)',0,0,'L');
-			$pdf->Cell(2,5,': ',0,0,'L');
-			$pdf->MultiCell(0,5,strtolower($surat['keterangan']),0,'L',false);
-
-			$pdf->Ln(5);
-			$pdf->Cell(150,5,'Demikian untuk menjadikan maklum bagi yang berkepentingan',0,1,'C');
-			// $pdf->Cell(50);
-			// $pdf->Cell(18,5,'Nomor',0,0,'L');
-			// $pdf->Cell(50,5,': '.$surat['nomor'],0,1,'L');
-			$pdf->Cell(50);
-			$pdf->Cell(18,5,'Tanggal',0,0,'L');
-			$pdf->Cell(50,5,': '.content_date($surat['tgl']),0,1,'L');
-			
-			$pdf->Ln(10);
-
-			$pdf->Cell(190,5,'Mengetahui',0,1,'C');
-			$pdf->Cell(65,5,'Tandatangan Pemegang',0,0,'C');
-			$pdf->Cell(60,5,'Camat '.$desa['kecamatan'],0,0,'C');
-			$pdf->Cell(60,5,'Kepala Desa '.$desa['nama'],0,0,'C');
-			if(!empty($desa['ttd_img']))
-			{
-				$pdf->Image(image_module('desa',$desa['id'].'/'.$desa['ttd_img']),135,165,40,30);
-			}
-			$pdf->Ln(30);
-	    
-	    $pdf->Cell(65,5,'................................',0,0,'C');
-			$pdf->SetLineWidth(0);
-			$pdf->Line(61,191,24,191);
-	    $pdf->Cell(60,5,'................................',0,0,'C');
-			$pdf->SetLineWidth(0);
-			$pdf->Line(123,191,87,191);
-	    $pdf->Cell(60,5,@$kepdes['nama'],0,1,'C');
-			$pdf->SetLineWidth(0);
-			$pdf->Line(183,191,147,191);
-			$pdf->Ln(1);
-			$pdf->Cell(65);
-	    $pdf->Cell(60,5,'NIP. .........................',0,0,'C');
-	    $pdf->Cell(60,5,'NIP. '.@$kepdes['nik'],0,1,'C');
-	    $pdf->Output('Surat_Keterangan_Pengantar.pdf','I');
 		}
 	}
 
