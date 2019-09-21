@@ -251,14 +251,10 @@ class Dilan extends CI_Controller{
 			$this->load->model('perangkat_model');
 
 			$surat    = $this->dilan_model->get_surat($id);
-			pr($surat);
 			if(!empty($surat['penduduk_id']))
 			{
 				$penduduk = $this->dilan_model->get_penduduk($surat['penduduk_id']);
-				pr($penduduk);
 				$desa     = $this->sipapat_model->get_desa($penduduk['desa_id']);
-				pr($desa);
-				die();
 				$agama    = $this->pengguna_model->agama();
 				$kepdes   = [];
 				if(!empty($desa['id']))
