@@ -1,6 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 ?>
+<a href="<?php echo base_url('admin/dilan/download_template') ?>" target="_blank" class="btn btn-warning btn-sm"><i class="fa fa-download"></i> Download Template</a>
 <div class="panel panel-default card card-default">
 	<div class="panel panel-heading card card-header">
 		upload data penduduk desa
