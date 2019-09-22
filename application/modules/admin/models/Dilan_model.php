@@ -46,7 +46,37 @@ class Dilan_model extends CI_Model
 
 	public function status()
 	{
-		return  ['1'=>'Belum Kawin','2'=>'Kawin','3'=>'Cerai Hidup','4'=>'Cerai Mati'];
+		return ['1'=>'Belum Kawin','2'=>'Kawin','3'=>'Cerai Hidup','4'=>'Cerai Mati'];
 	}
 
+	public function shdk()
+	{
+		$data = [
+			'1'=>'Kepala Keluarga',
+			'2'=>'Suami',
+			'3'=>'Isteri',
+			'4'=>'Anak',
+			'5'=>'Menantu',
+			'6'=>'Cucu',
+			'7'=>'Orang Tua',
+			'8'=>'Mertua',
+			'9'=>'Famili Lain',
+			'10'=>'Pembantu',
+			'11'=>'Lainnya'
+		];
+		return $data;
+	}
+
+	public function cacat()
+	{
+		$data = [
+			 '1'=>'Cacat Fisik',
+			 '2'=>'Cacat Netra/Buta',
+			 '3'=>'Cacat Rungu/Wicara',
+			 '4'=>'Cacat Mental/Jiwa',
+			 '5'=>'Cacat Fisik dan Mental',
+			 '6'=>'Cacat lainnya'
+		];
+		return $data;
+	}
 }
