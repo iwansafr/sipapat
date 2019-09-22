@@ -43,3 +43,6 @@ ALTER TABLE `posyantekdes` CHANGE `no_permakades` `no_permakades` VARCHAR(50) NO
 
 ALTER TABLE `desa` ADD `ttd_img` VARCHAR(255) NOT NULL AFTER `kode`;
 ALTER TABLE `dilan_surat` ADD `desa_id` INT(11) NOT NULL AFTER `id`;
+
+
+ALTER TABLE `penduduk` ADD `agama_lainnya` VARCHAR(255) NOT NULL AFTER `agama`;

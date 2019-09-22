@@ -24,9 +24,21 @@ $form->addInput('jk','dropdown');
 $form->setOptions('jk',['L'=>'LAKI-LAKI','P'=>'PEREMPUAN']);
 $form->addInput('tmpt_lhr','text');
 $form->addInput('tgl_lhr','text');
-$form->addInput('gdr','text');
-$form->addInput('agama','text');
-$form->addInput('status','text');
+$form->addInput('gdr','dropdown');
+$form->setLabel('gdr','golongan darah');
+$form->setOptions('gdr',$this->dilan_model->golongan_darah());
+$form->addInput('agama','dropdown');
+$form->setOptions('agama',$this->dilan_model->agama());
+
+$form->addInput('agama_lainnya','text');
+$form->setLabel('agama_lainnya','sebutkan (jika anda memilih penghayat kepercayaan atau lainnya)*');
+
+$form->startCollapse('agama','agama');
+$form->endCollapse('agama_lainnya');
+$form->setCollapse('agama',TRUE);
+
+$form->addInput('status','dropdown');
+$form->setOptions('status', $this->dilan_model->status());
 $form->addInput('no_akta_kwn','text');
 $form->addInput('no_akta_crai','text');
 $form->addInput('shdk','text');
