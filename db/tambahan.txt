@@ -46,3 +46,6 @@ ALTER TABLE `dilan_surat` ADD `desa_id` INT(11) NOT NULL AFTER `id`;
 
 
 ALTER TABLE `penduduk` ADD `agama_lainnya` VARCHAR(255) NOT NULL AFTER `agama`;
+
+
+ALTER TABLE `penduduk` CHANGE `gdr` `gdr` TINYINT(2) NULL DEFAULT NULL;
