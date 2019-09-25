@@ -180,6 +180,7 @@ $(document).ready(function(){
         }
       },
       error:function(error){
+        console.log(error);
         var str = error.responseText;
         var res = str.substring(1094,1142);
         if(res == 'You have an error in your SQL syntax; check the ')

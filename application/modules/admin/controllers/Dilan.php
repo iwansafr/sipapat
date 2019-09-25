@@ -182,9 +182,9 @@ class Dilan extends CI_Controller{
 		    		$data[$i]['desa_id'] = $desa_id;
 						if($title[$j] == 'TGL_LHR'){
 							$dt = new DateTime();
-							$data[$i][$title[$j]] = date('Y-m-d', PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($cell->getValue()));
+							$data[$i][strtolower($title[$j])] = date('Y-m-d', PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($cell->getValue()));
 						}else{
-							$data[$i][$title[$j]] = $cell->getValue();
+							$data[$i][strtolower($title[$j])] = $cell->getValue();
 						}
 		    		
 		    	}
