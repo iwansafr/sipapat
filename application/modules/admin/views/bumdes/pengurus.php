@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-	if(empty($bumdes_id)){
+	if(empty($bumdes_id) && is_desa()){
 		msg('anda belum memiliki bumdes, silahkan mengisi data bumdes terlebih dahulu <a class="btn btn-sm btn-primary" href="'.base_url('admin/bumdes/edit').'">di sini</a>','danger');
 		die();
 	}
@@ -16,11 +16,11 @@
 	if(is_desa())
 	{
 		$form->setWhere('bumdes_id = '.@intval($bumdes_id));
+		$form->setHeading('<a href="'.base_url('admin/bumdes/pengurus_edit').'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>');
 	}
 
 	$form->addInput('id','hidden');
 	
-	$form->setHeading('<a href="'.base_url('admin/bumdes/pengurus_edit').'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>');
 
 	$form->addInput('bumdes_id','dropdown');
 	$form->tableOptions('bumdes_id','bumdes','id','nama');
