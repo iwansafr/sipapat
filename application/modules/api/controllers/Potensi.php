@@ -24,7 +24,7 @@ class Potensi extends CI_Controller
 			$desa = $this->sipapat_model->get_desa($value['desa_id']);
 			$data[$key]['desa'] = $desa;
 			$data[$key]['doc'] = image_module('potensi_desa',$value['id'].'/'.$value['doc']);
-			$data[$key]['kategori'] = $kategori[$data[$key]['kategori']];
+			$data[$key]['kategori'] = @$kategori[$data[$key]['kategori']];
 			$data[$key]['produk_desa'] = $produk_desa[$data[$key]['produk_desa']];
 			$data[$key]['satuan'] = $satuan[$data[$key]['satuan']];
 			$data[$key]['waktu'] = $waktu[$data[$key]['waktu']];
