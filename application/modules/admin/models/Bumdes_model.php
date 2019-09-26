@@ -84,6 +84,11 @@ class Bumdes_model extends CI_Model{
 		}
 	}
 
+	public function termin()
+	{
+		return ['0'=>'None','1'=>'termin 1','2'=>'termin 2','3'=>'termin 3'];
+	}
+
 	public function get_alamat($alamat = '')
 	{
 		if(!empty($alamat))

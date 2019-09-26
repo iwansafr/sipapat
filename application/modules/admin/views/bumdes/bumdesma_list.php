@@ -29,10 +29,18 @@ $form2->setHeading('<a class="btn btn-default btn-sm" href="'.base_url('admin/bu
 $form2->setTable('bumdesma');
 $form2->setNumbering(true);
 $form2->search();
-$form2->addInput('id','hidden');
+$form2->addInput('id','link');
+$form2->setLabel('id','detail');
+$form2->setLink('id',base_url('admin/bumdes/bumdesma_mandiri_sejahtera_detail'),'id');
+$form2->setPlainText('id','detail');
 $form2->addInput('modal','plaintext');
 $form2->setType('modal','number');
 $form2->setLabel('modal','Penyertaan Modal');
+
+$form2->addInput('desa_id','dropdown');
+$form2->tableOptions('desa_id','desa','id','nama');
+$form2->setAttribute('desa_id','disabled');
+$form2->setLabel('desa_id','desa');
 
 $form2->addInput('sumber_dana', 'dropdown');
 $form2->setOptions('sumber_dana',$sumber);
@@ -44,7 +52,7 @@ $form2->setLabel('th_anggaran','tahun anggaran');
 $form2->setType('th_anggaran','number');
 
 $form2->addInput('termin','dropdown');
-$form2->setOptions('termin',['0'=>'None','1'=>'termin 1','2'=>'termin 2','3'=>'termin 3']);
+$form2->setOptions('termin',$this->bumdes_model->termin());
 $form2->setAttribute('termin', 'disabled');
 
 if(is_desa())

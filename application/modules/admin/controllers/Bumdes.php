@@ -171,6 +171,83 @@ class Bumdes extends CI_Controller{
 		$this->load->view('index',['dana_kat'=>$dana_kat,'bumdes_id'=>$bumdes_id,'desa_id'=>$pengguna['desa_id'],'user_id'=>$pengguna['user_id']]);
 	}
 
+	public function bumdesma_pdf($id = 0)
+	{
+		if(!empty($id))
+		{
+			$bumdesma = $this->bumdes_model->get_bumdesma($id);
+
+			if(!empty($bumdesma))
+			{
+				$desa  = $this->sipapat_model->get_desa($bumdesma['desa_id']);
+				$image = $this->sipapat_model->get_image_kab();
+
+				$teks1 = 'PEMERINTAH KABUPATEN PATI';
+				$teks2 = 'KECAMATAN '.@$desa['kecamatan'];
+				$teks3 = 'DESA '.$desa['nama'];
+				// $teks4 = 'Alamat Kantor Kepala Desa '.strtolower(@$desa['nama']).' '.substr(@$desa['alamat'],0,20).' Kec. '.strtolower(@$desa['kecamatan']).' kab. '.$desa['kabupaten'];
+				$teks4 = ': '.strtolower(substr(@$desa['alamat'],0,20));
+				$teks5 = ': '.@$desa['telepon'];
+				$teks6 = ': '.@$desa['email'];
+				$teks7 = ': '.@$desa['kode_pos'];
+				$teks8 = ': '.@$desa['website'];
+
+				$this->load->library('pdf');
+				$pdf = new FPDF('P','mm','A4');
+		    // membuat halaman baru
+		    $pdf->AddPage();
+		    // setting jenis font yang akan digunakan
+		    $pdf->SetFont('Arial','B',7);
+		    // mencetak string 
+		    $pdf->Image($image,10,10,40,30);
+		    $pdf->Cell(25);
+				$pdf->SetFont('Times','B','15');
+				$pdf->Cell(0,5,$teks1,0,1,'C');
+				$pdf->Cell(25);
+				$pdf->Cell(0,5,$teks2,0,1,'C');
+				$pdf->Cell(25);
+				$pdf->SetFont('Times','B','15');
+				$pdf->Cell(0,5,$teks3,0,1,'C');
+				$pdf->Cell(31);
+				$pdf->SetFont('Times','','13');
+				// $pdf->MultiCell(0,5,$teks4,0,1,false);
+				// $pdf->Cell(0,5,$teks4,0,1,'L');
+				$pdf->Cell(30,5,'Alamat Kantor',0,0,'L');
+				$pdf->Cell(30,5,$teks4,0,0,'L');
+				$pdf->Cell(17);
+				$pdf->Cell(15,5,'Email',0,0,'L');
+				$pdf->Cell(60,5,$teks6,0,1,'L');
+				$pdf->Cell(31);
+				$pdf->Cell(30,5,'Telepon',0,0,'L');
+				$pdf->Cell(30,5,$teks5,0,0,'L');
+				$pdf->Cell(17);
+				$pdf->Cell(15,5,'Website',0,0,'L');
+				$pdf->Cell(60,5,$teks8,0,1,'L');
+				$pdf->Cell(31);
+				$pdf->Cell(30,5,'Kode Pos',0,0,'L');
+				$pdf->Cell(30,5,$teks7,0,1,'L');
+				$pdf->SetLineWidth(1);
+				$pdf->Line(10,45,200,45);
+				$pdf->SetLineWidth(0);
+				$pdf->Line(10,46,200,46);
+				$pdf->Ln(10);
+
+				$pdf->Cell(60,5,'- Modal',0,0,'L');
+				$pdf->Cell(0,5,': '.money($bumdesma['modal']),0,1,'L');
+
+				$pdf->Cell(60,5,'- Sumber Dana',0,0,'L');
+				$pdf->Cell(0,5,': '.$this->pembangunan_model->sumber_dana()[$bumdesma['sumber_dana']],0,1,'L');
+
+				$pdf->Cell(60,5,'- Tahun Anggaran',0,0,'L');
+				$pdf->Cell(0,5,': '.$bumdesma['th_anggaran'],0,1,'L');
+				$pdf->Cell(60,5,'- Termin',0,0,'L');
+				$pdf->Cell(0,5,': '.$this->bumdes_model->termin()[$bumdesma['termin']],0,1,'L');
+
+		    $pdf->Output('bumdesma_korporasi.pdf','I');
+			}
+		}
+	}
+
 	public function bumdesma_mandiri_sejahtera()
 	{
 		$sumber = $this->pembangunan_model->sumber_dana();
@@ -183,6 +260,13 @@ class Bumdes extends CI_Controller{
 			$bumdesma = $this->bumdes_model->get_bumdesma($id);
 		}
 		$this->load->view('index',['pengguna'=>$pengguna,'sumber'=>$sumber,'sumber_selected'=>$sumber_selected,'bumdesma'=>$bumdesma]);
+	}
+
+	public function bumdesma_mandiri_sejahtera_detail()
+	{
+		$id = @intval($_GET['id']);
+		$data = $this->bumdes_model->get_bumdesma($id);
+		$this->load->view('index',['data'=>$data]);
 	}
 
 	public function clear_bumdesma_mandiri_sejahtera()
