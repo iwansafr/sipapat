@@ -62,6 +62,7 @@ $(document).ready(function(){
       //   }
       // },
       success:function(result){
+        console.log(result);
         if(result.status)
         {
           var elem = document.getElementById("dilan_success_pro");
@@ -81,6 +82,7 @@ $(document).ready(function(){
         }
       },
       error:function(error){
+        console.log(error);
         var str = error.responseText;
         var res = str.substring(1094,1142);
         if(res == 'You have an error in your SQL syntax; check the ')
