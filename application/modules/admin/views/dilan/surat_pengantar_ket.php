@@ -46,4 +46,3 @@ $form_list->setFormName('surat_pengantar_ket_list');
 <div class="col-md-8">
 	<?php $form_list->form();?>
 </div>
-<?php
