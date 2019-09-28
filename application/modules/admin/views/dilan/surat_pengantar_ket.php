@@ -3,6 +3,7 @@
 $form = new zea();
 
 $form->init('edit');
+$form->setId(@intval($_GET['id']));
 
 $form->setTable('dilan_surat_ket');
 
@@ -32,6 +33,7 @@ $form_list->addInput('keperluan','plaintext');
 $form_list->addInput('keterangan','plaintext');
 $form_list->setDelete(true);
 $form_list->setEdit(true);
+$form_list->setEditLink(base_url('admin/dilan/surat_pengantar_ket?id='),'id');
 
 $form_list->setUrl('admin/dilan/clear_surat_pengantar_ket');
 

@@ -274,19 +274,36 @@ class Dilan extends CI_Controller{
 		$this->load->view('index');
 	}
 
-	public function surat_pengantar_form($id = 0)
+	public function surat_pengantar_form($id = 0, $ket_id = 0)
 	{
 		if(!empty($id))
 		{
 			$penduduk = $this->dilan_model->get_penduduk($id);
 			$desa = $this->sipapat_model->get_desa($penduduk['desa_id']);
-			$this->load->view('index',['penduduk' => $penduduk,'desa'=>$desa]);
+			$keterangan = [];
+			if(!empty($ket_id))
+			{
+				$keterangan = $this->dilan_model->get_keterangan($ket_id);
+				if(!empty($keterangan))
+				{
+					$keterangan = $keterangan[0];
+				}
+			}
+			$this->load->view('index',['penduduk' => $penduduk,'desa'=>$desa,'keterangan'=>$keterangan]);
 			if(!empty($_POST))
 			{
 				$last_id = $this->zea->get_insert_id();
 				redirect(base_url('admin/dilan/surat_pengantar/'.$last_id));
 			}
 		}
+	}
+
+	public function surat_pengantar_choose_form($id = 0)
+	{
+		$data = [];
+		$data['keterangan'] = $this->dilan_model->get_keterangan();
+		$this->esg_model->set_nav_title('pilih form surat');
+		$this->load->view('index',['data'=>$data,'id'=>$id]);
 	}
 
 	public function surat_pengantar_ket()
@@ -413,6 +430,11 @@ class Dilan extends CI_Controller{
 				$pdf->Cell(2,5,': ',0,0,'L');
 				$pdf->MultiCell(0,5,strtolower($surat['keterangan']),0,'L',false);
 
+				$ln_kep = strlen($surat['keperluan']);
+				$ln_ket = strlen($surat['keterangan']);
+				// $pdf->cell(2,5, $ln_kep);
+				// $pdf->cell(50);
+				// $pdf->cell(2,5, $ln_ket);
 				$pdf->Ln(5);
 				$pdf->Cell(150,5,'Demikian untuk menjadikan maklum bagi yang berkepentingan',0,1,'C');
 				// $pdf->Cell(50);
@@ -435,14 +457,15 @@ class Dilan extends CI_Controller{
 				$pdf->Ln(30);
 		    
 		    $pdf->Cell(65,5,$penduduk['nama'],0,0,'C');
+		    $line_len = 107 + $ln_ket;
 				$pdf->SetLineWidth(0);
-				$pdf->Line(61,191,24,191);
+				// $pdf->Line(61,$line_len,24,$line_len);
 		    $pdf->Cell(60,5,'................................',0,0,'C');
 				$pdf->SetLineWidth(0);
-				$pdf->Line(123,191,87,191);
+				// $pdf->Line(123,$line_len,87,$line_len);
 		    $pdf->Cell(60,5,@$kepdes['nama'],0,1,'C');
 				$pdf->SetLineWidth(0);
-				$pdf->Line(183,191,147,191);
+				// $pdf->Line(183,$line_len,147,$line_len);
 				$pdf->Ln(1);
 				$pdf->Cell(65);
 		    $pdf->Cell(60,5,'NIP. .........................',0,0,'C');

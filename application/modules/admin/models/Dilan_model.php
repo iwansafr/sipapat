@@ -17,6 +17,15 @@ class Dilan_model extends CI_Model
 			}
 		}
 	}
+	public function get_keterangan($id = 0)
+	{
+		$data = [];
+		if(!empty($id))
+		{
+			$this->db->where(['id'=>$id]);
+		}
+		return $this->db->get('dilan_surat_ket')->result_array();
+	}
 	public function get_penduduk($id = 0)
 	{
 		return $this->db->get_where('penduduk',['id'=>$id])->row_array();

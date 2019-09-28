@@ -74,6 +74,13 @@ $this->zea->setLabel('keterangan','Keterangan Lain-lain');
 $this->zea->addInput('nomor','text');
 $this->zea->addInput('tgl','static');
 $this->zea->setValue('tgl',$current_date);
+if(!empty($keterangan))
+{
+	$this->zea->setValue('keperluan',$keterangan['keperluan']);
+	$this->zea->setValue('keterangan',$keterangan['keterangan']);
+	// $this->zea->setAttribute('keperluan','readonly');
+	$this->zea->setAttribute('keterangan','readonly');
+}
 
 $this->zea->setFormName('form_surat_pengantar');
 
