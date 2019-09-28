@@ -492,7 +492,12 @@ class Dilan extends CI_Controller{
 				}else{
 					$pdf->Cell(60,5,'',0,0,'C');
 				}
-		    $pdf->Cell(60,5,'NIP. '.@$kepdes['nik'],0,1,'C');
+				if(!empty($config['show_nip']))
+				{
+		    	$pdf->Cell(60,5,'NIP. '.@$kepdes['nik'],0,1,'C');
+				}else{
+		    	$pdf->Cell(60,5,'',0,1,'C');
+				}
 		    $pdf->Output('Surat_Keterangan_Pengantar.pdf','I');
 			}
 		}

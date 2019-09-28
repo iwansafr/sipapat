@@ -17,6 +17,10 @@ $form->addInput('show_camat','radio');
 $form->setLabel('show_camat','ttd camat');
 $form->setRadio('show_camat',['Sembunyikan','Tampilkan']);
 
+$form->addInput('show_nip','radio');
+$form->setLabel('show_nip','NIP kepala desa');
+$form->setRadio('show_nip',['Sembunyikan','Tampilkan']);
+
 $form->setFormName('dilan_config');
 
 $form->form();
