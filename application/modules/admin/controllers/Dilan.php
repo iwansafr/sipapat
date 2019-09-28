@@ -17,6 +17,12 @@ class Dilan extends CI_Controller{
 		$this->load->library('ZEA/zea');
 		$this->esg_model->init();
 	}
+
+	public function config()
+	{
+		$this->load->view('index');
+	}
+
 	public function upload()
 	{
 		if(!empty($_FILES['doc']['name']))
@@ -328,6 +334,8 @@ class Dilan extends CI_Controller{
 				$penduduk = $this->dilan_model->get_penduduk($surat['penduduk_id']);
 				$desa     = $this->sipapat_model->get_desa($penduduk['desa_id']);
 				$agama    = $this->pengguna_model->agama();
+				$user     = $this->session->userdata(base_url().'_logged_in');
+				$config   = $this->dilan_model->get_config($desa['id'].'_'.$user['id']);
 				$kepdes   = [];
 				if(!empty($desa['id']))
 				{
@@ -448,7 +456,12 @@ class Dilan extends CI_Controller{
 
 				$pdf->Cell(190,5,'Mengetahui',0,1,'C');
 				$pdf->Cell(65,5,'Tandatangan Pemegang',0,0,'C');
-				$pdf->Cell(60,5,'Camat '.$desa['kecamatan'],0,0,'C');
+				if(!empty($config['show_camat']))
+				{
+					$pdf->Cell(60,5,'Camat '.$desa['kecamatan'],0,0,'C');
+				}else{
+					$pdf->Cell(60,5,'',0,0,'C');
+				}
 				$pdf->Cell(60,5,'Kepala Desa '.$desa['nama'],0,0,'C');
 				if(!empty($desa['ttd_img']))
 				{
@@ -460,7 +473,12 @@ class Dilan extends CI_Controller{
 		    $line_len = 107 + $ln_ket;
 				$pdf->SetLineWidth(0);
 				// $pdf->Line(61,$line_len,24,$line_len);
-		    $pdf->Cell(60,5,'................................',0,0,'C');
+				if(!empty($config['show_camat']))
+				{
+		    	$pdf->Cell(60,5,'................................',0,0,'C');
+				}else{
+					$pdf->Cell(60,5,'',0,0,'C');
+				}
 				$pdf->SetLineWidth(0);
 				// $pdf->Line(123,$line_len,87,$line_len);
 		    $pdf->Cell(60,5,@$kepdes['nama'],0,1,'C');
@@ -468,7 +486,12 @@ class Dilan extends CI_Controller{
 				// $pdf->Line(183,$line_len,147,$line_len);
 				$pdf->Ln(1);
 				$pdf->Cell(65);
-		    $pdf->Cell(60,5,'NIP. .........................',0,0,'C');
+				if(!empty($config['show_camat']))
+				{
+		    	$pdf->Cell(60,5,'NIP. .........................',0,0,'C');
+				}else{
+					$pdf->Cell(60,5,'',0,0,'C');
+				}
 		    $pdf->Cell(60,5,'NIP. '.@$kepdes['nik'],0,1,'C');
 		    $pdf->Output('Surat_Keterangan_Pengantar.pdf','I');
 			}

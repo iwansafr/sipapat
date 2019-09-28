@@ -17,6 +17,20 @@ class Dilan_model extends CI_Model
 			}
 		}
 	}
+	public function get_config($name = '')
+  {
+		$data = array();
+		if(!empty($name))
+		{
+			$value = $this->db->query('SELECT value FROM dilan_config WHERE name = ?', $name)->row_array();
+			if(!empty($value))
+			{
+				$data = json_decode($value['value'], 1);
+			}
+		}
+		return $data;
+	}
+
 	public function get_keterangan($id = 0)
 	{
 		$data = [];
