@@ -33,12 +33,30 @@ class Dilan_model extends CI_Model
 
 	public function get_keterangan($id = 0)
 	{
+		$desa_id = $this->sipapat_model->get_desa_id();
+		$desa = $this->sipapat_model->get_desa($desa_id);
 		$data = [];
 		if(!empty($id))
 		{
 			$this->db->where(['id'=>$id]);
 		}
-		return $this->db->get('dilan_surat_ket')->result_array();
+		$this->load->model('sipapat_model');
+		// $this->load->model('sipapat_model');
+		$kabupaten = $this->esg->get_config('sipapat_config');
+		$data_tmp = $this->db->get('dilan_surat_ket')->result_array();
+		$i = 0;
+		foreach ($data_tmp as $key => $value) 
+		{
+			$keterangan = $value['keterangan'];
+			$keterangan = str_replace('{DESA}', @$desa['nama'], $keterangan);
+			$keterangan = str_replace('{KECAMATAN}', @$desa['kecamatan'], $keterangan);
+			$keterangan = str_replace('{KABUPATEN}', @$kabupaten['kabupaten'], $keterangan);
+			$value['keterangan'] = $keterangan;
+			$data[$i] = $value;
+			$i++;
+		}
+		return $data;
+
 	}
 	public function get_penduduk($id = 0)
 	{

@@ -34,7 +34,7 @@ class Sipapat_model extends CI_Model
 			$desa = $this->db->query('SELECT desa_id FROM user_desa WHERE user_id = ?', $user['id'])->row_array();
 			if(!empty($desa))
 			{
-				return $desa['desa_id'];
+				return @intval($desa['desa_id']);
 			}
 		}
 	}
@@ -54,9 +54,10 @@ class Sipapat_model extends CI_Model
 	}
 	public function get_desa($id = 0)
 	{
-		if(!empty($id) && is_numeric($id))
+		if(!empty($id))
 		{
-			return $this->db->get_where('desa', ['id'=>$id])->row_array();
+			$data = $this->db->get_where('desa', ['id'=>$id])->row_array();
+			return $data;
 		}
 	}
 
