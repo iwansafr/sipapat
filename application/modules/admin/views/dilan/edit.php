@@ -21,7 +21,7 @@ $form->addInput('nik','text');
 $form->addInput('no_paspor','text');
 $form->addInput('nama','text');
 $form->addInput('jk','dropdown');
-$form->setOptions('jk',['L'=>'LAKI-LAKI','P'=>'PEREMPUAN']);
+$form->setOptions('jk',['1'=>'LAKI-LAKI','2'=>'PEREMPUAN']);
 $form->addInput('tmpt_lhr','text');
 $form->addInput('tgl_lhr','text');
 $form->addInput('gdr','dropdown');
