@@ -434,7 +434,7 @@ class Dilan extends CI_Controller{
 				}
 				$pdf->Ln(30);
 		    
-		    $pdf->Cell(65,5,'................................',0,0,'C');
+		    $pdf->Cell(65,5,$penduduk['nama'],0,0,'C');
 				$pdf->SetLineWidth(0);
 				$pdf->Line(61,191,24,191);
 		    $pdf->Cell(60,5,'................................',0,0,'C');
