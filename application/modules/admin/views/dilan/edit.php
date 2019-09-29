@@ -24,6 +24,7 @@ $form->addInput('jk','dropdown');
 $form->setOptions('jk',['1'=>'LAKI-LAKI','2'=>'PEREMPUAN']);
 $form->addInput('tmpt_lhr','text');
 $form->addInput('tgl_lhr','text');
+$form->setType('tgl_lhr','date');
 $form->addInput('gdr','dropdown');
 $form->setLabel('gdr','golongan darah');
 $form->setOptions('gdr',$this->dilan_model->golongan_darah());
