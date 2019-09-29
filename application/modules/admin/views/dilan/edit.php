@@ -18,7 +18,7 @@ if(is_desa())
 
 $form->addInput('no_kk','text');
 $form->addInput('nik','text');
-$this->zea->setUnique(array('nik'));
+$form->setUnique(array('nik'),'{value} sudah terdaftar sbg {table}');
 $form->addInput('no_paspor','text');
 $form->addInput('nama','text');
 $form->addInput('jk','dropdown');
