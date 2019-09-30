@@ -11,7 +11,15 @@ if(is_desa())
 	$desa_id = @intval($_GET['id']);
 	if(!empty($desa_id))
 	{
-		$form->setWhere(' desa_id = ')
+		$form->setWhere(' desa_id = '.$desa_id);
+	}else{
+		$kecamatan = @$_GET['kec'];
+		if(!empty($kecamatan))
+		{
+			$form->join('desa','ON(dilan_surat.desa_id=desa.id)','dilan_surat.*,desa.kecamatan');
+			$form->setWhere(" kecamatan = '{$kecamatan}'");
+			$form->addInput('kecamatan','plaintext');
+		}
 	}
 }
 

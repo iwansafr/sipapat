@@ -525,6 +525,17 @@ class Dilan extends CI_Controller{
 		$this->load->view('index', ['desa_option'=>$this->pengguna_model->get_desa($kec)]);
 	}
 
+	public function kecamatan_surat_list()
+	{
+		$this->load->view('index',['kec_option'=>$this->pengguna_model->get_kecamatan()]);
+	}
+
+	public function desa_surat_list()
+	{
+		$kec = !empty(@$_GET['kec']) ? $_GET['kec'] : '';
+		$this->load->view('index', ['desa_option'=>$this->pengguna_model->get_desa($kec)]);
+	}
+
 	public function list()
 	{
 		$this->load->view('index');
