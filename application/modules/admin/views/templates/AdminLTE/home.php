@@ -1,6 +1,32 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 $pengumuman = $this->esg->get_config('pengumuman');
 ?>
+<div class="col-md-12">
+	<?php
+	if(!empty($dashboard))
+	{
+		foreach ($dashboard as $key => $value) 
+		{
+			?>
+			<div class="col-md-3">
+				<div class="small-box" style="background:  <?php echo $value['color'] ?>; color:white;">
+				  <div class="inner">
+				    <h3><?php echo $value['title'] ?></h3>
+
+				    <p><?php echo $value['description'] ?></p>
+				  </div>
+				  <div class="icon">
+				    <i class="<?php echo $value['icon'] ?>"></i>
+				  </div>
+				  <a href="<?php echo @$value['link'] ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+				</div>
+			</div>
+			<?php
+		}
+	}
+	?>
+</div>
+<hr>
 <style type="text/css">
 	.content-wrapper{
 		background: url(<?php echo image_module('config','pengumuman'.'/'.$pengumuman['background_image']) ?>) center top no-repeat;
