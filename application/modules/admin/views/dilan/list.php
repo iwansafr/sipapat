@@ -14,6 +14,14 @@ if(!is_desa())
 	if(!empty($desa_id))
 	{
 		$form->setWhere("desa_id = ".$desa_id);
+	}else{
+		$kecamatan = @$_GET['kec'];
+		if(!empty($kecamatan))
+		{
+			$form->join('desa','ON(penduduk.desa_id=desa.id)','penduduk.*,desa.kecamatan');
+			$form->setWhere(" kecamatan = '{$kecamatan}'");
+			$form->addInput('kecamatan','plaintext');
+		}
 	}
 }else{
 	$form->setWhere("desa_id = ".$this->sipapat_model->get_desa_id());

@@ -7,6 +7,19 @@ $form->setTable('dilan_surat');
 if(is_desa())
 {
 	$form->setWhere(' desa_id = '.$this->sipapat_model->get_desa_id());
+}else{
+	$desa_id = @intval($_GET['id']);
+	if(!empty($desa_id))
+	{
+		$form->setWhere(' desa_id = ')
+	}
+}
+
+if(!is_desa() && !is_kecamatan())
+{
+	?>
+	<a href="<?php echo base_url('admin/dilan/kecamatan_surat_list/') ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Filter Data</a>
+	<?php
 }
 
 $form->search();
