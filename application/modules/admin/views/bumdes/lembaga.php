@@ -18,6 +18,19 @@ if(is_desa())
 {
 	$form->setWhere('bumdes_id = '.@intval($bumdes_id));
 	$form->setHeading('<a href="'.base_url('admin/bumdes/lembaga_edit').'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>');
+}else{
+	?>
+		<a href="<?php echo base_url('admin/bumdes/kecamatan_lembaga/') ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Filter Data</a>
+	<?php
+	$kecamatan = @$_GET['kec'];
+	if(!empty($kecamatan))
+	{
+		$where = " kecamatan = '{$kecamatan}'";
+		$form->join('bumdes','ON(bumdes.id=bumdes_kelembagaan.bumdes_id)','bumdes_kelembagaan.*,bumdes.nama,desa.kecamatan,desa.nama AS nama_desa','desa','ON(desa.id=bumdes.desa_id)');
+		$form->setWhere($where);
+		$form->addInput('kecamatan','plaintext');
+		$form->addInput('nama_desa','plaintext');
+	}
 }
 
 

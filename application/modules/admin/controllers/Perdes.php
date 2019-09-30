@@ -197,6 +197,19 @@ class Perdes extends CI_Controller
 		$desa_id = $this->sipapat_model->get_desa_id();
 		$perdes_options = $this->perdes_model->perdes_item();
 		$perdes_progress = $this->perdes_model->perdes_progress();
-		$this->load->view('perdes/index',['perdes_options'=>$perdes_options,'perdes_progress'=>$perdes_progress,'desa_id'=>$desa_id,'item'=>$item]);
+		$desa_id_get = '';
+		if(!empty($_GET))
+		{
+			$desa_id_get = [];
+			foreach($_GET AS $key => $value)
+			{
+				$desa_id_get[] = $key.'='.str_replace(' ','+',$value);
+			}
+			if(!empty($desa_id_get))
+			{
+				$desa_id_get = '?'.implode('&', $desa_id_get);
+			}
+		}
+		$this->load->view('perdes/index',['desa_id_get'=>$desa_id_get,'perdes_options'=>$perdes_options,'perdes_progress'=>$perdes_progress,'desa_id'=>$desa_id,'item'=>$item]);
 	}
 }

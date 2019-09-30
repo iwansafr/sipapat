@@ -112,12 +112,30 @@ class Bumdes extends CI_Controller{
 		$this->load->view('index',['kategori_usaha'=>$this->bumdes_model->kategori_usaha(),'tingkat_pemeringkatan'=>$this->bumdes_model->tingkat_pemeringkatan(),'pengguna'=>$pengguna,'bumdes_id'=>$bumdes_id]);
 	}
 
+	public function kecamatan_lembaga()
+	{
+		$this->load->view('index',['kec_option'=>$this->pengguna_model->get_kecamatan()]);
+	}
+
 	public function lembaga()
 	{
 		$pengguna = $this->pengguna_model->get_pengguna();
 		$bumdes_id = $this->bumdes_model->get_bumdes_id($pengguna['desa_id']);
 		// $this->esg->add_js(base_url('assets/bumdes/script.js'));
-		$this->load->view('index',['kategori_usaha'=>$this->bumdes_model->kategori_usaha(),'tingkat_pemeringkatan'=>$this->bumdes_model->tingkat_pemeringkatan(),'pengguna'=>$pengguna,'bumdes_id'=>$bumdes_id]);
+		$desa_id_get = '';
+		if(!empty($_GET))
+		{
+			$desa_id_get = [];
+			foreach($_GET AS $key => $value)
+			{
+				$desa_id_get[] = $key.'='.str_replace(' ','+',$value);
+			}
+			if(!empty($desa_id_get))
+			{
+				$desa_id_get = '?'.implode('&', $desa_id_get);
+			}
+		}
+		$this->load->view('index',['desa_id_get'=>$desa_id_get,'kategori_usaha'=>$this->bumdes_model->kategori_usaha(),'tingkat_pemeringkatan'=>$this->bumdes_model->tingkat_pemeringkatan(),'pengguna'=>$pengguna,'bumdes_id'=>$bumdes_id]);
 	}
 
 	public function lembaga_list()
@@ -125,7 +143,20 @@ class Bumdes extends CI_Controller{
 		$pengguna = $this->pengguna_model->get_pengguna();
 		$bumdes_id = $this->bumdes_model->get_bumdes_id($pengguna['desa_id']);
 		// $this->esg->add_js(base_url('assets/bumdes/script.js'));
-		$this->load->view('bumdes/lembaga',['kategori_usaha'=>$this->bumdes_model->kategori_usaha(),'tingkat_pemeringkatan'=>$this->bumdes_model->tingkat_pemeringkatan(),'pengguna'=>$pengguna,'bumdes_id'=>$bumdes_id]);
+		$desa_id_get = '';
+		if(!empty($_GET))
+		{
+			$desa_id_get = [];
+			foreach($_GET AS $key => $value)
+			{
+				$desa_id_get[] = $key.'='.str_replace(' ','+',$value);
+			}
+			if(!empty($desa_id_get))
+			{
+				$desa_id_get = '?'.implode('&', $desa_id_get);
+			}
+		}
+		$this->load->view('bumdes/lembaga',['desa_id_get'=>$desa_id_get,'kategori_usaha'=>$this->bumdes_model->kategori_usaha(),'tingkat_pemeringkatan'=>$this->bumdes_model->tingkat_pemeringkatan(),'pengguna'=>$pengguna,'bumdes_id'=>$bumdes_id]);
 	}
 
 	public function dana()
