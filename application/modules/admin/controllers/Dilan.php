@@ -12,6 +12,7 @@ class Dilan extends CI_Controller{
 		$this->load->model('esg_model');
 		$this->load->model('admin_model');
 		$this->load->model('sipapat_model');
+		$this->load->model('pengguna_model');
 		$this->load->model('dilan_model');
 		$this->load->library('esg');
 		$this->load->library('ZEA/zea');
@@ -511,6 +512,17 @@ class Dilan extends CI_Controller{
 	public function clear_surat_list()
 	{
 		$this->load->view('dilan/surat_list');
+	}
+
+	public function kecamatan_list()
+	{
+		$this->load->view('index',['kec_option'=>$this->pengguna_model->get_kecamatan()]);
+	}
+
+	public function desa_list()
+	{
+		$kec = !empty(@$_GET['kec']) ? $_GET['kec'] : '';
+		$this->load->view('index', ['desa_option'=>$this->pengguna_model->get_desa($kec)]);
 	}
 
 	public function list()
