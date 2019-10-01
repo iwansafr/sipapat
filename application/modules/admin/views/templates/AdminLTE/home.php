@@ -1,6 +1,15 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 $pengumuman = $this->esg->get_config('pengumuman');
 ?>
+<style type="text/css">
+	.content-wrapper{
+		background: url(<?php echo image_module('config','pengumuman'.'/'.$pengumuman['background_image']) ?>) center top no-repeat;
+    /*height: 100vh;*/
+    background-size: cover;
+    position: relative;
+	}	
+</style>
+<h1 style="text-align: center; color: <?php echo @$pengumuman['header_color']; ?>; font-weight: bold;"><?php echo @$pengumuman['header'] ?></h1>
 <div class="col-md-12">
 	<?php
 	if(!empty($dashboard))
@@ -27,15 +36,6 @@ $pengumuman = $this->esg->get_config('pengumuman');
 	?>
 </div>
 <hr>
-<style type="text/css">
-	.content-wrapper{
-		background: url(<?php echo image_module('config','pengumuman'.'/'.$pengumuman['background_image']) ?>) center top no-repeat;
-    /*height: 100vh;*/
-    background-size: cover;
-    position: relative;
-	}	
-</style>
-<h1 style="text-align: center; color: <?php echo @$pengumuman['header_color']; ?>; font-weight: bold;"><?php echo @$pengumuman['header'] ?></h1>
 <?php
 echo '<div class="row">';
 if(!empty($pengumuman))
