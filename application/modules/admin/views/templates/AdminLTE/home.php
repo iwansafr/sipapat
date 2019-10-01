@@ -18,7 +18,7 @@ $pengumuman = $this->esg->get_config('pengumuman');
 		{
 			?>
 			<div class="col-md-3" style="height: 150px; margin-bottom: 2%;">
-				<div class="small-box" style="background:  <?php echo $value['color'] ?>; color:white;">
+				<div class="small-box" style="background:  <?php echo $value['color'] ?>; color:white; height: 150px;">
 				  <div class="inner">
 				    <h3><?php echo $value['title'] ?></h3>
 
