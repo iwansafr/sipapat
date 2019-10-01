@@ -17,7 +17,7 @@ $pengumuman = $this->esg->get_config('pengumuman');
 		foreach ($dashboard as $key => $value) 
 		{
 			?>
-			<div class="col-md-3">
+			<div class="col-md-3" style="height: 150px;">
 				<div class="small-box" style="background:  <?php echo $value['color'] ?>; color:white;">
 				  <div class="inner">
 				    <h3><?php echo $value['title'] ?></h3>
