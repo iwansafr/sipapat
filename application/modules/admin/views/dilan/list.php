@@ -61,7 +61,7 @@ $form->addInput('jk','dropdown');
 $form->setOptions('jk',['1'=>'Laki-laki','2'=>'perempuan']);
 $form->setAttribute('jk','disabled');
 $form->addInput('status','dropdown');
-$form->setOptions('status',['Belum Kawin','Cerai Hidup','Cerai Mati','Kawin']);
+$form->setOptions('status',$this->dilan_model->status());
 $form->setAttribute('status','disabled');
 
 $form->setUrl('admin/dilan/clear_list');
