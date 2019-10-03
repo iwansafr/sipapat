@@ -107,7 +107,7 @@ class Perangkat extends CI_Controller
 		// 	$this->db->limit($limit,$page);
 		// }
 
-		$this->db->select('perangkat_desa.*, desa.nama AS desa');
+		$this->db->select('perangkat_desa.id, perangkat_desa.nama, perangkat_desa.kelamin, desa.nama AS desa, desa.kecamatan AS kecamatan');
 		$this->db->order_by('nama','asc');
 		$this->db->where(['kelompok'=>1]);
 		$this->db->where(['jabatan'=>1]);
@@ -116,33 +116,33 @@ class Perangkat extends CI_Controller
 		// $data['query'] = $this->db->last_query();
 
 		$kelamin = ['Perempuan','Laki-laki'];
-		$agama = $this->pengguna_model->agama();
-		$status_perkawinan = ['Belum Kawin','Cerai Hidup','Cerai Mati','Kawin'];
-		$pendidikan_terakhir = 
-			[
-				'1'=>strtoupper('akademi/diploma iii/s.muda'),
-				'2'=>strtoupper('belum tamat sd/sederajat'),
-				'3'=>strtoupper('diploma i/ii'),
-				'4'=>strtoupper('diploma iv/strata i'),
-				'5'=>strtoupper('slta/sederajat'),
-				'6'=>strtoupper('sltp/sederajat'),
-				'7'=>strtoupper('strata ii'),
-				'8'=>strtoupper('strata iii'),
-				'9'=>strtoupper('tamat sd/sederajat'),
-				'10'=>strtoupper('tidak/belum sekolah')
-			];
+		// $agama = $this->pengguna_model->agama();
+		// $status_perkawinan = ['Belum Kawin','Cerai Hidup','Cerai Mati','Kawin'];
+		// $pendidikan_terakhir = 
+		// 	[
+		// 		'1'=>strtoupper('akademi/diploma iii/s.muda'),
+		// 		'2'=>strtoupper('belum tamat sd/sederajat'),
+		// 		'3'=>strtoupper('diploma i/ii'),
+		// 		'4'=>strtoupper('diploma iv/strata i'),
+		// 		'5'=>strtoupper('slta/sederajat'),
+		// 		'6'=>strtoupper('sltp/sederajat'),
+		// 		'7'=>strtoupper('strata ii'),
+		// 		'8'=>strtoupper('strata iii'),
+		// 		'9'=>strtoupper('tamat sd/sederajat'),
+		// 		'10'=>strtoupper('tidak/belum sekolah')
+		// 	];
 
-		foreach ($data as $key => $value) 
-		{
-			$jabatan = $this->sipapat_model->get_jabatan($value['kelompok'], $value['jabatan']);
-			$data[$key]['foto'] = image_module('perangkat_desa',$value['id'].'/'.$value['foto']);
-			$data[$key]['jabatan'] = $jabatan['jabatan'];
-			$data[$key]['kelompok'] = $jabatan['kelompok'];
-			$data[$key]['kelamin'] = $kelamin[$value['kelamin']];
-			$data[$key]['agama'] = $agama[$value['agama']];
-			$data[$key]['status_perkawinan'] = $status_perkawinan[$value['status_perkawinan']];
-			$data[$key]['pendidikan_terakhir'] = $pendidikan_terakhir[$value['pendidikan_terakhir']];
-		}
+		// foreach ($data as $key => $value) 
+		// {
+		// 	$jabatan = $this->sipapat_model->get_jabatan($value['kelompok'], $value['jabatan']);
+		// 	$data[$key]['foto'] = image_module('perangkat_desa',$value['id'].'/'.$value['foto']);
+		// 	$data[$key]['jabatan'] = $jabatan['jabatan'];
+		// 	$data[$key]['kelompok'] = $jabatan['kelompok'];
+		// 	$data[$key]['kelamin'] = $kelamin[$value['kelamin']];
+		// 	$data[$key]['agama'] = $agama[$value['agama']];
+		// 	$data[$key]['status_perkawinan'] = $status_perkawinan[$value['status_perkawinan']];
+		// 	$data[$key]['pendidikan_terakhir'] = $pendidikan_terakhir[$value['pendidikan_terakhir']];
+		// }
 
 		output_json($data);
 
