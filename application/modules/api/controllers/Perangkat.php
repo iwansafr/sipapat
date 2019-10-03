@@ -132,17 +132,17 @@ class Perangkat extends CI_Controller
 		// 		'10'=>strtoupper('tidak/belum sekolah')
 		// 	];
 
-		// foreach ($data as $key => $value) 
-		// {
-		// 	$jabatan = $this->sipapat_model->get_jabatan($value['kelompok'], $value['jabatan']);
-		// 	$data[$key]['foto'] = image_module('perangkat_desa',$value['id'].'/'.$value['foto']);
-		// 	$data[$key]['jabatan'] = $jabatan['jabatan'];
-		// 	$data[$key]['kelompok'] = $jabatan['kelompok'];
-		// 	$data[$key]['kelamin'] = $kelamin[$value['kelamin']];
-		// 	$data[$key]['agama'] = $agama[$value['agama']];
-		// 	$data[$key]['status_perkawinan'] = $status_perkawinan[$value['status_perkawinan']];
-		// 	$data[$key]['pendidikan_terakhir'] = $pendidikan_terakhir[$value['pendidikan_terakhir']];
-		// }
+		foreach ($data as $key => $value) 
+		{
+			// $jabatan = $this->sipapat_model->get_jabatan($value['kelompok'], $value['jabatan']);
+			// $data[$key]['foto'] = image_module('perangkat_desa',$value['id'].'/'.$value['foto']);
+			// $data[$key]['jabatan'] = $jabatan['jabatan'];
+			// $data[$key]['kelompok'] = $jabatan['kelompok'];
+			$data[$key]['kelamin'] = $kelamin[$value['kelamin']];
+			// $data[$key]['agama'] = $agama[$value['agama']];
+			// $data[$key]['status_perkawinan'] = $status_perkawinan[$value['status_perkawinan']];
+			// $data[$key]['pendidikan_terakhir'] = $pendidikan_terakhir[$value['pendidikan_terakhir']];
+		}
 
 		output_json($data);
 
