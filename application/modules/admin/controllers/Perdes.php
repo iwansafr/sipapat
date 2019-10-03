@@ -116,20 +116,7 @@ class Perdes extends CI_Controller
 		$perdes_options = $this->perdes_model->perdes_item();
 		$perdes_progress = $this->perdes_model->perdes_progress();
 		$desa_id = $this->sipapat_model->get_desa_id();
-		$desa_id_get = '';
-		if(!empty($_GET))
-		{
-			$desa_id_get = [];
-			foreach($_GET AS $key => $value)
-			{
-				$desa_id_get[] = $key.'='.str_replace(' ','+',$value);
-			}
-			if(!empty($desa_id_get))
-			{
-				$desa_id_get = '?'.implode('&', $desa_id_get);
-			}
-		}
-		$this->load->view('index',['perdes_options'=>$perdes_options,'perdes_progress'=>$perdes_progress,'desa_id'=>$desa_id,'desa_id_get'=>$desa_id_get]);
+		$this->load->view('index',['perdes_options'=>$perdes_options,'perdes_progress'=>$perdes_progress,'desa_id'=>$desa_id,'desa_id_get'=>$this->sipapat_model->desa_id_get()]);
 	}
 	
 	public function rpjmds()
@@ -137,7 +124,7 @@ class Perdes extends CI_Controller
 		$perdes_options = $this->perdes_model->perdes_item();
 		$perdes_progress = $this->perdes_model->perdes_progress();
 		$desa_id = $this->sipapat_model->get_desa_id();
-		$this->load->view('index',['perdes_options'=>$perdes_options,'perdes_progress'=>$perdes_progress,'desa_id'=>$desa_id,'item'=>'1']);
+		$this->load->view('index',['perdes_options'=>$perdes_options,'perdes_progress'=>$perdes_progress,'desa_id'=>$desa_id,'item'=>'1','desa_id_get'=>$this->sipapat_model->desa_id_get()]);
 	}
 
 	public function rkp_desa()
@@ -145,7 +132,7 @@ class Perdes extends CI_Controller
 		$perdes_options = $this->perdes_model->perdes_item();
 		$perdes_progress = $this->perdes_model->perdes_progress();
 		$desa_id = $this->sipapat_model->get_desa_id();
-		$this->load->view('index',['perdes_options'=>$perdes_options,'perdes_progress'=>$perdes_progress,'desa_id'=>$desa_id,'item'=>'2']);
+		$this->load->view('index',['perdes_options'=>$perdes_options,'perdes_progress'=>$perdes_progress,'desa_id'=>$desa_id,'item'=>'2','desa_id_get'=>$this->sipapat_model->desa_id_get()]);
 	}
 
 	public function apbdes()
@@ -153,7 +140,7 @@ class Perdes extends CI_Controller
 		$perdes_options = $this->perdes_model->perdes_item();
 		$perdes_progress = $this->perdes_model->perdes_progress();
 		$desa_id = $this->sipapat_model->get_desa_id();
-		$this->load->view('index',['perdes_options'=>$perdes_options,'perdes_progress'=>$perdes_progress,'desa_id'=>$desa_id,'item'=>'3']);
+		$this->load->view('index',['perdes_options'=>$perdes_options,'perdes_progress'=>$perdes_progress,'desa_id'=>$desa_id,'item'=>'3','desa_id_get'=>$this->sipapat_model->desa_id_get()]);
 	}
 
 	public function perdes_kewenangan()
@@ -161,7 +148,7 @@ class Perdes extends CI_Controller
 		$perdes_options = $this->perdes_model->perdes_item();
 		$perdes_progress = $this->perdes_model->perdes_progress();
 		$desa_id = $this->sipapat_model->get_desa_id();
-		$this->load->view('index',['perdes_options'=>$perdes_options,'perdes_progress'=>$perdes_progress,'desa_id'=>$desa_id,'item'=>'4']);
+		$this->load->view('index',['perdes_options'=>$perdes_options,'perdes_progress'=>$perdes_progress,'desa_id'=>$desa_id,'item'=>'4','desa_id_get'=>$this->sipapat_model->desa_id_get()]);
 	}
 
 	public function perdes_aset()
@@ -169,7 +156,7 @@ class Perdes extends CI_Controller
 		$perdes_options = $this->perdes_model->perdes_item();
 		$perdes_progress = $this->perdes_model->perdes_progress();
 		$desa_id = $this->sipapat_model->get_desa_id();
-		$this->load->view('index',['perdes_options'=>$perdes_options,'perdes_progress'=>$perdes_progress,'desa_id'=>$desa_id,'item'=>'5']);
+		$this->load->view('index',['perdes_options'=>$perdes_options,'perdes_progress'=>$perdes_progress,'desa_id'=>$desa_id,'item'=>'5','desa_id_get'=>$this->sipapat_model->desa_id_get()]);
 	}
 
 

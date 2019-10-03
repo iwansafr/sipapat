@@ -8,6 +8,24 @@ class Sipapat_model extends CI_Model
 		parent::__construct();
 	}
 
+	public function desa_id_get()
+	{
+		$desa_id_get = '';
+		if(!empty($_GET))
+		{
+			$desa_id_get = [];
+			foreach($_GET AS $key => $value)
+			{
+				$desa_id_get[] = $key.'='.str_replace(' ','+',$value);
+			}
+			if(!empty($desa_id_get))
+			{
+				$desa_id_get = '?'.implode('&', $desa_id_get);
+			}
+		}
+		return $desa_id_get;
+	}
+
 	public function set_meta($data = array())
 	{
 		// if(empty($data) || !is_array($data))
