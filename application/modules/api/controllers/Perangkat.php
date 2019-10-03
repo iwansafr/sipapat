@@ -148,6 +148,54 @@ class Perangkat extends CI_Controller
 
 	}
 
+	public function kep_des_detail()
+	{
+		$data = [];
+
+		$id = @intval($_GET['id']);
+
+		$this->db->select('perangkat_desa.*, desa.nama AS desa, desa.kecamatan AS kecamatan');
+		$this->db->order_by('nama','asc');
+		$this->db->where(['kelompok'=>1]);
+		$this->db->where(['jabatan'=>1]);
+		$this->db->where(['perangkat_desa.id'=>$id]);
+		$this->db->join('desa','desa.id=perangkat_desa.desa_id');
+		$data = $this->db->get('perangkat_desa')->row_array();
+		// $data['query'] = $this->db->last_query();
+
+		if(!empty($data))
+		{
+			$kelamin = ['Perempuan','Laki-laki'];
+			$agama = $this->pengguna_model->agama();
+			$status_perkawinan = ['Belum Kawin','Cerai Hidup','Cerai Mati','Kawin'];
+			$pendidikan_terakhir = 
+				[
+					'1'=>strtoupper('akademi/diploma iii/s.muda'),
+					'2'=>strtoupper('belum tamat sd/sederajat'),
+					'3'=>strtoupper('diploma i/ii'),
+					'4'=>strtoupper('diploma iv/strata i'),
+					'5'=>strtoupper('slta/sederajat'),
+					'6'=>strtoupper('sltp/sederajat'),
+					'7'=>strtoupper('strata ii'),
+					'8'=>strtoupper('strata iii'),
+					'9'=>strtoupper('tamat sd/sederajat'),
+					'10'=>strtoupper('tidak/belum sekolah')
+				];
+
+			$jabatan = $this->sipapat_model->get_jabatan($data['kelompok'], $data['jabatan']);
+			$data['foto'] = image_module('perangkat_desa',$data['id'].'/'.$data['foto']);
+			$data['jabatan'] = $jabatan['jabatan'];
+			$data['kelompok'] = $jabatan['kelompok'];
+			$data['kelamin'] = $kelamin[$data['kelamin']];
+			$data['agama'] = $agama[$data['agama']];
+			$data['status_perkawinan'] = $status_perkawinan[$data['status_perkawinan']];
+			$data['pendidikan_terakhir'] = $pendidikan_terakhir[$data['pendidikan_terakhir']];
+		}
+
+		output_json($data);
+
+	}	
+
 	public function all()
 	{
 		$desa_id = @intval($_GET['d_id']);
