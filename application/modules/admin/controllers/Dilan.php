@@ -67,10 +67,10 @@ class Dilan extends CI_Controller{
 			$file = $this->dilan_model->upload($_FILES['doc']);
 			if($file)
 			{
-				$this->esg->add_js([base_url('assets/dilan/script.js')]);
+				$this->esg->add_js(base_url('assets/dilan/script.js'));
 			}
 		}
-		$this->esg->add_js([base_url('assets/dilan/script.js')]);
+		$this->esg->add_js(base_url('assets/dilan/script.js'));
 		$this->load->view('index');
 	}
 
