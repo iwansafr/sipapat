@@ -155,4 +155,7 @@ if(is_root())
 	// pr(ip_detail(ip()));
 }
 ?>
+<div class="hidden">
+	<?php pr($user) ?>
+</div>
 
