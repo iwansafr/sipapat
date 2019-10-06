@@ -10,7 +10,7 @@ function is_desa()
 }
 function is_bumdes()
 {
-	return set_user(3);
+	return set_user(6);
 }
 
 function set_user($level = 0)
