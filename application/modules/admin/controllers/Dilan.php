@@ -437,7 +437,7 @@ class Dilan extends CI_Controller{
 				$pdf->Cell(0,5,': '.content_date($surat['berlaku_mulai']).' s/d '.content_date($surat['berlaku_sampai']),0,1,'L');
 				$pdf->Cell(60,5,'9. Keterangan lain-lain *)',0,0,'L');
 				$pdf->Cell(2,5,': ',0,0,'L');
-				$pdf->MultiCell(0,5,strtolower($surat['keterangan']),0,'L',false);
+				$pdf->MultiCell(0,5,@$surat['keterangan'],0,'L',false);
 
 				$ln_kep = strlen($surat['keperluan']);
 				$ln_ket = strlen($surat['keterangan']);
