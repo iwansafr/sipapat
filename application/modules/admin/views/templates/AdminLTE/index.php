@@ -86,7 +86,8 @@ if (
   $content!='menu/edit' && 
   $content!='admin_menu/edit' &&
   $content!='config/dashboard' &&
-  $content!='config/custom_dashboard'
+  $content!='config/custom_dashboard' &&
+  $content!='dilan/surat_pengantar_form'
 
 ): ?>
   <script type="text/javascript">
