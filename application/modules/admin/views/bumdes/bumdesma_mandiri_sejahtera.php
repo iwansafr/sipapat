@@ -19,4 +19,6 @@ if(is_desa())
 	}
 }else if(is_admin() || is_root()){
 	$this->load->view('bumdesma_list');
+}else{
+	msg('anda tidak punya akses ke halaman ini','danger');
 }
