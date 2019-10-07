@@ -17,6 +17,6 @@ if(is_desa())
 	}else{
 		$this->load->view('bumdesma_list');
 	}
-}else{
+}else if(is_admin() || is_root()){
 	$this->load->view('bumdesma_list');
 }
