@@ -48,9 +48,9 @@ class Dilan_model extends CI_Model
 		foreach ($data_tmp as $key => $value) 
 		{
 			$keterangan = $value['keterangan'];
-			$keterangan = str_replace('{DESA}', @$desa['nama'], $keterangan);
-			$keterangan = str_replace('{KECAMATAN}', @$desa['kecamatan'], $keterangan);
-			$keterangan = str_replace('{KABUPATEN}', @$kabupaten['kabupaten'], $keterangan);
+			$keterangan = str_replace('{DESA}', @ucfirst(strtolower($desa['nama'])), $keterangan);
+			$keterangan = str_replace('{KECAMATAN}', @ucfirst(strtolower($desa['kecamatan'])), $keterangan);
+			$keterangan = str_replace('{KABUPATEN}', @ucfirst(strtolower($kabupaten['kabupaten'])), $keterangan);
 			$value['keterangan'] = $keterangan;
 			$data[$i] = $value;
 			$i++;
