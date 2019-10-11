@@ -18,7 +18,7 @@ if(!is_desa())
 		$kecamatan = @$_GET['kec'];
 		if(!empty($kecamatan))
 		{
-			$form->join('desa','ON(penduduk.desa_id=desa.id)','penduduk.*,desa.kecamatan');
+			$form->join('desa','ON(penduduk.desa_id=desa.id)','penduduk.no_kk,penduduk.nik,penduduk.nama,penduduk.alamat,desa.kecamatan');
 			$form->setWhere(" kecamatan = '{$kecamatan}'");
 			$form->addInput('kecamatan','plaintext');
 		}
