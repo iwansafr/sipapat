@@ -333,6 +333,7 @@ class Dilan extends CI_Controller{
 			if(!empty($surat['penduduk_id']))
 			{
 				$penduduk = $this->dilan_model->get_penduduk($surat['penduduk_id']);
+				$pekerjaan = $this->dilan_model->pekerjaan();
 				$desa     = $this->sipapat_model->get_desa($penduduk['desa_id']);
 				$agama    = $this->pengguna_model->agama();
 				$user     = $this->session->userdata(base_url().'_logged_in');
@@ -415,7 +416,7 @@ class Dilan extends CI_Controller{
 				$pdf->Cell(60,5,'3. Kewarganegaraan/ Agama',0,0,'L');
 				$pdf->Cell(0,5,': Indonesia/ '.$penduduk['agama'],0,1,'L');
 				$pdf->Cell(60,5,'4. Pekerjaan',0,0,'L');
-				$pdf->Cell(0,5,': '.$penduduk['pekerjaan'],0,1,'L');
+				$pdf->Cell(0,5,': '.@$pekerjaan[$penduduk['pekerjaan']],0,1,'L');
 				$pdf->Cell(60,5,'5. Tempat Tinggal',0,0,'L');
 				$pdf->Cell(0,5,': '.$penduduk['alamat'].' RT '.$penduduk['no_rt'].' RW '.$penduduk['no_rw'],0,1,'L');
 				$pdf->Cell(5);
