@@ -286,6 +286,7 @@ class Dilan extends CI_Controller{
 		if(!empty($id))
 		{
 			$penduduk = $this->dilan_model->get_penduduk($id);
+			$pekerjaan = $this->dilan_model->pekerjaan();
 			$desa = $this->sipapat_model->get_desa($penduduk['desa_id']);
 			$keterangan = [];
 			if(!empty($ket_id))
@@ -296,7 +297,7 @@ class Dilan extends CI_Controller{
 					$keterangan = $keterangan[0];
 				}
 			}
-			$this->load->view('index',['penduduk' => $penduduk,'desa'=>$desa,'keterangan'=>$keterangan]);
+			$this->load->view('index',['penduduk' => $penduduk,'desa'=>$desa,'keterangan'=>$keterangan,'pekerjaan'=>$pekerjaan,'kelamin'=>$this->dilan_model->kelamin()]);
 			if(!empty($_POST))
 			{
 				$last_id = $this->zea->get_insert_id();

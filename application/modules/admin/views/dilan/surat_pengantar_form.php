@@ -12,7 +12,7 @@
 			</tr>
 			<tr>
 				<td>JK</td>
-				<td>: <?php echo $penduduk['jk'] ?></td>
+				<td>: <?php echo $kelamin[$penduduk['jk']] ?></td>
 			</tr>
 			<tr>
 				<td>TTL</td>
@@ -20,7 +20,7 @@
 			</tr>
 			<tr>
 				<td>PEKERJAAN</td>
-				<td>: <?php echo $penduduk['pekerjaan'] ?></td>
+				<td>: <?php echo $pekerjaan[$penduduk['pekerjaan']] ?></td>
 			</tr>
 			<tr>
 				<td>TEMPAT TINGGAL</td>
