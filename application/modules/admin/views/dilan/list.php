@@ -18,7 +18,7 @@ if(!is_desa())
 		$kecamatan = @$_GET['kec'];
 		if(!empty($kecamatan))
 		{
-			$form->join('desa','ON(penduduk.desa_id=desa.id)','penduduk.no_kk,penduduk.nik,penduduk.nama,penduduk.alamat,desa.kecamatan');
+			$form->join('desa','ON(penduduk.desa_id=desa.id)','penduduk.id,penduduk.no_kk,penduduk.nik,penduduk.nama,penduduk.alamat,penduduk.jk,penduduk.status,desa.kecamatan');
 			$form->setWhere(" kecamatan = '{$kecamatan}'");
 			$form->addInput('kecamatan','plaintext');
 		}
@@ -27,7 +27,7 @@ if(!is_desa())
 	$form->setWhere("desa_id = ".$this->sipapat_model->get_desa_id());
 }
 
-$form->order_by('nik','ASC');
+$form->order_by('id','DESC');
 
 if(!is_desa() && !is_kecamatan())
 {
