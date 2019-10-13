@@ -6,7 +6,8 @@ $form->init('roll');
 $form->setTable('dilan_surat');
 if(is_desa())
 {
-	$form->setWhere(' desa_id = '.$this->sipapat_model->get_desa_id());
+	$form->setWhere(' dilan_surat.desa_id = '.$this->sipapat_model->get_desa_id());
+	$form->join('penduduk','ON(dilan_surat.penduduk_id=penduduk.id)','dilan_surat.id,dilan_surat.keperluan,penduduk.nik,penduduk.nama,penduduk.nama_ibu');
 }else{
 	$desa_id = @intval($_GET['id']);
 	if(!empty($desa_id))
@@ -16,7 +17,7 @@ if(is_desa())
 		$kecamatan = @$_GET['kec'];
 		if(!empty($kecamatan))
 		{
-			$form->join('desa','ON(dilan_surat.desa_id=desa.id)','dilan_surat.*,desa.kecamatan');
+			$form->join('desa','ON(dilan_surat.desa_id=desa.id)','dilan_surat.id,dilan_surat.keperluan,desa.kecamatan');
 			$form->setWhere(" kecamatan = '{$kecamatan}'");
 			$form->addInput('kecamatan','plaintext');
 		}
@@ -34,11 +35,18 @@ $form->search();
 
 $form->addInput('id','plaintext');
 $form->setLabel('id','display');
+
 // $form->setLink('id',base_url('admin/dilan/surat_pengantar/'),'id');
 // $form->setClearGet('id');
 $form->setPlainText('id','<a class="btn btn-default btn-sm" href="'.base_url('admin/dilan/surat_pengantar/').'{id}/surat_pengantar" target="_blank">lihat surat <i class="fa fa-search"></i></a>');
 
 $form->setNumbering(true);
+if(is_desa())
+{
+	$form->addInput('nama','plaintext');
+	$form->addInput('nik','plaintext');
+	$form->addInput('nama_ibu','plaintext');
+}
 $form->addInput('keperluan','plaintext');
 
 // $form->setEdit(true);
@@ -46,3 +54,4 @@ $form->setDelete(true);
 $form->setUrl('admin/dilan/clear_surat_list');
 
 $form->form();
+// pr($form->getData()['query']);
