@@ -538,6 +538,107 @@ class Dilan extends CI_Controller{
 		$this->load->view('index', ['desa_option'=>$this->pengguna_model->get_desa($kec)]);
 	}
 
+	public function penduduk_excel()
+	{
+		$desa_id = $this->sipapat_model->get_desa_id();
+		$data = $this->db->get_where('penduduk',['desa_id'=>$desa_id])->result_array();
+		$spreadsheet = new Spreadsheet();
+
+		// Set document properties
+		$spreadsheet->getProperties()->setCreator('esoftgreat - software development')
+		->setLastModifiedBy('esoftgreat - software development')
+		->setTitle('Office 2007 XLSX Test Document')
+		->setSubject('Office 2007 XLSX Test Document')
+		->setDescription('Test document for Office 2007 XLSX, generated using PHP classes.')
+		->setKeywords('office 2007 openxml php')
+		->setCategory('Test result file');
+
+		// Add some data
+		$spreadsheet->setActiveSheetIndex(0)
+		->setCellValue('A1',strtoupper('no'))
+		->setCellValue('B1',strtoupper('nik'))
+		->setCellValue('C1',strtoupper('username'))
+		->setCellValue('D1',strtoupper('nama desa'))
+		->setCellValue('E1',strtoupper('nama'))
+		->setCellValue('F1',strtoupper('tempat lahir'))
+		->setCellValue('G1',strtoupper('tgl lahir'))
+		->setCellValue('H1',strtoupper('kelamin'))
+		->setCellValue('I1',strtoupper('alamat'))
+		->setCellValue('J1',strtoupper('telepon'))
+		->setCellValue('K1',strtoupper('agama'))
+		->setCellValue('L1',strtoupper('status perkawinan'))
+		->setCellValue('M1',strtoupper('pendidikan terakhir'))
+		->setCellValue('N1',strtoupper('jamkes'))
+		->setCellValue('O1',strtoupper('jabatan'))
+		->setCellValue('P1',strtoupper('no sk'))
+		->setCellValue('Q1',strtoupper('sk penetapan kembali'))
+		->setCellValue('R1',strtoupper('tgl pelantikan'))
+		->setCellValue('S1',strtoupper('akhir masa jabatan'))
+		->setCellValue('T1',strtoupper('pelantik'))
+		->setCellValue('U1',strtoupper('bengkok'))
+		->setCellValue('V1',strtoupper('penghasilan'))
+		->setCellValue('W1',strtoupper('riwayat pendidikan'))
+		->setCellValue('X1',strtoupper('riwayat diklat'));
+
+		// Miscellaneous glyphs, UTF-8
+		$i=2;
+		$j = 1;
+		foreach($data as $key => $value) 
+		{
+			$spreadsheet->setActiveSheetIndex(0)
+			->setCellValue('A'.$i,$j)
+			// ->setCellValueExplicit('B'.$i, strtoupper($value['nik']),PHPExcel_Cell_DataType::TYPE_STRING)
+			->setCellValue('B'.$i,"'".strtoupper($value['nik']))
+			->setCellValue('C'.$i,strtoupper($value['username']))
+			->setCellValue('D'.$i,strtoupper($value['nama_desa']))
+			->setCellValue('E'.$i,strtoupper($value['nama']))
+			->setCellValue('F'.$i,strtoupper($value['tempat_lahir']))
+			->setCellValue('G'.$i,strtoupper($value['tgl_lahir']))
+			->setCellValue('H'.$i,strtoupper($kelamin[$value['kelamin']]))
+			->setCellValue('I'.$i,strtoupper($value['alamat']))
+			->setCellValue('J'.$i,strtoupper($value['telepon']))
+			->setCellValue('K'.$i,strtoupper($agama[$value['agama']]))
+			->setCellValue('L'.$i,strtoupper($status_perkawinan[$value['status_perkawinan']]))
+			->setCellValue('M'.$i,strtoupper($pendidikan_terakhir[$value['pendidikan_terakhir']]))
+			->setCellValue('N'.$i,strtoupper($value['jamkes']))
+			->setCellValue('O'.$i,strtoupper($jabatan[$value['jabatan']]))
+			->setCellValue('P'.$i,strtoupper($value['no_sk']))
+			->setCellValue('Q'.$i,strtoupper($value['sk_penetapan_kembali']))
+			->setCellValue('R'.$i,strtoupper($value['tgl_pelantikan']))
+			->setCellValue('S'.$i,strtoupper($value['akhir_masa_jabatan']))
+			->setCellValue('T'.$i,strtoupper($value['pelantik']))
+			->setCellValue('U'.$i,strtoupper($value['bengkok']))
+			->setCellValue('V'.$i,strtoupper($value['penghasilan']))
+			->setCellValue('W'.$i,strtoupper($value['riwayat_pendidikan']))
+			->setCellValue('X'.$i,strtoupper($value['riwayat_diklat']));
+			$i++;
+			$j++;
+		}
+
+		// Rename worksheet
+		$spreadsheet->getActiveSheet()->setTitle('data perangkat '.date('d-m-Y H'));
+
+		// Set active sheet index to the first sheet, so Excel opens this as the first sheet
+		$spreadsheet->setActiveSheetIndex(0);
+
+		// Redirect output to a client’s web browser (Xlsx)
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment;filename="data perangkat.xlsx"');
+		header('Cache-Control: max-age=0');
+		// If you're serving to IE 9, then the following may be needed
+		header('Cache-Control: max-age=1');
+
+		// If you're serving to IE over SSL, then the following may be needed
+		header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+		header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); // always modified
+		header('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+		header('Pragma: public'); // HTTP/1.0
+
+		$writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+		$writer->save('php://output');
+		exit;
+	}
+
 	public function list()
 	{
 		$this->load->view('index');

@@ -36,6 +36,8 @@ if(!is_desa() && !is_kecamatan())
 	<?php
 }
 
+// $form->setHeading('<a target="_blank" href="'.base_url('admin/dilan/penduduk_excel/'.$desa_id_get.'" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i></a>');
+
 $form->setNumbering(true);
 $form->addInput('id','plaintext');
 $form->setLink('id',base_url(),'id');
