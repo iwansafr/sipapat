@@ -44,7 +44,7 @@ if(!is_bumdes())
 	{
 			?>
 			<div class="container">
-				<h1>Pengumuman</h1>
+				<h1 style="text-shadow: -1px -1px 0 #eae1e1, 1px -1px 0 #f3ecec, -1px 1px 0 #f7f0f0, 1px 1px 0 #f3eeee;">Pengumuman</h1>
 				<?php
 				for($i=1;$i<4;$i++)
 				{
