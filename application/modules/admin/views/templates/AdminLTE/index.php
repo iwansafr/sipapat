@@ -21,9 +21,11 @@
 </div>
 <div class="wrapper">
   <?php $this->load->view('header', array('user'=>$user)); ?>
-  <aside class="main-sidebar">
-    <?php $this->load->view('sidebar', array('user'=>$user));?>
-  </aside>
+  <?php if (!is_bupati()): ?>
+    <aside class="main-sidebar">
+      <?php $this->load->view('sidebar', array('user'=>$user));?>
+    </aside>
+  <?php endif ?>
   <div class="content-wrapper">
     <section class="content-header">
       <?php $this->load->view('navigation') ?>

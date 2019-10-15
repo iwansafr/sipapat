@@ -13,6 +13,28 @@ function is_bumdes()
 	return set_user(6);
 }
 
+function is_bupati()
+{
+	return set_role('bupati');
+}
+
+function set_role($group = 'admin')
+{
+	$return = false;
+	if(!empty($group))
+	{
+		$role   = @$_SESSION[base_url().'_logged_in']['role'];
+		if(!empty($role))
+		{
+			if($role==$group)
+			{
+				$return = true;
+			}
+		}
+	}
+	return $return;
+}
+
 function set_user($level = 0)
 {
 	$return = false;

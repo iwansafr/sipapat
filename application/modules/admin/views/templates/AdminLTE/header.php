@@ -2,22 +2,45 @@
 $this->load->model('pesan_model');
 $message = $this->esg->get_esg('pesan');
 ?>
+<?php if (is_bupati()): ?>
+  <style>
+    .main-header .navbar {
+      -webkit-transition: margin-left .3s ease-in-out;
+      -o-transition: margin-left .3s ease-in-out;
+      transition: margin-left .3s ease-in-out;
+      margin-bottom: 0;
+      margin-left: 0px;
+      border: none;
+      min-height: 50px;
+      border-radius: 0;
+    }
+    .content-wrapper, .main-footer {
+      transition: transform .3s ease-in-out,margin .3s ease-in-out;
+      margin-left: 0px;
+      z-index: 820;
+    }
+  </style>
+<?php endif ?>
 <header class="main-header">
-  <a href="<?php echo base_url('admin') ?>" class="logo">
-    <span class="logo-mini"><img src="<?php echo image_module('config', 'site/'.@$this->esg->get_esg('site')['site']['image']); ?>" height="50"></span>
-    <?php if (@$site['logo']['display'] == 'image'): ?>
-      <span class="logo-lg"><img src="<?php echo image_module('config', 'logo/'.@$this->esg->get_esg('site')['logo']['image']); ?>" height="40"></span>
-    <?php else: ?>
-      <span class="logo-lg"><?php echo @$site['logo']['title'] ?></span>
-    <?php endif ?>
-  </a>
-  <nav class="navbar navbar-static-top">
-    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
+  <?php if (!is_bupati()): ?>
+    <a href="<?php echo base_url('admin') ?>" class="logo">
+      <span class="logo-mini"><img src="<?php echo image_module('config', 'site/'.@$this->esg->get_esg('site')['site']['image']); ?>" height="50"></span>
+      <?php if (@$site['logo']['display'] == 'image'): ?>
+        <span class="logo-lg"><img src="<?php echo image_module('config', 'logo/'.@$this->esg->get_esg('site')['logo']['image']); ?>" height="40"></span>
+      <?php else: ?>
+        <span class="logo-lg"><?php echo @$site['logo']['title'] ?></span>
+      <?php endif ?>
     </a>
+  <?php endif ?>
+  <nav class="navbar navbar-static-top">
+    <?php if (!is_bupati()): ?>
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+    <?php endif ?>
 
     <div class="navbar-custom-menu">
       <ul class="nav navbar-nav">
