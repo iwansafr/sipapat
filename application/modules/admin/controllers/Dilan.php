@@ -369,7 +369,7 @@ class Dilan extends CI_Controller{
 		    // setting jenis font yang akan digunakan
 		    $pdf->SetFont('Arial','B',7);
 		    // mencetak string 
-		    $pdf->Image($image,10,10,40,30);
+		    $pdf->Image($image,0,10,40,30);
 		    $pdf->Cell(25);
 				$pdf->SetFont('Times','B','15');
 				$pdf->Cell(0,5,$teks1,0,1,'C');
@@ -378,22 +378,22 @@ class Dilan extends CI_Controller{
 				$pdf->Cell(25);
 				$pdf->SetFont('Times','B','15');
 				$pdf->Cell(0,5,$teks3,0,1,'C');
-				$pdf->Cell(38);
+				$pdf->Cell(22);
 				$pdf->SetFont('Times','','13');
 				// $pdf->MultiCell(0,5,$teks4,0,1,false);
 				// $pdf->Cell(0,5,$teks4,0,1,'L');
 				$pdf->Cell(30,5,'Alamat Kantor',0,0,'L');
 				$pdf->Cell(30,5,$teks4,0,0,'L');
-				$pdf->Cell(10);
+				$pdf->Cell(20);
 				$pdf->Cell(15,5,'Email',0,0,'L');
 				$pdf->Cell(60,5,$teks6,0,1,'L');
-				$pdf->Cell(38);
+				$pdf->Cell(22);
 				$pdf->Cell(30,5,'Telepon',0,0,'L');
 				$pdf->Cell(30,5,$teks5,0,0,'L');
-				$pdf->Cell(10);
+				$pdf->Cell(20);
 				$pdf->Cell(15,5,'Website',0,0,'L');
 				$pdf->Cell(60,5,$teks8,0,1,'L');
-				$pdf->Cell(38);
+				$pdf->Cell(22);
 				$pdf->Cell(30,5,'Kode Pos',0,0,'L');
 				$pdf->Cell(30,5,$teks7,0,1,'L');
 				$pdf->SetLineWidth(1);
