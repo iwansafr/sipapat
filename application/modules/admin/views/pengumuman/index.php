@@ -5,7 +5,12 @@ if(is_admin() || is_root())
 
 	$form->init('param');
 	$form->setTable('config');
-	$form->setParamName('pengumuman');
+	if(is_sipapat())
+	{
+		$form->setParamName('pengumuman');
+	}else{
+		$form->setParamName('sispudes_pengumuman');
+	}
 	$form->setHeading('Atur Pengumuman');
 	for($i=1;$i<4;$i++)
 	{

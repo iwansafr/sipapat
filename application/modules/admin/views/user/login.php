@@ -1,7 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <?php $site = $this->esg->get_esg('site');?>
+  <?php 
+  if(is_sipapat())
+  {
+    $site = $this->esg->get_esg('site');
+    $site_title = 'site';
+    $logo_title = 'logo';
+  }else{
+    $site['site'] = $this->esg->get_config('sispudes_site');
+    $site['logo'] = $this->esg->get_config('sispudes_logo');
+    $site_title = 'sispudes_site';
+    $logo_title = 'sispudes_logo';
+  }
+  ?>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title><?php echo @$site['site']['title'] ?> | Log in</title>
@@ -18,7 +30,7 @@
   <!-- iCheck -->
   <link rel="stylesheet" href="<?php echo base_url('templates/AdminLTE/assets/') ?>iCheck/square/blue.css">
 
-  <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url('images/icon.png'); ?>">
+  <link rel="shortcut icon" type="image/x-icon" href="<?php echo image_module('config',$site_title.'/'.$site['site']['image']); ?>">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -47,7 +59,7 @@
       echo '<h1>'.@$site['logo']['title'].'</h1>';
     }else{
       ?>
-      <img src="<?php echo image_module('config','logo/'.$site['logo']['image']) ?>" height="<?php echo @intval($site['logo']['height']) ?>">
+      <img src="<?php echo image_module('config',$logo_title.'/'.$site['logo']['image']) ?>" height="<?php echo @intval($site['logo']['height']) ?>">
       <?php
     }
     ?>

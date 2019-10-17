@@ -29,5 +29,9 @@ class Sipapatconfig extends CI_Controller
 	{
 		$this->load->view('index');
 	}
+	public function site()
+	{
+		$this->load->view('index');
+	}
 
 }

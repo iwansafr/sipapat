@@ -1,5 +1,10 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-$pengumuman = $this->esg->get_config('pengumuman');
+if(is_sipapat())
+{
+	$pengumuman = $this->esg->get_config('pengumuman');
+}else{
+	$pengumuman = $this->esg->get_config('sispudes_pengumuman');
+}
 ?>
 <style type="text/css">
 	.content-wrapper{

@@ -8,6 +8,16 @@ function msg($msg = 'alert', $alert = 'default')
 	<?php
 }
 
+function is_sipapat()
+{
+	$status = false;
+	if(preg_match('~sipapat~', base_url()))
+	{
+		$status = true;
+	}
+	return $status;
+}
+
 function alphabet()
 {
 	$data = [];
