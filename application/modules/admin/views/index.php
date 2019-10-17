@@ -28,6 +28,7 @@ if($mod['name'] == 'admin' && $mod['task'] == 'index')
 		$this->esg->set_esg('pengumuman_kecamatan', $pengumuman);
 	}
 }
+$this->sipapat_model->site();
 $date = date('Y-m-d');
 $deadline = date('2019-08-24');
 $allowed = TRUE;

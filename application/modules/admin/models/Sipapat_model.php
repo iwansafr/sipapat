@@ -192,6 +192,37 @@ class Sipapat_model extends CI_Model
 		}
 	}
 
+	public function site()
+	{
+		$data = array();
+		if(is_sipapat())
+		{
+			$site_title = 'site';
+			$data['logo'] = $this->esg->get_config('logo');
+			$data['site'] = $this->esg->get_config('site');
+		}else{
+			$site_title = 'sispudes_site';
+			$data['logo'] = $this->esg->get_config('sispudes_logo');
+			$data['site'] = $this->esg->get_config('sispudes_site');
+		}
+		$this->esg->set_esg('site', $data);
+
+		$site = $this->esg->get_esg('site')['site'];
+		$meta = $this->esg->get_esg('meta');
+		if(!empty($site))
+		{
+			foreach ($site as $key => $value) 
+			{
+				if($key == 'image' && !empty($value))
+				{
+					$meta['icon'] = image_module('config/'.$site_title,$value);
+				}
+				$meta[$key] = $value;
+			}
+			$this->esg->set_esg('meta', $meta);
+		}
+	}
+
 	public function get_jabatan($kelompok_id = 0 , $jabatan_id = 0)
 	{
 		if(!empty($kelompok_id))
