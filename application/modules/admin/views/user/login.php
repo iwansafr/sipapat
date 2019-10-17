@@ -30,7 +30,7 @@
   <!-- iCheck -->
   <link rel="stylesheet" href="<?php echo base_url('templates/AdminLTE/assets/') ?>iCheck/square/blue.css">
 
-  <link rel="shortcut icon" type="image/x-icon" href="<?php echo image_module('config',$site_title.'/'.$site['site']['image']); ?>">
+  <link rel="shortcut icon" type="image/x-icon" href="<?php echo image_module('config',$site_title.'/'.@$site['site']['image']); ?>">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
