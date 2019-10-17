@@ -59,7 +59,7 @@
       echo '<h1>'.@$site['logo']['title'].'</h1>';
     }else{
       ?>
-      <img src="<?php echo image_module('config',$logo_title.'/'.$site['logo']['image']) ?>" height="<?php echo @intval($site['logo']['height']) ?>">
+      <img src="<?php echo image_module('config',$logo_title.'/'.@$site['logo']['image']) ?>" height="<?php echo @intval($site['logo']['height']) ?>">
       <?php
     }
     ?>
