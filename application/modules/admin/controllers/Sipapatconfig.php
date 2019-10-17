@@ -24,4 +24,10 @@ class Sipapatconfig extends CI_Controller
 	{
 		$this->load->view('index');
 	}
+
+	public function logo()
+	{
+		$this->load->view('index');
+	}
+
 }
