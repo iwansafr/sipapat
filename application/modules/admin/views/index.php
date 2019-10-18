@@ -3,9 +3,9 @@ $this->esg->check_login();
 
 $mod['name'] = $this->router->fetch_class();
 $mod['task'] = $this->router->fetch_method();
+$this->load->model('sipapat_model');
 if($mod['name'] == 'admin' && $mod['task'] == 'index')
 {
-	$this->load->model('sipapat_model');
 	$this->load->model('pengguna_model');
 	$pengguna = $this->pengguna_model->get_pengguna();
 	$desa = array();
