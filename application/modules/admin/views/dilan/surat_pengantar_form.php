@@ -79,7 +79,7 @@ if(!empty($keterangan))
 	$this->zea->setValue('keperluan',$keterangan['keperluan']);
 	$this->zea->setValue('keterangan',$keterangan['keterangan']);
 	// $this->zea->setAttribute('keperluan','readonly');
-	$this->zea->setAttribute('keterangan','readonly');
+	// $this->zea->setAttribute('keterangan','readonly');
 }
 
 $this->zea->setFormName('form_surat_pengantar');
