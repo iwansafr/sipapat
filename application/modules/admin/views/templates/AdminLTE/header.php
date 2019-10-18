@@ -1,6 +1,14 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->model('pesan_model');
 $message = $this->esg->get_esg('pesan');
+if(is_sipapat())
+{
+  $site_title = 'site';
+  $logo_title = 'logo';
+}else{
+  $site_title = 'sispudes_site';
+  $logo_title = 'sispudes_logo';
+}
 ?>
 <?php if (is_bupati()): ?>
   <style>
@@ -24,9 +32,9 @@ $message = $this->esg->get_esg('pesan');
 <header class="main-header">
   <?php if (!is_bupati()): ?>
     <a href="<?php echo base_url('admin') ?>" class="logo">
-      <span class="logo-mini"><img src="<?php echo image_module('config', 'site/'.@$this->esg->get_esg('site')['site']['image']); ?>" height="50"></span>
+      <span class="logo-mini"><img src="<?php echo image_module('config', $site_title.'/'.@$this->esg->get_esg('site')['site']['image']); ?>" height="50"></span>
       <?php if (@$site['logo']['display'] == 'image'): ?>
-        <span class="logo-lg"><img src="<?php echo image_module('config', 'logo/'.@$this->esg->get_esg('site')['logo']['image']); ?>" height="40"></span>
+        <span class="logo-lg"><img src="<?php echo image_module('config', $logo_title.'/'.@$this->esg->get_esg('site')['logo']['image']); ?>" height="40"></span>
       <?php else: ?>
         <span class="logo-lg"><?php echo @$site['logo']['title'] ?></span>
       <?php endif ?>
