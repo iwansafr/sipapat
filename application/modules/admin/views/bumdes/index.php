@@ -8,7 +8,7 @@ $form->setHeading('<a href="'.base_url('admin/bumdes/edit').'"><button class="bt
 
 $form->join('desa','ON(desa.id=bumdes.desa_id)','desa.nama AS nama_desa,desa.kecamatan, bumdes.id,bumdes.nama,bumdes.tgl_berdiri,bumdes.no_perdes,bumdes.no_perkades,bumdes.no_rek_bumdes,bumdes.jangka_waktu');
 
-if(is_desa())
+if(is_desa() || is_bumdes())
 {
 	$form->setWhere('desa_id = '.$pengguna['desa_id']);
 }
