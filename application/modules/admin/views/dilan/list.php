@@ -50,7 +50,7 @@ $form->setPlaintext('id','
 	  </button>
 	  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 	  	<li><a href="'.base_url('admin/dilan/detail/').'{id}"><i class="fa fa-search"></i>Detail</a></li>
-	    <li><a href="'.base_url('admin/dilan/surat_pengantar_choose_form/').'{id}"><i class="fa fa-plus"></i>Surat Pengantar</a></li>
+	    <li><a href="'.base_url('admin/dilan/surat_pengantar_choose_form/').'{id}/{nik}"><i class="fa fa-plus"></i>Surat Pengantar</a></li>
 	    <li role="separator" class="divider"></li>
 	    <li><a href="#{id}">dll</a></li>
 	  </ul>

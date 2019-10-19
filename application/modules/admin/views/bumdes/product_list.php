@@ -44,6 +44,9 @@ $form->search();
 $form->setNumbering(true);
 
 $form->addInput('id','plaintext');
+$form->setLabel('id','detail');
+$form->setPlainText('id','<a href="'.base_url('admin/bumdes/product_detail/').'{id}/{title}" class="btn btn-default btn-sm">detail</a>');
+
 $form->setHeading('<a href="'.base_url('admin/bumdes/product_edit').'" class="btn btn-default btn-sm"><i class="fa fa-plus"></i></a>');
 
 $form->addInput('nama_desa','plaintext');

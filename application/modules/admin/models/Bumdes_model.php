@@ -127,4 +127,13 @@ class Bumdes_model extends CI_Model{
 			$this->db->update('bumdes_simpan_pinjam', $data, "name = '$name'");
 		}	
 	}
+
+	public function get_product($id = 0)
+	{
+		return $this->db->get_where('bumdes_product',['id'=>$id])->row_array();
+	}
+	public function get_product_cat($id = 0)
+	{
+		return $this->db->get_where('bumdes_product_cat',['id'=>$id])->row_array();
+	}
 }
