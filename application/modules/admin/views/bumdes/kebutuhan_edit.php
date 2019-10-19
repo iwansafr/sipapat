@@ -21,17 +21,17 @@ $form->addInput('item','text');
 
 $form->addInput('length','text');
 $form->setType('length','number');
-$form->setAttribute('length',['placeholder'=>'Kilogram']);
+$form->setAttribute('length',['placeholder'=>'Centimeter']);
 $form->setLabel('length','panjang');
 
 $form->addInput('width','text');
 $form->setType('width','number');
-$form->setAttribute('width',['placeholder'=>'Kilogram']);
+$form->setAttribute('width',['placeholder'=>'Centimeter']);
 $form->setLabel('width','lebar');
 
 $form->addInput('height','text');
 $form->setType('height','number');
-$form->setAttribute('height',['placeholder'=>'Kilogram']);
+$form->setAttribute('height',['placeholder'=>'Centimeter']);
 $form->setLabel('height','tinggi');
 
 $form->startCollapse('length','volume');

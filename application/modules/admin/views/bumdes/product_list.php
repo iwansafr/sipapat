@@ -7,18 +7,33 @@ $form->setTable('bumdes_product');
 
 $where = '';
 
-if(is_desa())
+if(is_desa() || is_bumdes())
 {
 	$where = ' desa_id = '.$desa_id;
+}else{
+	?>
+	<a href="<?php echo base_url('admin/bumdes/kecamatan_product_list/') ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Filter Data</a>
+	<?php
+	$desa_id = @intval($_GET['desa_id']);
+	if(!empty($desa_id))
+	{
+		$where = 'desa_id = '.$desa_id;
+	}else if(!empty($_GET['kec']))
+	{
+		$kecamatan = @$_GET['kec'];
+		$where = "desa.kecamatan = '{$kecamatan}'";
+	}
 }
+
+$form->join('desa','ON(desa.id=bumdes_product.desa_id)','desa.nama AS nama_desa,desa.kecamatan, bumdes_product.cat_id,bumdes_product.id,bumdes_product.title');
 
 if(!empty($cat_id))
 {
 	if(!empty($where))
 	{
-		$where .= " AND cat_ids LIKE %,{$cat_id},%";
+		$where .= " AND cat_id = $cat_id";
 	}else{
-		$where = " cat_ids LIKE %,{$cat_id},%";
+		$where = " cat_id = $cat_id";
 	}
 }
 
@@ -31,10 +46,10 @@ $form->setNumbering(true);
 $form->addInput('id','plaintext');
 $form->setHeading('<a href="'.base_url('admin/bumdes/product_edit').'" class="btn btn-default btn-sm"><i class="fa fa-plus"></i></a>');
 
-$form->addInput('desa_id','dropdown');
-$form->tableOptions('desa_id','desa','id','nama');
-$form->setAttribute('desa_id','disabled');
-$form->setLabel('desa_id','desa');
+$form->addInput('nama_desa','plaintext');
+$form->setLabel('nama_desa','Desa');
+
+$form->addInput('kecamatan','plaintext');
 
 $form->addInput('title','plaintext');
 $form->setLabel('title','nama');
@@ -46,3 +61,4 @@ $form->setEdit(true);
 $form->setDelete(true);
 
 $form->form();
+pr($form->getData()['query']);

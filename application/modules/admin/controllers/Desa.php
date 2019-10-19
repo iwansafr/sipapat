@@ -26,6 +26,7 @@ class Desa extends CI_Controller
 
 	public function kecamatan()
 	{
+		$this->load->helper('filter');
 		$this->load->view('index', ['kec_option'=>$this->pengguna_model->get_kecamatan()]);
 	}
 

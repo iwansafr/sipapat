@@ -21,9 +21,13 @@ if(!empty($desa_id))
 }
 $form->setLabel('desa_id','desa');
 
-$form->addInput('cat_ids','multiselect');
-$form->setLabel('cat_ids','kategori');
-$form->setMultiSelect('cat_ids','bumdes_product_cat','id,title');
+// $form->addInput('cat_ids','multiselect');
+// $form->setLabel('cat_ids','kategori');
+// $form->setMultiSelect('cat_ids','bumdes_product_cat','id,title');
+
+$form->addInput('cat_id','dropdown');
+$form->setLabel('cat_id','kategori');
+$form->tableOptions('cat_id','bumdes_product_cat','id','title');
 
 $form->addInput('title','text');
 $form->setLabel('title','nama produk');
@@ -40,14 +44,17 @@ $form->setLabel('image','foto produk');
 
 $form->addInput('length','text');
 $form->setType('length','number');
+$form->setAttribute('length',['placeholder'=>'Centimeter']);
 $form->setLabel('length','panjang');
 
 $form->addInput('width','text');
 $form->setType('width','number');
+$form->setAttribute('width',['placeholder'=>'Centimeter']);
 $form->setLabel('width','lebar');
 
 $form->addInput('height','text');
 $form->setType('height','number');
+$form->setAttribute('height',['placeholder'=>'Centimeter']);
 $form->setLabel('height','tinggi');
 
 $form->startCollapse('length','volume');
