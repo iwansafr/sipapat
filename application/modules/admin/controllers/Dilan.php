@@ -468,7 +468,10 @@ class Dilan extends CI_Controller{
 				$pdf->Cell(60,5,'Kepala Desa '.ucfirst(strtolower($desa['nama'])),0,0,'C');
 				if(!empty($desa['ttd_img']))
 				{
-					$pdf->Image(image_module('desa',$desa['id'].'/'.$desa['ttd_img']),135,165,40,30);
+					if(!empty($config['show_ttd']))
+					{
+						$pdf->Image(image_module('desa',$desa['id'].'/'.$desa['ttd_img']),135,165,40,30);
+					}
 				}
 				$pdf->Ln(30);
 		    

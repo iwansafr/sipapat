@@ -21,6 +21,10 @@ $form->addInput('show_nip','radio');
 $form->setLabel('show_nip','NIP kepala desa');
 $form->setRadio('show_nip',['Sembunyikan','Tampilkan']);
 
+$form->addInput('show_ttd','radio');
+$form->setLabel('show_ttd','TTD/Stempel kepala desa');
+$form->setRadio('show_ttd',['Sembunyikan','Tampilkan']);
+
 $form->setFormName('dilan_config');
 
 $form->form();
