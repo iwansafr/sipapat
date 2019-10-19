@@ -337,4 +337,17 @@ class Bumdes extends CI_Controller{
 	{
 		$this->load->view('index',['desa_id'=>$this->sipapat_model->get_desa_id(),'cat_id'=>$cat_id]);
 	}
+
+	public function kebutuhan_edit()
+	{
+		$this->load->view('index');
+	}
+	public function kebutuhan_list()
+	{
+		$this->load->view('index');
+	}
+	public function clear_kebutuhan_list()
+	{
+		$this->load->view('bumdes/kebutuhan_list');
+	}
 }

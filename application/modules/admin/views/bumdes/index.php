@@ -8,11 +8,15 @@ if(is_desa() || is_root() || is_admin())
 
 	$form->setHeading('<a href="'.base_url('admin/bumdes/edit').'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>');
 
+	$form->join('desa','ON(desa.id=bumdes.desa_id)','desa.nama AS nama_desa,desa.kecamatan, bumdes.id,bumdes.nama,bumdes.tgl_berdiri,bumdes.no_perdes,bumdes.no_perkades,bumdes.no_rek_bumdes,bumdes.jangka_waktu');
+
 	if(is_desa())
 	{
 		$form->setWhere('desa_id = '.$pengguna['desa_id']);
 	}
+	$form->order_by('bumdes.id','DESC');
 
+	$form->search();
 	$form->addInput('id','link');
 	$form->setLabel('id','detail');
 	$form->setPlaintext('id','<i class="fa fa-eye"></i> Detail');
@@ -22,11 +26,14 @@ if(is_desa() || is_root() || is_admin())
 	$form->addInput('nama','plaintext');
 	$form->setLabel('nama','nama bumdes');
 
-	$form->setId(@intval($_GET['id']));
-	$form->addInput('desa_id','dropdown');
-	$form->tableOptions('desa_id','desa','id','nama');
-	$form->setLabel('desa_id','Desa');
-	$form->setAttribute('desa_id','disabled');
+	// $form->setId(@intval($_GET['id']));
+	// $form->addInput('desa_id','dropdown');
+	// $form->tableOptions('desa_id','desa','id','nama');
+	// $form->setLabel('desa_id','Desa');
+	// $form->setAttribute('desa_id','disabled');
+
+	$form->addInput('nama_desa','plaintext');
+	$form->setLabel('nama_desa','nama desa');
 
 	$form->addInput('tgl_berdiri','plaintext');
 	$form->setType('tgl_berdiri','date');
