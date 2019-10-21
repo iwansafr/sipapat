@@ -24,6 +24,6 @@ class Districts extends CI_Controller
 	}
 	public function clear_list($id = 0)
 	{
-		$this->load->view('regencies/list',['reg_id'=>@intval($id)]);
+		$this->load->view('districts/list',['reg_id'=>@intval($id)]);
 	}
 }
