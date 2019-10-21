@@ -30,13 +30,16 @@ $(document).ready(function(){
 		url: _URL+'api/desa/detail/'+_ID,
 		success:function(result){
 			desa = result;
-			console.log(desa);
 		}
 	});
 
 
 	$('select[name="province_id"]').on('change', function(){
 		var a = $(this).val();
+		$('select[name="province_id"] option:selected').each(function(){
+			var b = $(this).text();
+			$('input[name="provinsi"').val(b);
+		});
 		var select = $('select[name="regency_id"]');
 		if(regencies[a] == undefined){
 			var tmp = [{'text':'None','value':'0','selected':'true'}];
@@ -51,8 +54,33 @@ $(document).ready(function(){
 		}
 		set_option(select, tmp);
 	});
+	$('select[name="regency_id"]').on('change', function(){
+		var a = $(this).val();
+		$('select[name="regency_id"] option:selected').each(function(){
+			var b = $(this).text();
+			$('input[name="kabupaten"').val(b);
+		});
+		var select = $('select[name="district_id"]');
+		if(districts[a] == undefined){
+			var tmp = [{'text':'None','value':'0','selected':'true'}];
+		}else{
+			var option = districts[a];
+			var tmp = [{'text':'None','value':'0','selected':'true'}];
+			for(var i =0; i< option.length;i++){
+				tmp[i+1] = [];
+				tmp[i+1].text = option[i].name;
+				tmp[i+1].value = option[i].id;
+			}
+		}
+		set_option(select, tmp);
+	});
+
 	$('select[name="district_id"]').on('change', function(){
 		var a = $(this).val();
+		$('select[name="district_id"] option:selected').each(function(){
+			var b = $(this).text();
+			$('input[name="kecamatan"').val(b);
+		});
 		var select = $('select[name="village_id"]');
 		if(villages[a] == undefined){
 			var tmp = [{'text':'None','value':'0','selected':'true'}];
@@ -68,6 +96,14 @@ $(document).ready(function(){
 		}
 		set_desa();
 		set_option(select, tmp);
+	});
+	$('select[name="village_id"]').on('change', function(){
+		var a = $(this).val();
+		console.log(a);
+		$('select[name="village_id"] option:selected').each(function(){
+			var b = $(this).text();
+			$('input[name="nama"').val(b);
+		});
 	});
 
 	function set_kabupaten()
@@ -138,7 +174,6 @@ $(document).ready(function(){
 					var tmp = [{'text':'None','value':'0','selected':'true'}];
 				}else{
 					var option = villages[a];
-					console.log(option);
 					var tmp = [{'text':'None','value':'0','selected':'true'}];
 					for(var i =0; i< option.length;i++){
 						tmp[i+1] = [];

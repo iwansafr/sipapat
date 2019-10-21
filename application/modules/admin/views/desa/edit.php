@@ -1,7 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 if(is_root() || is_admin() || @$pengguna['desa_id'] == $_GET['id'])
 {
-	pr($this->input->post());
 	$form = new zea();
 	$form->setId(@intval($_GET['id']));
 	$form->init('edit');
