@@ -26,4 +26,9 @@ class Districts extends CI_Controller
 	{
 		$this->load->view('districts/list',['reg_id'=>@intval($id)]);
 	}
+
+	public function all()
+	{
+		output_json($this->db->get('districts')->result_array());
+	}
 }

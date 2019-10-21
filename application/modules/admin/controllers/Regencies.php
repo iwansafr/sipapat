@@ -26,4 +26,14 @@ class Regencies extends CI_Controller
 	{
 		$this->load->view('regencies/list',['prov_id'=>@intval($id)]);
 	}
+	public function all()
+	{
+		$data = $this->db->get('regencies')->result_array();
+		$output = [];
+		foreach ($data as $key => $value) 
+		{
+			$output[$value['province_id']][] = $value;
+		}
+		output_json($output);
+	}
 }

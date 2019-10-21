@@ -21,4 +21,8 @@ class Provinces extends CI_Controller
 	{
 		$this->load->view('provinces/index');
 	}
+	public function all()
+	{
+		output_json($this->db->get('provinces')->result_array());
+	}
 }

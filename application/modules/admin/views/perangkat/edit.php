@@ -148,3 +148,8 @@ if(!is_admin() && !is_kecamatan())
 }else{
 	msg('hanya petugas desa yang bisa menambah '.$module_title[$kelompok],'danger');
 }
+
+?>
+<script>
+	console.log(navigator.userAgent);
+</script>

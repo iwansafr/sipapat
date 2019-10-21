@@ -33,5 +33,10 @@ class Sipapatconfig extends CI_Controller
 	{
 		$this->load->view('index');
 	}
+	public function kabupaten()
+	{
+		$this->esg->add_js([base_url('assets/sipapatconfig/script.js')]);
+		$this->load->view('index');
+	}
 
 }
