@@ -21,7 +21,7 @@ if(is_root() || is_admin())
 		$form->init('param');
 		$form->setTable('config');
 		$form->setParamName(base_url());
-		$form->setHeading('<a href="'.base_url('admin/sipapatconfig/kabupaten').'" class="btn btn-warning btn-sm pull-right"><i class="fa fa-arrow-left"></i> kembali</a>');
+		$form->setHeading('Config Kabupaten <a href="'.base_url('admin/sipapatconfig/kabupaten').'" class="btn btn-warning btn-sm pull-right"><i class="fa fa-arrow-left"></i> kembali</a>');
 
 		$form->addInput('province_id','dropdown');
 		$form->setLabel('province_id','Provinsi');
