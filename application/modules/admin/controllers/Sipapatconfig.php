@@ -39,4 +39,10 @@ class Sipapatconfig extends CI_Controller
 		$this->load->view('index');
 	}
 
+	public function config_kab()
+	{
+		$config = $this->esg->get_config(base_url());
+		output_json($config);
+	}
+
 }
