@@ -28,6 +28,12 @@ class Villages extends CI_Controller
 	}
 	public function all()
 	{
-		output_json($this->db->get('villages')->result_array());
+		$data = $this->db->get('villages')->result_array();
+		$output = [];
+		foreach ($data as $key => $value) 
+		{
+			$output[$value['district_id']][] = $value;
+		}
+		output_json($output);
 	}
 }

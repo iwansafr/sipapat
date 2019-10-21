@@ -127,4 +127,8 @@ class Desa_model extends CI_Model
 		}
 		return $data;
 	}
+	public function detail($id = 0)
+	{
+		return $this->db->get_where('desa',['id'=>$id])->row_array();
+	}
 }

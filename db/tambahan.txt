@@ -44,8 +44,12 @@ ALTER TABLE `posyantekdes` CHANGE `no_permakades` `no_permakades` VARCHAR(50) NO
 ALTER TABLE `desa` ADD `ttd_img` VARCHAR(255) NOT NULL AFTER `kode`;
 ALTER TABLE `dilan_surat` ADD `desa_id` INT(11) NOT NULL AFTER `id`;
 
-
 ALTER TABLE `penduduk` ADD `agama_lainnya` VARCHAR(255) NOT NULL AFTER `agama`;
-
-
 ALTER TABLE `penduduk` CHANGE `gdr` `gdr` TINYINT(2) NULL DEFAULT NULL;
+
+ALTER TABLE `desa` ADD `village_id` INT(11) NOT NULL AFTER `nama`;
+ALTER TABLE `desa` ADD `district_id` INT(11) NOT NULL AFTER `kecamatan`;
+ALTER TABLE `desa` ADD `regency_id` INT(11) NOT NULL AFTER `kabupaten`;
+ALTER TABLE `desa` ADD `province_id` INT(11) NOT NULL AFTER `provinsi`;
+ALTER TABLE `desa` CHANGE `village_id` `village_id` INT(11) NULL DEFAULT NULL, CHANGE `district_id` `district_id` INT(11) NULL DEFAULT NULL, CHANGE `regency_id` `regency_id` INT(11) NULL DEFAULT NULL, CHANGE `province_id` `province_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `desa` CHANGE `village_id` `village_id` CHAR(11) NULL DEFAULT NULL;

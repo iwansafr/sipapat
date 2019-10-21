@@ -1,22 +1,44 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 if(is_root() || is_admin() || @$pengguna['desa_id'] == $_GET['id'])
 {
+	pr($this->input->post());
 	$form = new zea();
 	$form->setId(@intval($_GET['id']));
 	$form->init('edit');
 	$form->setTable('desa');
 	$form->setHeading('Data Desa');
-	$form->addInput('kode','text');
-	$form->setLabel('kode','Kode Desa');
+	// $form->addInput('kode','text');
+	// $form->setLabel('kode','Kode Desa');
+	
+	$form->addInput('province_id','dropdown');
+	$form->setLabel('province_id','Provinsi');
+	$form->setOptions('province_id',['none']);
+
+	$form->addInput('provinsi','text');
+	$form->setAttribute('provinsi','onkeyup="this.value = this.value.toUpperCase();"');
+	
+	$form->addInput('regency_id','dropdown');
+	$form->setLabel('regency_id','Kabupaten');
+	$form->setOptions('regency_id',['none']);
+	
+	$form->addInput('kabupaten','text');
+	$form->setAttribute('kabupaten','onkeyup="this.value = this.value.toUpperCase();"');
+	
+	$form->addInput('district_id','dropdown');
+	$form->setLabel('district_id','Kecamatan');
+	$form->setOptions('district_id',['none']);
+
+	$form->addInput('kecamatan','text');
+	$form->setAttribute('kecamatan','onkeyup="this.value = this.value.toUpperCase();"');
+	
+	$form->addInput('village_id','dropdown');
+	$form->setLabel('village_id','Desa');
+	$form->setOptions('village_id',['none']);
+
 	$form->addInput('nama','text');
 	$form->setLabel('nama','Nama Desa');
 	$form->setAttribute('nama','onkeyup="this.value = this.value.toUpperCase();"');
-	$form->addInput('kecamatan','text');
-	$form->setAttribute('kecamatan','onkeyup="this.value = this.value.toUpperCase();"');
-	$form->addInput('kabupaten','text');
-	$form->setAttribute('kabupaten','onkeyup="this.value = this.value.toUpperCase();"');
-	$form->addInput('provinsi','text');
-	$form->setAttribute('provinsi','onkeyup="this.value = this.value.toUpperCase();"');
+
 	$form->addInput('kode_pos','text');
 	$form->setLabel('kode_pos','Kode Pos');
 	$form->setAttribute('kode_pos',['type'=>'number']);

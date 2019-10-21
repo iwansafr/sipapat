@@ -1,7 +1,10 @@
 $(document).ready(function(){
 	var provinces;
 	var regencies;
+	var districts;
+	var villages;
 	var config_kab;
+	var desa;
 
 	function set_option(select,data)
 	{
@@ -22,6 +25,14 @@ $(document).ready(function(){
 			config_kab = result;
 		}
 	});
+	$.ajax({
+		type:'post',
+		url: _URL+'api/desa/detail/'+_ID,
+		success:function(result){
+			desa = result;
+			console.log(desa);
+		}
+	});
 
 
 	$('select[name="province_id"]').on('change', function(){
@@ -38,6 +49,24 @@ $(document).ready(function(){
 				tmp[i+1].value = option[i].id;
 			}
 		}
+		set_option(select, tmp);
+	});
+	$('select[name="district_id"]').on('change', function(){
+		var a = $(this).val();
+		var select = $('select[name="village_id"]');
+		if(villages[a] == undefined){
+			var tmp = [{'text':'None','value':'0','selected':'true'}];
+		}else{
+			var option = villages[a];
+			var tmp = [{'text':'None','value':'0','selected':'true'}];
+			for(var i =0; i< option.length;i++){
+				tmp[i+1] = [];
+				
+				tmp[i+1].text = option[i].name;
+				tmp[i+1].value = option[i].id;
+			}
+		}
+		set_desa();
 		set_option(select, tmp);
 	});
 
@@ -58,6 +87,7 @@ $(document).ready(function(){
 						tmp[i+1] = [];
 						if(option[i].id==config_kab.regency_id){
 							tmp[i+1].selected =true;
+							set_kecamatan();
 						}
 						tmp[i+1].text = option[i].name;
 						tmp[i+1].value = option[i].id;
@@ -66,6 +96,62 @@ $(document).ready(function(){
 				set_option(select, tmp);
 			}
 		});
+	}
+	function set_kecamatan()
+	{
+	  $.ajax({
+			type:'post',
+			data: {id:_ID},
+	    url: _URL+'admin/districts/all',
+	    success:function(result){
+	    	var a = $('select[name="regency_id"]').val();
+				var select = $('select[name="district_id"]');
+				if(districts[a] == undefined){
+					var tmp = [{'text':'None','value':'0','selected':'true'}];
+				}else{
+					var option = districts[a];
+					var tmp = [{'text':'None','value':'0','selected':'true'}];
+					for(var i =0; i< option.length;i++){
+						tmp[i+1] = [];
+						if(option[i].id==desa.district_id){
+							tmp[i+1].selected =true;
+							set_desa();
+						}
+						tmp[i+1].text = option[i].name;
+						tmp[i+1].value = option[i].id;
+					}
+				}
+				set_option(select, tmp);
+	    }
+	  });		
+	}
+	function set_desa()
+	{
+	  $.ajax({
+			type:'post',
+			data: {id:_ID},
+	    url: _URL+'admin/villages/all',
+	    success:function(result){
+	    	var a = $('select[name="district_id"]').val();
+				var select = $('select[name="village_id"]');
+				if(villages[a] == undefined){
+					var tmp = [{'text':'None','value':'0','selected':'true'}];
+				}else{
+					var option = villages[a];
+					console.log(option);
+					var tmp = [{'text':'None','value':'0','selected':'true'}];
+					for(var i =0; i< option.length;i++){
+						tmp[i+1] = [];
+						if(option[i].id==desa.village_id){
+							tmp[i+1].selected =true;
+						}
+						tmp[i+1].text = option[i].name;
+						tmp[i+1].value = option[i].id;
+					}
+				}
+				set_option(select, tmp);
+	    }
+	  });		
 	}
 
 	$.ajax({
@@ -104,4 +190,27 @@ $(document).ready(function(){
     	}
     }
   });
+
+  $.ajax({
+		type:'post',
+		data: {id:_ID},
+    url: _URL+'admin/districts/all',
+    success:function(result){
+    	if(result)
+    	{
+    		districts = result;
+    	}
+    }
+  });
+  $.ajax({
+		type:'post',
+		data: {id:_ID},
+    url: _URL+'admin/villages/all',
+    success:function(result){
+    	if(result)
+    	{
+    		villages = result;
+    	}
+    }
+  });  
 });

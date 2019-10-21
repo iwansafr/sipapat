@@ -29,6 +29,12 @@ class Districts extends CI_Controller
 
 	public function all()
 	{
-		output_json($this->db->get('districts')->result_array());
+		$data = $this->db->get('districts')->result_array();
+		$output = [];
+		foreach ($data as $key => $value) 
+		{
+			$output[$value['regency_id']][] = $value;
+		}
+		output_json($output);
 	}
 }

@@ -33,6 +33,7 @@ class Desa extends CI_Controller
 	public function edit()
 	{
 		$pengguna = $this->pengguna_model->get_pengguna();
+		$this->esg->add_js([base_url('assets/sipapatconfig/script.js')]);
 		$this->load->view('index',['pengguna'=>$pengguna]);
 	}
 
