@@ -123,9 +123,11 @@ $(document).ready(function(){
 					var tmp = [{'text':'None','value':'0','selected':'true'}];
 					for(var i =0; i< option.length;i++){
 						tmp[i+1] = [];
-						if(option[i].id==config_kab.regency_id){
-							tmp[i+1].selected =true;
-							set_kecamatan();
+						if(config_kab!=undefined){
+							if(option[i].id==config_kab.regency_id){
+								tmp[i+1].selected =true;
+								set_kecamatan();
+							}
 						}
 						tmp[i+1].text = option[i].name;
 						tmp[i+1].value = option[i].id;

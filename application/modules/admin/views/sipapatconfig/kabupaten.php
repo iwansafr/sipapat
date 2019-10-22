@@ -17,6 +17,9 @@ if(is_root() || is_admin())
 	// $form->setAttribute('regency_id',['class'=>'form-control']);
 	$form->setLabel('regency_id','Kabupaten');
 	$form->setOptions('regency_id',['none']);
+
+	$form->addInput('coba.coba','hidden');
+	$form->setValue('coba.coba',true);
 	
 	$form->addInput('image', 'upload');
 	$form->setAccept('image', 'image/jpeg,image/png');
