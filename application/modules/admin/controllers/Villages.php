@@ -24,7 +24,7 @@ class Villages extends CI_Controller
 	}
 	public function clear_list($id = 0)
 	{
-		$this->load->view('regencies/list',['district_id'=>@intval($id)]);
+		$this->load->view('villages/list',['district_id'=>@intval($id)]);
 	}
 	public function all()
 	{
