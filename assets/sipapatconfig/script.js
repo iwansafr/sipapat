@@ -8,13 +8,15 @@ $(document).ready(function(){
 
 	function set_option(select,data)
 	{
-		while (select[0].options.length) {
-    	select[0].remove(0);
-    }
-		var selectbox = select[0].options;
-		for(var i = 0, l = data.length; i < l; i++){
-		  var option = data[i];
-		  select[0].options.add( new Option(option.text, option.value, option.selected,option.selected) );
+		if(select[0]!= undefined){
+			while (select[0].options.length) {
+	    	select[0].remove(0);
+	    }
+			var selectbox = select[0].options;
+			for(var i = 0, l = data.length; i < l; i++){
+			  var option = data[i];
+			  select[0].options.add( new Option(option.text, option.value, option.selected,option.selected) );
+			}
 		}
 	}
 	
