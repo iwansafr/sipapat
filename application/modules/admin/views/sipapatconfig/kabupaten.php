@@ -2,6 +2,7 @@
 
 if(is_root() || is_admin())
 {
+	pr(@$_POST);
 	$form = new zea();
 	$form->init('param');
 	$form->setTable('config');
