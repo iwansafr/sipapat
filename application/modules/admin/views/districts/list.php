@@ -7,6 +7,15 @@ $form->setId(@intval($_GET['id']));
 $form->init('edit');
 $form->setHeading('Kecamatan');
 $form->addInput('name','text');
+$form->addInput('regency_id','dropdown');
+$form->setLabel('regency_id','kabupaten');
+if(!empty($reg_id))
+{
+	$form->tableOptions('regency_id','regencies','id','name','id = '.$reg_id);
+}else{
+	$form->tableOptions('regency_id','regencies','id','name');
+}
+
 
 $form2 = new zea();
 

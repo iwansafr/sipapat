@@ -8,6 +8,19 @@ $form->init('edit');
 $form->setHeading('Desa');
 $form->addInput('name','text');
 
+$form->addInput('id','text');
+$form->setType('id','number');
+$form->setLabel('id','Kode');
+
+$form->addInput('district_id','dropdown');
+$form->setLabel('district_id','kecamatan');
+if(!empty($district_id))
+{
+	$form->tableOptions('district_id','districts','id','name','id = '.$district_id);
+}else{
+	$form->tableOptions('district_id','districts','id','name');
+}
+
 $form2 = new zea();
 
 $form2->setTable('villages');

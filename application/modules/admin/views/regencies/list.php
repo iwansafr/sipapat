@@ -6,6 +6,15 @@ $form->setTable('regencies');
 $form->setId(@intval($_GET['id']));
 $form->init('edit');
 $form->setHeading('Kabupaten');
+
+$form->addInput('province_id','dropdown');
+$form->setLabel('province_id','provinsi');
+if(!empty($prov_id))
+{
+	$form->tableOptions('province_id','provinces','id','name','id = '.$prov_id);
+}else{
+	$form->tableOptions('province_id','provinces','id','name');
+}
 $form->addInput('name','text');
 
 $form2 = new zea();
