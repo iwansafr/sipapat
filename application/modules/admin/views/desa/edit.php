@@ -22,6 +22,7 @@ if(is_root() || is_admin() || @$pengguna['desa_id'] == $_GET['id'])
 	
 	$form->addInput('kabupaten','text');
 	$form->setAttribute('kabupaten','onkeyup="this.value = this.value.toUpperCase();"');
+
 	
 	$form->addInput('district_id','dropdown');
 	$form->setLabel('district_id','Kecamatan');
@@ -34,6 +35,14 @@ if(is_root() || is_admin() || @$pengguna['desa_id'] == $_GET['id'])
 	$form->setLabel('village_id','Desa');
 	$form->setOptions('village_id',['none']);
 
+	if(!empty($sipapat_config))
+	{
+		$form->tableOptions('province_id','provinces','id','name',' id = '.$sipapat_config['province_id']);
+		$form->tableOptions('regency_id','regencies','id','name',' id = '.$sipapat_config['regency_id']);
+		$form->setSelected('province_id',$sipapat_config['province_id']);
+		$form->setSelected('regency_id',$sipapat_config['regency_id']);
+		$form->tableOptions('district_id','districts','id','name',' regency_id = '.$sipapat_config['regency_id']);
+	}
 	$form->addInput('nama','text');
 	$form->setLabel('nama','Nama Desa');
 	$form->setAttribute('nama','onkeyup="this.value = this.value.toUpperCase();"');

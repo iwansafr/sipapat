@@ -6,6 +6,16 @@ class Sipapat_model extends CI_Model
 	public function __construct()
 	{
 		parent::__construct();
+		$this->init();
+	}
+
+	public function init()
+	{
+		$sipapat_config = $this->esg->get_config(base_url());
+		if(!empty($sipapat_config))
+		{
+			$this->esg->set_esg('sipapat_config', $sipapat_config);
+		}
 	}
 
 	public function desa_id_get()

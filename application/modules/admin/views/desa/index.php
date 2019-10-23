@@ -42,6 +42,11 @@ if(is_desa())
 		$where = " kecamatan = '{$kecamatan}'";
 	}
 	$form->init('roll');
+	if(!empty($sipapat_config))
+	{
+		$regency_id = @intval($sipapat_config['regency_id']);
+		// $where .= !empty($where) ? ' AND regency_id = '.$regency_id : ' regency_id = '.$regency_id;
+	}
 	$form->search();
 	$desa_id_get = !empty($_GET['desa_id']) ? '?desa_id='.@intval($_GET['desa_id']) : '';
 	$desa_id_get = !empty($_GET['kec']) && empty(@intval($_GET['desa_id'])) ? '?kec='.$_GET['kec'] : $desa_id_get;
