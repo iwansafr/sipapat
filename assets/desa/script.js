@@ -73,6 +73,7 @@ $(document).ready(function(){
 	    url: _URL+'admin/villages/all',
 	    success:function(result){
 	    	var a = $('select[name="district_id"]').val();
+	    	console.log(a);
 				var select = $('select[name="village_id"]');
 				if(villages[a] == undefined){
 					var tmp = [{'text':'None','value':'0','selected':'true'}];
@@ -115,4 +116,5 @@ $(document).ready(function(){
     	}
     }
   });  
+  set_desa();
 });
