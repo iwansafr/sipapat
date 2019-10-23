@@ -72,8 +72,8 @@ $(document).ready(function(){
 			data: {id:_ID},
 	    url: _URL+'admin/villages/all',
 	    success:function(result){
+	    	$('#loading').removeClass('hidden');
 	    	var a = $('select[name="district_id"]').val();
-	    	console.log(a);
 				var select = $('select[name="village_id"]');
 				if(villages[a] == undefined){
 					var tmp = [{'text':'None','value':'0','selected':'true'}];
@@ -88,6 +88,7 @@ $(document).ready(function(){
 						tmp[i+1].text = option[i].name;
 						tmp[i+1].value = option[i].id;
 					}
+	    		$('#loading').addClass('hidden');
 				}
 				set_option(select, tmp);
 	    }
