@@ -67,12 +67,23 @@ $(document).ready(function(){
 
 	function set_desa()
 	{
+		var id = setInterval(loading, 20);
+		var width = 1;
+    function loading() {
+      if (width >= 100) {
+        $('#loading').addClass('hidden');
+        clearInterval(id);
+        i = 0;
+      } else {
+        width++;
+        $('#loading').removeClass('hidden');
+      }
+    }
 	  $.ajax({
 			type:'post',
 			data: {id:_ID},
 	    url: _URL+'admin/villages/all',
 	    success:function(result){
-	    	$('#loading').removeClass('hidden');
 	    	var a = $('select[name="district_id"]').val();
 				var select = $('select[name="village_id"]');
 				if(villages[a] == undefined){
@@ -88,7 +99,6 @@ $(document).ready(function(){
 						tmp[i+1].text = option[i].name;
 						tmp[i+1].value = option[i].id;
 					}
-	    		$('#loading').addClass('hidden');
 				}
 				set_option(select, tmp);
 	    }
