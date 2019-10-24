@@ -509,9 +509,15 @@ class Dilan extends CI_Controller{
 		}
 	}
 
-	public function surat_list()
+	public function surat_group()
 	{
-		$this->load->view('index');
+		$data = $this->dilan_model->surat_group();
+		$this->load->view('index',['data'=>$data]);
+	}
+
+	public function surat_list($group_id = 0)
+	{
+		$this->load->view('index',['group_id'=>$group_id]);
 	}
 
 	public function clear_surat_list()

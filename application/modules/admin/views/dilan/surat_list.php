@@ -4,9 +4,10 @@ $form = new zea();
 
 $form->init('roll');
 $form->setTable('dilan_surat');
+$where = !empty($group_id) ? ' AND dilan_surat_ket_id = '.$group_id : '';
 if(is_desa())
 {
-	$form->setWhere(' dilan_surat.desa_id = '.$this->sipapat_model->get_desa_id());
+	$form->setWhere(' dilan_surat.desa_id = '.$this->sipapat_model->get_desa_id().' '.$where);
 	$form->join('penduduk','ON(dilan_surat.penduduk_id=penduduk.id)','dilan_surat.id,dilan_surat.keperluan,penduduk.nik,penduduk.nama,penduduk.nama_ibu');
 }else{
 	$desa_id = @intval($_GET['id']);
@@ -20,6 +21,8 @@ if(is_desa())
 			$form->join('desa','ON(dilan_surat.desa_id=desa.id)','dilan_surat.id,dilan_surat.keperluan,desa.kecamatan');
 			$form->setWhere(" kecamatan = '{$kecamatan}'");
 			$form->addInput('kecamatan','plaintext');
+		}else{
+			$form->setWhere(' dilan_surat_ket_id = '.$group_id);
 		}
 	}
 }
@@ -28,6 +31,11 @@ if(!is_desa() && !is_kecamatan())
 {
 	?>
 	<a href="<?php echo base_url('admin/dilan/kecamatan_surat_list/') ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Filter Data</a>
+	<?php
+}
+else{
+	?>
+	<a href="<?php echo base_url('admin/dilan/surat_group') ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Kelompok Surat</a>
 	<?php
 }
 
