@@ -4,6 +4,45 @@ $(document).ready(function(){
 	var config_kab;
 	var desa;
 
+
+  $.ajax({
+		type:'post',
+		data: {id:_ID},
+    url: _URL+'admin/districts/all',
+    success:function(result){
+    	if(result)
+    	{
+    		districts = result;
+    	}
+    }
+  });
+  $.ajax({
+		type:'post',
+		data: {id:_ID},
+    url: _URL+'admin/villages/all',
+    success:function(result){
+    	if(result)
+    	{
+    		villages = result;
+    	}
+    }
+  });
+	$.ajax({
+		type:'post',
+		url: _URL+'admin/sipapatconfig/config_kab',
+		success:function(result){
+			config_kab = result;
+			start_desa();
+		}
+	});
+	$.ajax({
+		type:'post',
+		url: _URL+'api/desa/detail/'+_ID,
+		success:function(result){
+			desa = result;
+		}
+	});
+
 	function set_option(select,data)
 	{
 		if(select[0]!= undefined){
@@ -18,20 +57,6 @@ $(document).ready(function(){
 		}
 	}
 	
-	$.ajax({
-		type:'post',
-		url: _URL+'admin/sipapatconfig/config_kab',
-		success:function(result){
-			config_kab = result;
-		}
-	});
-	$.ajax({
-		type:'post',
-		url: _URL+'api/desa/detail/'+_ID,
-		success:function(result){
-			desa = result;
-		}
-	});
 
 
 	$('select[name="district_id"]').on('change', function(){
@@ -93,51 +118,22 @@ $(document).ready(function(){
 	  });		
 	}
 
-  $.ajax({
-		type:'post',
-		data: {id:_ID},
-    url: _URL+'admin/districts/all',
-    success:function(result){
-    	if(result)
-    	{
-    		districts = result;
-    	}
-    }
-  });
-  $.ajax({
-		type:'post',
-		data: {id:_ID},
-    url: _URL+'admin/villages/all',
-    success:function(result){
-    	if(result)
-    	{
-    		villages = result;
-    	}
-    }
-  });
-  start_desa();
   function start_desa(){
   	var id = setInterval(load, 20);
 		var width = 0;
-    // function loading() {
-    //   if (width >= 100) {
-    //     $('#loading').addClass('hidden');
-    //     clearInterval(id);
-    //     i = 0;
-    //   } else {
-    //     width++;
-    //     $('#loading').removeClass('hidden');
-    //   }
-    // }
+		var link = _URL+'admin/villages/all';
+		if(config_kab.regency_id != undefined){
+			link = _URL+'admin/villages/by_regency_id/'+config_kab.regency_id;
+		}
     function load(){
 		  $.ajax({
 				type:'post',
 				data: {id:_ID},
-		    url: _URL+'admin/villages/all',
+		    url: link,
 		    success:function(result){
 		    	var a = $('select[name="district_id"]').val();
 					var select = $('select[name="village_id"]');
-					if(villages[a] == undefined){
+					if(villages[a] === undefined){
 						var tmp = [{'text':'None','value':'0','selected':'true'}];
 						width = 1;
 					}else{
