@@ -238,12 +238,13 @@ class Dilan_model extends CI_Model
 	{
 		$this->db->select('id,title');
 		$surat_ket = $this->db->get('dilan_surat_ket')->result_array();
+		$desa_id = $this->sipapat_model->get_desa_id();
 		if(!empty($surat_ket))
 		{
 			foreach ($surat_ket as $key => $value) 
 			{
 				$this->db->select("COUNT('id') AS total");
-				$surat_ket[$key]['total'] = $this->db->get_where('dilan_surat',['dilan_surat_ket_id'=>$value['id']])->row_array()['total'];
+				$surat_ket[$key]['total'] = $this->db->get_where('dilan_surat',['dilan_surat_ket_id'=>$value['id'],'desa_id'=>$desa_id])->row_array()['total'];
 				$surat_ket[$key]['query'] = $this->db->last_query();
 			}
 		}
