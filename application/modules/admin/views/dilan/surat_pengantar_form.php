@@ -60,6 +60,9 @@ $this->zea->addInput('keperluan','textarea');
 $this->zea->addInput('penduduk_id','static');
 $this->zea->setValue('penduduk_id',@intval($penduduk['id']));
 
+$this->zea->addInput('dilan_surat_ket_id', 'static');
+$this->zea->setValue('dilan_surat_ket_id',$keterangan['id']);
+
 $this->zea->addInput('desa_id','static');
 $this->zea->setValue('desa_id', $desa['id']);
 

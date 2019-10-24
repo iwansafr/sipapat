@@ -53,3 +53,5 @@ ALTER TABLE `desa` ADD `regency_id` INT(11) NOT NULL AFTER `kabupaten`;
 ALTER TABLE `desa` ADD `province_id` INT(11) NOT NULL AFTER `provinsi`;
 ALTER TABLE `desa` CHANGE `village_id` `village_id` INT(11) NULL DEFAULT NULL, CHANGE `district_id` `district_id` INT(11) NULL DEFAULT NULL, CHANGE `regency_id` `regency_id` INT(11) NULL DEFAULT NULL, CHANGE `province_id` `province_id` INT(11) NULL DEFAULT NULL;
 ALTER TABLE `desa` CHANGE `village_id` `village_id` CHAR(11) NULL DEFAULT NULL;
+
+ALTER TABLE `dilan_surat` ADD `dilan_surat_ket_id` INT(11) NULL DEFAULT NULL AFTER `id`;
