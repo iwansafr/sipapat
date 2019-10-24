@@ -38,6 +38,9 @@ if(!empty($data))
 				</div>
 			</a>
 		</div>
+		<div class="hidden">
+			<?php pr($value) ?>
+		</div>
 		<?php
 		$i++;
 	}

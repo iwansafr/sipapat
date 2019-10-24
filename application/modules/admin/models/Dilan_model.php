@@ -244,7 +244,7 @@ class Dilan_model extends CI_Model
 			{
 				$this->db->select("COUNT('id') AS total");
 				$surat_ket[$key]['total'] = $this->db->get_where('dilan_surat',['dilan_surat_ket_id'=>$value['id']])->row_array()['total'];
-				// $surat_ket[$key]['query'] = $this->db->last_query();
+				$surat_ket[$key]['query'] = $this->db->last_query();
 			}
 		}
 		return $surat_ket;
