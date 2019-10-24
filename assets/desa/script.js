@@ -67,18 +67,6 @@ $(document).ready(function(){
 
 	function set_desa()
 	{
-		var id = setInterval(loading, 20);
-		var width = 1;
-    function loading() {
-      if (width >= 100) {
-        $('#loading').addClass('hidden');
-        clearInterval(id);
-        i = 0;
-      } else {
-        width++;
-        $('#loading').removeClass('hidden');
-      }
-    }
 	  $.ajax({
 			type:'post',
 			data: {id:_ID},
@@ -126,6 +114,55 @@ $(document).ready(function(){
     		villages = result;
     	}
     }
-  });  
-  set_desa();
+  });
+  start_desa();
+  function start_desa(){
+  	var id = setInterval(load, 20);
+		var width = 0;
+    // function loading() {
+    //   if (width >= 100) {
+    //     $('#loading').addClass('hidden');
+    //     clearInterval(id);
+    //     i = 0;
+    //   } else {
+    //     width++;
+    //     $('#loading').removeClass('hidden');
+    //   }
+    // }
+    function load(){
+		  $.ajax({
+				type:'post',
+				data: {id:_ID},
+		    url: _URL+'admin/villages/all',
+		    success:function(result){
+		    	var a = $('select[name="district_id"]').val();
+					var select = $('select[name="village_id"]');
+					if(villages[a] == undefined){
+						var tmp = [{'text':'None','value':'0','selected':'true'}];
+						width = 1;
+					}else{
+						var option = villages[a];
+						var tmp = [{'text':'None','value':'0','selected':'true'}];
+						for(var i =0; i< option.length;i++){
+							tmp[i+1] = [];
+							if(option[i].id==desa.village_id){
+								tmp[i+1].selected =true;
+							}
+							tmp[i+1].text = option[i].name;
+							tmp[i+1].value = option[i].id;
+							width = 0;
+						}
+						width = 1;
+					}
+					set_option(select, tmp);
+		    }
+		  });
+		  if(width==0){
+		  	$('#loading').removeClass('hidden')
+		  }else{
+		  	$('#loading').addClass('hidden')
+		  	clearInterval(id);		
+		  }
+    }
+  }
 });

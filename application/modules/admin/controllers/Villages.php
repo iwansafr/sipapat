@@ -36,4 +36,19 @@ class Villages extends CI_Controller
 		}
 		output_json($output);
 	}
+	public function by_district_id($district_id = 0)
+	{
+		$output = [];
+		if(!empty($district_id))
+		{
+			$this->db->where(['district_id'=>$district_id]);
+			$data = $this->db->get('villages')->result_array();
+			$output = [];
+			foreach ($data as $key => $value) 
+			{
+				$output[$value['district_id']][] = $value;
+			}
+		}
+		output_json($output);
+	}
 }
