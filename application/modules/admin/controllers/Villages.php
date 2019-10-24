@@ -10,6 +10,7 @@ class Villages extends CI_Controller
 		$this->load->model('admin_model');
 		$this->load->library('esg');
 		$this->load->library('ZEA/zea');
+		$this->load->model('sipapat_model');
 		$this->esg_model->init();
 	}
 
@@ -28,13 +29,19 @@ class Villages extends CI_Controller
 	}
 	public function all()
 	{
-		$data = $this->db->get('villages')->result_array();
-		$output = [];
-		foreach ($data as $key => $value) 
+		$sipapat_config = $this->esg->get_esg('sipapat_config');
+		if(!empty($sipapat_config))
 		{
-			$output[$value['district_id']][] = $value;
+			$this->by_regency_id($sipapat_config['regency_id']);
+		}else{
+			$data = $this->db->get('villages')->result_array();
+			$output = [];
+			foreach ($data as $key => $value) 
+			{
+				$output[$value['district_id']][] = $value;
+			}
+			output_json($output);
 		}
-		output_json($output);
 	}
 	public function by_district_id($district_id = 0)
 	{
@@ -56,7 +63,7 @@ class Villages extends CI_Controller
 		$output = [];
 		if(!empty($regency_id))
 		{
-			$this->db->select('villages.*,districts.id, regencies.name AS kabupaten, districts.name AS kecamatan');
+			$this->db->select('villages.*,districts.id AS district_id');
 			$this->db->join('districts','(villages.district_id=districts.id)');
 			$this->db->join('regencies','districts.regency_id=regencies.id');
 			$this->db->where(['regency_id'=>$regency_id]);
