@@ -95,7 +95,7 @@ class Perangkat extends CI_Controller
 	{
 		$data = [];
 
-
+		$sipapat_config = $this->esg->get_esg('sipapat_config');
 		$page = !empty($_GET['page']) ? @intval($_GET['page']) : '';
 
 
@@ -111,6 +111,10 @@ class Perangkat extends CI_Controller
 		$this->db->order_by('nama','asc');
 		$this->db->where(['kelompok'=>1]);
 		$this->db->where(['jabatan'=>1]);
+		if(!empty($sipapat_config['regency_id']))
+		{
+			$this->db->where(['regency_id'=>$sipapat_config['regency_id']]);
+		}
 		$this->db->join('desa','desa.id=perangkat_desa.desa_id');
 		$data = $this->db->get('perangkat_desa')->result_array();
 		// $data['query'] = $this->db->last_query();
