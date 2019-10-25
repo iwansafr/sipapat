@@ -22,7 +22,10 @@ if(is_desa())
 			$form->setWhere(" kecamatan = '{$kecamatan}'");
 			$form->addInput('kecamatan','plaintext');
 		}else{
-			$form->setWhere(' dilan_surat_ket_id = '.$group_id);
+			if(!empty($group_id))
+			{
+				$form->setWhere(' dilan_surat_ket_id = '.$group_id);
+			}
 		}
 	}
 }

@@ -17,6 +17,21 @@ $color =
 	'#ffc107',
 	'#ff9800'
 ];
+$icon =
+[
+	'fa-map-marked',
+	'fa-passport',
+	'fa-address-card',
+	'fa-briefcase',
+	'fa-heart',
+	'fa-money-bill-wave',
+	'fa-pray',
+	'fa-building',
+	'fa-map-marked',
+	'fa-map-marked',
+	'fa-map-marked',
+	'fa-map-marked',
+];
 if(!empty($data))
 {
 	$i = 0;
@@ -32,7 +47,7 @@ if(!empty($data))
 				    <p><?php echo $value['title'] ?></p>
 				  </div>
 				  <div class="icon">
-				    <i class="fa fa-list"></i>
+				    <i class="fa <?php echo $icon[$i] ?>"></i>
 				  </div>
 				  <a href="<?php echo base_url('admin/dilan/surat_list/'.$value['id'].'/'.str_replace(' ','_',$value['title'])) ?>" class="small-box-footer">Lihat Surat <i class="fa fa-arrow-circle-right"></i></a>
 				</div>

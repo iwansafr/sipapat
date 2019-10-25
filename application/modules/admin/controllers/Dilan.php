@@ -411,21 +411,33 @@ class Dilan extends CI_Controller{
 				$pdf->Ln(5);
 				$pdf->Cell(150,5,'Yang bertanda tangan di bawah ini, menerangkan bahwa : ',0,1,'C');
 				$pdf->Cell(60,5,'1. Nama',0,0,'L');
-				$pdf->Cell(0,5,': '.$penduduk['nama'],0,1,'L');
+				$pdf->Cell(0,5,': '.ucfirst(strtolower($penduduk['nama'])),0,1,'L');
 				$pdf->Cell(60,5,'2. Tempat, tanggal lahir',0,0,'L');
-				$pdf->Cell(0,5,': '.$penduduk['tmpt_lhr'].', '.content_date($penduduk['tgl_lhr']),0,1,'L');
+				$pdf->Cell(0,5,': '.ucfirst(strtolower($penduduk['tmpt_lhr'])).', '.content_date($penduduk['tgl_lhr']),0,1,'L');
 				$pdf->Cell(60,5,'3. Kewarganegaraan/ Agama',0,0,'L');
 				$pdf->Cell(0,5,': Indonesia/ '.$penduduk['agama'],0,1,'L');
 				$pdf->Cell(60,5,'4. Pekerjaan',0,0,'L');
 				$pdf->Cell(0,5,': '.@$pekerjaan[$penduduk['pekerjaan']],0,1,'L');
 				$pdf->Cell(60,5,'5. Tempat Tinggal',0,0,'L');
-				$pdf->Cell(0,5,': '.$penduduk['alamat'].' RT '.$penduduk['no_rt'].' RW '.$penduduk['no_rw'],0,1,'L');
+				$pdf->Cell(0,5,': '.ucfirst(strtolower($penduduk['alamat'])).' RT '.$penduduk['no_rt'].' RW '.$penduduk['no_rw'],0,1,'L');
 				$pdf->Cell(5);
 				$pdf->Cell(55,5,'Kabupaten',0,0,'L');
-				$pdf->Cell(40,5,': '.$desa['kabupaten'],0,0,'L');
+				$pdf->Cell(40,5,': '.ucfirst(strtolower($desa['kabupaten'])),0,0,'L');
 				$pdf->Cell(5);
 				$pdf->Cell(17,5,'Provinsi',0,0,'L');
-				$pdf->Cell(0,5,': '.$desa['provinsi'],0,1,'L');
+				$provinsi = $desa['provinsi'];
+				if(preg_match('~ ~', $provinsi))
+				{
+					$tmp_provinsi = explode(' ',$provinsi);
+					$provinsi = '';
+					foreach ($tmp_provinsi as $key => $value) 
+					{
+						$provinsi .= ucfirst(strtolower($value)).' ';
+					}
+				}else{
+					$provinsi = ucfirst(strtolower($provinsi));
+				}
+				$pdf->Cell(0,5,': '.$provinsi,0,1,'L');
 				$pdf->Cell(60,5,'6. Surat Bukti',0,0,'L');
 				$pdf->Cell(52,5,': KTP : '.$penduduk['nik'],0,0,'L');
 				// $pdf->Cell(5);
