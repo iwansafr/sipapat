@@ -27,7 +27,7 @@ class Potensi extends CI_Controller
 		$kategori = $this->potensi_model->kategori();
 		if(!empty($item))
 		{
-			$kategori=$kategori[$item];
+			$kategori=[$item=>$kategori[$item]];
 		}
 		$satuan = $this->potensi_model->satuan();
 		$waktu = $this->potensi_model->waktu();

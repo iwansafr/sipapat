@@ -21,7 +21,7 @@ if(!empty($data))
 							<tr>
 								<td>kategori</td>
 								<td>:</td>
-								<td><?php echo strtoupper($kategori[$data['kategori']]) ?></td>
+								<td><?php echo strtoupper(@$kategori[$data['kategori']]) ?></td>
 							</tr>
 							<tr>
 								<td>produk desa</td>
