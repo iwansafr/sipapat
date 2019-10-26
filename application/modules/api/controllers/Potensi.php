@@ -12,7 +12,7 @@ class Potensi extends CI_Controller
 	}
 	public function index()
 	{
-		$data = $this->db->query("SELECT * FROM potensi_desa where doc != '' ORDER BY id DESC LIMIT 12")->result_array();
+		$data = $this->db->query("SELECT * FROM potensi_desa where doc != '' ORDER BY RAND() LIMIT 12")->result_array();
 		$kategori = $this->potensi_model->kategori();
 		$satuan = $this->potensi_model->satuan();
 		$waktu = $this->potensi_model->waktu();

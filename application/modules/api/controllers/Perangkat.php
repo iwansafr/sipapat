@@ -108,7 +108,7 @@ class Perangkat extends CI_Controller
 		// }
 
 		$this->db->select('perangkat_desa.id, perangkat_desa.nama, perangkat_desa.kelamin, desa.nama AS desa, desa.kecamatan AS kecamatan');
-		$this->db->order_by('nama','asc');
+		$this->db->order_by('RAND()');
 		$this->db->where(['kelompok'=>1]);
 		$this->db->where(['jabatan'=>1]);
 		if(!empty($sipapat_config['regency_id']))

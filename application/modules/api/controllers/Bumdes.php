@@ -13,6 +13,7 @@ class Bumdes extends CI_Controller
 	public function index()
 	{
 		$this->db->limit('12');
+		$this->db->order_by('RAND()');
 		$data = $this->db->get_where('bumdes',"no_perdes != '' AND no_perkades != ''")->result_array();
 		foreach ($data as $key => $value) 
 		{
