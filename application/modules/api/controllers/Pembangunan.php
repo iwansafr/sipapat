@@ -23,7 +23,7 @@ class Pembangunan extends CI_Controller
 			$url_get .= '?b='.$bidang_get;
 		}
 		$total  = $this->db->query("SELECT * FROM pembangunan where (doc != '' OR doc_0 != '' OR doc_40 != '' OR doc_50 != '' OR doc_80 != '' OR doc_100 != '') {$where}")->num_rows();
-		$data   = $this->db->query("SELECT * FROM pembangunan where (doc != '' OR doc_0 != '' OR doc_40 != '' OR doc_50 != '' OR doc_80 != '' OR doc_100 != '') {$where} ORDER BY id DESC LIMIT {$where_page}")->result_array();
+		$data   = $this->db->query("SELECT * FROM pembangunan where (doc != '' OR doc_0 != '' OR doc_40 != '' OR doc_50 != '' OR doc_80 != '' OR doc_100 != '') {$where} ORDER BY RAND() LIMIT {$where_page}")->result_array();
 		$str_query = $this->db->last_query();
 
 		$sumber_dana = $this->pembangunan_model->sumber_dana();
