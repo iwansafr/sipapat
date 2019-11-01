@@ -39,7 +39,12 @@ class Pengguna_model extends CI_Model
 	{
 		if(empty($id))
 		{
-			$user_id = $this->session->userdata(base_url().'_logged_in')['id'];
+			if(!empty($this->session->userdata(base_url().'_logged_in')['id']))
+			{
+				$user_id = $this->session->userdata(base_url().'_logged_in')['id'];
+			}else{
+				$user_id = $_SESSION[base_url().'_logged_in']['id'];
+			}
 		}else{
 			$user_id = $id;
 		}
