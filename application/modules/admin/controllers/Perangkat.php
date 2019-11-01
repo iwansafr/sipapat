@@ -12,6 +12,7 @@ class Perangkat extends CI_Controller
 		$this->load->model('esg_model');
 		$this->load->model('admin_model');
 		$this->load->model('pengguna_model');
+		$this->load->model('sipapat_model');
 		$this->load->model('perangkat_model');
 		$this->load->library('esg');
 		$this->load->library('ZEA/zea');
@@ -24,8 +25,9 @@ class Perangkat extends CI_Controller
 		$this->load->view('index', ['pengguna'=>$pengguna,'jabatan'=>$jabatan]);
 	}
 
-	public function excel($kelompok = '')
+	public function clean_excel($kelompok = '')
 	{
+		$sipapat_config = $this->esg->get_esg('sipapat_config');
 		$jabatan = $this->pengguna_model->jabatan();
 		$pengguna = $this->pengguna_model->get_pengguna();
 		$kelamin = ['Perempuan','Laki-laki'];
@@ -60,7 +62,8 @@ class Perangkat extends CI_Controller
 		$kelompok = $kelompok[0];
 		$jabatan = $jabatan[$kelompok];
 		$desa_id = empty($_GET['desa_id']) && is_desa() ? $pengguna['desa_id'] : @intval($_GET['desa_id']);
-		$where = !empty(@intval($desa_id)) ? ' AND perangkat_desa.desa_id = '.$desa_id : '';
+		$where = !empty($sipapat_config) ? ' AND desa.regency_id = '.$sipapat_config['regency_id'] : '';
+		$where = !empty($desa_id) ? ' AND perangkat_desa.desa_id = '.$desa_id : $where;
 		$where = !empty(@$_GET['kec']) && empty(@intval($desa_id)) ? " AND desa.kecamatan = '".$_GET['kec']."'" : $where;
 		$data = $this->db->query
 		('
@@ -78,7 +81,77 @@ class Perangkat extends CI_Controller
 				perangkat_desa.desa_id = desa.id
 			AND 
 				kelompok = ?
-		'.$where.' ORDER BY jabatan ASC', $kelompok)->result_array();
+		'.$where.' ORDER BY jabatan ASC ', $kelompok)->result_array();
+		$i = 1;
+		$data_table[] = ['no','nik','nama desa','nama','tempat lahir','tgl lahir','kelamin','alamat','telelpon','agama','status perkawinan','pendidikan terakhir','jamkes','jabatan','no sk','tgl pelantikan','akhir masa jabatan','pelantik','bengkok','penghasilan','riwayat pendidikan','riwayat diklat'];
+		foreach($data as $key => $value) 
+		{
+			$data_table[] = [$i,"'".strtoupper($value['nik']),strtoupper($value['nama_desa']),strtoupper($value['nama']),strtoupper($value['tempat_lahir']),strtoupper($value['tgl_lahir']),strtoupper($kelamin[$value['kelamin']]),strtoupper($value['alamat']),strtoupper($value['telepon']),strtoupper($agama[$value['agama']]),strtoupper($status_perkawinan[$value['status_perkawinan']]),strtoupper($pendidikan_terakhir[$value['pendidikan_terakhir']]),strtoupper($value['jamkes']),strtoupper($jabatan[$value['jabatan']]),strtoupper($value['no_sk']),strtoupper($value['sk_penetapan_kembali']),strtoupper($value['tgl_pelantikan']),strtoupper($value['akhir_masa_jabatan']),strtoupper($value['pelantik']),strtoupper($value['bengkok']),strtoupper($value['penghasilan']),strtoupper($value['riwayat_pendidikan']),strtoupper($value['riwayat_diklat'])];
+			$i++;
+		}
+		$this->load->view('admin/perangkat/clean_excel',['data_table'=>$data_table]);
+	}
+
+	public function excel($kelompok = '')
+	{
+		$limit = 1500;
+		$page = empty($_GET['pg']) ? 0 : $page*$limit;
+		$sipapat_config = $this->esg->get_esg('sipapat_config');
+		$jabatan = $this->pengguna_model->jabatan();
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$kelamin = ['Perempuan','Laki-laki'];
+		$agama = 
+			[
+				'1'=>'Islam',
+				'2'=>'Kristen',
+				'3'=>'Katholik',
+				'4'=>'Hindu',
+				'5'=>'Budha',
+				'6'=>'Khonghucu',
+				'7'=>'Kepercayaan thd Tuhan yang Maha Esa Lainnya'
+			];
+		$status_perkawinan = ['Belum Kawin','Cerai Hidup','Cerai Mati','Kawin'];
+		$pendidikan_terakhir = 
+			[
+				'1'=>strtoupper('akademi/diploma iii/s.muda'),
+				'2'=>strtoupper('belum tamat sd/sederajat'),
+				'3'=>strtoupper('diploma i/ii'),
+				'4'=>strtoupper('diploma iv/strata i'),
+				'5'=>strtoupper('slta/sederajat'),
+				'6'=>strtoupper('sltp/sederajat'),
+				'7'=>strtoupper('strata ii'),
+				'8'=>strtoupper('strata iii'),
+				'9'=>strtoupper('tamat sd/sederajat'),
+				'10'=>strtoupper('tidak/belum sekolah')
+			];
+		$kelompok = empty($kelompok) ? 'perangkat': $kelompok;
+		$module = ['1'=>'','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd','9'=>'linmas'];
+		$module_title = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd','9'=>'linmas'];
+		$kelompok = array_keys($module_title,$kelompok);
+		$kelompok = $kelompok[0];
+		$jabatan = $jabatan[$kelompok];
+		$desa_id = empty($_GET['desa_id']) && is_desa() ? $pengguna['desa_id'] : @intval($_GET['desa_id']);
+		$where = !empty($sipapat_config) ? ' AND desa.regency_id = '.$sipapat_config['regency_id'] : '';
+		$where = !empty($desa_id) ? ' AND perangkat_desa.desa_id = '.$desa_id : $where;
+		$where = !empty(@$_GET['kec']) && empty(@intval($desa_id)) ? " AND desa.kecamatan = '".$_GET['kec']."'" : $where;
+		$data = $this->db->query
+		('
+			SELECT 
+				perangkat_desa.*,user.username,desa.nama AS nama_desa
+			FROM 
+				perangkat_desa
+			INNER JOIN 
+				desa 
+			INNER JOIN 
+				user 
+			WHERE 
+				perangkat_desa.user_id = user.id
+			AND 
+				perangkat_desa.desa_id = desa.id
+			AND 
+				kelompok = ?
+		'.$where.' ORDER BY jabatan ASC ', $kelompok)->result_array();
+		// '.$where.' ORDER BY jabatan ASC LIMIT '.$limit, $kelompok)->result_array();
 		// pr($data);
 		// pr($this->db->last_query());die();
 		$spreadsheet = new Spreadsheet();
@@ -128,7 +201,6 @@ class Perangkat extends CI_Controller
 			->setCellValue('A'.$i,$j)
 			// ->setCellValueExplicit('B'.$i, strtoupper($value['nik']),PHPExcel_Cell_DataType::TYPE_STRING)
 			->setCellValue('B'.$i,"'".strtoupper($value['nik']))
-			->setCellValue('C'.$i,strtoupper($value['username']))
 			->setCellValue('D'.$i,strtoupper($value['nama_desa']))
 			->setCellValue('E'.$i,strtoupper($value['nama']))
 			->setCellValue('F'.$i,strtoupper($value['tempat_lahir']))
@@ -159,6 +231,8 @@ class Perangkat extends CI_Controller
 
 		// Set active sheet index to the first sheet, so Excel opens this as the first sheet
 		$spreadsheet->setActiveSheetIndex(0);
+
+		// unset($spreadsheet);
 
 		// Redirect output to a client’s web browser (Xlsx)
 		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -237,7 +311,9 @@ class Perangkat extends CI_Controller
     $pdf->SetFont('Arial','',7);
 
     $desa_id = empty($_GET['desa_id']) && is_desa() ? @$pengguna['desa_id'] : @intval($_GET['desa_id']);
-		$where = (!empty(@intval($desa_id)) || is_desa()) ? ' AND perangkat_desa.desa_id = '.$desa_id : '';
+    $sipapat_config = $this->esg->get_esg('sipapat_config');
+    $where = !empty($sipapat_config) ? ' AND desa.regency_id = '.$sipapat_config['regency_id'] : '';
+		$where = (!empty(@intval($desa_id)) || is_desa()) ? ' AND perangkat_desa.desa_id = '.$desa_id : $where;
 		$where = !empty(@$_GET['kec']) && empty(@intval($desa_id)) ? " AND desa.kecamatan = '".$_GET['kec']."'" : $where;
 		$sql = '
 			SELECT 
