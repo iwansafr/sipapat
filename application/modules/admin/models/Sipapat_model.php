@@ -84,7 +84,9 @@ class Sipapat_model extends CI_Model
 	{
 		if(!empty($id))
 		{
-			$data = $this->db->get_where('desa', ['id'=>$id])->row_array();
+			$this->db->join('villages','desa.village_id=villages.id');
+			$this->db->select('desa.*,villages.id AS kode');
+			$data = $this->db->get_where('desa', ['desa.id'=>$id])->row_array();
 			return $data;
 		}
 	}

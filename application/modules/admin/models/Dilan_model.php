@@ -112,6 +112,7 @@ class Dilan_model extends CI_Model
 	public function cacat()
 	{
 		$data = [
+			 '0'=>'Tidak Cacat',
 			 '1'=>'Cacat Fisik',
 			 '2'=>'Cacat Netra/Buta',
 			 '3'=>'Cacat Rungu/Wicara',
