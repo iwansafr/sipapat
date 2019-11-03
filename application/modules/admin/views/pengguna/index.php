@@ -16,10 +16,44 @@ $form->setHeading
 $where = '';
 if(is_kecamatan())
 {
-	$kecamatan = strtoupper(str_replace('kec_','', $this->session->userdata(base_url().'_logged_in')['username']));
-	$where = " kecamatan = '{$kecamatan}'";
-	$form->join('desa','ON(user_desa.desa_id=desa.id)','user_desa.*,desa.kecamatan');
-}	
+	if(empty($pengguna['district_id']))
+	{
+		$kecamatan = strtoupper(str_replace('kec_','', $this->session->userdata(base_url().'_logged_in')['username']));
+		$where = " kecamatan = '{$kecamatan}'";
+	}else{
+		$where = ' desa.district_id = '.$pengguna['district_id'];
+	}
+	$form->join('desa',
+	'ON(desa.district_id=user_desa.district_id)',
+	'
+	user_desa.id,
+	user_desa.username,
+	user_desa.user_role_id,
+	user_desa.nama,
+	user_desa.email,
+	user_desa.sandi,
+	user_desa.active,
+	desa.kecamatan');
+}
+if(!empty($sipapat_config))
+{
+	if(!empty($where)){
+		$where .= ' AND desa.regency_id = '.$sipapat_config['regency_id'];
+	}else{
+		$where = ' desa.regency_id = '.$sipapat_config['regency_id'];
+	}
+	$form->join('desa',
+	'ON(desa.id=user_desa.desa_id)',
+	'
+	user_desa.id,
+	user_desa.username,
+	user_desa.user_role_id,
+	user_desa.nama,
+	user_desa.email,
+	user_desa.sandi,
+	user_desa.active,
+	desa.kecamatan');
+}
 $form->setWhere($where);
 $form->search();
 $form->addInput('id','link');
@@ -40,14 +74,13 @@ if(is_root() || is_admin())
 {
 	$form->addInput('sandi','plaintext');
 }
-$form->addInput('phone','plaintext');
-$form->setAttribute('phone',['type'=>'number']);
+$form->addInput('kecamatan','plaintext');
 $form->addInput('desa_id','dropdown');
 if(!is_root())
 {
 	$form->setAttribute('desa_id','disabled');
 }
-$form->tableOptions('desa_id','desa','id','nama');
+$form->tableOptions('desa_id','desa','id','nama','regency_id = '.@intval($sipapat_config['regency_id']));
 $form->setLabel('desa_id','nama desa');
 $form->setUrl('admin/pengguna/clear_list');
 $form->setFormName('pengguna_list_roll');
@@ -59,3 +92,7 @@ if(!is_kecamatan())
 	$form->setDelete(TRUE);
 }
 $form->form();
+if(is_root())
+{
+	pr($form->getData()['query']);
+}

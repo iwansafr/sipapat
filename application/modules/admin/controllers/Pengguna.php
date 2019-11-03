@@ -11,13 +11,18 @@ class Pengguna extends CI_Controller
 		parent::__construct();
 		$this->load->model('esg_model');
 		$this->load->model('admin_model');
+		$this->load->model('sipapat_model');
 		$this->load->model('pengguna_model');
 		$this->load->library('esg');
 		$this->load->library('ZEA/zea');
 		$this->esg_model->init();
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$this->esg->set_esg('pengguna', $pengguna);
 	}
 	public function index()
 	{
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$this->esg->set_esg('pengguna', $pengguna);
 		$this->load->view('index');
 	}
 
@@ -37,6 +42,13 @@ class Pengguna extends CI_Controller
 	public function list()
 	{
 		$this->pengguna_model->delete();
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$this->esg->set_esg('pengguna', $pengguna);
+		$this->load->view('index');
+	}
+
+	public function kecamatan_list()
+	{
 		$this->load->view('index');
 	}
 
@@ -153,5 +165,9 @@ class Pengguna extends CI_Controller
 	public function clear_list()
 	{
 		$this->load->view('pengguna/list');
+	}
+	public function clear_kec_list()
+	{
+		$this->load->view('pengguna/kecamatan_list',$this->esg->get_esg());
 	}
 }

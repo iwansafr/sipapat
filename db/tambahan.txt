@@ -55,3 +55,5 @@ ALTER TABLE `desa` CHANGE `village_id` `village_id` INT(11) NULL DEFAULT NULL, C
 ALTER TABLE `desa` CHANGE `village_id` `village_id` CHAR(11) NULL DEFAULT NULL;
 
 ALTER TABLE `dilan_surat` ADD `dilan_surat_ket_id` INT(11) NULL DEFAULT NULL AFTER `id`;
+
+ALTER TABLE `user_desa` ADD `district_id` INT(11) NULL DEFAULT NULL AFTER `desa_id`, ADD `regency_id` INT(11) NULL DEFAULT NULL AFTER `district_id`, ADD `province_id` INT(11) NULL DEFAULT NULL AFTER `regency_id`;

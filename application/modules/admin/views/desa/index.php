@@ -56,6 +56,15 @@ if(is_desa())
 			'<a target="_blank" href="'.base_url('admin/desa/pdf').$desa_id_get.'" class="btn btn-sm btn-default"><i class="fa fa-file-pdf-o"></i>/<i class="fa fa-print"></i></a>'.
 			'<a target="_blank" href="'.base_url('admin/desa/excel').$desa_id_get.'" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i></a>'
 		);
+
+	if(!empty($sipapat_config))
+	{
+		if(!empty($where)){
+			$where .= ' AND regency_id = '.$sipapat_config['regency_id'];
+		}else{
+			$where = ' regency_id = '.$sipapat_config['regency_id'];
+		}
+	}	
 	$form->setWhere($where);
 	$form->setNumbering(TRUE);
 	// $form->addInput('id','link');
