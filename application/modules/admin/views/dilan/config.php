@@ -25,6 +25,10 @@ $form->addInput('show_ttd','radio');
 $form->setLabel('show_ttd','TTD/Stempel kepala desa');
 $form->setRadio('show_ttd',['Sembunyikan','Tampilkan']);
 
+$form->addInput('show_kades','radio');
+$form->setLabel('show_kades','Nama kepala desa');
+$form->setRadio('show_kades',['Sembunyikan','Tampilkan']);
+
 $form->setFormName('dilan_config');
 
 $form->form();

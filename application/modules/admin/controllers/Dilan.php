@@ -499,7 +499,10 @@ class Dilan extends CI_Controller{
 				}
 				$pdf->SetLineWidth(0);
 				// $pdf->Line(123,$line_len,87,$line_len);
-		    $pdf->Cell(60,5,@$kepdes['nama'],0,1,'C');
+				if(!empty($config['show_kades']))
+				{
+			    $pdf->Cell(60,5,@$kepdes['nama'],0,1,'C');
+				}
 				$pdf->SetLineWidth(0);
 				// $pdf->Line(183,$line_len,147,$line_len);
 				$pdf->Ln(1);

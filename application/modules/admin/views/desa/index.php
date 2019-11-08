@@ -105,4 +105,8 @@ if(is_desa())
 		$form->setDelete(TRUE);
 	}
 	$form->form();
+	if (is_root())
+	{
+		pr($form->getData()['query']);
+	}
 }
