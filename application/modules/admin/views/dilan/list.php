@@ -36,6 +36,14 @@ if(!is_desa() && !is_kecamatan())
 	<?php
 }
 
+if(!empty($desa_id) || is_desa())
+{
+	$excel_get = make_get($_GET);
+	?>
+	<a target="_blank" href="<?php echo base_url('admin/dilan/download_excel/'.$excel_get) ?>" class="btn btn-sm btn-success"><i class="fa fa-file-excel-o"></i> Download</a>
+	<?php	
+}
+
 // $form->setHeading('<a target="_blank" href="'.base_url('admin/dilan/penduduk_excel/'.$desa_id_get.'" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i></a>');
 
 $form->setNumbering(true);
@@ -75,3 +83,7 @@ $form->setEdit(true);
 
 
 $form->form();
+if(is_root())
+{
+	pr($form->getData()['query']);
+}

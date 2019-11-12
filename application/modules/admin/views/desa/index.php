@@ -84,6 +84,7 @@ if(is_desa())
 		  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 		  	<li><a href="'.base_url('admin/desa/detail/').'{id}"><i class="fa fa-search"></i>Detail</a></li>
 		    <li><a href="'.base_url('admin/perangkat/?desa_id={id}').'"><i class="fa fa-search"></i>Perangkat Desa</a></li>
+		    <li><a href="'.base_url('admin/dilan/list?desa_id={id}').'"><i class="fa fa-search"></i>Data Penduduk</a></li>
 		    <li role="separator" class="divider"></li>
 		    <li><a href="#{id}">dll</a></li>
 		  </ul>

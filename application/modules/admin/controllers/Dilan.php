@@ -276,6 +276,70 @@ class Dilan extends CI_Controller{
 		exit;
 	}
 
+	public function download_excel()
+	{
+		$get = $this->input->get();
+		$column = $this->db->list_fields('penduduk');
+		$data_table = [];
+		if(!empty($get['desa_id']))
+		{
+			unset($column[0],$column[1],$column[27],$column[28],$column[26]);
+			$data = $column;
+			$column = implode(',',$column);
+			$this->db->select($column);
+			$this->db->from('penduduk');
+			if(!empty($get['sort_by'])){
+				$this->db->order_by(@$get['sort_by'],@$get['type']);
+				unset($get['sort_by'],$get['type']);
+			}
+			if(!empty($get['keyword'])){
+				$fields = ['no_kk','nik','nama','alamat'];
+				$keyword = $get['keyword'];
+				$search = '';
+				foreach ($fields as $key => $value) 
+				{
+					$search .= "$value LIKE '%$keyword%' OR ";
+				}
+				$search = '( '.substr($search, 0, -3).')';
+				$this->db->where($search);
+				unset($get['keyword']);
+			}
+			foreach ($get as $key => $value) 
+			{
+				$this->db->where([$key=>$value]);
+			}
+			$data_table[] = $data;
+			$data = $this->db->get()->result_array();
+			if(!empty($data))
+			{
+				$jk = ['1'=>'LAKI-LAKI','2'=>'PEREMPUAN'];
+				$gdr=$this->dilan_model->golongan_darah();
+				$agama=$this->dilan_model->agama();
+				$status= $this->dilan_model->status();
+				$shdk=$this->dilan_model->shdk();
+				$pnydng_cct=$this->dilan_model->cacat();
+				$pddk_akhir=$this->dilan_model->pendidikan();
+				$pekerjaan= $this->dilan_model->pekerjaan();
+				foreach ($data as $key => $value) 
+				{
+					$value['jk'] = @$jk[$value['jk']];
+					$value['gdr'] = @$gdr[$value['gdr']];
+					$value['agama'] = @$agama[$value['agama']];
+					$value['status'] = @$status[$value['status']];
+					$value['shdk'] = @$shdk[$value['shdk']];
+					$value['pnydng_cct'] = @$pnydng_cct[$value['pnydng_cct']];
+					$value['pddk_akhir'] = @$pddk_akhir[$value['pddk_akhir']];
+					$value['pekerjaan'] = @$pekerjaan[$value['pekerjaan']];
+					$data_table[] = $value;
+				}
+			}
+		}
+		$this->load->view('admin/dilan/download_excel',
+			[
+				'data_table'=>$data_table,
+			]);
+	}
+
 	public function form()
 	{
 		if(is_root())

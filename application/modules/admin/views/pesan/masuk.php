@@ -39,6 +39,7 @@
 			$form->setFormName('pesan_masuk_form_roll');
 			$form->setUrl('admin/pesan/clear_list/masuk');
 			$form->form();
+			pr($form->getData()['query']);
 		}?>
   </div>
 </div>

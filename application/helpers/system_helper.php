@@ -37,6 +37,19 @@ function array_to_string($data = array())
 	}
 }
 
+function make_get($get = [])
+{
+	$get_url = '';
+	if(!empty($get)){
+		$get_url = '?';
+		foreach($get AS $getkey => $getvalue){
+			$get_url .= $getkey.'='.$getvalue.'&';
+		}
+		$get_url = substr($get_url, 0, -1);
+	}
+	return $get_url;
+}
+
 function money($number = 0, $type = 'Rp')
 {
 	if(is_numeric($number))
