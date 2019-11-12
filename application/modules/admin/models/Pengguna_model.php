@@ -149,6 +149,11 @@ class Pengguna_model extends CI_Model
 		return $data;
 	}
 
+	public function lembaga()
+	{
+		return ['1'=>'perangkat','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd','9'=>'linmas'];
+	}
+
 	public function save()
 	{
 		$last_id = $this->zea->get_insert_id();

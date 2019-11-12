@@ -147,6 +147,9 @@ class Dilan extends CI_Controller{
 	    		$j++;
 	    		// $data[$i]['desa_id'] = $desa_id;
 		    }
+		    if($data[$i]['nik']==0){
+		    	unset($data[$i]);
+		    }
 				$i++;
 			}
 			if(!empty($data))

@@ -31,6 +31,16 @@ if(is_kecamatan())
 	}
 	$this->load->view('desa',['desa_option'=>$this->pengguna_model->get_desa($kecamatan),'group'=>$module[$kelompok]]);
 }	
+
+if(!empty($sipapat_config))
+{
+	// if(!empty($where)){
+	// 	$where .= ' AND desa.regency_id = '.$sipapat_config['regency_id'];
+	// }else{
+	// 	$where = ' desa.regency_id = '.$sipapat_config['regency_id'];
+	// }
+}
+
 $form->search();
 $form->setTable('perangkat_desa');
 $form->setNumbering(TRUE);
