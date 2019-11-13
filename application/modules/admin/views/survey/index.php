@@ -18,7 +18,7 @@ if(!is_desa())
 		$where = " kecamatan = '{$kecamatan}'";
 	}else if(is_kecamatan())
 	{
-		$kecamatan = str_replace('kec_','',$user['username']);
+		$kecamatan = str_replace('kec_','',$this->session->userdata(base_url().'_logged_in')['username']);
 		$where = " kecamatan = '{$kecamatan}'";
 	}
 	$form->setWhere($where);
