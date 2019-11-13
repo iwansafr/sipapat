@@ -12,8 +12,16 @@ if(is_desa())
 	$form->addInput('desa_id','static');
 	$form->setValue('desa_id', $desa['id']);
 }else{
-	$form->addInput('desa_id','dropdown');
-	$form->tableOptions('desa_id','desa','id','nama');
+	if(is_kecamatan())
+	{
+		$district_id = $this->indonesia_model->get_district_id();
+		$form->addInput('desa_id','dropdown');
+		$form->tableOptions('desa_id','desa','id','nama','district_id = '.$district_id);
+	}else{
+		$form->addInput('desa_id','dropdown');
+		$form->tableOptions('desa_id','desa','id','nama');
+	}
+	$form->setLabel('desa_id','desa');
 }
 
 $form->addInput('no_kk','text');
