@@ -16,6 +16,10 @@ if(!is_desa())
 	{
 		$kecamatan = @$_GET['kec'];
 		$where = " kecamatan = '{$kecamatan}'";
+	}else if(is_kecamatan())
+	{
+		$kecamatan = str_replace('kec_','',$user['username']);
+		$where = " kecamatan = '{$kecamatan}'";
 	}
 	$form->setWhere($where);
 	$form->addInput('id','hidden');

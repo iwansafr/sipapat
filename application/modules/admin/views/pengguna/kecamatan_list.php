@@ -45,8 +45,10 @@ if(is_root() || is_admin())
   {
     $form->addInput('sandi','plaintext');
   }
-  
-  $form->addInput('kecamatan','plaintext');
+  if(!empty($sipapat_config))
+  {
+    $form->addInput('kecamatan','plaintext');
+  }
 
   $form->setUrl('admin/pengguna/clear_kec_list');
   $form->setFormName('pengguna_list_roll');

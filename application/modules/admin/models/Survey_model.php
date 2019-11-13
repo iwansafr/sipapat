@@ -12,36 +12,46 @@ class Survey_model extends CI_Model
 	public function get_chart()
 	{
 		$kec = !empty($_GET['kec']) ? @$_GET['kec'] : '';
+		if(is_kecamatan())
+		{
+			$kec = str_replace('kec_', '', $this->session->userdata(base_url().'_logged_in')['username']);
+		}
 		$data = [];
 		
+		$kec_where = '';
+		if(!empty($kec)){
+			$kec_where = " AND kecamatan = '$kec'";
+			$kec_desa = " WHERE kecamatan = '$kec'";
+		}
+
 		$data['data_laptop'] = [];
-		$data['data_laptop']['sudah'] = $this->db->query('SELECT desa FROM survey_laptop WHERE laptop = 1')->result_array();
-		$data['data_laptop']['belum'] = $this->db->query('SELECT desa FROM survey_laptop WHERE laptop = 0')->result_array();
+		$data['data_laptop']['sudah'] = $this->db->query('SELECT desa FROM survey_laptop WHERE laptop = 1'.' '.$kec_where)->result_array();
+		$data['data_laptop']['belum'] = $this->db->query('SELECT desa FROM survey_laptop WHERE laptop = 0'.' '.$kec_where)->result_array();
 		$data['laptop'] = count($data['data_laptop']['sudah']);
 
 		$data['data_wifi'] = [];
-		$data['data_wifi']['sudah'] = $this->db->query('SELECT desa FROM survey_laptop WHERE wifi = 1')->result_array();
-		$data['data_wifi']['rumah'] = $this->db->query('SELECT desa FROM survey_laptop WHERE wifi = 1 AND letak_jaringan = ?', ['rumah operator sid'])->result_array();
+		$data['data_wifi']['sudah'] = $this->db->query('SELECT desa FROM survey_laptop WHERE wifi = 1'.' '.$kec_where)->result_array();
+		$data['data_wifi']['rumah'] = $this->db->query('SELECT desa FROM survey_laptop WHERE wifi = 1 AND letak_jaringan = ?'.' '.$kec_where, ['rumah operator sid'])->result_array();
 		$data['data_wifi']['rumah_jml'] = count($data['data_wifi']['rumah']);
-		$data['data_wifi']['belum'] = $this->db->query('SELECT desa FROM survey_laptop WHERE wifi = 0')->result_array();
+		$data['data_wifi']['belum'] = $this->db->query('SELECT desa FROM survey_laptop WHERE wifi = 0'.' '.$kec_where)->result_array();
 		$data['wifi'] = count($data['data_wifi']['sudah']);
 		$data['data_wifi']['desa_jml'] = @intval($data['wifi']) - @intval($data['data_wifi']['rumah_jml']);
 
 		$data['data_honor'] = [];
-		$data['data_honor']['sudah'] = $this->db->query('SELECT desa FROM survey_laptop WHERE honor = 1')->result_array();
-		$data['data_honor']['belum'] = $this->db->query('SELECT desa FROM survey_laptop WHERE honor = 0')->result_array();
+		$data['data_honor']['sudah'] = $this->db->query('SELECT desa FROM survey_laptop WHERE honor = 1'.' '.$kec_where)->result_array();
+		$data['data_honor']['belum'] = $this->db->query('SELECT desa FROM survey_laptop WHERE honor = 0'.' '.$kec_where)->result_array();
 		$data['honor'] = count($data['data_honor']['sudah']);
 
 
 		$data['isi_survey'] = [];
-		$data['isi_survey']['sudah'] = $this->db->query('SELECT desa FROM survey_laptop')->result_array();
+		$data['isi_survey']['sudah'] = $this->db->query('SELECT desa FROM survey_laptop'.' '.$kec_desa)->result_array();
 		$isi_survey_sudah = [];
 		foreach ($data['isi_survey']['sudah'] as $is_key => $is_value) {
 			$isi_survey_sudah[] = $is_value['desa'];
 		}
 		$data['isi_survey']['sudah'] = $isi_survey_sudah;
 		$data['isi_survey']['desa_sudah'] = count($data['isi_survey']['sudah']);
-		$desa = $this->db->query('SELECT nama FROM desa')->result_array();
+		$desa = $this->db->query('SELECT nama FROM desa'.' '.$kec_desa)->result_array();
 		foreach($desa AS $ds_key => $ds_value)
 		{
 			if(!in_array($ds_value['nama'], $data['isi_survey']['sudah'])){

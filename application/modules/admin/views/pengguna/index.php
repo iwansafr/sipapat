@@ -74,7 +74,10 @@ if(is_root() || is_admin())
 {
 	$form->addInput('sandi','plaintext');
 }
-$form->addInput('kecamatan','plaintext');
+if(!empty($sipapat_config))
+{
+	$form->addInput('kecamatan','plaintext');
+}
 $form->addInput('desa_id','dropdown');
 if(!is_root())
 {
