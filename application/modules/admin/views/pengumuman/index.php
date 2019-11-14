@@ -39,4 +39,3 @@ if(is_admin() || is_root())
 }else{
 	msg('Maaf, Anda tidak punya akses ke halaman ini','danger');
 }
-pr($form->getParam());
