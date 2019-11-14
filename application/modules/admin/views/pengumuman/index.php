@@ -34,7 +34,9 @@ if(is_admin() || is_root())
 	$form->addInput('judul', 'text');
 	$form->addInput('pengumuman','textarea');
 	$form->setAttribute('pengumuman',['class'=>'form-control summernote']);
+	$form->addInput('catatan', 'text');
 	$form->form();
 }else{
 	msg('Maaf, Anda tidak punya akses ke halaman ini','danger');
 }
+pr($form->getParam());

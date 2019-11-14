@@ -30,7 +30,7 @@ class Pengguna_model extends CI_Model
 		if(is_kecamatan())
 		{
 			$kecamatan = strtoupper(str_replace('kec_','', $this->session->userdata(base_url().'_logged_in')['username']));
-			$q = "SELECT id,username AS nama FROM user WHERE username = {$kecamatan}";
+			$q = "SELECT id,username AS nama FROM user WHERE username = '{$kecamatan}'";
 		}
 		return $this->db->query($q)->result_array();
 	}

@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 $kec_get = !empty($_GET['kec']) ? '?kec='.$_GET['kec'] : '';
-if(!is_desa())
+if(!is_desa() && !is_kecamatan())
 {
 	?>
 		<a href="<?php echo base_url('admin/perdes/kecamatan/') ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Filter Data</a>
@@ -28,7 +28,7 @@ if(!empty(@$_GET['kec']))
 	if(!empty($item)){
 		$where .= ' AND item = '.$item.' ';
 	}
-	$form->join('desa','ON(perdes.desa_id=desa.id)','perdes.*,desa.kecamatan');
+	$form->join('desa','ON(perdes.desa_id=desa.id)','perdes.id,perdes.desa_id,perdes.item,perdes.no,perdes.tgl_penetapan,perdes.tgl_pelaksanaan,perdes.progress,desa.kecamatan');
 }else if(is_desa()){
 	$where = ' desa_id = '.$desa_id;
 	if(!empty($item)){
