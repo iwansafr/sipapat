@@ -9,10 +9,11 @@
 
 	<link rel="icon" href="images/maintenance.png">
 </head>
-<body>
+<body style=" color: white; background: black;">
 	<div class="container" style="text-align: center;">
 		<h1>Mohon Maaf Atas Gangguannya</h1>
-		<img src="images/maintenance.png" alt="" style="width: 30%;">
+		<img src="images/maintenance.gif" alt="" style="width: 100%;">
+		<h2>sistem sedang kami maintenance</h2>
 	</div>
 </body>
 </html>
