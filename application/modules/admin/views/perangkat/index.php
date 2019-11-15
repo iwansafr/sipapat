@@ -55,9 +55,9 @@ if(!is_desa())
 		$form->addInput('kecamatan','plaintext');
 	}
 }
+$desa_id_get = !empty($_GET['desa_id']) ? '?desa_id='.@intval($_GET['desa_id']) : '';
 if(is_root() || is_admin())
 {
-	$desa_id_get = !empty($_GET['desa_id']) ? '?desa_id='.@intval($_GET['desa_id']) : '';
 	$desa_id_get = !empty($_GET['kec']) && empty(@intval($_GET['desa_id'])) ? '?kec='.$_GET['kec'] : $desa_id_get;
 	$form->setHeading
 	(
@@ -67,8 +67,8 @@ if(is_root() || is_admin())
 	);
 }else{
 	$form->setHeading('<a href="'.base_url('admin/perangkat/'.$module[$kelompok].'/edit').'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>'.'data '.$module[$kelompok].' '.
-		'<a target="_blank" href="'.base_url('admin/perangkat/pdf/'.$module[$kelompok]).'" class="btn btn-sm btn-default"><i class="fa fa-file-pdf-o"></i>/<i class="fa fa-print"></i></a>'.
-		'<a target="_blank" href="'.base_url('admin/perangkat/clean_excel/'.$module[$kelompok]).'" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i></a>');
+		'<a target="_blank" href="'.base_url('admin/perangkat/pdf/'.$module[$kelompok]).$desa_id_get.'" class="btn btn-sm btn-default"><i class="fa fa-file-pdf-o"></i>/<i class="fa fa-print"></i></a>'.
+		'<a target="_blank" href="'.base_url('admin/perangkat/clean_excel/'.$module[$kelompok]).$desa_id_get.'" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i></a>');
 }
 $form->addInput('desa_id','dropdown');
 $form->tableOptions('desa_id','desa','id','nama');

@@ -65,6 +65,19 @@ class Perangkat extends CI_Controller
 		$where = !empty($sipapat_config) ? ' AND desa.regency_id = '.$sipapat_config['regency_id'] : '';
 		$where = !empty($desa_id) ? ' AND perangkat_desa.desa_id = '.$desa_id : $where;
 		$where = !empty(@$_GET['kec']) && empty(@intval($desa_id)) ? " AND desa.kecamatan = '".$_GET['kec']."'" : $where;
+		if(is_kecamatan())
+		{
+			$kecamatan = strtoupper(str_replace('kec_','', $this->session->userdata(base_url().'_logged_in')['username']));
+			if(empty($desa_id))
+			{
+				if(empty($where))
+				{
+					$where = " AND desa.kecamatan = '$kecamatan'";
+				}else{
+					$where .= " AND desa.kecamatan = '$kecamatan'";
+				}
+			}
+		}
 		$data = $this->db->query
 		('
 			SELECT 
@@ -315,6 +328,19 @@ class Perangkat extends CI_Controller
     $where = !empty($sipapat_config) ? ' AND desa.regency_id = '.$sipapat_config['regency_id'] : '';
 		$where = (!empty(@intval($desa_id)) || is_desa()) ? ' AND perangkat_desa.desa_id = '.$desa_id : $where;
 		$where = !empty(@$_GET['kec']) && empty(@intval($desa_id)) ? " AND desa.kecamatan = '".$_GET['kec']."'" : $where;
+		if(is_kecamatan())
+		{
+			$kecamatan = strtoupper(str_replace('kec_','', $this->session->userdata(base_url().'_logged_in')['username']));
+			if(empty($desa_id))
+			{
+				if(empty($where))
+				{
+					$where = " AND desa.kecamatan = '$kecamatan'";
+				}else{
+					$where .= " AND desa.kecamatan = '$kecamatan'";
+				}
+			}
+		}
 		$sql = '
 			SELECT 
 				perangkat_desa.*,user.username,desa.nama AS nama_desa
