@@ -18,7 +18,7 @@ if(!is_desa())
 		$kecamatan = @$_GET['kec'];
 		if(!empty($kecamatan))
 		{
-			$form->join('desa','ON(penduduk.desa_id=desa.id)','penduduk.id,penduduk.no_kk,penduduk.nik,penduduk.nama,penduduk.alamat,penduduk.jk,penduduk.status,desa.kecamatan');
+			$form->join('desa','ON(penduduk.desa_id=desa.id)','penduduk.id,penduduk.no_kk,penduduk.nik,penduduk.nama,desa.nama AS desa,desa.kecamatan');
 			$form->setWhere(" kecamatan = '{$kecamatan}'");
 			$form->addInput('kecamatan','plaintext');
 		}
@@ -27,8 +27,8 @@ if(!is_desa())
 	$form->setWhere("desa_id = ".$this->sipapat_model->get_desa_id());
 }
 
-$form->order_by('id','DESC');
-
+// $form->order_by('penduduk.id','DESC');
+$form->disable_order_by();
 if(!is_desa() && !is_kecamatan())
 {
 	?>
@@ -69,12 +69,12 @@ $form->addInput('nik','plaintext');
 $form->addInput('nama','plaintext');
 $form->addInput('alamat','plaintext');
 $form->setLabel('alamat','desa');
-$form->addInput('jk','dropdown');
-$form->setOptions('jk',['1'=>'Laki-laki','2'=>'perempuan']);
-$form->setAttribute('jk','disabled');
-$form->addInput('status','dropdown');
-$form->setOptions('status',$this->dilan_model->status());
-$form->setAttribute('status','disabled');
+// $form->addInput('jk','dropdown');
+// $form->setOptions('jk',['1'=>'Laki-laki','2'=>'perempuan']);
+// $form->setAttribute('jk','disabled');
+// $form->addInput('status','dropdown');
+// $form->setOptions('status',$this->dilan_model->status());
+// $form->setAttribute('status','disabled');
 
 $form->setUrl('admin/dilan/clear_list');
 
