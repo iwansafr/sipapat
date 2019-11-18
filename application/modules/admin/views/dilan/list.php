@@ -27,8 +27,8 @@ if(!is_desa())
 	$form->setWhere("desa_id = ".$this->sipapat_model->get_desa_id());
 }
 
-// $form->order_by('penduduk.id','DESC');
-$form->disable_order_by();
+$form->order_by('penduduk.id','DESC');
+// $form->disable_order_by();
 if(!is_desa() && !is_kecamatan())
 {
 	?>
