@@ -4,7 +4,9 @@ $i = 1;
 foreach($data AS $key => $value)
 {
 	?>
-	<span class="badge success"><?php echo $i.'. '.$value['nama'] ?></span>
+	<a href="<?php echo base_url('admin/dilan/list?desa_id='.$value['desa_id'])?>">
+		<span class="badge success"><?php echo $i.'. '.$value['nama'] ?></span>
+	</a>
 	<?php
 	$i++;
 }
