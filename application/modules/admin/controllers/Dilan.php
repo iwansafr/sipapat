@@ -31,8 +31,8 @@ class Dilan extends CI_Controller{
 		{
 			$file = $this->dilan_model->upload($_FILES['doc']);
 			// $file['desa_id'] = $_POST['desa_id'];
-      $data = ['status'=>'success','data'=>$file];
-      output_json($data);
+	  $data = ['status'=>'success','data'=>$file];
+	  output_json($data);
 		}else{
 			$data = ['status'=>'error'];
 			outpur_json($data);
@@ -45,8 +45,8 @@ class Dilan extends CI_Controller{
 		{
 			$file = $this->dilan_model->upload($_FILES['doc']);
 			// $file['desa_id'] = $_POST['desa_id'];
-      $data = ['status'=>'success','data'=>$file];
-      output_json($data);
+	  $data = ['status'=>'success','data'=>$file];
+	  output_json($data);
 		}else{
 			$data = ['status'=>'error'];
 			outpur_json($data);
@@ -118,19 +118,19 @@ class Dilan extends CI_Controller{
 			$desa_id = $this->sipapat_model->get_desa_id();
 			foreach ($worksheet->getRowIterator() as $row) 
 			{
-		    $cellIterator = $row->getCellIterator();
-		    $cellIterator->setIterateOnlyExistingCells(FALSE);
-		    $j = 1;
+			$cellIterator = $row->getCellIterator();
+			$cellIterator->setIterateOnlyExistingCells(FALSE);
+			$j = 1;
 				$title[0] = 'desa_id';
-		    foreach ($cellIterator as $cell)
-		    {
-		    	if($i==0)
-		    	{
-		    		// $data[$cell->getValue()] = [];
-		    		$title[] = $cell->getValue();
-		    		// $title[] = 'desa_id';
-		    	}else{
-		    		$data[$i]['desa_id'] = $desa_id;
+			foreach ($cellIterator as $cell)
+			{
+				if($i==0)
+				{
+					// $data[$cell->getValue()] = [];
+					$title[] = $cell->getValue();
+					// $title[] = 'desa_id';
+				}else{
+					$data[$i]['desa_id'] = $desa_id;
 						if($title[$j] == 'TGL_LHR'){
 							if(preg_match('~-~',$cell->getValue()))
 							{
@@ -142,18 +142,18 @@ class Dilan extends CI_Controller{
 						}else{
 							$data[$i][$title[$j]] = $cell->getValue();
 						}
-		    		
-		    	}
-		    	// $data[$i][] = $cell->getValue();
-	    		$j++;
-	    		// $data[$i]['desa_id'] = $desa_id;
-		    }
-		    if($i>0)
-		    {
-			    if($data[$i]['NIK']==0){
-			    	unset($data[$i]);
-			    }
-		    }
+					
+				}
+				// $data[$i][] = $cell->getValue();
+				$j++;
+				// $data[$i]['desa_id'] = $desa_id;
+			}
+			if($i>0)
+			{
+				if($data[$i]['NIK']==0){
+					unset($data[$i]);
+				}
+			}
 				$i++;
 			}
 			if(!empty($data))
@@ -186,31 +186,31 @@ class Dilan extends CI_Controller{
 			$desa_id = $this->sipapat_model->get_desa_id();
 			foreach ($worksheet->getRowIterator() as $row) 
 			{
-		    $cellIterator = $row->getCellIterator();
-		    $cellIterator->setIterateOnlyExistingCells(FALSE);
-		    $j = 1;
+			$cellIterator = $row->getCellIterator();
+			$cellIterator->setIterateOnlyExistingCells(FALSE);
+			$j = 1;
 				$title[0] = 'desa_id';
-		    foreach ($cellIterator as $cell)
-		    {
-		    	if($i==0)
-		    	{
-		    		// $data[$cell->getValue()] = [];
-		    		$title[] = $cell->getValue();
-		    		// $title[] = 'desa_id';
-		    	}else{
-		    		$data[$i]['desa_id'] = $desa_id;
+			foreach ($cellIterator as $cell)
+			{
+				if($i==0)
+				{
+					// $data[$cell->getValue()] = [];
+					$title[] = $cell->getValue();
+					// $title[] = 'desa_id';
+				}else{
+					$data[$i]['desa_id'] = $desa_id;
 						if($title[$j] == 'TGL_LHR'){
 							$dt = new DateTime();
 							$data[$i][strtolower($title[$j])] = date('Y-m-d', PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($cell->getValue()));
 						}else{
 							$data[$i][strtolower($title[$j])] = $cell->getValue();
 						}
-		    		
-		    	}
-		    	// $data[$i][] = $cell->getValue();
-	    		$j++;
-	    		// $data[$i]['desa_id'] = $desa_id;
-		    }
+					
+				}
+				// $data[$i][] = $cell->getValue();
+				$j++;
+				// $data[$i]['desa_id'] = $desa_id;
+			}
 				$i++;
 			}
 			if(!empty($data))
@@ -435,13 +435,13 @@ class Dilan extends CI_Controller{
 
 				$this->load->library('pdf');
 				$pdf = new FPDF('P','mm','A4');
-		    // membuat halaman baru
-		    $pdf->AddPage();
-		    // setting jenis font yang akan digunakan
-		    $pdf->SetFont('Arial','B',7);
-		    // mencetak string 
-		    $pdf->Image($image,0,10,40,30);
-		    $pdf->Cell(25);
+				// membuat halaman baru
+				$pdf->AddPage();
+				// setting jenis font yang akan digunakan
+				$pdf->SetFont('Arial','B',7);
+				// mencetak string 
+				$pdf->Image($image,0,10,40,30);
+				$pdf->Cell(25);
 				$pdf->SetFont('Times','B','15');
 				$pdf->Cell(0,5,$teks1,0,1,'C');
 				$pdf->Cell(25);
@@ -526,6 +526,13 @@ class Dilan extends CI_Controller{
 
 				$ln_kep = strlen($surat['keperluan']);
 				$ln_ket = strlen($surat['keterangan']);
+				$tot_ln = $ln_kep+$ln_ket;
+				if($tot_ln >=200)
+				{
+					$height_stem = ($ln_ket+$ln_ket)-325;
+				}else{
+					$height_stem = ($ln_ket+$ln_ket)-18;
+				}
 				// $pdf->cell(2,5, $ln_kep);
 				// $pdf->cell(50);
 				// $pdf->cell(2,5, $ln_ket);
@@ -553,18 +560,19 @@ class Dilan extends CI_Controller{
 				{
 					if(!empty($config['show_ttd']))
 					{
-						$pdf->Image(image_module('desa',$desa['id'].'/'.$desa['ttd_img']),135,165,40,30);
+						// $pdf->Image(image_module('desa',$desa['id'].'/'.$desa['ttd_img']),135,165,40,30);
+						$pdf->Image(image_module('desa',$desa['id'].'/'.$desa['ttd_img']),135,$height_stem,40,30);
 					}
 				}
 				$pdf->Ln(30);
-		    
-		    $pdf->Cell(65,5,$penduduk['nama'],0,0,'C');
-		    $line_len = 107 + $ln_ket;
+			
+				$pdf->Cell(65,5,$penduduk['nama'],0,0,'C');
+				$line_len = 107 + $ln_ket;
 				$pdf->SetLineWidth(0);
 				// $pdf->Line(61,$line_len,24,$line_len);
 				if(!empty($config['show_camat']))
 				{
-		    	$pdf->Cell(60,5,'................................',0,0,'C');
+					$pdf->Cell(60,5,'................................',0,0,'C');
 				}else{
 					$pdf->Cell(60,5,'',0,0,'C');
 				}
@@ -572,7 +580,7 @@ class Dilan extends CI_Controller{
 				// $pdf->Line(123,$line_len,87,$line_len);
 				if(!empty($config['show_kades']))
 				{
-			    $pdf->Cell(60,5,@$kepdes['nama'],0,1,'C');
+					$pdf->Cell(60,5,@$kepdes['nama'],0,1,'C');
 				}
 				$pdf->SetLineWidth(0);
 				// $pdf->Line(183,$line_len,147,$line_len);
@@ -580,17 +588,17 @@ class Dilan extends CI_Controller{
 				$pdf->Cell(65);
 				if(!empty($config['show_camat']))
 				{
-		    	$pdf->Cell(60,5,'NIP. .........................',0,0,'C');
+					$pdf->Cell(60,5,'NIP. .........................',0,0,'C');
 				}else{
 					$pdf->Cell(60,5,'',0,0,'C');
 				}
 				if(!empty($config['show_nip']))
 				{
-		    	$pdf->Cell(60,5,'NIP. '.@$kepdes['nik'],0,1,'C');
+					$pdf->Cell(60,5,'NIP. '.@$kepdes['nik'],0,1,'C');
 				}else{
-		    	$pdf->Cell(60,5,'',0,1,'C');
+					$pdf->Cell(60,5,'',0,1,'C');
 				}
-		    $pdf->Output('Surat_Keterangan_Pengantar.pdf','I');
+				$pdf->Output('Surat_Keterangan_Pengantar.pdf','I');
 			}
 		}
 	}
