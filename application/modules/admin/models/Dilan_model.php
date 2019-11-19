@@ -251,4 +251,8 @@ class Dilan_model extends CI_Model
 		}
 		return $surat_ket;
 	}
+	public function laporan()
+	{
+		return $this->db->query('SELECT desa_id,desa.nama FROM penduduk INNER JOIN desa ON(desa.id=penduduk.desa_id) GROUP BY desa_id')->result_array();
+	}
 }

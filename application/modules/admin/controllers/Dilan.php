@@ -746,6 +746,12 @@ class Dilan extends CI_Controller{
 		exit;
 	}
 
+	public function laporan()
+	{
+		$data = $this->dilan_model->laporan();
+		$this->load->view('index',['data'=>$data]);
+	}
+
 	public function list()
 	{
 		$this->load->view('index');

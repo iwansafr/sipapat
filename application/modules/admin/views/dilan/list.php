@@ -33,6 +33,7 @@ if(!is_desa() && !is_kecamatan())
 {
 	?>
 	<a href="<?php echo base_url('admin/dilan/kecamatan_list/') ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Filter Data</a>
+	<a href="<?php echo base_url('admin/dilan/laporan/') ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Record Data</a>
 	<?php
 }
 
