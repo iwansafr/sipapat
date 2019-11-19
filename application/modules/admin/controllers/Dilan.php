@@ -527,12 +527,16 @@ class Dilan extends CI_Controller{
 				$ln_kep = strlen($surat['keperluan']);
 				$ln_ket = strlen($surat['keterangan']);
 				$tot_ln = $ln_kep+$ln_ket;
-				if($tot_ln >=200)
-				{
-					$height_stem = ($ln_ket+$ln_ket)-325;
-				}else{
-					$height_stem = ($ln_ket+$ln_ket)-18;
+				if($tot_ln <= 100){
+					$height_stem = 165;
+				}else if($tot_ln <= 200){
+					$height_stem = 170;
+				}else if($tot_ln <= 300){
+					$height_stem = 180;
+				}else if($tot_ln <= 400){
+					$height_stem = 185;
 				}
+				
 				// $pdf->cell(2,5, $ln_kep);
 				// $pdf->cell(50);
 				// $pdf->cell(2,5, $ln_ket);
@@ -560,8 +564,8 @@ class Dilan extends CI_Controller{
 				{
 					if(!empty($config['show_ttd']))
 					{
-						$pdf->Image(image_module('desa',$desa['id'].'/'.$desa['ttd_img']),135,165,40,30);
-						// $pdf->Image(image_module('desa',$desa['id'].'/'.$desa['ttd_img']),135,$height_stem,40,30);
+						// $pdf->Image(image_module('desa',$desa['id'].'/'.$desa['ttd_img']),135,165,40,30);
+						$pdf->Image(image_module('desa',$desa['id'].'/'.$desa['ttd_img']),135,$height_stem,40,30);
 					}
 				}
 				$pdf->Ln(30);
