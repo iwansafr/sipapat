@@ -560,8 +560,8 @@ class Dilan extends CI_Controller{
 				{
 					if(!empty($config['show_ttd']))
 					{
-						// $pdf->Image(image_module('desa',$desa['id'].'/'.$desa['ttd_img']),135,165,40,30);
-						$pdf->Image(image_module('desa',$desa['id'].'/'.$desa['ttd_img']),135,$height_stem,40,30);
+						$pdf->Image(image_module('desa',$desa['id'].'/'.$desa['ttd_img']),135,165,40,30);
+						// $pdf->Image(image_module('desa',$desa['id'].'/'.$desa['ttd_img']),135,$height_stem,40,30);
 					}
 				}
 				$pdf->Ln(30);
