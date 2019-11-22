@@ -45,9 +45,9 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <div class="badge"><?php echo date('d/M/Y h:i A'); ?></div> <b>Version</b> 2.4.0
+      <div class="badge"><?php echo date('d/M/Y h:i A'); ?></div> <b>Version</b> 5.0.8
     </div>
-    <strong>Copyright &copy; 2015-<?php echo date('Y'); ?> <a href="https://www.dinusa.co.id">dinusa</a>.</strong> All rights
+    <strong>Copyright &copy; 2019-<?php echo date('Y'); ?> <a href="https://www.mandesa.co.id">mandesa</a>.</strong> All rights
     reserved.
   </footer>
 
