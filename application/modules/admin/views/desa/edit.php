@@ -1,13 +1,11 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-if(is_root() || is_admin() || @$pengguna['desa_id'] == $_GET['id'])
+if(is_root() || is_admin() || @$pengguna['desa_id'] == @intval($_GET['id']))
 {
 	$form = new zea();
 	$form->setId(@intval($_GET['id']));
 	$form->init('edit');
 	$form->setTable('desa');
 	$form->setHeading('Data Desa');
-	// $form->addInput('kode','text');
-	// $form->setLabel('kode','Kode Desa');
 	
 	$form->addInput('province_id','dropdown');
 	$form->setLabel('province_id','Provinsi');
@@ -35,6 +33,9 @@ if(is_root() || is_admin() || @$pengguna['desa_id'] == $_GET['id'])
 	$form->setLabel('village_id','Desa');
 	$form->setOptions('village_id',['none']);
 
+	$form->addInput('kode','text');
+	$form->setAttribute('kode',['readonly'=>'readonly']);
+	$form->setLabel('kode','Kode Desa');
 	if(!empty($sipapat_config))
 	{
 		$form->tableOptions('province_id','provinces','id','name',' id = '.$sipapat_config['province_id']);

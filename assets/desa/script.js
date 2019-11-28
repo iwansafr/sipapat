@@ -66,7 +66,7 @@ $(document).ready(function(){
 			$('input[name="kecamatan"').val(b);
 		});
 		var select = $('select[name="village_id"]');
-		if(villages[a] == undefined){
+		if(villages[a] === undefined){
 			var tmp = [{'text':'None','value':'0','selected':'true'}];
 		}else{
 			var option = villages[a];
@@ -83,10 +83,10 @@ $(document).ready(function(){
 	});
 	$('select[name="village_id"]').on('change', function(){
 		var a = $(this).val();
-		console.log(a);
 		$('select[name="village_id"] option:selected').each(function(){
 			var b = $(this).text();
-			$('input[name="nama"').val(b);
+			$('input[name="nama"]').val(b);
+			$('input[name="kode"]').val(a);
 		});
 	});
 
