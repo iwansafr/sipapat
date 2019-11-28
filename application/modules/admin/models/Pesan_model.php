@@ -84,19 +84,28 @@ class Pesan_model extends CI_Model
 	{
 		$user = $this->esg->get_esg('user');
 		$data = array();
-		if(is_kecamatan())
+
+		$reply_id = @intval($_GET['reply']);
+		if(!empty($reply_id))
 		{
-			$kecamatan = strtolower(str_replace('kec_','',$user['username']));
-			$data = $this->db->query('SELECT user_desa.user_id AS id,user_desa.username FROM desa,user_desa where desa.id=user_desa.desa_id AND desa.kecamatan = ?', $kecamatan)->result_array();
-			$admin_data = $this->db->query('SELECT id,username FROM user WHERE user_role_id = ?', 2)->result_array();
-		}else if(is_desa())
-		{
-			$kecamatan = $this->db->query('SELECT kecamatan FROM desa,user_desa WHERE user_desa.desa_id=desa.id AND user_desa.user_id = ?', $user['id'])->row_array();
-			$kecamatan = 'kec_'.$kecamatan['kecamatan'];
-			$data = $this->db->query('SELECT user.id,user.username FROM user,user_role WHERE user.user_role_id = user_role.id AND (user_role.level=2 OR username = ?)',$kecamatan)->result_array();
-		}else{
-			$data = $this->db->query('SELECT id,username FROM user WHERE active = 1 AND user_role_id > 1 AND id != ? ', @intval($user['id']))->result_array();
+			pr($reply_id);
+			$data = $this->db->query('SELECT id,username FROM user WHERE  id = ? ', $reply_id)->result_array();
+		}else{	
+			if(is_kecamatan())
+			{
+				$kecamatan = strtolower(str_replace('kec_','',$user['username']));
+				$data = $this->db->query('SELECT user_desa.user_id AS id,user_desa.username FROM desa,user_desa where desa.id=user_desa.desa_id AND desa.kecamatan = ?', $kecamatan)->result_array();
+				$admin_data = $this->db->query('SELECT id,username FROM user WHERE user_role_id = ?', 2)->result_array();
+			}else if(is_desa())
+			{
+				$kecamatan = $this->db->query('SELECT kecamatan FROM desa,user_desa WHERE user_desa.desa_id=desa.id AND user_desa.user_id = ?', $user['id'])->row_array();
+				$kecamatan = 'kec_'.$kecamatan['kecamatan'];
+				$data = $this->db->query('SELECT user.id,user.username FROM user,user_role WHERE user.user_role_id = user_role.id AND (user_role.level=2 OR username = ?)',$kecamatan)->result_array();
+			}else{
+				$data = $this->db->query('SELECT id,username FROM user WHERE active = 1 AND user_role_id > 1 AND id != ? ', @intval($user['id']))->result_array();
+			}
 		}
+
 		if(!empty($data))
 		{
 			$tmp_data = array();

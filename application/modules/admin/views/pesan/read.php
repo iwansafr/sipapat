@@ -36,7 +36,7 @@
       		?>
 
       	<?php else: ?>
-      		Dari : <?php echo $detail_pesan['sender'] ?>
+      		Dari : <?php echo $detail_pesan['sender'] ?> <a href="<?php echo base_url('admin/pesan/edit/single/?reply=').$detail_pesan['pesan']['sender'] ?>" class="btn btn-sm btn-default"><i class="fa fa-reply"></i> balas</a>
       	<?php endif ?>
         <span class="mailbox-read-time pull-right"><?php echo $detail_pesan['pesan']['created'] ?></span></h5>
     </div>
