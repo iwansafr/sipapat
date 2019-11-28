@@ -88,7 +88,6 @@ class Pesan_model extends CI_Model
 		$reply_id = @intval($_GET['reply']);
 		if(!empty($reply_id))
 		{
-			pr($reply_id);
 			$data = $this->db->query('SELECT id,username FROM user WHERE  id = ? ', $reply_id)->result_array();
 		}else{	
 			if(is_kecamatan())
