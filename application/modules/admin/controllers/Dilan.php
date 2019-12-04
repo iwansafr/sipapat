@@ -517,12 +517,12 @@ class Dilan extends CI_Controller{
 				// $pdf->Cell(5);
 				$pdf->Cell(60,5,'7. Keperluan',0,0,'L');
 				$pdf->Cell(2,5,': ',0,0,'L');
-				$pdf->MultiCell(0,5,strtolower($surat['keperluan']),0,'L',false);
+				$pdf->MultiCell(0,5, ucfirst(strtolower($surat['keperluan'])),0,'L',false);
 				$pdf->Cell(60,5,'8. Berlaku Mulai',0,0,'L');
 				$pdf->Cell(0,5,': '.content_date($surat['berlaku_mulai']).' s/d '.content_date($surat['berlaku_sampai']),0,1,'L');
 				$pdf->Cell(60,5,'9. Keterangan lain-lain *)',0,0,'L');
 				$pdf->Cell(2,5,': ',0,0,'L');
-				$pdf->MultiCell(0,5,@$surat['keterangan'],0,'L',false);
+				$pdf->MultiCell(0,5,@ucfirst($surat['keterangan']),0,'L',false);
 
 				$ln_kep = strlen($surat['keperluan']);
 				$ln_ket = strlen($surat['keterangan']);
