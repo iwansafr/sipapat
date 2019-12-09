@@ -64,6 +64,8 @@
 			    	</table>
 			    </div>
 	  		</div>
+	  	</div>
+	  	<div class="row">
 	  		<?php if (!empty($data['pengurus'])): ?>
 	  			<div class="col-md-6">
 	  				<div class="table-responsive">
@@ -139,6 +141,65 @@
 				    	</table>
 				    </div>
 	  			</div>
+	  		<?php endif ?>
+	  		<?php if (!empty($data['kelembagaan'])): ?>
+	  			<div class="col-md-6">
+				    <div class="table-responsive">
+				    	<table class="table table-hover table-striped ">
+				    		<thead class="bg-aqua">
+				    			<td colspan="2">indikator kelembagaan</td>
+				    		</thead>
+				    		<tbody>
+				    			<?php if (is_array($data['kelembagaan'])): ?>
+					    			<tr>
+					    				<td>no</td>
+					    				<td>:<?php echo $data['kelembagaan']['no'] ?></td>
+					    			</tr>
+					    			<tr>
+					    				<td>investor laki-laki</td>
+					    				<td>:<?php echo $data['kelembagaan']['investor_lk'] ?> orang</td>
+					    			</tr>
+					    			<tr>
+					    				<td>investor perempuan</td>
+					    				<td>:<?php echo $data['kelembagaan']['investor_pr'] ?> orang</td>
+					    			</tr>
+					    			<tr>
+					    				<td>jumlah investor</td>
+					    				<td>:<?php echo $data['kelembagaan']['jml_investor'] ?> orang</td>
+					    			</tr>
+					    			<tr>
+					    				<td>manajer laki-laki</td>
+					    				<td>:<?php echo $data['kelembagaan']['manajer_lk'] ?> orang</td>
+					    			</tr>
+					    			<tr>
+					    				<td>manajer perempuan</td>
+					    				<td>:<?php echo $data['kelembagaan']['manajer_pr'] ?> orang</td>
+					    			</tr>
+					    			<tr>
+					    				<td>jumlah manajer</td>
+					    				<td>:<?php echo $data['kelembagaan']['jml_manajer'] ?> orang</td>
+					    			</tr>
+					    			<tr>
+					    				<td>karyawan laki-laki</td>
+					    				<td>:<?php echo $data['kelembagaan']['karyawan_lk'] ?> orang</td>
+					    			</tr>
+					    			<tr>
+					    				<td>karyawan perempuan</td>
+					    				<td>:<?php echo $data['kelembagaan']['karyawan_pr'] ?> orang</td>
+					    			</tr>
+					    			<tr>
+					    				<td>jumlah karyawan</td>
+					    				<td>:<?php echo $data['kelembagaan']['jml_karyawan'] ?> orang</td>
+					    			</tr>
+					    			<tr>
+					    				<td>lpj terakhir</td>
+					    				<td>:<?php echo content_date($data['kelembagaan']['lpj_terakhir']) ?></td>
+					    			</tr>
+				    			<?php endif ?>
+				    		</tbody>
+				    	</table>
+				    </div>
+		  		</div>
 	  		<?php endif ?>
 	  	</div>
 	  </div>
