@@ -64,6 +64,82 @@
 			    	</table>
 			    </div>
 	  		</div>
+	  		<?php if (!empty($data['pengurus'])): ?>
+	  			<div class="col-md-6">
+	  				<div class="table-responsive">
+				    	<table class="table table-hover table-striped ">
+				    		<thead class="bg-aqua">
+				    			<td colspan="2">PENGURUS</td>
+				    		</thead>
+				    		<tbody>
+				    			<?php if (is_array($data['pengurus'])): ?>
+					    			<?php foreach ($data['pengurus'] as $key => $value): ?>
+					    				<?php $pengurus = $value; ?>
+											<tr>
+												<td>KETUA</td>
+												<td>: <?php echo $pengurus['ketua'] ?></td>
+											</tr>
+											<tr>
+												<td>no hp ketua</td>
+												<td>: <?php echo $pengurus['hp_ketua'] ?></td>
+											</tr>
+											<tr>
+												<td>sekretaris</td>
+												<td>: <?php echo $pengurus['sekretaris'] ?></td>
+											</tr>
+											<tr>
+												<td>no hp sekretaris</td>
+												<td>: <?php echo $pengurus['hp_sekretaris'] ?></td>
+											</tr>
+											<tr>
+												<td>bendahara</td>
+												<td>: <?php echo $pengurus['bendahara'] ?></td>
+											</tr>
+											<tr>
+												<td>no hp bendahara</td>
+												<td>: <?php echo $pengurus['hp_bendahara'] ?></td>
+											</tr>
+											<tr>
+												<td>penasehat</td>
+												<td>: <?php echo $pengurus['penasehat'] ?></td>
+											</tr>
+											<tr>
+												<td>pengawas</td>
+												<td></td>
+											</tr>
+											<?php if (!empty($pengurus['pengawas'])): ?>
+												<?php $pengawas = explode("\n", $pengurus['pengawas']) ?>
+												<?php foreach ($pengawas as $pgwskey => $pgwsvalue): ?>
+													<tr>
+														<td></td>
+														<td><?php echo $pgwsvalue ?></td>
+													</tr>
+												<?php endforeach ?>
+											<?php endif ?>
+											<tr>
+												<td>jenis usaha</td>
+												<td>: <?php echo $pengurus['jenis_usaha'] ?></td>
+											</tr>
+											<tr>
+												<td>kategori usaha</td>
+												<td>: <?php echo $kategori[$pengurus['kategori_usaha']] ?></td>
+											</tr>
+											<tr>
+												<td>tingkat pemeringkatan</td>
+												<td>: <?php echo $tingkat_pemeringkatan[$pengurus['tingkat_pemeringkatan']] ?></td>
+											</tr>
+											<tr>
+												<td>tahun</td>
+												<td>: <?php echo $pengurus['tahun'] ?></td>
+											</tr>
+
+					    			<?php endforeach ?>
+				    			<?php endif ?>
+				    		</tbody>
+				    	</table>
+				    </div>
+	  			</div>
+	  		<?php endif ?>
 	  	</div>
 	  </div>
 	  <div class="card-footer panel-footer">

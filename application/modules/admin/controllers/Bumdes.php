@@ -44,12 +44,14 @@ class Bumdes extends CI_Controller{
 
 	public function detail()
 	{
-		$id        = @intval($_GET['id']);
-		$pengguna  = $this->pengguna_model->get_pengguna();
-		$bumdes_id = $this->bumdes_model->get_bumdes_id($pengguna['desa_id']);
-		$status    = true;
-		$data      = [];
-		$alamat    = '';
+		$id                    = $this->input->get('id');
+		$pengguna              = $this->pengguna_model->get_pengguna();
+		$bumdes_id             = $this->bumdes_model->get_bumdes_id($pengguna['desa_id']);
+		$status                = true;
+		$data                  = [];
+		$alamat                = '';
+		$kategori              = $this->bumdes_model->kategori_usaha();
+		$tingkat_pemeringkatan = $this->bumdes_model->tingkat_pemeringkatan();
 
 		if(is_desa())	
 		{
@@ -62,9 +64,12 @@ class Bumdes extends CI_Controller{
 		{
 			$data             = $this->bumdes_model->get_bumdes($id);
 			$alamat           = $this->bumdes_model->get_alamat($data['alamat']);
+			$pengurus         = $this->bumdes_model->get_pengurus($id);
+			$data['pengurus'] = $pengurus;
 			$data['alamat']   = $alamat;
+
 		}
-		$this->load->view('index',['id'=>$id,'status'=>$status,'data'=>$data]);
+		$this->load->view('index',['id'=>$id,'status'=>$status,'kategori'=>$kategori,'tingkat_pemeringkatan'=>$tingkat_pemeringkatan,'data'=>$data]);
 	}
 
 	public function list()
