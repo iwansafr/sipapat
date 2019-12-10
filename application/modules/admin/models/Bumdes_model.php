@@ -76,6 +76,26 @@ class Bumdes_model extends CI_Model{
 		}
 	}
 
+	public function get_kelembagaan($id = 0)
+	{
+		$data = [];
+		if(!empty($id))
+		{
+			$data = $this->db->query('SELECT * FROM bumdes_kelembagaan WHERE bumdes_id = ? ORDER BY id DESC', $id)->row_array();
+		}
+		return $data;
+	}
+
+	public function get_pengurus($id = 0)
+	{
+		$data = [];
+		if(!empty($id))
+		{
+			$data = $this->db->query('SELECT * FROM bumdes_pengurus WHERE bumdes_id = ? ', $id)->result_array();
+		}
+		return $data;
+	}
+
 	public function get_bumdes($id = 0)
 	{
 		if(!empty($id))
