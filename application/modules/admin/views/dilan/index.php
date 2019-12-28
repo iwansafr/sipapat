@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 $allowed = $this->input->get('allowed');
-if(!empty($allowed))
+if(!empty($allowed) && is_desa())
 {
 	?>
 	<a href="<?php echo base_url('admin/dilan/download_template') ?>" target="_blank" class="btn btn-warning btn-sm"><i class="fa fa-download"></i> Download Template</a>
