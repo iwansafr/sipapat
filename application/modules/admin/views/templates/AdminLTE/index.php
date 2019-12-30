@@ -89,7 +89,8 @@ if (
   $content!='admin_menu/edit' &&
   $content!='config/dashboard' &&
   $content!='config/custom_dashboard' &&
-  $content!='dilan/surat_pengantar_form'
+  $content!='dilan/surat_pengantar_form' &&
+  $content!='sipapatconfig/api'
 
 ): ?>
   <script type="text/javascript">

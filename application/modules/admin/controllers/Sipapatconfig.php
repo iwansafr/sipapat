@@ -20,6 +20,11 @@ class Sipapatconfig extends CI_Controller
 		$this->load->view('index');
 	}
 
+	public function api()
+	{
+		$this->load->view('index');
+	}
+
 	public function nomor_surat()
 	{
 		$this->load->view('index');
@@ -34,6 +39,12 @@ class Sipapatconfig extends CI_Controller
 		$this->load->view('index');
 	}
 	public function kabupaten()
+	{
+		$this->esg->add_js([base_url('assets/sipapatconfig/script.js')]);
+		$this->load->view('index');
+	}
+
+	public function kabupaten_api()
 	{
 		$this->esg->add_js([base_url('assets/sipapatconfig/script.js')]);
 		$this->load->view('index');

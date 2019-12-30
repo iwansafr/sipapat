@@ -238,18 +238,39 @@ function copy_dir($source = '', $destination = '')
 	}
 }
 
-function curl($url = '')
+function curl($url, $cookie = false, $post = false, $header = false, $follow_location = false, $referer=false,$proxy=false)
 {
-	// create a new cURL resource
-	$ch = curl_init();
-	// set URL and other appropriate options
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_HEADER, 0);
-	// grab URL and pass it to the browser
-	curl_exec($ch);
-	// close cURL resource, and free up system resources
-	curl_close($ch);
+  $ch = curl_init($url);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_FAILONERROR, true);
+  curl_setopt($ch, CURLOPT_REFERER, $referer);
+  curl_setopt($ch, CURLOPT_HEADER, $header);
+  curl_setopt($ch, CURLOPT_PROXY, $proxy);
+  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, $follow_location);
+  if ($cookie) {
+    curl_setopt ($ch, CURLOPT_COOKIE, $cookie);
+  }
+  if ($post) {
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+  }
+  $response = curl_exec ($ch);
+  curl_close($ch);
+  return $response;
 }
+
+// function curl($url = '')
+// {
+// 	// create a new cURL resource
+// 	$ch = curl_init();
+// 	// set URL and other appropriate options
+// 	curl_setopt($ch, CURLOPT_URL, $url);
+// 	curl_setopt($ch, CURLOPT_HEADER, 0);
+// 	// grab URL and pass it to the browser
+// 	curl_exec($ch);
+// 	// close cURL resource, and free up system resources
+// 	curl_close($ch);
+// }
 function _class($module = '')
 {
 	if(!empty($module))
