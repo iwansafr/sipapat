@@ -148,12 +148,12 @@ class Dilan extends CI_Controller{
 				$j++;
 				// $data[$i]['desa_id'] = $desa_id;
 			}
-			if($i>0)
-			{
-				if($data[$i]['NIK']==0){
-					unset($data[$i]);
-				}
-			}
+			// if($i>0)
+			// {
+			// 	if($data[$i]['NIK']==0){
+			// 		unset($data[$i]);
+			// 	}
+			// }
 				$i++;
 			}
 			if(!empty($data))

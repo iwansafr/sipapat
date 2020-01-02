@@ -43,6 +43,17 @@ class Desa extends CI_Controller
 		$this->load->view('index',['pengguna'=>$pengguna]);
 	}
 
+	public function edit_api()
+	{
+		if(empty($sipapat_config))
+		{
+			$this->esg->add_js([base_url('assets/sipapatconfig/script.js')]);
+		}else{
+			$this->esg->add_js([base_url('assets/desa/script.js')]);
+		}
+		$this->load->view('index');
+	}
+
 	public function detail($id = 0)
 	{
 		$this->esg_model->set_nav_title('Detail Desa');

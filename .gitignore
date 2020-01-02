@@ -6,6 +6,7 @@
 !*/cache/.htaccess
 images/modules/*
 images/session/*
+images/session
 images/cache/*
 
 user_guide_src/build/*

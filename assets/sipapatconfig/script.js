@@ -101,10 +101,10 @@ $(document).ready(function(){
 	});
 	$('select[name="village_id"]').on('change', function(){
 		var a = $(this).val();
-		console.log(a);
 		$('select[name="village_id"] option:selected').each(function(){
 			var b = $(this).text();
-			$('input[name="nama"').val(b);
+			$('input[name="nama"]').val(b);
+			$('input[name="kode"]').val(a);
 		});
 	});
 
