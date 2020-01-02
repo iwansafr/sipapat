@@ -58,11 +58,15 @@ if(!empty($desa_id) && !empty($desa))
 						<div class="row">
 							<div class="col-md-6">
 								<label>Foto Rekening</label>
-								<img src="<?php echo image_module('desa_rekening',$rekening['id'].'/'.$rekening['foto_rek']) ?>" class="img img-responsive img-fluid" height="100%">
+								<?php if (!empty($rekening['foto_rek'])): ?>
+									<img src="<?php echo image_module('desa_rekening',$rekening['id'].'/'.$rekening['foto_rek']) ?>" class="img img-responsive img-fluid" height="100%">
+								<?php endif ?>
 							</div>
 							<div class="col-md-6">
 								<label>Foto NPWP</label>
-								<img src="<?php echo image_module('desa_rekening',$rekening['id'].'/'.$rekening['foto_npwp']) ?>" class="img img-responsive img-fluid" height="100%">
+								<?php if (!empty($rekening['foto_npwp'])): ?>
+									<img src="<?php echo image_module('desa_rekening',$rekening['id'].'/'.$rekening['foto_npwp']) ?>" class="img img-responsive img-fluid" height="100%">
+								<?php endif ?>
 							</div>
 						</div>
 					</div>
