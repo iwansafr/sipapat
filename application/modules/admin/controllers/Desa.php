@@ -54,6 +54,11 @@ class Desa extends CI_Controller
 		$this->load->view('index');
 	}
 
+	public function rekening_edit()
+	{
+		$this->load->view('index');
+	}
+
 	public function detail($id = 0)
 	{
 		$this->esg_model->set_nav_title('Detail Desa');
