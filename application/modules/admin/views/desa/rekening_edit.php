@@ -7,7 +7,8 @@ if(!is_desa())
 }else{
 	if(!empty($_POST))
 	{
-		header('location: '.base_url('admin/desa/rekening_edit'));
+		// header('location: '.base_url('admin/desa/rekening_edit'));
+		echo '<a href="'.base_url('admin/desa/rekening_edit').'" class="btn btn-warning btn-sm"><i class="fa fa-sync"></i> reload</a>';
 	}
 	$desa_id = $this->sipapat_model->get_desa_id();
 }
@@ -29,19 +30,23 @@ if((!empty($desa_id) && !empty($desa)) || !empty($id))
 
 	$form->setHeading('Rekening Desa');
 	$form->addInput('nama','text');
-	$form->setHelp('nama','nama sesuai di rekening');
+	$form->setAttribute('nama',['placeholder'=>strtoupper('nama sesuai di rekening desa')]);
 	$form->addInput('desa_id','static');
 	$form->setValue('desa_id',$desa_id);
 	$form->addInput('alamat','textarea');
+	$form->setAttribute('alamat',['placeholder'=>strtoupper('alamat sesuai di rekening desa')]);
 	$form->addInput('no_rek','text');
 	$form->setLabel('no_rek','Nomor Rekening');
+	$form->setAttribute('no_rek',['placeholder'=>strtoupper('nomor rekening desa')]);
 	$form->addInput('bank','text');
 	$form->setLabel('bank','Nama Bank');
+	$form->setAttribute('bank',['placeholder'=>strtoupper('nama rekening bank')]);
 	$form->addInput('foto_rek','upload');
 	$form->setAccept('foto_rek', '.jpg,.jpeg,.png');
 	$form->setLabel('foto_rek','Foto Rekening');
 	$form->addInput('no_npwp','text');
 	$form->setLabel('no_npwp','Nomor NPWP');
+	$form->setAttribute('no_npwp',['placeholder'=>strtoupper('nomor npwp')]);
 	$form->addInput('foto_npwp','upload');
 	$form->setAccept('foto_npwp', '.jpg,.jpeg,.png');
 

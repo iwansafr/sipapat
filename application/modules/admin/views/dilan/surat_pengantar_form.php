@@ -12,7 +12,7 @@
 			</tr>
 			<tr>
 				<td>JK</td>
-				<td>: <?php echo $kelamin[$penduduk['jk']] ?></td>
+				<td>: <?php echo @$kelamin[$penduduk['jk']] ?></td>
 			</tr>
 			<tr>
 				<td>TTL</td>
