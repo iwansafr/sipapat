@@ -247,6 +247,11 @@ class Desa extends CI_Controller
 				unset($data['id']);
 				unset($data['created']);
 				unset($data['updated']);
+				unset($data['ttd_img']);
+				unset($data['village_id']);
+				unset($data['district_id']);
+				unset($data['regency_id']);
+				unset($data['province_id']);
 				foreach ($data as $key => $value) 
 				{
 					$pdf->Cell(38);
