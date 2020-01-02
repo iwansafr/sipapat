@@ -69,7 +69,21 @@ class Desa extends CI_Controller
 	}
 	public function rekening()
 	{
-		$this->load->view('index');
+		$view = 'index';
+		if(@$_GET['s']=='print' || @$_GET['s']=='download')
+		{
+			$view = 'desa/rekening';
+			$this->load->view('templates/AdminLTE/meta');
+		}
+		$this->load->view($view);
+		if(@$_GET['s']=='print')
+		{
+			?>
+			<script type="text/javascript">
+				window.print();
+			</script>
+			<?php
+		}
 	}
 
 	public function detail($id = 0)

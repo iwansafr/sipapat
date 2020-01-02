@@ -12,29 +12,67 @@ if(!empty($desa_id) && !empty($desa))
 	$rekening = $this->sipapat_model->get_rekening($desa_id);
 	if(!empty($rekening))
 	{
-		$form = new zea();
-		$form->init('edit');
-		$form->setTable('desa_rekening');
-
-		$form->setId($rekening['id']);
-		$form->setHeading('Rekening Desa');
-		$form->setEditStatus(false);
-		$form->addInput('nama','plaintext');
-		$form->setHelp('nama','nama sesuai di rekening');
-		$form->addInput('alamat','plaintext');
-		$form->addInput('no_rek','plaintext');
-		$form->setLabel('no_rek','Nomor Rekening');
-		$form->addInput('bank','plaintext');
-		$form->setLabel('bank','Nama Bank');
-		$form->addInput('foto_rek','thumbnail');
-		$form->setLabel('foto_rek','Foto Rekening');
-		$form->addInput('no_npwp','plaintext');
-		$form->setLabel('no_npwp','Nomor NPWP');
-		$form->addInput('foto_npwp','thumbnail');
-		$form->setLabel('foto_npwp','Foto NPWP');
-
-		$form->setRequired(['nama','alamat','no_rek','bank','foto_rek','no_npwp']);
-		$form->form();
+		?>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Rekening Desa <?php echo $rekening['nama'] ?>
+				<?php 
+				if(empty($_GET['s']))
+				{
+					?>
+					<a href="?s=print" target="_blank" class="pull-right btn btn-default btn-sm"><i class="fa fa-print"></i> Cetak</a>
+					<?php
+				}
+				?>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-12">
+						<table class="table table-responsive">
+							<tr>
+								<td style="width: 50%;">Nama</td>
+								<td>:</td>
+								<td><?php echo $rekening['nama'] ?></td>
+							</tr>
+							<tr>
+								<td style="width: 50%;">Alamat</td>
+								<td>:</td>
+								<td><?php echo $rekening['alamat'] ?></td>
+							</tr>
+							<tr>
+								<td style="width: 50%;">Nomor Rekening Bank</td>
+								<td>:</td>
+								<td><?php echo $rekening['no_rek'] ?></td>
+							</tr>
+							<tr>
+								<td style="width: 50%;">Nama Bank</td>
+								<td>:</td>
+								<td><?php echo $rekening['bank'] ?></td>
+							</tr>
+							<tr>
+								<td style="width: 50%;">Nomor NPWP</td>
+								<td>:</td>
+								<td><?php echo $rekening['no_npwp'] ?></td>
+							</tr>
+						</table>
+						<div class="row">
+							<div class="col-md-6">
+								<label>Foto Rekening</label>
+								<img src="<?php echo image_module('desa_rekening',$rekening['id'].'/'.$rekening['foto_rek']) ?>" class="img img-responsive img-fluid" height="100%">
+							</div>
+							<div class="col-md-6">
+								<label>Foto NPWP</label>
+								<img src="<?php echo image_module('desa_rekening',$rekening['id'].'/'.$rekening['foto_npwp']) ?>" class="img img-responsive img-fluid" height="100%">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel-footer">
+				
+			</div>
+		</div>
+		<?php
 	}else{
 		msg('data belum ada','danger');
 	}

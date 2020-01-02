@@ -7,7 +7,6 @@ if(!is_desa())
 }else{
 	if(!empty($_POST))
 	{
-		// header('location: '.base_url('admin/desa/rekening_edit'));
 		echo '<a href="'.base_url('admin/desa/rekening_edit').'" class="btn btn-warning btn-sm"><i class="fa fa-sync"></i> reload</a>';
 	}
 	$desa_id = $this->sipapat_model->get_desa_id();
@@ -16,6 +15,10 @@ $desa = $this->sipapat_model->get_desa($desa_id);
 if((!empty($desa_id) && !empty($desa)) || !empty($id))
 {
 	$rekening = $this->sipapat_model->get_rekening($desa_id);
+	if(!empty($rekening))
+	{
+		echo '<a href="'.base_url('admin/desa/rekening').'" class="btn btn-warning btn-sm"><i class="fa fa-search"></i> detail</a>';
+	}
 
 	$form = new zea();
 	$form->init('edit');
