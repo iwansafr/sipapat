@@ -54,6 +54,11 @@ class Sipapat_model extends CI_Model
 		// $this->esg->set_esg('meta', $data);
 	}
 
+	public function get_rekening($desa_id = 0)
+	{
+		return $this->db->query('SELECT * FROM desa_rekening WHERE desa_id = ?',$desa_id)->row_array();
+	}
+
 	public function get_desa_id()
 	{
 		$user = $this->session->userdata(base_url().'_logged_in');

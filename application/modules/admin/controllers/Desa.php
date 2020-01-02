@@ -54,7 +54,20 @@ class Desa extends CI_Controller
 		$this->load->view('index');
 	}
 
+	public function rekening_list()
+	{
+		$this->load->view('index');
+	}
+	public function rekening_list_clear()
+	{
+		$this->load->view('desa/rekening_list');
+	}
+
 	public function rekening_edit()
+	{
+		$this->load->view('index');
+	}
+	public function rekening()
 	{
 		$this->load->view('index');
 	}
