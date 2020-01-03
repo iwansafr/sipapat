@@ -79,7 +79,7 @@ $form->setLabel('alamat','desa');
 // $form->setAttribute('status','disabled');
 
 $form->addInput('no_rt','plaintext');
-// $form->addInput('no_rw','plaintext');
+$form->addInput('no_rw','plaintext');
 $form->setUrl('admin/dilan/clear_list');
 
 $form->setDelete(true);
