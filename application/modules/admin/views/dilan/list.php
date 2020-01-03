@@ -42,6 +42,7 @@ if(!empty($desa_id) || is_desa())
 	$excel_get = make_get($_GET);
 	?>
 	<a target="_blank" href="<?php echo base_url('admin/dilan/download_excel/'.$excel_get) ?>" class="btn btn-sm btn-success"><i class="fa fa-file-excel-o"></i> Download</a>
+	<a href="<?php echo base_url('admin/dilan/detail_desa/') ?>" class="btn btn-sm btn-success"><i class="fa fa-chart-bar"></i> Statistik</a>
 	<?php	
 }
 
@@ -77,6 +78,8 @@ $form->setLabel('alamat','desa');
 // $form->setOptions('status',$this->dilan_model->status());
 // $form->setAttribute('status','disabled');
 
+$form->addInput('no_rt','plaintext');
+$form->addInput('no_rw','plaintext');
 $form->setUrl('admin/dilan/clear_list');
 
 $form->setDelete(true);

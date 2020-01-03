@@ -25,6 +25,15 @@ class Dilan extends CI_Controller{
 		$this->load->view('index');
 	}
 
+	public function detail_desa()
+	{
+		$desa_id = $this->sipapat_model->get_desa_id();
+		$penduduk = $this->dilan_model->total_penduduk($desa_id);
+
+		$data = ['penduduk'=>$penduduk];
+		$this->load->view('index',$data);
+	}
+
 	public function upload()
 	{
 		if(!empty($_FILES['doc']['name']))

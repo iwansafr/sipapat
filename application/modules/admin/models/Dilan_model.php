@@ -255,4 +255,25 @@ class Dilan_model extends CI_Model
 	{
 		return $this->db->query('SELECT desa_id,desa.nama FROM penduduk INNER JOIN desa ON(desa.id=penduduk.desa_id) GROUP BY desa_id')->result_array();
 	}
+	public function total_penduduk($desa_id = 0)
+	{
+		$ids = $this->db->query('SELECT count(id) AS total FROM penduduk WHERE desa_id = ?',$desa_id)->row_array();
+		if(!empty($ids))
+		{
+			$total = $ids['total'];
+		}
+		$total_kk = $this->db->query('SELECT count(no_kk) AS total FROM penduduk WHERE desa_id = ? GROUP BY no_kk',$desa_id)->result_array();
+
+		$total_kk = count($total_kk);
+		return ['penduduk'=>$total,'kk'=>$total_kk];
+		// $rt = $this->db->query('SELECT no_rt FROM penduduk WHERE desa_id = ? GROUP BY no_rt', $desa_id)->result_array();
+		// pr($rt);
+		// $rw = $this->db->query('SELECT no_rw FROM penduduk WHERE desa_id = ? GROUP BY no_rw', $desa_id)->result_array();
+		// pr($rw);
+		// foreach ($rt as $key => $value) 
+		// {
+		// 	$kk_rt = $this->db->query('SELECT no_kk FROM penduduk WHERE desa_id = ? AND no_rt = ? group by no_kk', [$desa_id,$value])->result_array();
+		// 	pr(count($kk_rt));
+		// }
+	}
 }
