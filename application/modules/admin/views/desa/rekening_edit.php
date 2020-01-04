@@ -33,10 +33,12 @@ if((!empty($desa_id) && !empty($desa)) || !empty($id))
 
 	$form->setHeading('Rekening Desa');
 	$form->addInput('nama','text');
+	$form->setLabel('nama','Nama Pemilik Rekening');
 	$form->setAttribute('nama',['placeholder'=>strtoupper('nama sesuai di rekening desa')]);
 	$form->addInput('desa_id','static');
 	$form->setValue('desa_id',$desa_id);
 	$form->addInput('alamat','textarea');
+	$form->setLabel('alamat','Alamat Pemilik Rekening');
 	$form->setAttribute('alamat',['placeholder'=>strtoupper('alamat sesuai di rekening desa')]);
 	$form->addInput('no_rek','text');
 	$form->setLabel('no_rek','Nomor Rekening');
