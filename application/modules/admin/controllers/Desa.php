@@ -116,7 +116,7 @@ class Desa extends CI_Controller
 	    // setting jenis font yang akan digunakan
 	    $pdf->SetFont('Arial','B',7);
 	    // mencetak string 
-			$pdf->SetFont('Times','B','14');
+			$pdf->SetFont('Times','B','12');
 			$pdf->Cell(0,0,'DAFTAR PENDATAAN DATA REKENING KAS DESA',0,1,'C');
 			$pdf->Cell(0,20,$kabupaten,0,1,'C');
 			$pdf->SetFont('Times','B','9');
@@ -152,11 +152,11 @@ class Desa extends CI_Controller
 				$pdf->Cell(60,5,ucwords(strtolower($data['alamat'])),1,0,'C');
 				$pdf->Cell(25,5,ucwords(strtolower($desa['kode_pos'])),1,1,'C');
 			}
-			$pdf->Cell(215);
+			$pdf->Cell(255);
 			$pdf->Cell(35,25,'Kepala BPKAD '.str_replace('UPATEN','',$kabupaten),0,1,'L');
-			$pdf->Cell(215);
+			$pdf->Cell(255);
 			$pdf->Cell(35,5,'.............................................',0,1,'L');
-			$pdf->Cell(215);
+			$pdf->Cell(255);
 			$pdf->Cell(35,5,'NIP.',0,1,'L');
 			$pdf->Output('Rekening_DESA.pdf','I');
 		}
