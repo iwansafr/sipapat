@@ -205,10 +205,11 @@ class Desa extends CI_Controller
 			}else{
 				if(!empty($data))
 				{
+					$i = 1;
 					foreach ($data as $key => $value) 
 					{
 						$detail_bank = !empty($value['bank_detail']) ? $value['bank_detail'] : $value['bank'];
-						$pdf->Cell(10,5,'1',1,0,'C');
+						$pdf->Cell(10,5,$i,1,0,'C');
 						$pdf->Cell(35,5,ucwords(strtolower($value['bank'])),1,0,'C');
 						$pdf->Cell(55,5,ucwords(strtolower($value['nama'])),1,0,'C');
 						$pdf->Cell(35,5,ucwords(strtolower($value['no_rek'])),1,0,'C');
@@ -217,6 +218,7 @@ class Desa extends CI_Controller
 						$pdf->Cell(35,5,ucwords(strtolower($value['no_npwp'])),1,0,'C');
 						$pdf->Cell(60,5,ucwords(strtolower($value['alamat'])),1,0,'C');
 						$pdf->Cell(25,5,ucwords(strtolower($value['kode_pos'])),1,1,'C');
+						$i++;
 					}
 				}
 			}
