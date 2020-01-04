@@ -8,6 +8,7 @@ if(!is_desa())
 	$form->setTable('desa_rekening');
 	$form->setHeading('Rekening Desa');
 	$form->addInput('id','plaintext');
+	$form->setLabel('id','action');
 	$form->setPlainText('id',[base_url('admin/desa/rekening/?desa_id={desa_id}')=>'Detail']);
 	$form->setNumbering(true);
 	$form->addInput('nama','plaintext');
