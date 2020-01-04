@@ -31,12 +31,12 @@ if(!empty($desa_id) && !empty($desa))
 					<div class="col-md-12">
 						<table class="table table-responsive">
 							<tr>
-								<td style="width: 50%;">Nama</td>
+								<td style="width: 50%;">Nama Pemilik Rekening</td>
 								<td>:</td>
 								<td><?php echo $rekening['nama'] ?></td>
 							</tr>
 							<tr>
-								<td style="width: 50%;">Alamat</td>
+								<td style="width: 50%;">Alamat Pemilik Rekening</td>
 								<td>:</td>
 								<td><?php echo $rekening['alamat'] ?></td>
 							</tr>
