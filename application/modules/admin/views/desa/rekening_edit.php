@@ -46,6 +46,9 @@ if((!empty($desa_id) && !empty($desa)) || !empty($id))
 	$form->addInput('bank','text');
 	$form->setLabel('bank','Nama Bank');
 	$form->setAttribute('bank',['placeholder'=>strtoupper('nama rekening bank')]);
+	$form->addInput('bank_detail','text');
+	$form->setLabel('bank_detail','Nama Detil Bank');
+	$form->setAttribute('bank_detail',['placeholder'=>strtoupper('nama detil bank')]);
 	$form->addInput('foto_rek','upload');
 	$form->setAccept('foto_rek', '.jpg,.jpeg,.png');
 	$form->setLabel('foto_rek','Foto Rekening');

@@ -192,11 +192,12 @@ class Desa extends CI_Controller
 			$pdf->SetFont('Times','','8');
 			if(!empty($desa_id))
 			{
+				$detail_bank = !empty($data['bank_detail']) ? $data['bank_detail'] : $data['bank'];
 				$pdf->Cell(10,5,'1',1,0,'C');
 				$pdf->Cell(35,5,ucwords(strtolower($data['bank'])),1,0,'C');
 				$pdf->Cell(55,5,ucwords(strtolower($data['nama'])),1,0,'C');
 				$pdf->Cell(35,5,ucwords(strtolower($data['no_rek'])),1,0,'C');
-				$pdf->Cell(45,5,ucwords(strtolower($data['bank'])),1,0,'C');
+				$pdf->Cell(45,5,ucwords(strtolower($detail_bank)),1,0,'C');
 				$pdf->Cell(35,5,ucwords(strtolower($desa['nama'])),1,0,'C');
 				$pdf->Cell(35,5,ucwords(strtolower($data['no_npwp'])),1,0,'C');
 				$pdf->Cell(60,5,ucwords(strtolower($data['alamat'])),1,0,'C');
@@ -206,11 +207,12 @@ class Desa extends CI_Controller
 				{
 					foreach ($data as $key => $value) 
 					{
+						$detail_bank = !empty($value['bank_detail']) ? $value['bank_detail'] : $value['bank'];
 						$pdf->Cell(10,5,'1',1,0,'C');
 						$pdf->Cell(35,5,ucwords(strtolower($value['bank'])),1,0,'C');
 						$pdf->Cell(55,5,ucwords(strtolower($value['nama'])),1,0,'C');
 						$pdf->Cell(35,5,ucwords(strtolower($value['no_rek'])),1,0,'C');
-						$pdf->Cell(45,5,ucwords(strtolower($value['bank'])),1,0,'C');
+						$pdf->Cell(45,5,ucwords(strtolower($detail_bank)),1,0,'C');
 						$pdf->Cell(35,5,ucwords(strtolower($value['desa'])),1,0,'C');
 						$pdf->Cell(35,5,ucwords(strtolower($value['no_npwp'])),1,0,'C');
 						$pdf->Cell(60,5,ucwords(strtolower($value['alamat'])),1,0,'C');
