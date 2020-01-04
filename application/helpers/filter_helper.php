@@ -24,6 +24,26 @@ function filter_desa($link = '', $data = '', $desa_option = array())
 	<?php
 }
 
+function filter_district($link = '', $districts = array())
+{
+	?>
+	<form action="<?php echo $link ?>" method="get">
+		<div class="form-group">
+			<label>sortir kecamatan</label>
+		</div>
+		<div class="form-group form-inline">
+			<select class="form-control select2" name="district_id">
+				<option>pilih kecamatan</option>
+				<?php foreach ($districts as $key => $value): ?>
+					<option value="<?php echo $value['id'] ?>"><?php echo strtoupper($value['name']) ?></option>
+				<?php endforeach ?>
+			</select>
+			<button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+		</div>
+	</form>
+	<?php	
+}
+
 function filter_kecamatan($link ='', $kec_option = array())
 {
 	?>

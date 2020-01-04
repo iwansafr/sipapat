@@ -20,7 +20,7 @@ if(!empty($desa_id) && !empty($desa))
 				if(empty($_GET['s']))
 				{
 					?>
-					<a href="?s=print" target="_blank" class="pull-right btn btn-default btn-sm"><i class="fa fa-print"></i> Cetak</a>
+					<a href="?s=print&desa_id=<?php echo $desa_id?>" target="_blank" class="pull-right btn btn-default btn-sm"><i class="fa fa-print"></i> Cetak</a>
 					<a href="<?php echo base_url('admin/desa/rekening_pdf').'?desa_id='.$desa_id ?>" class="pull-right btn btn-default btn-sm"><i class="fa fa-file-pdf"></i> Pdf</a>
 					<?php
 				}

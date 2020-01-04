@@ -2,8 +2,21 @@
 
 if(!is_desa())
 {
+	$excel_get = make_get($_GET);
+	$district_id = @intval($_GET['district_id']);
+	?>
+	<a href="<?php echo base_url('admin/desa/rekening_kecamatan_list/') ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Filter Data</a>
+	<a target="_blank" href="<?php echo base_url('admin/desa/download_rekening_excel/'.$excel_get) ?>" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i> Excel</a>
+	<a target="_blank" href="<?php echo base_url('admin/desa/rekening_pdf/'.$excel_get) ?>" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i> PDF</a>
+	<?php
 	$form = new zea();
 	$form->init('roll');
+
+	if(!empty($district_id))
+	{
+		$form->join('desa','ON(desa.id = desa_rekening.desa_id)','desa_rekening.id,desa_rekening.nama,desa_rekening.desa_id,desa_rekening.alamat,desa_rekening.no_rek,desa_rekening.bank,desa_rekening.no_npwp,desa.district_id');
+		$form->setWhere(' district_id = '.$district_id);
+	}
 	$form->search();
 	$form->setTable('desa_rekening');
 	$form->setHeading('Rekening Desa');

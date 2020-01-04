@@ -86,6 +86,53 @@ class Desa extends CI_Controller
 		}
 	}
 
+	public function rekening_kecamatan_list()
+	{
+		$this->load->helper('filter');
+		$this->load->view('index',['districts'=>$this->sipapat_model->get_districts()]);
+	}
+	public function download_rekening_excel()
+	{
+		$district_id = @intval($_GET['district_id']);
+		$data = $this->sipapat_model->get_rekening_list();
+		if(!empty($data))
+		{
+			$data_table  = [];
+			$data_table[0][]= 'no';
+			$data_table[0][]= 'Nama Bank';
+			$data_table[0][]= 'Nama Pemilik Rekening';
+			$data_table[0][]= 'Nomor Rekening';
+			$data_table[0][]= 'Detil Nama Cabang Bank';
+			$data_table[0][]= 'Nama Desa';
+			$data_table[0][]= 'NPWP';
+			$data_table[0][]= 'Alamat';
+			$data_table[0][]= 'Kode Pos';
+			
+			$i = 1;
+			foreach ($data as $key => $value) 
+			{
+				$tmp_data                           = [];
+				$tmp_data['no']                     = $i;
+				$tmp_data['Nama Bank']              = $value['bank'];
+				$tmp_data['Nama Pemilik Rekening']  = $value['nama'];
+				$tmp_data['Nomor Rekening']         = $value['no_rek'];
+				$tmp_data['Detil Nama Cabang Bank'] = $value['bank'];
+				$tmp_data['Nama Desa']              = $value['desa'];
+				$tmp_data['NPWP']                   = $value['no_npwp'];
+				$tmp_data['Alamat']                 = $value['alamat'];
+				$tmp_data['Kode Pos']               = $value['kode_pos'];
+				$data_table[] = $tmp_data;
+				$i++;
+			}
+			$this->load->library('table');
+			// header("Content-type: application/vnd-ms-excel");
+			header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+			header("Content-Disposition: attachment; filename=Data Rekening Desa Kabupaten.xls");
+
+			echo $this->table->generate($data_table);
+		}
+	}
+
 	public function rekening_pdf()
 	{
 		$sipapatconfig = $this->esg->get_esg('sipapat_config');
@@ -107,6 +154,9 @@ class Desa extends CI_Controller
 			{
 				$data = $this->sipapat_model->get_rekening($desa_id);
 				$desa = $this->sipapat_model->get_desa($desa_id);
+			}else{
+				$district_id = @intval($_GET['district_id']);
+				$data = $this->sipapat_model->get_rekening_list($district_id);
 			}
 
 			$this->load->library('pdf');
@@ -151,6 +201,22 @@ class Desa extends CI_Controller
 				$pdf->Cell(35,5,ucwords(strtolower($data['no_npwp'])),1,0,'C');
 				$pdf->Cell(60,5,ucwords(strtolower($data['alamat'])),1,0,'C');
 				$pdf->Cell(25,5,ucwords(strtolower($desa['kode_pos'])),1,1,'C');
+			}else{
+				if(!empty($data))
+				{
+					foreach ($data as $key => $value) 
+					{
+						$pdf->Cell(10,5,'1',1,0,'C');
+						$pdf->Cell(35,5,ucwords(strtolower($value['bank'])),1,0,'C');
+						$pdf->Cell(55,5,ucwords(strtolower($value['nama'])),1,0,'C');
+						$pdf->Cell(35,5,ucwords(strtolower($value['no_rek'])),1,0,'C');
+						$pdf->Cell(45,5,ucwords(strtolower($value['bank'])),1,0,'C');
+						$pdf->Cell(35,5,ucwords(strtolower($value['desa'])),1,0,'C');
+						$pdf->Cell(35,5,ucwords(strtolower($value['no_npwp'])),1,0,'C');
+						$pdf->Cell(60,5,ucwords(strtolower($value['alamat'])),1,0,'C');
+						$pdf->Cell(25,5,ucwords(strtolower($value['kode_pos'])),1,1,'C');
+					}
+				}
 			}
 			$pdf->Cell(255);
 			$pdf->Cell(35,25,'Kepala BPKAD '.str_replace('UPATEN','',$kabupaten),0,1,'L');

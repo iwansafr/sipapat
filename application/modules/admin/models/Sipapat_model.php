@@ -18,6 +18,16 @@ class Sipapat_model extends CI_Model
 		}
 	}
 
+	public function get_districts()
+	{
+		$sipapat_config = $this->esg->get_esg('sipapat_config');
+		if(!empty($sipapat_config))
+		{
+			$regency_id = $sipapat_config['regency_id'];
+			return $this->db->query('SELECT * FROM districts WHERE regency_id = ?', $regency_id)->result_array();
+		}
+	}
+
 	public function desa_id_get()
 	{
 		$desa_id_get = '';
@@ -57,6 +67,24 @@ class Sipapat_model extends CI_Model
 	public function get_rekening($desa_id = 0)
 	{
 		return $this->db->query('SELECT * FROM desa_rekening WHERE desa_id = ?',$desa_id)->row_array();
+	}
+
+	public function get_rekening_list($district_id = 0)
+	{
+		$sipapat_config = $this->esg->get_esg('sipapat_config');
+		if(!empty($sipapat_config))
+		{
+			$regency_id = @intval($sipapat_config['regency_id']);
+			$q = 'SELECT r.*,d.nama AS desa,d.kode_pos FROM desa_rekening AS r INNER JOIN desa AS d ON(d.id=r.desa_id) WHERE d.regency_id = ?';
+			if(!empty($district_id))
+			{
+				$q .= ' AND d.district_id = ?';
+				$data = $this->db->query($q, [$regency_id, $district_id])->result_array();			
+			}else{
+				$data = $this->db->query($q, $regency_id)->result_array();			
+			}
+			return $data;
+		}
 	}
 
 	public function get_desa_id()

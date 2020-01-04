@@ -462,6 +462,8 @@ class Dilan extends CI_Controller{
 				$pdf->SetFont('Times','','13');
 				// $pdf->MultiCell(0,5,$teks4,0,1,false);
 				// $pdf->Cell(0,5,$teks4,0,1,'L');
+				
+				/*form lama*/
 				$pdf->Cell(30,5,'Alamat Kantor',0,0,'L');
 				$pdf->Cell(30,5,$teks4,0,0,'L');
 				$pdf->Cell(20);
@@ -476,6 +478,14 @@ class Dilan extends CI_Controller{
 				$pdf->Cell(22);
 				$pdf->Cell(30,5,'Kode Pos',0,0,'L');
 				$pdf->Cell(30,5,$teks7,0,1,'L');
+				/*form lama */
+
+				// $pdf->Cell(0,0,'',0,1,'C');
+				// $pdf->Cell(22);
+				// $pdf->MultiCell(0,5,ucwords(strtolower($desa['alamat'].' Email: '.$desa['email'].' Kode Pos: '.$desa['kode_pos'])),0,'C',false);
+				// $pdf->Cell(22);
+				// $pdf->Cell(0,5,' Website: '.$desa['website'],0,1,'C');
+
 				$pdf->SetLineWidth(1);
 				$pdf->Line(10,45,200,45);
 				$pdf->SetLineWidth(0);

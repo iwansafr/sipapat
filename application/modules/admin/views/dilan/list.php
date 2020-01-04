@@ -43,7 +43,7 @@ if(!$is_desa && !is_kecamatan())
 if(!empty($desa_id) || $is_desa)
 {
 	$excel_get = make_get($_GET);
-	if($is_desa && empty($excel_get))
+	if($is_desa)
 	{
 		$excel_get .= '?desa_id='.$desa_id;
 	}
