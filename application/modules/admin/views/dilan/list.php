@@ -7,8 +7,10 @@ $form->setTable('penduduk');
 $form->init('roll');
 
 $form->search();
+$is_desa = is_desa();
+$desa_id = 0;
 
-if(!is_desa())
+if(!$is_desa)
 {
 	$desa_id = @intval($_GET['desa_id']);
 	if(!empty($desa_id))
@@ -24,12 +26,13 @@ if(!is_desa())
 		}
 	}
 }else{
-	$form->setWhere("desa_id = ".$this->sipapat_model->get_desa_id());
+	$desa_id = $this->sipapat_model->get_desa_id();
+	$form->setWhere("desa_id = ".$desa_id);
 }
 
 $form->order_by('penduduk.id','DESC');
 // $form->disable_order_by();
-if(!is_desa() && !is_kecamatan())
+if(!$is_desa && !is_kecamatan())
 {
 	?>
 	<a href="<?php echo base_url('admin/dilan/kecamatan_list/') ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Filter Data</a>
@@ -37,9 +40,13 @@ if(!is_desa() && !is_kecamatan())
 	<?php
 }
 
-if(!empty($desa_id) || is_desa())
+if(!empty($desa_id) || $is_desa)
 {
 	$excel_get = make_get($_GET);
+	if($is_desa && empty($excel_get))
+	{
+		$excel_get .= '?desa_id='.$desa_id;
+	}
 	?>
 	<a target="_blank" href="<?php echo base_url('admin/dilan/download_excel/'.$excel_get) ?>" class="btn btn-sm btn-success"><i class="fa fa-file-excel-o"></i> Download</a>
 	<a href="<?php echo base_url('admin/dilan/detail_desa/') ?>" class="btn btn-sm btn-success"><i class="fa fa-chart-bar"></i> Statistik</a>
@@ -78,7 +85,7 @@ $form->setLabel('alamat','desa');
 // $form->setOptions('status',$this->dilan_model->status());
 // $form->setAttribute('status','disabled');
 
-if(is_desa())
+if($is_desa)
 {
 	$form->addInput('no_rt','plaintext');
 	$form->addInput('no_rw','plaintext');
