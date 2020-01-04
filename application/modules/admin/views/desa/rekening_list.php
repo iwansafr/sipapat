@@ -7,10 +7,14 @@ if(!is_desa())
 	$form->search();
 	$form->setTable('desa_rekening');
 	$form->setHeading('Rekening Desa');
-	$form->addInput('id','hidden');
+	$form->addInput('id','plaintext');
+	$form->setPlainText('id',[base_url('admin/desa/rekening/?desa_id={desa_id}')=>'Detail']);
 	$form->setNumbering(true);
 	$form->addInput('nama','plaintext');
-	$form->setHelp('nama','nama sesuai di rekening');
+	$form->addInput('desa_id','dropdown');
+	$form->tableOptions('desa_id','desa','id','nama');
+	$form->setAttribute('desa_id','disabled');
+	$form->setLabel('desa_id','desa');
 	$form->addInput('alamat','plaintext');
 	$form->addInput('no_rek','plaintext');
 	$form->setLabel('no_rek','Nomor Rekening');

@@ -99,6 +99,8 @@ class Desa extends CI_Controller
 			if(is_desa())
 			{
 				$desa_id = $this->sipapat_model->get_desa_id();
+			}else{
+				$desa_id = @intval($_GET['desa_id']);
 			}
 
 			if(!empty($desa_id))
