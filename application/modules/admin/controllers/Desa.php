@@ -123,34 +123,34 @@ class Desa extends CI_Controller
 			$pdf->Cell(10,5,'No',1,0,'C');
 			$pdf->Cell(35,5,'Nama Bank',1,0,'C');
 			// $pdf->MultiCell(30,8,'Nama Pemilik Rekening',1,'C',false);
-			$pdf->Cell(45,5,'Nama Pemilik Rekening',1,0,'C');
+			$pdf->Cell(55,5,'Nama Pemilik Rekening',1,0,'C');
 			$pdf->Cell(35,5,'Nomor Rekening',1,0,'C');
 			$pdf->Cell(45,5,'Detil Nama Cabang Bank',1,0,'C');
 			$pdf->Cell(35,5,'Nama Desa',1,0,'C');
 			$pdf->Cell(35,5,'NPWP',1,0,'C');
-			$pdf->Cell(55,5,'Alamat',1,0,'C');
-			$pdf->Cell(35,5,'Kode Pos',1,1,'C');
+			$pdf->Cell(60,5,'Alamat',1,0,'C');
+			$pdf->Cell(25,5,'Kode Pos',1,1,'C');
 			$pdf->Cell(10,5,'(1)',1,0,'C');
 			$pdf->Cell(35,5,'(2)',1,0,'C');
-			$pdf->Cell(45,5,'(3)',1,0,'C');
+			$pdf->Cell(55,5,'(3)',1,0,'C');
 			$pdf->Cell(35,5,'(4)',1,0,'C');
 			$pdf->Cell(45,5,'(5)',1,0,'C');
 			$pdf->Cell(35,5,'(6)',1,0,'C');
 			$pdf->Cell(35,5,'(7)',1,0,'C');
-			$pdf->Cell(55,5,'(8)',1,0,'C');
-			$pdf->Cell(35,5,'(9)',1,1,'C');
+			$pdf->Cell(60,5,'(8)',1,0,'C');
+			$pdf->Cell(25,5,'(9)',1,1,'C');
 			$pdf->SetFont('Times','','8');
 			if(!empty($desa_id))
 			{
 				$pdf->Cell(10,5,'1',1,0,'C');
-				$pdf->Cell(35,5,$data['bank'],1,0,'C');
-				$pdf->Cell(45,5,$data['nama'],1,0,'C');
-				$pdf->Cell(35,5,$data['no_rek'],1,0,'C');
-				$pdf->Cell(45,5,$data['bank'],1,0,'C');
-				$pdf->Cell(35,5,$desa['nama'],1,0,'C');
-				$pdf->Cell(35,5,$data['no_npwp'],1,0,'C');
-				$pdf->Cell(55,5,$data['alamat'],1,0,'C');
-				$pdf->Cell(35,5,$desa['kode_pos'],1,1,'C');
+				$pdf->Cell(35,5,ucfirst(strtolower($data['bank'])),1,0,'C');
+				$pdf->Cell(55,5,ucfirst(strtolower($data['nama'])),1,0,'C');
+				$pdf->Cell(35,5,ucfirst(strtolower($data['no_rek'])),1,0,'C');
+				$pdf->Cell(45,5,ucfirst(strtolower($data['bank'])),1,0,'C');
+				$pdf->Cell(35,5,ucfirst(strtolower($desa['nama'])),1,0,'C');
+				$pdf->Cell(35,5,ucfirst(strtolower($data['no_npwp'])),1,0,'C');
+				$pdf->Cell(60,5,ucfirst(strtolower($data['alamat'])),1,0,'C');
+				$pdf->Cell(25,5,ucfirst(strtolower($desa['kode_pos'])),1,1,'C');
 			}
 			$pdf->Cell(215);
 			$pdf->Cell(35,25,'Kepala BPKAD '.str_replace('UPATEN','',$kabupaten),0,1,'L');
