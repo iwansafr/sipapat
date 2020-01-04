@@ -128,7 +128,7 @@ class Desa extends CI_Controller
 			$pdf->Cell(45,5,'Detil Nama Cabang Bank',1,0,'C');
 			$pdf->Cell(35,5,'Nama Desa',1,0,'C');
 			$pdf->Cell(35,5,'NPWP',1,0,'C');
-			$pdf->Cell(40,5,'Alamat',1,0,'C');
+			$pdf->Cell(50,5,'Alamat',1,0,'C');
 			$pdf->Cell(35,5,'Kode Pos',1,1,'C');
 			$pdf->Cell(10,5,'(1)',1,0,'C');
 			$pdf->Cell(30,5,'(2)',1,0,'C');
@@ -137,7 +137,7 @@ class Desa extends CI_Controller
 			$pdf->Cell(45,5,'(5)',1,0,'C');
 			$pdf->Cell(35,5,'(6)',1,0,'C');
 			$pdf->Cell(35,5,'(7)',1,0,'C');
-			$pdf->Cell(40,5,'(8)',1,0,'C');
+			$pdf->Cell(50,5,'(8)',1,0,'C');
 			$pdf->Cell(35,5,'(9)',1,1,'C');
 			$pdf->SetFont('Times','','9');
 			if(!empty($desa_id))
@@ -149,7 +149,7 @@ class Desa extends CI_Controller
 				$pdf->Cell(45,5,$data['bank'],1,0,'C');
 				$pdf->Cell(35,5,$desa['nama'],1,0,'C');
 				$pdf->Cell(35,5,$data['no_npwp'],1,0,'C');
-				$pdf->Cell(40,5,$data['alamat'],1,0,'C');
+				$pdf->Cell(50,5,$data['alamat'],1,0,'C');
 				$pdf->Cell(35,5,$desa['kode_pos'],1,1,'C');
 			}
 			$pdf->Cell(215);
