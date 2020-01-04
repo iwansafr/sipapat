@@ -251,6 +251,11 @@ class Sipapat_model extends CI_Model
 		}
 	}
 
+	public function get_regency($regency_id = 0)
+	{
+		return $this->db->query('SELECT * FROM regencies WHERE id = ?',$regency_id)->row_array();
+	}
+
 	public function kepdes_alert()
 	{
 		$user = $this->session->userdata(base_url().'_logged_in');

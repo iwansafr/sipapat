@@ -86,6 +86,80 @@ class Desa extends CI_Controller
 		}
 	}
 
+	public function rekening_pdf()
+	{
+		$sipapatconfig = $this->esg->get_esg('sipapat_config');
+		if(!empty($sipapatconfig))
+		{
+			$kabupaten = $this->sipapat_model->get_regency($sipapatconfig['regency_id']);
+			if(!empty($kabupaten))
+			{
+				$kabupaten = $kabupaten['name'];
+			}
+			if(is_desa())
+			{
+				$desa_id = $this->sipapat_model->get_desa_id();
+			}
+
+			if(!empty($desa_id))
+			{
+				$data = $this->sipapat_model->get_rekening($desa_id);
+				$desa = $this->sipapat_model->get_desa($desa_id);
+			}
+
+			$this->load->library('pdf');
+			$pdf = new FPDF('L','mm','Legal');
+	    // membuat halaman baru
+	    $pdf->AddPage();
+	    // setting jenis font yang akan digunakan
+	    $pdf->SetFont('Arial','B',7);
+	    // mencetak string 
+			$pdf->SetFont('Times','B','15');
+			$pdf->Cell(0,0,'DAFTAR PENDATAAN DATA REKENING KAS DESA',0,1,'C');
+			$pdf->Cell(0,20,$kabupaten,0,1,'C');
+			$pdf->SetFont('Times','B','10');
+			$pdf->Cell(10,5,'No',1,0,'C');
+			$pdf->Cell(30,5,'Nama Bank',1,0,'C');
+			// $pdf->MultiCell(30,8,'Nama Pemilik Rekening',1,'C',false);
+			$pdf->Cell(40,5,'Nama Pemilik Rekening',1,0,'C');
+			$pdf->Cell(35,5,'Nomor Rekening',1,0,'C');
+			$pdf->Cell(45,5,'Detil Nama Cabang Bank',1,0,'C');
+			$pdf->Cell(35,5,'Nama Desa',1,0,'C');
+			$pdf->Cell(35,5,'NPWP',1,0,'C');
+			$pdf->Cell(40,5,'Alamat',1,0,'C');
+			$pdf->Cell(35,5,'Kode Pos',1,1,'C');
+			$pdf->Cell(10,5,'(1)',1,0,'C');
+			$pdf->Cell(30,5,'(2)',1,0,'C');
+			$pdf->Cell(40,5,'(3)',1,0,'C');
+			$pdf->Cell(35,5,'(4)',1,0,'C');
+			$pdf->Cell(45,5,'(5)',1,0,'C');
+			$pdf->Cell(35,5,'(6)',1,0,'C');
+			$pdf->Cell(35,5,'(7)',1,0,'C');
+			$pdf->Cell(40,5,'(8)',1,0,'C');
+			$pdf->Cell(35,5,'(9)',1,1,'C');
+			$pdf->SetFont('Times','','9');
+			if(!empty($desa_id))
+			{
+				$pdf->Cell(10,5,'1',1,0,'C');
+				$pdf->Cell(30,5,$data['bank'],1,0,'C');
+				$pdf->Cell(40,5,$data['nama'],1,0,'C');
+				$pdf->Cell(35,5,$data['no_rek'],1,0,'C');
+				$pdf->Cell(45,5,$data['bank'],1,0,'C');
+				$pdf->Cell(35,5,$desa['nama'],1,0,'C');
+				$pdf->Cell(35,5,$data['no_npwp'],1,0,'C');
+				$pdf->Cell(40,5,$data['alamat'],1,0,'C');
+				$pdf->Cell(35,5,$desa['kode_pos'],1,1,'C');
+			}
+			$pdf->Cell(215);
+			$pdf->Cell(35,25,'Kepala BPKAD '.str_replace('UPATEN','',$kabupaten),0,1,'L');
+			$pdf->Cell(215);
+			$pdf->Cell(35,5,'.............................................',0,1,'L');
+			$pdf->Cell(215);
+			$pdf->Cell(35,5,'NIP.',0,1,'L');
+			$pdf->Output('Rekening_DESA.pdf','I');
+		}
+	}
+
 	public function detail($id = 0)
 	{
 		$this->esg_model->set_nav_title('Detail Desa');

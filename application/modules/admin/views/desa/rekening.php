@@ -21,6 +21,7 @@ if(!empty($desa_id) && !empty($desa))
 				{
 					?>
 					<a href="?s=print" target="_blank" class="pull-right btn btn-default btn-sm"><i class="fa fa-print"></i> Cetak</a>
+					<a href="<?php echo base_url('admin/desa/rekening_pdf') ?>" class="pull-right btn btn-default btn-sm"><i class="fa fa-file-pdf"></i> Pdf</a>
 					<?php
 				}
 				?>
