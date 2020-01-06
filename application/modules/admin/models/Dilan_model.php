@@ -278,27 +278,26 @@ class Dilan_model extends CI_Model
 		if(!empty($usia))
 		{
 			$usia_tmp = [];
-			$usia_tmp['17-21'] = 0;
-			$usia_tmp['22-30'] = 0;
-			$usia_tmp['31-40'] = 0;
-			$usia_tmp['41-50'] = 0;
-			$usia_tmp['51-60'] = 0;
-			$usia_tmp['60++'] = 0;
+			$usia_tmp['balita'] = 0;
+			$usia_tmp['anak-anak'] = 0;
+			$usia_tmp['remaja'] = 0;
+			$usia_tmp['dewasa'] = 0;
+			$usia_tmp['lansia'] = 0;
 			foreach ($usia as $key => $value) 
 			{
-				if($value['usia'] <= 21)
+				if($value['usia'] < 5)
 				{
-					$usia_tmp['17-21'] +=1;
-				}else if($value['usia'] <= 30){
-					$usia_tmp['22-30'] +=1;
-				}else if($value['usia'] <= 40){
-					$usia_tmp['31-40'] +=1;
-				}else if($value['usia'] <= 50){
-					$usia_tmp['41-50'] +=1;
-				}else if($value['usia'] <= 60){
-					$usia_tmp['51-60'] +=1;
-				}else{
-					$usia_tmp['60++'] +=1;
+					$usia_tmp['balita'] +=1;
+				}else if($value['usia'] <= 11)
+				{
+					$usia_tmp['anak-anak'] +=1;
+				}else if($value['usia'] <= 25)
+				{
+					$usia_tmp['remaja'] +=1;
+				}else if($value['usia'] <= 45){
+					$usia_tmp['dewasa'] +=1;
+				}else if($value['usia'] >= 46){
+					$usia_tmp['lansia'] +=1;
 				}
 			}
 		}
