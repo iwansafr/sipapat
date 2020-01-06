@@ -274,6 +274,36 @@ class Dilan_model extends CI_Model
 		{
 			$total_wanita = $total_wanita['total'];
 		}
-		return ['penduduk'=>$total,'kk'=>$total_kk,'pria'=>$total_pria,'wanita'=>$total_wanita];
+		$usia = $this->db->query("SELECT DATEDIFF(CURRENT_DATE, STR_TO_DATE(p.tgl_lhr, '%Y-%m-%d'))/365 AS usia FROM penduduk AS p where desa_id = ?",$desa_id)->result_array();
+		if(!empty($usia))
+		{
+			$usia_tmp = [];
+			$usia_tmp['17-21'] = 0;
+			$usia_tmp['22-30'] = 0;
+			$usia_tmp['31-40'] = 0;
+			$usia_tmp['41-50'] = 0;
+			$usia_tmp['51-60'] = 0;
+			$usia_tmp['60++'] = 0;
+			foreach ($usia as $key => $value) 
+			{
+				if($value['usia'] <= 21)
+				{
+					$usia_tmp['17-21'] +=1;
+				}else if($value['usia'] <= 30){
+					$usia_tmp['22-30'] +=1;
+				}else if($value['usia'] <= 40){
+					$usia_tmp['31-40'] +=1;
+				}else if($value['usia'] <= 50){
+					$usia_tmp['41-50'] +=1;
+				}else if($value['usia'] <= 60){
+					$usia_tmp['51-60'] +=1;
+				}else{
+					$usia_tmp['60++'] +=1;
+				}
+			}
+		}
+		$janda = $this->db->query("SELECT count(id) AS total FROM penduduk where desa_id = ? AND (status = 3 OR status = 4) AND jk = 2",$desa_id)->row_array();
+		$janda = @intval($janda['total']);		
+		return ['penduduk'=>$total,'kk'=>$total_kk,'pria'=>$total_pria,'wanita'=>$total_wanita,'usia'=>$usia_tmp,'janda'=>$janda];
 	}
 }

@@ -22,6 +22,16 @@
 				<td>total WANITA</td>
 				<td>: <?php echo $penduduk['wanita'] ?></td>
 			</tr>
+			<?php foreach ($penduduk['usia'] as $key => $value): ?>
+				<tr>
+					<td>Usia <?php echo $key ?></td>
+					<td>: <?php echo $value ?></td>
+				</tr>
+			<?php endforeach ?>
+			<tr>
+				<td>total Janda</td>
+				<td>: <?php echo $penduduk['janda'] ?></td>
+			</tr>
 		</table>
 	</div>
 </div>
