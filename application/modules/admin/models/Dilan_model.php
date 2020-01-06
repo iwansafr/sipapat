@@ -263,17 +263,17 @@ class Dilan_model extends CI_Model
 			$total = $ids['total'];
 		}
 		$total_kk = $this->db->query('SELECT count(no_kk) AS total FROM penduduk WHERE desa_id = ? GROUP BY no_kk',$desa_id)->result_array();
-
 		$total_kk = count($total_kk);
-		return ['penduduk'=>$total,'kk'=>$total_kk];
-		// $rt = $this->db->query('SELECT no_rt FROM penduduk WHERE desa_id = ? GROUP BY no_rt', $desa_id)->result_array();
-		// pr($rt);
-		// $rw = $this->db->query('SELECT no_rw FROM penduduk WHERE desa_id = ? GROUP BY no_rw', $desa_id)->result_array();
-		// pr($rw);
-		// foreach ($rt as $key => $value) 
-		// {
-		// 	$kk_rt = $this->db->query('SELECT no_kk FROM penduduk WHERE desa_id = ? AND no_rt = ? group by no_kk', [$desa_id,$value])->result_array();
-		// 	pr(count($kk_rt));
-		// }
+		$total_pria = $this->db->query('SELECT count(id) AS total FROM penduduk WHERE desa_id = ? AND jk = 1',$desa_id)->row_array();
+		if(!empty($total_pria))
+		{
+			$total_pria = $total_pria['total'];
+		}
+		$total_wanita = $this->db->query('SELECT count(id) AS total FROM penduduk WHERE desa_id = ? AND jk = 2',$desa_id)->row_array();
+		if(!empty($total_wanita))
+		{
+			$total_wanita = $total_wanita['total'];
+		}
+		return ['penduduk'=>$total,'kk'=>$total_kk,'pria'=>$total_pria,'wanita'=>$total_wanita];
 	}
 }

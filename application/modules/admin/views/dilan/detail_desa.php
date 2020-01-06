@@ -14,6 +14,14 @@
 				<td>total KK</td>
 				<td>: <?php echo $penduduk['kk'] ?></td>
 			</tr>
+			<tr>
+				<td>total PRIA</td>
+				<td>: <?php echo $penduduk['pria'] ?></td>
+			</tr>
+			<tr>
+				<td>total WANITA</td>
+				<td>: <?php echo $penduduk['wanita'] ?></td>
+			</tr>
 		</table>
 	</div>
 </div>
