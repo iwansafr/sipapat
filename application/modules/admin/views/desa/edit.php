@@ -34,7 +34,10 @@ if(is_root() || is_admin() || @$pengguna['desa_id'] == @intval($_GET['id']))
 	$form->setOptions('village_id',['none']);
 
 	$form->addInput('kode','text');
-	$form->setAttribute('kode',['readonly'=>'readonly']);
+	if(!is_desa())
+	{
+		$form->setAttribute('kode',['readonly'=>'readonly']);
+	}
 	$form->setLabel('kode','Kode Desa');
 	if(!empty($sipapat_config))
 	{
