@@ -31,6 +31,7 @@ class Dilan extends CI_Controller{
 		$penduduk = $this->dilan_model->total_penduduk($desa_id);
 
 		$data = ['penduduk'=>$penduduk];
+		$this->esg->add_js(base_url('templates/AdminLTE/bower_components/chart.js/Chart.js'));
 		$this->load->view('index',$data);
 	}
 
