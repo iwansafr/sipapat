@@ -465,19 +465,19 @@ class Dilan extends CI_Controller{
 				
 				/*form lama*/
 				$pdf->Cell(30,5,'Alamat Kantor',0,0,'L');
-				$pdf->Cell(30,5,$teks4,0,0,'L');
+				$pdf->Cell(60,5,$teks4,0,0,'L');
 				$pdf->Cell(20);
-				$pdf->Cell(15,5,'Email',0,0,'L');
-				$pdf->Cell(60,5,$teks6,0,1,'L');
+				$pdf->Cell(20,5,'Telepon',0,0,'L');
+				$pdf->Cell(30,5,$teks5,0,1,'L');
 				$pdf->Cell(22);
-				$pdf->Cell(30,5,'Telepon',0,0,'L');
-				$pdf->Cell(30,5,$teks5,0,0,'L');
+				$pdf->Cell(30,5,'Email',0,0,'L');
+				$pdf->Cell(60,5,$teks6,0,0,'L');
 				$pdf->Cell(20);
-				$pdf->Cell(15,5,'Website',0,0,'L');
-				$pdf->Cell(60,5,$teks8,0,1,'L');
-				$pdf->Cell(22);
-				$pdf->Cell(30,5,'Kode Pos',0,0,'L');
+				$pdf->Cell(20,5,'Kode Pos',0,0,'L');
 				$pdf->Cell(30,5,$teks7,0,1,'L');
+				$pdf->Cell(22);
+				$pdf->Cell(30,5,'Website',0,0,'L');
+				$pdf->Cell(60,5,$teks8,0,1,'L');
 				/*form lama */
 
 				// $pdf->Cell(0,0,'',0,1,'C');
