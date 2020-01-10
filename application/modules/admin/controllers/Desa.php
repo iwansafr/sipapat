@@ -54,6 +54,12 @@ class Desa extends CI_Controller
 		$this->load->view('index');
 	}
 
+	public function rekening_rekap()
+	{
+		$data = $this->sipapat_model->rekening_data_rekap();
+		$this->load->view('index',['data'=>$data]);
+	}
+
 	public function rekening_list()
 	{
 		$this->load->view('index');

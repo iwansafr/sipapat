@@ -64,6 +64,12 @@ class Sipapat_model extends CI_Model
 		// $this->esg->set_esg('meta', $data);
 	}
 
+	public function rekening_data_rekap()
+	{
+		$regency_id = @intval($this->esg->get_esg('sipapat_config')['regency_id']);
+		return $this->db->query('SELECT desa_id,desa.nama FROM desa_rekening INNER JOIN desa ON(desa.id=desa_rekening.desa_id) WHERE desa.regency_id = ?', $regency_id)->result_array();
+	}
+
 	public function get_rekening($desa_id = 0)
 	{
 		return $this->db->query('SELECT * FROM desa_rekening WHERE desa_id = ?',$desa_id)->row_array();

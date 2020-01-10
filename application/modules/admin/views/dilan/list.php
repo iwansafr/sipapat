@@ -9,6 +9,7 @@ $form->init('roll');
 $form->search();
 $is_desa = is_desa();
 $desa_id = 0;
+$group = @$_GET['group'];
 
 if(!$is_desa)
 {
@@ -27,7 +28,12 @@ if(!$is_desa)
 	}
 }else{
 	$desa_id = $this->sipapat_model->get_desa_id();
-	$form->setWhere("desa_id = ".$desa_id);
+	$q = 'desa_id = '.$desa_id;
+	if(!empty($group))
+	{
+		$q .= ' AND '.$group.' = '.@intval($_GET[$group]);
+	}
+	$form->setWhere($q);
 }
 
 $form->order_by('penduduk.id','DESC');
@@ -47,9 +53,33 @@ if(!empty($desa_id) || $is_desa)
 	{
 		$excel_get .= '?desa_id='.$desa_id;
 	}
+	$filter_group = 
+	[
+		'jk'=>'Kelamin',
+		'agama'=>'agama',
+		'gdr'=>'Golongan Darah',
+		'status'=>'Status',
+		'shdk'=>'Status dalam keluarga',
+		'pnydng_cct'=>'Penyandang Cacat',
+		'pendidikan'=>'Pendidikan',
+		'pekerjaan'=>'Pekerjaan'
+	];
 	?>
 	<a target="_blank" href="<?php echo base_url('admin/dilan/download_excel/'.$excel_get) ?>" class="btn btn-sm btn-success"><i class="fa fa-file-excel-o"></i> Download</a>
 	<a href="<?php echo base_url('admin/dilan/detail_desa/') ?>" class="btn btn-sm btn-success"><i class="fa fa-chart-bar"></i> Statistik</a>
+	<div class="col-md-4 pull-right">
+		<form action="<?php echo base_url('admin/dilan/filter_by/') ?>" class="pull-right" method="get">
+			<div class="form-group form-inline">
+				<select class="form-control" name="group">
+					<?php foreach ($filter_group as $key => $value): ?>
+						<?php $selected = $key == $group ? 'selected' : '';?>
+						<option value="<?php echo $key ?>" <?php echo $selected ?>><?php echo $value ?></option>
+					<?php endforeach ?>
+				</select>
+				<button class="btn btn-default"><i class="fa fa-list"></i> filter</button>
+			</div>
+		</form>
+	</div>
 	<?php	
 }
 

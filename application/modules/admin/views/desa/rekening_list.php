@@ -8,6 +8,7 @@ if(!is_desa())
 	<a href="<?php echo base_url('admin/desa/rekening_kecamatan_list/') ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Filter Data</a>
 	<a target="_blank" href="<?php echo base_url('admin/desa/download_rekening_excel/'.$excel_get) ?>" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i> Excel</a>
 	<a target="_blank" href="<?php echo base_url('admin/desa/rekening_pdf/'.$excel_get) ?>" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i> PDF</a>
+	<a href="<?php echo base_url('admin/desa/rekening_rekap/') ?>" class="btn btn-sm btn-default"><i class="fa fa-chart-bar"></i> Rekap Data</a>
 	<?php
 	$form = new zea();
 	$form->init('roll');

@@ -31,6 +31,7 @@ class Dilan extends CI_Controller{
 		$penduduk = $this->dilan_model->total_penduduk($desa_id);
 
 		$data = ['penduduk'=>$penduduk];
+		$this->esg->add_js(base_url('templates/AdminLTE/bower_components/chart.js/Chart.js'));
 		$this->load->view('index',$data);
 	}
 
@@ -774,6 +775,45 @@ class Dilan extends CI_Controller{
 	public function list()
 	{
 		$this->load->view('index');
+	}
+
+	public function filter_by()
+	{
+		$data = [];
+		if(!empty($_GET['group']))
+		{
+			$group = $_GET['group'];
+			switch ($group) {
+				case 'gdr':
+					$data['gdr'] = $this->dilan_model->golongan_darah();
+					break;
+				case 'agama':
+					$data['agama'] = $this->dilan_model->agama();
+					break;	
+				case 'jk':
+					$data['jk'] = $this->dilan_model->kelamin();
+					break;
+				case 'status':
+					$data['status'] = $this->dilan_model->status();
+					break;	
+				case 'shdk':
+					$data['shdk'] = $this->dilan_model->shdk();
+					break;
+				case 'pnydng_cct':
+					$data['pnydng_cct'] = $this->dilan_model->cacat();
+					break;
+				case 'pendidikan':
+					$data['pendidikan'] = $this->dilan_model->pendidikan();
+					break;
+				case 'pekerjaan':
+					$data['pekerjaan'] = $this->dilan_model->pekerjaan();
+					break;
+				default:
+					$data['jk'] = $this->dilan_model->kelamin();
+					break;
+			}
+		}
+		$this->load->view('index', ['data'=>$data]);
 	}
 
 	public function clear_list()
