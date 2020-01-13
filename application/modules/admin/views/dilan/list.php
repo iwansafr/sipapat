@@ -1,5 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
+ini_set('memory_limit', '512M');
 $form = new zea();
 
 $form->setTable('penduduk');
