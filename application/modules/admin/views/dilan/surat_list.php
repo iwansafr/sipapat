@@ -13,7 +13,7 @@ if(is_desa())
 	$desa_id = @intval($_GET['id']);
 	if(!empty($desa_id))
 	{
-		$form->setWhere(' desa_id = '.$desa_id);
+		$form->setWhere(' desa_id = '.$desa_id.' '.$where);
 	}else{
 		$kecamatan = @$_GET['kec'];
 		if(!empty($kecamatan))
@@ -34,6 +34,7 @@ if(!is_desa() && !is_kecamatan())
 {
 	?>
 	<a href="<?php echo base_url('admin/dilan/kecamatan_surat_list/') ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Filter Data</a>
+	<a href="<?php echo base_url('admin/dilan/surat_used_detail/'.$desa_id) ?>" class="btn btn-sm btn-default"><i class="fa fa-arrow-left"></i> Kembali</a>
 	<?php
 }
 else{

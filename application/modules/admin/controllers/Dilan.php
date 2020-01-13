@@ -645,6 +645,21 @@ class Dilan extends CI_Controller{
 		$this->load->view('dilan/surat_list');
 	}
 
+	public function surat_used()
+	{
+		$this->load->view('index');
+	}
+	public function clear_surat_used()
+	{
+		$this->load->view('dilan/surat_used',['sipapat_config'=>$this->esg->get_esg('sipapat_config')]);
+	}
+
+	public function surat_used_detail($id = 0)
+	{
+		$surat = $this->dilan_model->surat_group($id);
+		$this->load->view('index',['surat'=>$surat,'id'=>$id]);
+	}
+
 	public function kecamatan_list()
 	{
 		$this->load->view('index',['kec_option'=>$this->pengguna_model->get_kecamatan()]);

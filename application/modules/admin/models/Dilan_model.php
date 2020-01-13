@@ -68,6 +68,22 @@ class Dilan_model extends CI_Model
 		return $this->db->get_where('dilan_surat',['id'=>$id])->row_array();
 	}
 
+	public function get_surat_used($desa_id = 0,$cat_id = 0)
+	{
+		$where = [];
+		if(!empty($desa_id))
+		{
+			$where['desa_id'] = $desa_id;
+		}
+		if(!empty($cat_id))
+		{
+			$where['dilan_surat_ket_id'] = $cat_id;
+		}
+		$this->db->select('dilan_surat_ket_id,count(dilan_surat_ket_id) AS total');
+		$this->db->group_by('dilan_surat_ket_id');
+		return $this->db->get_where('dilan_surat',$where)->result_array();
+	}
+
 	public function kelamin()
 	{
 		return ['1'=>'Laki-laki', '2'=>'Perempuan'];
@@ -235,11 +251,14 @@ class Dilan_model extends CI_Model
     ];
 	}
 
-	public function surat_group()
+	public function surat_group($desa_id = 0)
 	{
 		$this->db->select('id,title');
 		$surat_ket = $this->db->get('dilan_surat_ket')->result_array();
-		$desa_id = $this->sipapat_model->get_desa_id();
+		if(is_desa())
+		{
+			$desa_id = $this->sipapat_model->get_desa_id();
+		}
 		if(!empty($surat_ket))
 		{
 			foreach ($surat_ket as $key => $value) 
