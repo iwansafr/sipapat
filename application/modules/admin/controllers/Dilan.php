@@ -333,6 +333,8 @@ class Dilan extends CI_Controller{
 				$pekerjaan= $this->dilan_model->pekerjaan();
 				foreach ($data as $key => $value) 
 				{
+					$value['no_kk'] = "'".@$value['no_kk'];
+					$value['nik'] = "'".@$value['nik'];
 					$value['jk'] = @$jk[$value['jk']];
 					$value['gdr'] = @$gdr[$value['gdr']];
 					$value['agama'] = @$agama[$value['agama']];
