@@ -51,7 +51,12 @@ if(!empty($desa_id) || $is_desa)
 	$excel_get = make_get($_GET);
 	if($is_desa)
 	{
-		$excel_get .= '?desa_id='.$desa_id;
+		if(empty($excel_get))
+		{
+			$excel_get = '?desa_id='.$desa_id;
+		}else{
+			$excel_get .= '&desa_id='.$desa_id;
+		}
 	}
 	$filter_group = 
 	[
