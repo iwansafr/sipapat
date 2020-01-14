@@ -67,7 +67,7 @@ class Dilan extends CI_Controller{
 	{
 		if(!empty($id))
 		{
-			$this->load->view('index');
+			$this->load->view('index',['id'=>$id]);
 		}
 	}
 
