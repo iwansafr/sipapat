@@ -22,16 +22,35 @@
 				<td>total WANITA</td>
 				<td>: <?php echo $penduduk['wanita'] ?></td>
 			</tr>
-			<?php $usia_chart_data = ''; ?>
+			<?php $usia_chart_data = '';
+			$color =
+			[
+				'#f44336',
+				'#e91e63',
+				'#9c27b0',
+				'#673ab7',
+				'#3f51b5',
+				'#2196f3',
+				'#03a9f4',
+				'#00bcd4',
+				'#009688',
+				'#4caf50',
+				'#cddc39',
+				'#ffeb3b',
+				'#ffc107',
+				'#ff9800'
+			];?>
+			<?php $i = 0; ?>
 			<?php foreach ($penduduk['usia'] as $key => $value): ?>
 				<?php 
 				$usia_chart_data .= "
 				{
 	        value    : {$value},
-	        color    : '#f56954',
-	        highlight: '#f56954',
+	        color    : '{$color[$i]}',
+	        highlight: '{$color[$i]}1',
 	        label    : '{$key}'
 	      },";
+	      $i++;
 				?>
 				<tr>
 					<td>Usia <?php echo $key ?></td>
@@ -91,13 +110,13 @@ $(function(){
       {
         value    : {$penduduk['pria']},
         color    : '#f56954',
-        highlight: '#f56954',
+        highlight: '#929292',
         label    : 'Laki-laki'
       },
       {
         value    : {$penduduk['wanita']},
         color    : '#00a65a',
-        highlight: '#00a65a',
+        highlight: '#929292',
         label    : 'Perempuan'
       }
     ]
