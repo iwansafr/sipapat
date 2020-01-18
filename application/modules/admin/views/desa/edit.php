@@ -1,37 +1,68 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-if(is_root() || is_admin() || @$pengguna['desa_id'] == @intval($_GET['id']))
+$id = @intval($_GET['id']);
+if(is_root() || is_admin() || @$pengguna['desa_id'] == $id)
 {
 	$form = new zea();
-	$form->setId(@intval($_GET['id']));
+	$form->setId($id);
 	$form->init('edit');
 	$form->setTable('desa');
 	$form->setHeading('Data Desa');
-	
-	$form->addInput('province_id','dropdown');
-	$form->setLabel('province_id','Provinsi');
-	$form->setOptions('province_id',['none']);
 
-	$form->addInput('provinsi','text');
-	$form->setAttribute('provinsi','onkeyup="this.value = this.value.toUpperCase();"');
-	
-	$form->addInput('regency_id','dropdown');
-	$form->setLabel('regency_id','Kabupaten');
-	$form->setOptions('regency_id',['none']);
-	
-	$form->addInput('kabupaten','text');
-	$form->setAttribute('kabupaten','onkeyup="this.value = this.value.toUpperCase();"');
+	if(is_desa())
+	{
+		$form->addInput('provinsi','text');
+		$form->setAttribute('provinsi','onkeyup="this.value = this.value.toUpperCase();"');
+		
+		$form->addInput('regency_id','static');
+		
+		$form->addInput('kabupaten','text');
+		$form->setAttribute('kabupaten','onkeyup="this.value = this.value.toUpperCase();"');
 
-	
-	$form->addInput('district_id','dropdown');
-	$form->setLabel('district_id','Kecamatan');
-	$form->setOptions('district_id',['none']);
+		$form->addInput('district_id','static');
 
-	$form->addInput('kecamatan','text');
-	$form->setAttribute('kecamatan','onkeyup="this.value = this.value.toUpperCase();"');
-	
-	$form->addInput('village_id','dropdown');
-	$form->setLabel('village_id','Desa');
-	$form->setOptions('village_id',['none']);
+		$form->addInput('kecamatan','text');
+		$form->setAttribute('kecamatan','onkeyup="this.value = this.value.toUpperCase();"');
+		
+		$form->addInput('village_id','static');
+
+		if(!empty($id))
+		{
+			$data = $form->getData();
+			if(!empty($data))
+			{
+				$form->setValue('province_id', $data['province_id']);
+				$form->setValue('regency_id', $data['regency_id']);
+				$form->setValue('district_id', $data['district_id']);
+				$form->setValue('village_id', $data['village_id']);
+			}
+		}
+	}else{
+		$form->addInput('province_id','dropdown');
+		$form->setLabel('province_id','Provinsi');
+		$form->setOptions('province_id',['none']);
+
+		$form->addInput('provinsi','text');
+		$form->setAttribute('provinsi','onkeyup="this.value = this.value.toUpperCase();"');
+		
+		$form->addInput('regency_id','dropdown');
+		$form->setLabel('regency_id','Kabupaten');
+		$form->setOptions('regency_id',['none']);
+		
+		$form->addInput('kabupaten','text');
+		$form->setAttribute('kabupaten','onkeyup="this.value = this.value.toUpperCase();"');
+
+		
+		$form->addInput('district_id','dropdown');
+		$form->setLabel('district_id','Kecamatan');
+		$form->setOptions('district_id',['none']);
+
+		$form->addInput('kecamatan','text');
+		$form->setAttribute('kecamatan','onkeyup="this.value = this.value.toUpperCase();"');
+		
+		$form->addInput('village_id','dropdown');
+		$form->setLabel('village_id','Desa');
+		$form->setOptions('village_id',['none']);
+	}
 
 	$form->addInput('kode','text');
 	if(!is_desa())

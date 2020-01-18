@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<?php $this->load->view('meta') ?>
 </head>
 <body>
 
+<?php $this->load->view('js') ?>
 </body>
 </html>
