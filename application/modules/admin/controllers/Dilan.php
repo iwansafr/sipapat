@@ -562,13 +562,13 @@ class Dilan extends CI_Controller{
 				$ln_ket = strlen($surat['keterangan']);
 				$tot_ln = $ln_kep+$ln_ket;
 				if($tot_ln <= 100){
-					$height_stem = 165;
+					$height_stem = 215;
 				}else if($tot_ln <= 200){
-					$height_stem = 170;
+					$height_stem = 220;
 				}else if($tot_ln <= 300){
-					$height_stem = 180;
+					$height_stem = 230;
 				}else if($tot_ln <= 400){
-					$height_stem = 185;
+					$height_stem = 235;
 				}
 				
 				// $pdf->cell(2,5, $ln_kep);

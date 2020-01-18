@@ -62,6 +62,12 @@ $this->load->view('templates'.DIRECTORY_SEPARATOR.$templates['public_template'].
 <script type="text/javascript">
   var _URL = '<?php echo base_url() ?>';
 </script>
-<?php $this->load->view('style') ?>
+<?php 
+$this->load->view('style');
+echo $this->esg->extra_css();
+?>
+<script type="text/javascript">
+	var _ID = <?php echo @intval($_GET['id'])?>;
+</script>
 <link itemprop="thumbnailUrl" href="<?php echo $data['image'] ?>">
 <span itemprop="thumbnail" itemscope itemtype="http://schema.org/ImageObject"> <link itemprop="url" href="<?php echo $data['image'] ?>"> </span>
