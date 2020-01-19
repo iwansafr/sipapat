@@ -89,11 +89,29 @@ if(is_sipapat())
         <li class="dropdown notifications-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-bell"></i>
+            <span class="label label-success"><?php echo !empty(@intval($notification['total'])) ? $notification['total'] : '';?></span>
           </a>
           <ul class="dropdown-menu">
-            <li class="header">tidak ada pemberitahuan</li>
-            <li>
+            <?php if (@intval($notification['total']) > 0): ?>
+              <li class="header">Anda Memiliki <?php echo $notification['total'] ?> Pemberitahuan</li>
+              <li>
+            <?php else: ?>
+              <li class="header">tidak ada pemberitahuan baru</li>
+            <?php endif ?>
             </li>
+            <?php if (!empty($notification['list'])): ?>
+              <li>
+                <ul class="menu">
+                  <?php foreach ($notification['list'] as $l_key => $l_value): ?>
+                    <li>
+                      <a href="<?php echo base_url('admin/notification/detail/'.$l_value['id']) ?>">
+                        <i class="fa fa-bell"></i> <?php echo $l_value['title'] ?>
+                      </a>
+                    </li>
+                  <?php endforeach ?>
+                </ul>
+              </li>
+            <?php endif ?>
             <li class="footer"><a href="#">Lihat semua pemberitahuan</a></li>
           </ul>
         </li>

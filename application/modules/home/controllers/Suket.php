@@ -40,9 +40,16 @@ class Suket extends CI_Controller
 	public function ajukan()
 	{
 		$post = $this->input->post();
+		$msg = ['status'=>'danger','msg'=>'Data Tidak Valid'];
 		if(!empty($post))
 		{
-			$this->suket_model->ajukan($post);
+			if($this->suket_model->ajukan($post))
+			{
+				$msg = ['status'=>'success','msg'=>'Terima Kasih Pengajuan Suket Anda akan segera diproses'];
+			}else{
+				$msg = ['status'=>'danger','msg'=>'Mohon Maaf Data anda tidak ditemukan, proses pengajuan Suket dibatalkan'];
+			}
 		}
+		$this->load->view('index',$msg);
 	}
 }
