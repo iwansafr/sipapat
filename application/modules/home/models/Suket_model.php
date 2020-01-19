@@ -13,4 +13,19 @@ class Suket_model extends CI_Model{
 			}
 		}
 	}
+	public function ajukan($post = [])
+	{
+		if(!empty($post))
+		{
+			$data = [];
+			$data['desa_id'] = @$this->db->query('SELECT desa_id FROM penduduk WHERE id = ?',$post['id'])->row_array()['desa_id'];
+			if(!empty($data['desa_id']))
+			{
+				$data['dilan_surat_ket_id'] = $post['keterangan_id'];
+				$data['keterangan'] = $post['keterangan'];
+				$data['email'] = $post['email'];
+				$data['hp'] = $post['hp'];
+			}
+		}
+	}
 }

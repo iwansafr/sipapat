@@ -37,4 +37,12 @@ class Suket extends CI_Controller
 		$this->load->view('index',['data'=>$data]);
 	}
 
+	public function ajukan()
+	{
+		$post = $this->input->post();
+		if(!empty($post))
+		{
+			$this->suket_model->ajukan($post);
+		}
+	}
 }

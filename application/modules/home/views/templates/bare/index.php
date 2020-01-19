@@ -9,7 +9,7 @@
   </nav>
   <div class="container">
     <div class="row">
-      <div class="col-lg-12 text-center">
+      <div class="col-lg-12">
         <?php if ($mod['content']=='home/index'): ?>
 
         <?php else: ?>

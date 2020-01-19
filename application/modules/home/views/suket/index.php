@@ -10,7 +10,7 @@ if(empty($data) && !empty($_GET['nik']))
 	{
 		$kelamin = ['1'=>'Laki-laki','2'=>'Perempuan'];
 		?>
-		<form action="<?php echo base_url('home/suket/ajukan') ?>" method="get">
+		<form action="<?php echo base_url('home/suket/ajukan') ?>" method="post">
 			<div class="card card-default panel panel-default">
 				<div class="panel panel-heading card card-header">
 					detail data diri
@@ -51,15 +51,24 @@ if(empty($data) && !empty($_GET['nik']))
 					<hr>
 					<div class="form-group">
 						<label>Keperluan</label>
-						<select name="keterangan_id" class="form-control">
+						<select name="keterangan_id" class="form-control" required>
 							<?php foreach ($data['keterangan'] as $key => $value): ?>
 								<option value="<?php echo $value['id'] ?>"><?php echo $value['title'] ?></option>
 							<?php endforeach ?>
 						</select>
+						<input type="hidden" name="id" value="<?php echo $data['id'] ?>">
 					</div>
 					<div class="form-group">
 						<label>Catatan Tambahan</label>
-						<textarea name="catatan_tambahan" rows="3" class="form-control"></textarea>
+						<textarea name="keterangan" rows="3" class="form-control"></textarea>
+					</div>
+					<div class="form-group">
+						<label>email</label>
+						<input type="email" name="email" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>hp</label>
+						<input type="text" name="hp" class="form-control" required>
 					</div>
 				</div>
 				<div class="panel-footer card-footer">
@@ -95,7 +104,7 @@ if(empty($data) && !empty($_GET['nik']))
 					</select>
 				</div>
 				<div class="form-group">
-					<label>data</label>
+					<label>Desa</label>
 					<select name="village_id" class="form-control select2" required>
 					</select>
 				</div>

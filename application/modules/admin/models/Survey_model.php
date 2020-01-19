@@ -19,6 +19,7 @@ class Survey_model extends CI_Model
 		$data = [];
 		
 		$kec_where = '';
+		$kec_desa = '';
 		if(!empty($kec)){
 			$kec_where = " AND kecamatan = '$kec'";
 			$kec_desa = " WHERE kecamatan = '$kec'";
