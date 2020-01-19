@@ -31,6 +31,10 @@ class Desa extends CI_Controller
 	{
 		output_json($this->desa_model->tanpa_perangkat());
 	}
+	public function tanpa_potensi()
+	{
+		output_json($this->desa_model->tanpa_potensi());
+	}
 	public function detail($id = 0)
 	{
 		output_json($this->desa_model->detail($id));
