@@ -17,6 +17,7 @@ class Dilan extends CI_Controller{
 		$this->load->model('indonesia_model');
 		$this->load->library('esg');
 		$this->load->library('ZEA/zea');
+		ini_set('display_errors', 1);
 		$this->esg_model->init();
 	}
 

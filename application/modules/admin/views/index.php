@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 $this->esg->check_login();
-
+ini_set('display_errors', 1);
 $mod['name'] = $this->router->fetch_class();
 $mod['task'] = $this->router->fetch_method();
 $this->load->model('sipapat_model');
