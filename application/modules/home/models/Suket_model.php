@@ -25,19 +25,26 @@ class Suket_model extends CI_Model{
 				$data['keterangan']         = $post['keterangan'];
 				$data['email']              = $post['email'];
 				$data['hp']                 = $post['hp'];
+				$data['penduduk_id']        = $post['id'];
 
 				$user_id = @$this->db->query('SELECT user_id FROM user_desa WHERE desa_id = ?',$data['desa_id'])->row_array()['user_id'];
 				if(!empty($user_id))
 				{
-					$notification = [
-						'user_id' => $user_id,
-						'title' => 'Pengajuan SuKet',
-						'link' => base_url('admin/dilan/surat_pengajuan')
-					];
 					$this->db->trans_start();
 					$this->db->insert('dilan_surat_pengajuan', $data);
-					$this->db->insert('notification',$notification);
-					$this->db->trans_complete();
+					$last_id = $this->db->insert_id();
+					if(!empty($last_id))
+					{
+						$notification = [
+							'user_id' => $user_id,
+							'title' => 'Pengajuan SuKet',
+							'link' => base_url('admin/dilan/surat_pengajuan/'.$last_id)
+						];
+						$this->db->insert('notification',$notification);
+						$this->db->trans_complete();
+					}else{
+						return false;
+					}
 					return true;
 				}else{
 					return false;

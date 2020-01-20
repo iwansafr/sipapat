@@ -672,6 +672,19 @@ class Dilan extends CI_Controller{
 		$this->load->view('index',['surat'=>$surat,'id'=>$id]);
 	}
 
+	public function surat_pengajuan($id = 0)
+	{
+		$this->load->view('index',['id'=>$id]);
+	}
+	public function surat_pengajuan_list()
+	{
+		$this->load->view('index');
+	}
+	public function surat_pengajuan_clear()
+	{
+		$this->load->view('admin/dilan/surat_pengajuan_list');
+	}
+
 	public function kecamatan_list()
 	{
 		$this->load->view('index',['kec_option'=>$this->pengguna_model->get_kecamatan()]);
