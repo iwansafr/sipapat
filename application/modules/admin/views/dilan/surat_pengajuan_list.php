@@ -5,6 +5,8 @@ $form->init('roll');
 $form->setTable('dilan_surat_pengajuan');
 $form->join('penduduk','ON(dilan_surat_pengajuan.penduduk_id=penduduk.id)','dilan_surat_pengajuan.id,dilan_surat_pengajuan.hp,dilan_surat_pengajuan.email,dilan_surat_pengajuan.keterangan,dilan_surat_pengajuan.dilan_surat_ket_id,penduduk.nik,penduduk.nama,penduduk.nama_ibu');
 
+$desa_id = $this->sipapat_model->get_desa_id();
+$form->setWhere(' dilan_surat_pengajuan.desa_id = '.$desa_id);
 $form->setNumbering(true);
 
 $form->setEditStatus(false);
