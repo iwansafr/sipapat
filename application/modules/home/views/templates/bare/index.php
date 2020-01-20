@@ -18,12 +18,6 @@
       </div>
     </div>
   </div>
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright © <a href="https://mandesa.co.id" class="text-white">Mandala Group 2019</a></p>
-    </div>
-    <a href="https://esoftgreat.com" style="opacity: 0%;">esoftgreat</a>
-  </footer>
   <!-- Bootstrap core JavaScript -->
   <?php $this->load->view('js') ?>
 </body>
