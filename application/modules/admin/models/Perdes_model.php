@@ -4,11 +4,21 @@ class Perdes_model extends CI_Model{
 
 	public function perdes_item()
 	{
+		/*
+		Perdes yg wajib itu 
+		1. RPJM desa tiap 5tahun sekali
+		2. Perdes RKP tiap 1 tahun sekali
+		3. Perdes APBDes tiap awal tahun
+		4. Perdes Apbdes perubahan pertengahan tahun
+		5. Perdes Apbdes pertanggung jawaban akhir tahun
+		Yang lain itu menyesuaikan kondisi desa masing2 apabila ada tambahan 🙏🙏
+		*/
 		return
 		[
 			'1'=>'RPJMDS',
 			'2'=>'RKP DESA',
 			'3'=>'APBDES',
+			'7'=>'APBDES PERUBAHAN',
 			'6'=>'REALISASI APBDES',
 			'4'=>'PERDES KEWENANGAN',
 			'5'=>'PERDES ASET'
