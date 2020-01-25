@@ -218,7 +218,7 @@
                 "simple-cache"
             ],
             "time": "2017-10-23T01:57:42+00:00"
-        }
+        },
     ],
     "packages-dev": [
         {
@@ -3189,6 +3189,9 @@
     "stability-flags": {
         "friendsofphp/php-cs-fixer": 0
     },
+    "require": {
+      "phpoffice/phpspreadsheet": "1.8.0"
+    }
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
@@ -3208,7 +3211,4 @@
         "ext-zlib": "*"
     },
     "platform-dev": [],
-    "require": {
-      "phpoffice/phpspreadsheet": "1.8.0"
-    }
 }
