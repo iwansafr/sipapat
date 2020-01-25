@@ -3207,5 +3207,8 @@
         "ext-zip": "*",
         "ext-zlib": "*"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "require": {
+      "phpoffice/phpspreadsheet": "1.8.0"
+    }
 }
