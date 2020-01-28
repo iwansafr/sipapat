@@ -62,7 +62,7 @@ if(!empty($desa_id) || $is_desa)
 		'status'=>'Status',
 		'shdk'=>'Status dalam keluarga',
 		'pnydng_cct'=>'Penyandang Cacat',
-		'pendidikan'=>'Pendidikan',
+		'pddk_akhir'=>'Pendidikan',
 		'pekerjaan'=>'Pekerjaan'
 	];
 	?>

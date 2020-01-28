@@ -845,8 +845,8 @@ class Dilan extends CI_Controller{
 				case 'pnydng_cct':
 					$data['pnydng_cct'] = $this->dilan_model->cacat();
 					break;
-				case 'pendidikan':
-					$data['pendidikan'] = $this->dilan_model->pendidikan();
+				case 'pddk_akhir':
+					$data['pddk_akhir'] = $this->dilan_model->pendidikan();
 					break;
 				case 'pekerjaan':
 					$data['pekerjaan'] = $this->dilan_model->pekerjaan();
