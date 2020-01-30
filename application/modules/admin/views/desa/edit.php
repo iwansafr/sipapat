@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 $id = @intval($_GET['id']);
-if(is_root() || is_admin() || @$pengguna['desa_id'] == $id)
+if(is_root() || is_admin() || (@$pengguna['desa_id'] == $id && !empty($id)))
 {
 	$form = new zea();
 	$form->setId($id);

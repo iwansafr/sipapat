@@ -100,7 +100,7 @@ if(is_desa())
 	$form->addInput('website','plaintext');
 	$form->addInput('alamat','plaintext');
 	$form->setUrl('admin/desa/clear_list');
-	if(!is_kecamatan())
+	if(is_desa() || is_root())
 	{
 		$form->setEdit(TRUE);
 		$form->setDelete(TRUE);

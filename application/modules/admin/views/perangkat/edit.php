@@ -3,7 +3,7 @@
 $kelompok = empty($kelompok) ? 1: $kelompok;
 $module = ['1'=>'','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd','9'=>'linmas'];
 $module_title = ['1'=>'perangkat','2'=>'bpd','3'=>'lpmd','4'=>'pkk','5'=>'karang_taruna','6'=>'rt','7'=>'rw','8'=>'kpmd','9'=>'linmas'];
-if(!is_admin() && !is_kecamatan())
+if(is_root() || is_desa())
 {
 	$id = @intval($_GET['id']);
 	$form = new zea();

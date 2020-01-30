@@ -7,7 +7,7 @@ if(!empty($task) && in_array($task, $module))
 	$kelompok = array_keys($module,$task);
 	$kelompok = $kelompok[0];
 }
-if(!is_desa() && !is_kecamatan())
+if(is_admin() || is_root() || is_inspektorat())
 {
 	?>
 	<a href="<?php echo base_url('admin/perangkat/kecamatan/'.$module[$kelompok]) ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Filter Data</a>

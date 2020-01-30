@@ -78,16 +78,16 @@ if(!empty($sipapat_config))
 {
 	$form->addInput('kecamatan','plaintext');
 }
-$form->addInput('desa_id','dropdown');
-if(!is_root())
-{
-	$form->setAttribute('desa_id','disabled');
-}
-$form->tableOptions('desa_id','desa','id','nama','regency_id = '.@intval($sipapat_config['regency_id']));
+// $form->addInput('desa_id','dropdown');
+// if(!is_root())
+// {
+// 	$form->setAttribute('desa_id','disabled');
+// }
+// $form->tableOptions('desa_id','desa','id','nama','regency_id = '.@intval($sipapat_config['regency_id']));
 $form->setLabel('desa_id','nama desa');
 $form->setUrl('admin/pengguna/clear_list');
 $form->setFormName('pengguna_list_roll');
-if(!is_kecamatan())
+if(is_root() || is_admin())
 {
 	$form->addInput('active','checkbox');
 	$form->setNumbering(TRUE);

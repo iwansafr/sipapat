@@ -18,6 +18,11 @@ function is_bupati()
 	return set_role('bupati');
 }
 
+function is_inspektorat()
+{
+	return set_user(3);
+}
+
 function set_role($group = 'admin')
 {
 	$return = false;

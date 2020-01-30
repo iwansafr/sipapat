@@ -135,23 +135,25 @@ class Dilan extends CI_Controller{
 				$title[0] = 'desa_id';
 			foreach ($cellIterator as $cell)
 			{
+				$cell_value = $cell->getValue();
 				if($i==0)
 				{
 					// $data[$cell->getValue()] = [];
-					$title[] = $cell->getValue();
+					$title[] = $cell_value;
 					// $title[] = 'desa_id';
 				}else{
 					$data[$i]['desa_id'] = $desa_id;
 						if($title[$j] == 'TGL_LHR'){
-							if(preg_match('~-~',$cell->getValue()))
+							if(preg_match('~-~',$cell_value))
 							{
-								$data[$i][$title[$j]] = $cell->getValue();
+								$data[$i][$title[$j]] = $cell_value;
 							}else{
 								$dt = new DateTime();
-								$data[$i][$title[$j]] = date('Y-m-d', PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($cell->getValue()));
+								$data[$i][$title[$j]] = date('Y-m-d', PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($cell_value));
+								// $data[$i][$title[$j]] = date('Y-m-d', strtotime($cell_value));
 							}
 						}else{
-							$data[$i][$title[$j]] = $cell->getValue();
+							$data[$i][$title[$j]] = $cell_value;
 						}
 					
 				}

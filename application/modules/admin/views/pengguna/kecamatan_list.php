@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-if(is_root() || is_admin())
+if(is_root() || is_admin() || is_inspektorat())
 {
   $form = new zea();
   $form->init('roll');
@@ -38,7 +38,7 @@ if(is_root() || is_admin())
   $form->setAttribute('user_role_id','disabled');
   $form->setLabel('user_role_id','group');
   $form->tableOptions('user_role_id','user_role','id','title','level > 1');
-  $form->setLabel('nama','Nama Lengkap');
+  // $form->setLabel('nama','Nama Lengkap');
   $form->addInput('email','plaintext');
   $form->setAttribute('email',['type'=>'email']);
   if(is_root() || is_admin())
@@ -47,12 +47,13 @@ if(is_root() || is_admin())
   }
   if(!empty($sipapat_config))
   {
-    $form->addInput('kecamatan','plaintext');
+    $form->addInput('name','plaintext');
+    $form->setLabel('name','kecamatan');
   }
 
   $form->setUrl('admin/pengguna/clear_kec_list');
   $form->setFormName('pengguna_list_roll');
-  if(!is_kecamatan())
+  if(is_admin() || is_root())
   {
     $form->addInput('active','checkbox');
     $form->setNumbering(TRUE);
