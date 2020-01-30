@@ -6,9 +6,13 @@ if(empty($_GET['id']))
 	<a class="btn btn-warning btn-sm" href="<?php echo base_url('admin/pembangunan/buat');?>"><i class="fa fa-arrow-left"></i>Kembali</a>
 	<?php
 }else{
-	?>
-	<a class="btn btn-warning btn-sm" href="<?php echo base_url('admin/pembangunan/edit_gambar?id='.@intval($_GET['id']));?>"><i class="fa fa-pencil-alt"></i>Perbarui Gambar</a>
-	<?php
+	if(is_root() || is_desa())
+	{
+		?>
+		<a class="btn btn-warning btn-sm" href="<?php echo base_url('admin/pembangunan/edit_gambar?id='.@intval($_GET['id']));?>"><i class="fa fa-pencil-alt"></i>Perbarui Gambar</a>
+		<?php	
+	}
+	
 }
 if(!empty($view) || is_desa() || is_root())
 {
