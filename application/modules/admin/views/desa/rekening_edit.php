@@ -1,18 +1,24 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 $id = @intval($_GET['id']);
-if(!is_desa())
+$allowed = false;
+if(is_root() || is_admin())
 {
 	$desa_id = @intval($_GET['desa_id']);
+	$allowed = true;
 }else{
 	if(!empty($_POST))
 	{
 		echo '<a href="'.base_url('admin/desa/rekening_edit').'" class="btn btn-warning btn-sm"><i class="fa fa-sync"></i> reload</a>';
 	}
 	$desa_id = $this->sipapat_model->get_desa_id();
+	if(!empty($desa_id))
+	{
+		$allowed = true;
+	}
 }
 $desa = $this->sipapat_model->get_desa($desa_id);
-if((!empty($desa_id) && !empty($desa)) || !empty($id))
+if((!empty($desa_id) && !empty($desa)) || !empty($id) && $allowed)
 {
 	$rekening = $this->sipapat_model->get_rekening($desa_id);
 	if(!empty($rekening))
