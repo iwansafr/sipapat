@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-if(is_root() || is_admin())
+if(is_root() || is_admin() || is_inspektorat())
 {
 	$desa_id = @intval($_GET['desa_id']);
 }else{

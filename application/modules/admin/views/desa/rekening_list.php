@@ -37,8 +37,11 @@ if(!is_desa())
 	$form->setLabel('bank','Nama Bank');
 	$form->addInput('no_npwp','plaintext');
 	$form->setLabel('no_npwp','Nomor NPWP');
-	$form->setEdit(true);
-	$form->setDelete(true);
+	if(is_root())
+	{
+		$form->setEdit(true);
+		$form->setDelete(true);
+	}
 	$form->setUrl('admin/desa/rekening_list_clear');
 	$form->setEditLink(base_url('admin/desa/rekening_edit?id='),'id');
 	$form->form();

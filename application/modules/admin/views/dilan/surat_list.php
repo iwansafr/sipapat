@@ -62,7 +62,10 @@ if(is_desa())
 $form->addInput('keperluan','plaintext');
 
 // $form->setEdit(true);
-$form->setDelete(true);
+if(is_root() || is_desa())
+{
+	$form->setDelete(true);
+}
 $form->setUrl('admin/dilan/clear_surat_list');
 
 $form->form();

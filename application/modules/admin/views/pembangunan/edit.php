@@ -14,7 +14,7 @@ if(empty($_GET['id']))
 	}
 	
 }
-if(!empty($view) || is_desa() || is_root())
+if(!empty($view) && (is_desa() || is_root()))
 {
 	$id   = @intval($_GET['id']);
 	$form = new zea();
@@ -72,8 +72,15 @@ if(!empty($view) || is_desa() || is_root())
 	$form->addInput('bidang','dropdown');
 	$form->setOptions('bidang', $bidang);
 
-	$form->addInput('desa_id','static');
-	$form->setValue('desa_id',$desa_id);
+	if(!empty($sipapat_config) && is_root())
+	{
+		$form->addInput('desa_id','dropdown');
+		$form->setLabel('desa_id','desa');
+		$form->tableOptions('desa_id','desa','id','nama','regency_id = '.$sipapat_config['regency_id']);
+	}else{
+		$form->addInput('desa_id','static');
+		$form->setValue('desa_id',$desa_id);
+	}
 
 	$form->addInput('user_id','static');
 	$form->setValue('user_id',@intval($user['id']));

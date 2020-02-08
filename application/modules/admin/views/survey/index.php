@@ -47,7 +47,10 @@ if(!is_desa())
 	$form->setAttribute('honor','disabled');
 	$form->setLabel('honor','dapat honor');
 	$form->setOptions('honor',$opsi);
-	$form->setDelete(TRUE);
+	if(is_root())
+	{
+		$form->setDelete(TRUE);
+	}
 	$form->setUrl('admin/survey/clear_list');
 	$form->form();
 }else{

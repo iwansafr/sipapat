@@ -86,6 +86,7 @@ if(!empty($desa_id) || $is_desa)
 
 // $form->setHeading('<a target="_blank" href="'.base_url('admin/dilan/penduduk_excel/'.$desa_id_get.'" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i></a>');
 
+$surat_pengantar_text = is_desa() || is_root() ? '<li><a href="'.base_url('admin/dilan/surat_pengantar_choose_form/').'{id}/{nik}"><i class="fa fa-plus"></i>Surat Pengantar</a></li>' : '';
 $form->setNumbering(true);
 $form->addInput('id','plaintext');
 $form->setLink('id',base_url(),'id');
@@ -98,7 +99,7 @@ $form->setPlaintext('id','
 	  </button>
 	  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 	  	<li><a href="'.base_url('admin/dilan/detail/').'{id}"><i class="fa fa-search"></i>Detail</a></li>
-	    <li><a href="'.base_url('admin/dilan/surat_pengantar_choose_form/').'{id}/{nik}"><i class="fa fa-plus"></i>Surat Pengantar</a></li>
+	    '.$surat_pengantar_text.'
 	    <li role="separator" class="divider"></li>
 	    <li><a href="#{id}">dll</a></li>
 	  </ul>
@@ -122,9 +123,11 @@ if($is_desa)
 	$form->addInput('no_rw','plaintext');
 }
 $form->setUrl('admin/dilan/clear_list');
-
-$form->setDelete(true);
-$form->setEdit(true);
+if(is_desa() || is_root())
+{
+	$form->setDelete(true);
+	$form->setEdit(true);
+}
 
 
 $form->form();
