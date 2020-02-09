@@ -170,4 +170,13 @@ class Pengguna extends CI_Controller
 	{
 		$this->load->view('pengguna/kecamatan_list',$this->esg->get_esg());
 	}
+
+	public function all()
+	{
+		$this->load->view('index');
+	}
+	public function clear_all()
+	{
+		$this->load->view('pengguna/all');
+	}
 }
