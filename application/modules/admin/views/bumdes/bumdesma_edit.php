@@ -41,4 +41,6 @@ if(is_desa())
 		$form->form();
 	}
 
+}else{
+	msg('Maaf, hanya desa yg bisa mengakses halaman ini','danger');
 }

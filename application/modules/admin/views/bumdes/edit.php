@@ -104,4 +104,6 @@ if(is_desa() || is_root())
 	// $form->setlabel('tingkat_pemeringkatan', 'TINGKAT PEMERINGKATAN');
 	$form->setRequired('All');
 	$form->form();
+}else{
+	msg('Maaf, hanya desa yg bisa mengakses halaman ini','danger');
 }

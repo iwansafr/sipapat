@@ -57,8 +57,11 @@
 
 	$form->setUrl('admin/bumdes/pengurus_list');
 
-	$form->setDelete(true);
-	$form->setEdit(true);
+	if(is_desa() || is_root() || is_bumdes())
+	{
+		$form->setDelete(true);
+		$form->setEdit(true);
+	}
 	$form->setEditLink(base_url('admin/bumdes/pengurus_edit/?id='));
 
 	$form->form();

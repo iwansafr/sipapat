@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 $kec_get = !empty($_GET['kec']) ? '?kec='.$_GET['kec'] : '';
-if(!is_desa() && !is_kecamatan())
+if(is_root() || is_admin() || is_inspektorat())
 {
 	?>
 		<a href="<?php echo base_url('admin/perdes/kecamatan/') ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Filter Data</a>
@@ -69,8 +69,12 @@ $form->addInput('progress','dropdown');
 $form->setOptions('progress',$perdes_progress);
 $form->setAttribute('progress','disabled');
 
-$form->setDelete(TRUE);
-$form->setEdit(TRUE);
+if(is_root() || is_desa())
+{
+	$form->setDelete(TRUE);
+	$form->setEdit(TRUE);
+}
+
 $form->setEditLink(base_url('admin/perdes/edit?id='));
 
 $form->setUrl('admin/perdes/clear_list/'.@$item);

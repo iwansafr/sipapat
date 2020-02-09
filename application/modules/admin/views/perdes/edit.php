@@ -24,8 +24,19 @@ if(is_desa() || is_root())
 		$form->setAccept('file_office','.doc,.docx,.xls,.xlsx');
 		// $form->setAttribute('file_office',['accept'=>'.doc,.docx,.xls,.xlsx']);
 		$form->addInput('progress','dropdown');
-		$form->addInput('desa_id','static');
-		$form->setValue('desa_id',@intval($desa_id));
+		if(is_desa())
+		{
+			$form->addInput('desa_id','static');
+			$form->setValue('desa_id',@intval($desa_id));
+		}else{
+			if(!empty($sipapat_config))
+			{
+				$form->addInput('desa_id','dropdown');
+				$form->setLabel('desa_id','Desa');
+				$form->tableOptions('desa_id','desa','id','nama','regency_id = '.$sipapat_config['regency_id']);
+
+			}
+		}
 		$form->addInput('user_id','static');
 		$form->setValue('user_id',@intval($user['id']));
 		$form->setOptions('progress',$perdes_progress);
@@ -38,5 +49,6 @@ if(is_desa() || is_root())
 	}else{
 		msg('anda tidak punya akses ke halaman ini ', 'danger');
 	}
-
+}else{
+	msg('Anda Tidak Memiliki akses ke halaman ini','danger');
 }

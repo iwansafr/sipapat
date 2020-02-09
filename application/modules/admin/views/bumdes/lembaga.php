@@ -86,8 +86,11 @@ $form->setLabel('lpj_terakhir','lpj terakhir');
 
 $form->setUrl('admin/bumdes/lembaga_list');
 
-$form->setDelete(true);
-$form->setEdit(true);
+if(is_root() || is_desa() || is_bumdes())
+{
+	$form->setDelete(true);
+	$form->setEdit(true);
+}
 
 $form->setEditLink(base_url('admin/bumdes/lembaga_edit?id='));
 

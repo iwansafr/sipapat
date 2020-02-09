@@ -3,8 +3,10 @@ $form = new zea();
 
 $form->setTable('bumdes');
 $form->init('roll');
-
-$form->setHeading('<a href="'.base_url('admin/bumdes/edit').'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>');
+if(is_desa() || is_root() || is_bumdes())
+{
+	$form->setHeading('<a href="'.base_url('admin/bumdes/edit').'"><button class="btn btn-sm btn-warning"><i class="fa fa-plus-circle"></i></button></a>');
+}
 
 $form->join('desa','ON(desa.id=bumdes.desa_id)','desa.nama AS nama_desa,desa.kecamatan, bumdes.id,bumdes.nama,bumdes.tgl_berdiri,bumdes.no_perdes,bumdes.no_perkades,bumdes.no_rek_bumdes,bumdes.jangka_waktu');
 
@@ -52,8 +54,11 @@ $form->setLabel('no_rek_bumdes','Nomor Rekening Bumdes');
 $form->addInput('jangka_waktu','plaintext');
 $form->setlabel('jangka_waktu','jangka waktu');
 
-$form->setEdit(TRUE);
-$form->setDelete(TRUE);
+if(is_desa() || is_root() || is_bumdes())
+{
+	$form->setEdit(TRUE);
+	$form->setDelete(TRUE);
+}
 $form->setEditLink(base_url('admin/bumdes/edit?id='));
 
 $form->setUrl('admin/bumdes/clear_list');

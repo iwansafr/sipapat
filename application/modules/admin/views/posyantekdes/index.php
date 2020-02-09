@@ -49,8 +49,11 @@ $form->setLabel('jns_kegiatan','jenis kegiatan');
 $form->addInput('TTG','plaintext');
 $form->setLabel('TTG','TTG yg dihasilkan');
 
-$form->setDelete(true);
-$form->setEdit(true);
+if(is_desa() || is_root())
+{
+	$form->setDelete(true);
+	$form->setEdit(true);
+}
 $form->setEditLink(base_url('admin/posyantekdes/edit?id='));
 $form->setUrl('admin/posyantekdes/clear_list');
 
