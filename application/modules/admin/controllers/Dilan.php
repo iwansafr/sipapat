@@ -864,6 +864,7 @@ class Dilan extends CI_Controller{
 
 	public function clear_list()
 	{
+		$this->db->cache_off();
 		$this->load->view('dilan/list');
 	}
 }
