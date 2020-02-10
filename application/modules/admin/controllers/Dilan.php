@@ -819,6 +819,7 @@ class Dilan extends CI_Controller{
 
 	public function list()
 	{
+		$this->db->cache_off();
 		$this->load->view('index');
 	}
 
