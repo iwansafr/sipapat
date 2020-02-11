@@ -1,5 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 <?php if (!empty($penduduk)): ?>
+	<?php $usia_chart_data = '';?>
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			data penduduk
@@ -25,7 +26,6 @@
 				<?php 
 				if (!empty($penduduk['usia']))
 				{
-					$usia_chart_data = '';
 					$color =
 					[
 						'#f44336',
@@ -44,7 +44,6 @@
 						'#ff9800'
 					];?>
 					<?php $i = 0; ?>
-					<?php $usia_chart_data = '{}'; ?>
 					<?php foreach ($penduduk['usia'] as $key => $value): ?>
 						<?php 
 						$usia_chart_data .= "
