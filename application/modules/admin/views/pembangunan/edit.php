@@ -14,7 +14,7 @@ if(empty($_GET['id']))
 	}
 	
 }
-if(!empty($view) && (is_desa() || is_root()))
+if((is_desa() || is_root()))
 {
 	$id   = @intval($_GET['id']);
 	$form = new zea();
@@ -102,7 +102,7 @@ if(!empty($view) && (is_desa() || is_root()))
 
 	$file_type = empty($id) ? 'file' : 'thumbnail';
 
-	if($view == 'fisik' || @$data['jenis'] == 1)
+	if(@$view == 'fisik' || @$data['jenis'] == 1)
 	{
 		$form->addInput('vol','textarea');
 		$form->setLabel('vol','Volume');
