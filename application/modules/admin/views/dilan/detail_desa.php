@@ -22,45 +22,50 @@
 					<td>total WANITA</td>
 					<td>: <?php echo $penduduk['wanita'] ?></td>
 				</tr>
-				<?php $usia_chart_data = '';
-				$color =
-				[
-					'#f44336',
-					'#e91e63',
-					'#9c27b0',
-					'#673ab7',
-					'#3f51b5',
-					'#2196f3',
-					'#03a9f4',
-					'#00bcd4',
-					'#009688',
-					'#4caf50',
-					'#cddc39',
-					'#ffeb3b',
-					'#ffc107',
-					'#ff9800'
-				];?>
-				<?php $i = 0; ?>
-				<?php foreach ($penduduk['usia'] as $key => $value): ?>
-					<?php 
-					$usia_chart_data .= "
-					{
-		        value    : {$value},
-		        color    : '{$color[$i]}',
-		        highlight: '{$color[$i]}1',
-		        label    : '{$key}'
-		      },";
-		      $i++;
-					?>
+				<?php 
+				if (!empty($penduduk['usia']))
+				{
+					$usia_chart_data = '';
+					$color =
+					[
+						'#f44336',
+						'#e91e63',
+						'#9c27b0',
+						'#673ab7',
+						'#3f51b5',
+						'#2196f3',
+						'#03a9f4',
+						'#00bcd4',
+						'#009688',
+						'#4caf50',
+						'#cddc39',
+						'#ffeb3b',
+						'#ffc107',
+						'#ff9800'
+					];?>
+					<?php $i = 0; ?>
+					<?php foreach ($penduduk['usia'] as $key => $value): ?>
+						<?php 
+						$usia_chart_data .= "
+						{
+			        value    : {$value},
+			        color    : '{$color[$i]}',
+			        highlight: '{$color[$i]}1',
+			        label    : '{$key}'
+			      },";
+			      $i++;
+						?>
+						<tr>
+							<td>Usia <?php echo $key ?></td>
+							<td>: <?php echo $value ?></td>
+						</tr>
+					<?php endforeach ?>
 					<tr>
-						<td>Usia <?php echo $key ?></td>
-						<td>: <?php echo $value ?></td>
+						<td>total Janda</td>
+						<td>: <?php echo $penduduk['janda'] ?></td>
 					</tr>
-				<?php endforeach ?>
-				<tr>
-					<td>total Janda</td>
-					<td>: <?php echo $penduduk['janda'] ?></td>
-				</tr>
+					<?php
+				}?>
 			</table>
 		</div>
 	</div>
