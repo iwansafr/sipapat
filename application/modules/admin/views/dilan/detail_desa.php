@@ -44,6 +44,7 @@
 						'#ff9800'
 					];?>
 					<?php $i = 0; ?>
+					<?php $usia_chart_data = '{}'; ?>
 					<?php foreach ($penduduk['usia'] as $key => $value): ?>
 						<?php 
 						$usia_chart_data .= "

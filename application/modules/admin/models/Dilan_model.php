@@ -294,9 +294,9 @@ class Dilan_model extends CI_Model
 			$total_wanita = $total_wanita['total'];
 		}
 		$usia = $this->db->query("SELECT DATEDIFF(CURRENT_DATE, STR_TO_DATE(p.tgl_lhr, '%Y-%m-%d'))/365 AS usia FROM penduduk AS p where desa_id = ?",$desa_id)->result_array();
+		$usia_tmp = [];
 		if(!empty($usia))
 		{
-			$usia_tmp = [];
 			$usia_tmp['balita'] = 0;
 			$usia_tmp['anak-anak'] = 0;
 			$usia_tmp['remaja'] = 0;
