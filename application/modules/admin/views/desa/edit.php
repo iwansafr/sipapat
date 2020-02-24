@@ -96,6 +96,7 @@ if(is_root() || is_admin() || (@$pengguna['desa_id'] == $id && !empty($id)))
 	$form->setLabel('alamat','Alamat Balai Desa');
 	$form->addInput('ttd_img','file');
 	$form->setLabel('ttd_img','gambar ttd dan stempel');
+	$form->setAccept('ttd_img', '.png');
 	$form->setRequired(['nama','kecamatan','kabupaten']);
 	$form->form();
 }else{
