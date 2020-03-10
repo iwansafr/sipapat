@@ -32,4 +32,14 @@ class Absensi extends CI_Controller
 		}
 		$this->load->view('index', $data);
 	}
+	public function clear_detail($id = 0)
+	{
+		$this->esg_model->set_nav_title('Detail Absensi');
+		$data = ['id'=>$id];
+		if(empty($id))
+		{
+			$data = ['status'=>'danger','msg'=>'Data Tidak ditemukan'];
+		}
+		$this->load->view('absensi/detail',$data);
+	}
 }

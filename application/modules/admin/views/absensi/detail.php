@@ -15,22 +15,15 @@ if(!empty($desa_id))
 	$form->setTable('absensi');
 	$form->setWhere('desa_id = '.$desa_id.' '.$where);
 
-	$form->addInput('id','plaintext');
-	$form->setLabel('id','action');
-	$form->setPlainText('id',[base_url('admin/absensi/detail/{perangkat_desa_id}')=>'Detail']);
-
+	$form->addInput('id','hidden');
+	$form->addInput('foto','thumbnail');
 	$form->setNumbering(true);
-	$form->addInput('perangkat_desa_id','dropdown');
-	$form->setLabel('perangkat_desa_id','Nama Perangkat');
-	$form->tableOptions('perangkat_desa_id','perangkat_desa','id','nama','desa_id = '.$desa_id);
-	$form->setAttribute('perangkat_desa_id','disabled');
-
 	$form->addInput('status','dropdown');
-	$form->setOptions('status',['1'=>'Berangkat','2'=>'Pulang']);
+	$form->setOptions('status',['1'=>'Berangkat','2'=>'Pulang','3'=>'Izin']);
 	$form->setAttribute('status','disabled');
 
 	$form->addInput('created','plaintext');
-	$form->setUrl('admin/absensi/clear_list');
+	$form->setUrl('admin/absensi/clear_detail/'.$id);
 
 	// $form->setEdit(true);
 	$form->setDelete(true);
