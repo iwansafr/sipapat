@@ -22,12 +22,30 @@ function brgkt(){
 	btn_plg = document.getElementById('btn_plg');
 	btn_plg.classList.remove("btn-success");
 	btn_plg.classList.add("btn-secondary");
+	btn_izin = document.getElementById('btn_izin');
+	btn_izin.classList.remove("btn-success");
+	btn_izin.classList.add("btn-secondary");
 }
 function plg(){
 	document.getElementById('status').value = '2';
 	btn_plg = document.getElementById('btn_plg');
 	btn_plg.classList.remove("btn-secondary");
 	btn_plg.classList.add("btn-success");
+	btn_brgkt = document.getElementById('btn_brgkt');
+	btn_brgkt.classList.remove("btn-success");
+	btn_brgkt.classList.add("btn-secondary");
+	btn_izin = document.getElementById('btn_izin');
+	btn_izin.classList.remove("btn-success");
+	btn_izin.classList.add("btn-secondary");
+}
+function izin(){
+	document.getElementById('status').value = '3';
+	btn_izin = document.getElementById('btn_izin');
+	btn_izin.classList.remove("btn-secondary");
+	btn_izin.classList.add("btn-success");
+	btn_plg = document.getElementById('btn_plg');
+	btn_plg.classList.remove("btn-success");
+	btn_plg.classList.add("btn-secondary");
 	btn_brgkt = document.getElementById('btn_brgkt');
 	btn_brgkt.classList.remove("btn-success");
 	btn_brgkt.classList.add("btn-secondary");

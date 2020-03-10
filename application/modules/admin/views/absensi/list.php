@@ -34,7 +34,7 @@ if(!empty($desa_id))
 	$form->addInput('foto','thumbnail');
 
 	$form->addInput('status','dropdown');
-	$form->setOptions('status',['1'=>'Berangkat','2'=>'Pulang']);
+	$form->setOptions('status',['1'=>'Berangkat','2'=>'Pulang','3'=>'Izin']);
 	$form->setAttribute('status','disabled');
 
 	$form->addInput('created','plaintext');
@@ -107,6 +107,7 @@ if(!empty($desa_id))
 							<select class="form-control" name="status">
 								<option value="1" <?php echo !empty($status) && $status == 1 ? 'selected' : '';?> >Pagi</option>
 								<option value="2" <?php echo !empty($status) && $status == 2 ? 'selected' : '';?> >Sore</option>
+								<option value="3" <?php echo !empty($status) && $status == 3 ? 'selected' : '';?> >Izin</option>
 							</select>
 						</div>
 					</div>
