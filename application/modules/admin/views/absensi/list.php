@@ -55,7 +55,7 @@ if(!empty($desa_id))
 							<?php foreach ($get as $key => $value): ?>
 								<input type="hidden" name="<?php echo $key ?>" value="<?php echo $value ?>">
 							<?php endforeach ?>
-							<input type="date" class="form-control" name="tgl" placeholder="tanggal">
+							<input type="date" class="form-control" name="tgl" placeholder="tanggal" value="<?php echo !empty($tgl) ? $tgl : ''; ?>">
 						</div>
 					</div>
 					<div class="panel-footer">
@@ -78,7 +78,10 @@ if(!empty($desa_id))
 							<select class="form-control" name="perangkat_desa_id">
 								<?php if (!empty($form->options['perangkat_desa_id'])): ?>
 									<?php foreach ($form->options['perangkat_desa_id'] as $key => $value): ?>
-										<option value="<?php echo $key ?>"><?php echo $value ?></option>
+										<?php
+										$selected = !empty($perangkat_desa_id) && $perangkat_desa_id == $key ? 'selected' : ''; 
+										?>
+										<option value="<?php echo $key ?>" <?php echo $selected ?>><?php echo $value ?></option>
 									<?php endforeach ?>
 								<?php endif ?>
 							</select>
@@ -102,8 +105,8 @@ if(!empty($desa_id))
 								<input type="hidden" name="<?php echo $key ?>" value="<?php echo $value ?>">
 							<?php endforeach ?>
 							<select class="form-control" name="status">
-								<option value="1">Pagi</option>
-								<option value="2">Sore</option>
+								<option value="1" <?php echo !empty($status) && $status == 1 ? 'selected' : '';?> >Pagi</option>
+								<option value="2" <?php echo !empty($status) && $status == 2 ? 'selected' : '';?> >Sore</option>
 							</select>
 						</div>
 					</div>
