@@ -321,4 +321,14 @@ class Perangkat extends CI_Controller
 		$data = $this->db->query("SELECT perangkat_desa.id,perangkat_desa.nama FROM perangkat_desa INNER JOIN absensi ON(perangkat_desa.id=absensi.perangkat_desa_id) WHERE absensi.desa_id = ? AND CAST(absensi.created AS DATE) = '".date('Y-m-d')."' AND status = 2".$where." ORDER BY perangkat_desa.jabatan ASC", $desa_id)->result_array();
 		output_json($data);
 	}
+
+	public function get_absensi_izin($desa_id = 0, $kelompok = 0)
+	{
+		$where = '';
+		if(!empty($kelompok)){
+			$where = ' AND kelompok = '.$kelompok;
+		}
+		$data = $this->db->query("SELECT perangkat_desa.id,perangkat_desa.nama FROM perangkat_desa INNER JOIN absensi ON(perangkat_desa.id=absensi.perangkat_desa_id) WHERE absensi.desa_id = ? AND CAST(absensi.created AS DATE) = '".date('Y-m-d')."' AND status = 3".$where." ORDER BY perangkat_desa.jabatan ASC", $desa_id)->result_array();
+		output_json($data);
+	}
 }
