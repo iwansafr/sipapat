@@ -56,8 +56,7 @@
 				</div>		
 				<div class="form-group">
 					<label for="">Nama Perangkat</label>
-					<hr>
-					<select name="perangkat_desa_id" class="form-control select2" id="select2">
+					<select name="perangkat_desa_id" class="form-control select2" id="select2" style="width: 100%;">
 						<?php foreach ($perangkat as $key => $value): ?>
 							<option value="<?php echo $value['id'] ?>"><?php echo $value['nama'].' | '.$jabatan[$value['jabatan']] ?></option>
 						<?php endforeach ?>
