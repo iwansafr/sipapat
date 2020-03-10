@@ -26,7 +26,7 @@ class Absensi extends CI_Controller
 		{
 			$data = $this->input->post();
 			$data['desa_id'] = $desa_id; 
-			$this->absensi_model->upload($data);
+			$data['status'] = $this->absensi_model->upload($data);
 		}
 		$this->load->model('admin/pengguna_model');
 		$this->home_model->home();

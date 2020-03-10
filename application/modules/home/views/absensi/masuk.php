@@ -34,7 +34,6 @@
 	}
 	}
 	</style>
-
 	<form action="" method="post" enctype="multipart/form-data">
 		<hr>
 		<div class="panel panel-success card card-success">
@@ -42,6 +41,12 @@
 				<h5>Absensi</h5>			
 			</div>
 			<div class="panel-body panel card-body">
+				<?php 
+				if(!empty($status))
+				{
+					msg($status['msg'],$status['status']);
+				}
+				?>
 				<div class="form-group">
 					<div class="btn-group" role="group" aria-label="Basic example">
 						<input type="hidden" id="status" name="status" value="1">
@@ -62,7 +67,7 @@
 					<br>
 					<label class="fileContainer" style="padding: 10%;">
 						<i class="fa fa-camera" style="font-size: 500%;"></i>
-						<input type="file"  name="foto" class="form-control">
+						<input type="file"  name="foto" class="form-control" required>
 					</label>
 				</div>
 			</div>
