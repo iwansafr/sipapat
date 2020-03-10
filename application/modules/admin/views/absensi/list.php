@@ -38,6 +38,7 @@ if(!empty($desa_id))
 	$form->setAttribute('status','disabled');
 
 	$form->addInput('created','plaintext');
+	$form->setLabel('created','waktu');
 	$form->setUrl('admin/absensi/clear_list');
 
 	// $form->setEdit(true);
