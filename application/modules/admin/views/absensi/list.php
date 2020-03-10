@@ -13,8 +13,10 @@ if(!empty($desa_id))
 	}
 	$tgl = !empty($_GET['tgl']) ? $_GET['tgl'] : '';
 	$perangkat_desa_id = !empty($_GET['perangkat_desa_id']) ? $_GET['perangkat_desa_id'] : '';
+	$status = !empty($_GET['status']) ? $_GET['status'] : '';
 	$where = !empty($tgl) ? " AND CAST(created AS DATE) = '".$tgl."'" : '';
 	$where .= !empty($perangkat_desa_id) ? ' AND perangkat_desa_id = '.$perangkat_desa_id : '';
+	$where .= !empty($status) ? ' AND status = '.$status : '';
 
 	$form->init('roll');
 	$form->setTable('absensi');
@@ -69,7 +71,7 @@ if(!empty($desa_id))
 						<label>Perangkat</label>
 					</div>
 					<div class="panel-body">
-						<div class="form-group form-inline">
+						<div class="form-group">
 							<?php foreach ($get as $key => $value): ?>
 								<input type="hidden" name="<?php echo $key ?>" value="<?php echo $value ?>">
 							<?php endforeach ?>
@@ -79,6 +81,29 @@ if(!empty($desa_id))
 										<option value="<?php echo $key ?>"><?php echo $value ?></option>
 									<?php endforeach ?>
 								<?php endif ?>
+							</select>
+						</div>
+					</div>
+					<div class="panel-footer">
+						<button class="btn btn-default">Filter</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="col-md-3">
+			<form action="" method="get">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<label>Pagi/Siang</label>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<?php foreach ($get as $key => $value): ?>
+								<input type="hidden" name="<?php echo $key ?>" value="<?php echo $value ?>">
+							<?php endforeach ?>
+							<select class="form-control" name="status">
+								<option value="1">Pagi</option>
+								<option value="2">Sore</option>
 							</select>
 						</div>
 					</div>

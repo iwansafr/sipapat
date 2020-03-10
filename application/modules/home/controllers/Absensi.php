@@ -22,19 +22,46 @@ class Absensi extends CI_Controller
 
 	public function masuk($desa_id = 0)
 	{
+		$data['perangkat'] = json_decode(file_get_contents(base_url('api/perangkat/get_by_desa/'.$desa_id.'/1')),1);
+		$data['perangkat_pagi'] = json_decode(file_get_contents(base_url('api/perangkat/get_absensi_pagi/'.$desa_id.'/1')),1);
+		$data['perangkat_sore'] = json_decode(file_get_contents(base_url('api/perangkat/get_absensi_sore/'.$desa_id.'/1')),1);
 		if(!empty($this->input->post()))
 		{
-			$data = $this->input->post();
-			$data['desa_id'] = $desa_id; 
-			$data['status'] = $this->absensi_model->upload($data);
+			$upload = $this->input->post();
+			$success = 1;
+			if($upload['status'] == 1)
+			{
+				if(!empty($data['perangkat_pagi']))
+				{
+					foreach ($data['perangkat_pagi'] as $key => $value)
+					{
+						if($value['id'] == $upload['perangkat_desa_id']){
+							$success = 0;
+						}
+					}
+				}
+			}else{
+				if(!empty($data['perangkat_sore']))
+				{
+					foreach ($data['perangkat_sore'] as $key => $value)
+					{
+						if($value['id'] == $upload['perangkat_desa_id']){
+							$success = 0;
+						}
+					}
+				}
+			}
+			$upload['desa_id'] = $desa_id;
+			if($success){
+				$data['status'] = $this->absensi_model->upload($upload);
+			}else{
+				$data['status'] = ['status'=>'danger','msg'=>'Maaf Anda Sudah Melakukan Absen Sebelumnya'];
+			}
 		}
 		$this->load->model('admin/pengguna_model');
 		$this->home_model->home();
 		$data['jabatan'] = $this->pengguna_model->jabatan()[1];
-		$data['perangkat'] = file_get_contents(base_url('api/perangkat/get_by_desa/'.$desa_id.'/1'));
-		if(!empty($data['perangkat'])){
-			$data['perangkat'] = json_decode($data['perangkat'],1);
-		}
+		$this->esg->add_js(base_url('assets/absensi/script.js'));
 		$this->load->view('index', $data);
 	}
 }
