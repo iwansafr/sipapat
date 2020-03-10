@@ -29,6 +29,8 @@ class Absensi extends CI_Controller
 		if(empty($id))
 		{
 			$data = ['status'=>'danger','msg'=>'Data Tidak ditemukan'];
+		}else{
+			$data['perangkat'] = json_decode(file_get_contents(base_url('api/perangkat/get_by_id/'.$id)),1);
 		}
 		$this->load->view('index', $data);
 	}
@@ -39,6 +41,8 @@ class Absensi extends CI_Controller
 		if(empty($id))
 		{
 			$data = ['status'=>'danger','msg'=>'Data Tidak ditemukan'];
+		}else{
+			$data['perangkat'] = json_decode(file_get_contents(base_url('api/perangkat/get_by_id/'.$id)),1);
 		}
 		$this->load->view('absensi/detail',$data);
 	}

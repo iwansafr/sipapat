@@ -289,6 +289,15 @@ class Perangkat extends CI_Controller
 		output_json($data);
 	}
 
+	public function get_by_id($id = 0)
+	{
+		if(!empty($id))
+		{
+			$data = $this->db->query('SELECT * FROM perangkat_desa WHERE id = ?', $id)->row_array();
+			output_json($data);
+		}
+	}
+
 	public function get_by_desa($desa_id = 0, $kelompok = 0)
 	{
 		if(!empty($desa_id))

@@ -7,7 +7,9 @@ if(!empty($status)){
 $form = new zea();
 
 $desa_id = $this->sipapat_model->get_desa_id();
-
+?>
+<h5><?php echo $perangkat['nama'] ?></h5>
+<?php
 if(!empty($desa_id))
 {
 	$where = ' AND perangkat_desa_id = '.$id;
