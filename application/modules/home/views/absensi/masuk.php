@@ -34,6 +34,7 @@
 	}
 	}
 	</style>
+
 	<form action="" method="post" enctype="multipart/form-data">
 		<hr>
 		<div class="panel panel-success card card-success">
@@ -42,8 +43,15 @@
 			</div>
 			<div class="panel-body panel card-body">
 				<div class="form-group">
+					<div class="btn-group" role="group" aria-label="Basic example">
+						<input type="hidden" id="status" name="status" value="1">
+					  <a href="#" id="btn_brgkt" onclick="brgkt()" class="btn btn-success">Berangkat</a>
+					  <a href="#" id="btn_plg" onclick="plg()" class="btn btn-secondary">Pulang</a>
+					</div>
+				</div>		
+				<div class="form-group">
 					<label for="">Nama Perangkat</label>
-					<select name="perangkat_id" class="form-control select2" id="select2">
+					<select name="perangkat_desa_id" class="form-control select2" id="select2">
 						<?php foreach ($perangkat as $key => $value): ?>
 							<option value="<?php echo $value['id'] ?>"><?php echo $value['nama'].' | '.$jabatan[$value['jabatan']] ?></option>
 						<?php endforeach ?>
@@ -87,6 +95,24 @@
 	    x.innerHTML = "Jam : "+h + ":" + m + ":" + s;
 	  }
 	  setInterval(jam,1000);
+	  function brgkt(){
+	  	document.getElementById('status').value = '1';
+	  	btn_brgkt = document.getElementById('btn_brgkt');
+	  	btn_brgkt.classList.remove("btn-secondary");
+	  	btn_brgkt.classList.add("btn-success");
+	  	btn_plg = document.getElementById('btn_plg');
+	  	btn_plg.classList.remove("btn-success");
+	  	btn_plg.classList.add("btn-secondary");
+	  }
+	  function plg(){
+	  	document.getElementById('status').value = '2';
+	  	btn_plg = document.getElementById('btn_plg');
+	  	btn_plg.classList.remove("btn-secondary");
+	  	btn_plg.classList.add("btn-success");
+	  	btn_brgkt = document.getElementById('btn_brgkt');
+	  	btn_brgkt.classList.remove("btn-success");
+	  	btn_brgkt.classList.add("btn-secondary");
+	  }
 	</script>
 <?php else: ?>
 	<br>
