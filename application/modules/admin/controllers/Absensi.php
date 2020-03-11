@@ -46,4 +46,38 @@ class Absensi extends CI_Controller
 		}
 		$this->load->view('absensi/detail',$data);
 	}
+
+	public function rekap($id = 0)
+	{
+		$this->esg_model->set_nav_title('Detail Absensi');
+		$data = ['id'=>$id];
+		if(empty($id))
+		{
+			$data = ['status'=>'danger','msg'=>'Data Tidak ditemukan'];
+		}else{
+			$data['perangkat'] = json_decode(file_get_contents(base_url('api/perangkat/get_by_id/'.$id)),1);
+		}
+
+		$data['data'] = $this->db->get_where('absensi', ['perangkat_desa_id'=>$id])->result_array();
+		$tmp_data = [];
+		if(!empty($data['data']))
+		{
+			foreach ($data['data'] as $key => $value) 
+			{
+				$index = substr($value['created'],0,10);
+				$tmp_data[$index]['foto'] = $value['foto'];
+				if($value['status'] == 1)
+				{
+					$tmp_data[$index]['berangkat'] = $value['created'];
+				}else if($value['status'] == 2)
+				{
+					$tmp_data[$index]['pulang'] = $value['created'];
+				}else{
+					$tmp_data[$index]['izin'] = 1;
+				}
+			}
+		}
+		pr($tmp_data);
+		pr($data['data']);die();
+	}
 }

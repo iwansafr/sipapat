@@ -50,3 +50,10 @@ function izin(){
 	btn_brgkt.classList.remove("btn-success");
 	btn_brgkt.classList.add("btn-secondary");
 }
+$(document).ready(function(){
+	function remove_alert(){
+		$('.alert').remove();
+		clearInterval(rm_msg);
+	}
+	var rm_msg = setInterval(remove_alert,5000);
+});
