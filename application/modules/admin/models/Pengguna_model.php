@@ -17,7 +17,7 @@ class Pengguna_model extends CI_Model
 			$kecamatan = strtoupper(str_replace('kec_','', $this->session->userdata(base_url().'_logged_in')['username']));
 			$this->db->where("kecamatan = '{$kecamatan}'");
 		}
-		if(!empty($kec))
+		if(!empty($kec) && is_root() || is_admin())
 		{
 			$this->db->where("kecamatan = '{$kec}'");
 		}
