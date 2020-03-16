@@ -50,9 +50,7 @@
 				<div class="form-group">
 					<div class="btn-group" role="group" aria-label="Basic example">
 						<input type="hidden" id="status" name="status" value="1">
-					  <a href="#" id="btn_brgkt" onclick="brgkt()" class="btn d-none btn-success">Berangkat</a>
-					  <a href="#" id="btn_plg" onclick="plg()" class="btn d-none btn-secondary">Pulang</a>
-					  <a href="#" id="btn_izin" onclick="izin()" class="btn btn-secondary">Izin</a>
+					  <label id="btn_status" class="btn d-none btn-success">Berangkat</label>
 					</div>
 				</div>		
 				<div class="form-group">
