@@ -19,12 +19,12 @@ class Absensi_model extends CI_Model
         }
     		$config['upload_path'] = $abs_dir;
         $config['file_name'] = $file_name;
-        $config['allowed_types'] = 'gif|jpg|png';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
 
         $this->load->library('upload', $config);
 
 
-        if ( ! $this->upload->do_upload('foto'))
+        if (!$this->upload->do_upload('foto'))
         {
           return ['status'=>'danger','msg'=>'Mohon Maaf Proses Absensi Gagal'];
         }else{

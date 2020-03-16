@@ -50,7 +50,7 @@
 				<div class="form-group">
 					<div class="btn-group" role="group" aria-label="Basic example">
 						<input type="hidden" id="status" name="status" value="1">
-					  <label id="btn_status" class="btn d-none btn-success">Berangkat</label>
+					  <label id="btn_status" class="btn d-none btn-success"></label>
 					</div>
 				</div>		
 				<div class="form-group">
@@ -66,12 +66,12 @@
 					<br>
 					<label class="fileContainer" style="padding: 10%;">
 						<i class="fa fa-camera" style="font-size: 500%;"></i>
-						<input type="file"  name="foto" class="form-control" required>
+						<input type="file"  name="foto" class="form-control" accept=".gif, .jpg, .jpeg, .png" required>
 					</label>
 				</div>
 			</div>
 			<div class="panel-footer panel card-footer">
-				<button class="btn btn-success"><i class="fa fa-upload"></i> Upload</button>
+				<button class="btn btn-success d-none" id="btn_upload"><i class="fa fa-upload"></i> Upload</button>
 				<div class="jam float-right">
 					<span class="badge badge-success">
 						<div id="jam">

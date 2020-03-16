@@ -30,7 +30,7 @@ class Absensi extends CI_Controller
 		{
 			$upload = $this->input->post();
 			$success = 1;
-			if($upload['status'] == 1)
+			if($upload['status'] == 1 || $upload['status'] == 4)
 			{
 				if(!empty($data['perangkat_pagi']))
 				{

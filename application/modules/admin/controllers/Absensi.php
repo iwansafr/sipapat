@@ -9,6 +9,7 @@ class Absensi extends CI_Controller
 		$this->load->model('esg_model');
 		$this->load->model('admin_model');
 		$this->load->model('sipapat_model');
+		$this->load->model('absensi_model');
 		$this->load->library('esg');
 		$this->load->library('ZEA/zea');
 		$this->esg_model->init();
@@ -47,8 +48,9 @@ class Absensi extends CI_Controller
 		$this->load->view('absensi/detail',$data);
 	}
 
-	public function rekap($id = 0)
+	public function rekap($id = 0, $month = 0, $year = 0)
 	{
+		$month = $month <=10 ? '0'.$month : $month;
 		$this->esg_model->set_nav_title('Detail Absensi');
 		$data = ['id'=>$id];
 		if(empty($id))
@@ -58,7 +60,11 @@ class Absensi extends CI_Controller
 			$data['perangkat'] = json_decode(file_get_contents(base_url('api/perangkat/get_by_id/'.$id)),1);
 		}
 
-		$data['data'] = $this->db->get_where('absensi', ['perangkat_desa_id'=>$id])->result_array();
+		if(empty($month)){
+			$data['data'] = [];
+		}else{
+			$data['data'] = $this->db->get_where('absensi', ['perangkat_desa_id'=>$id,'MONTH(created)'=> $month,'YEAR(created)'=>$year])->result_array();
+		}
 		$tmp_data = [];
 		if(!empty($data['data']))
 		{
@@ -68,16 +74,24 @@ class Absensi extends CI_Controller
 				$tmp_data[$index]['foto'] = $value['foto'];
 				if($value['status'] == 1)
 				{
-					$tmp_data[$index]['berangkat'] = $value['created'];
+					$tmp_data[$index]['jam_berangkat'] = substr($value['created'],11,16);
+					$tmp_data[$index]['tgl'] = substr($value['created'],0,10);
 				}else if($value['status'] == 2)
 				{
-					$tmp_data[$index]['pulang'] = $value['created'];
+					$tmp_data[$index]['jam_pulang'] = substr($value['created'],11,16);
+					$tmp_data[$index]['tgl'] = substr($value['created'],0,10);
 				}else{
 					$tmp_data[$index]['izin'] = 1;
 				}
 			}
 		}
+		$tgl = $this->absensi_model->tgl($year.'-'.$month.'-01');
+		pr($tgl);
 		pr($tmp_data);
-		pr($data['data']);die();
+		$output = [];
+		foreach ($tmp_data as $key => $value) 
+		{
+			
+		}
 	}
 }

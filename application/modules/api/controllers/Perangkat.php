@@ -317,7 +317,7 @@ class Perangkat extends CI_Controller
 		if(!empty($kelompok)){
 			$where = ' AND kelompok = '.$kelompok;
 		}
-		$data = $this->db->query("SELECT perangkat_desa.id,perangkat_desa.nama FROM perangkat_desa INNER JOIN absensi ON(perangkat_desa.id=absensi.perangkat_desa_id) WHERE absensi.desa_id = ? AND CAST(absensi.created AS DATE) = '".date('Y-m-d')."' AND status = 1 ".$where." ORDER BY perangkat_desa.jabatan ASC", $desa_id)->result_array();
+		$data = $this->db->query("SELECT perangkat_desa.id,perangkat_desa.nama FROM perangkat_desa INNER JOIN absensi ON(perangkat_desa.id=absensi.perangkat_desa_id) WHERE absensi.desa_id = ? AND CAST(absensi.created AS DATE) = '".date('Y-m-d')."' AND status = 1 OR status = 4 ".$where." ORDER BY perangkat_desa.jabatan ASC", $desa_id)->result_array();
 		output_json($data);
 	}
 

@@ -121,6 +121,7 @@ if(!empty($desa_id))
 	</div>
 	<?php
 	$form->form();
+	pr($form->getData());
 }else{
 	msg('desa tidak diketahui','danger');
 }
