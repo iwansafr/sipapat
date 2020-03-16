@@ -26,6 +26,7 @@ class Absensi extends CI_Controller
 		$data['perangkat_pagi'] = json_decode(file_get_contents(base_url('api/perangkat/get_absensi_pagi/'.$desa_id.'/1')),1);
 		$data['perangkat_sore'] = json_decode(file_get_contents(base_url('api/perangkat/get_absensi_sore/'.$desa_id.'/1')),1);
 		$data['perangkat_izin'] = json_decode(file_get_contents(base_url('api/perangkat/get_absensi_izin/'.$desa_id.'/1')),1);
+		$data['desa'] = json_decode(file_get_contents(base_url('api/desa/detail/'.$desa_id)),1);
 		if(!empty($this->input->post()))
 		{
 			$upload = $this->input->post();

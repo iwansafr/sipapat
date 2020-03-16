@@ -38,7 +38,7 @@
 		<hr>
 		<div class="panel panel-success card card-success">
 			<div class="card-header panel panel-heading">
-				<h5>Absensi</h5>			
+				<h5>Absensi <?php echo $desa['nama'].' | '.$desa['kecamatan']?></h5>
 			</div>
 			<div class="panel-body panel card-body">
 				<?php 
