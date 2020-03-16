@@ -34,7 +34,7 @@ if(!empty($desa_id))
 	$form->addInput('foto','thumbnail');
 
 	$form->addInput('status','dropdown');
-	$form->setOptions('status',['1'=>'Berangkat','2'=>'Pulang','3'=>'Izin']);
+	$form->setOptions('status',['1'=>'<span class="btn btn-sm btn-success">Berangkat</span>','2'=>'Pulang','3'=>'Izin']);
 	$form->setAttribute('status','disabled');
 
 	$form->addInput('created','plaintext');
@@ -121,7 +121,6 @@ if(!empty($desa_id))
 	</div>
 	<?php
 	$form->form();
-	pr($form->getData());
 }else{
 	msg('desa tidak diketahui','danger');
 }
