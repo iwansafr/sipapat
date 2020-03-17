@@ -8,7 +8,10 @@ $form = new zea();
 
 $desa_id = $this->sipapat_model->get_desa_id();
 ?>
-<h5><?php echo $perangkat['nama'] ?></h5>
+<?php if (!empty($perangkat)): ?>
+	<h1><?php echo $perangkat['nama'] ?></h1>
+<?php endif ?>
+<a href="<?php echo base_url('admin/absensi/tambah_izin/'.$id) ?>" class="btn btn-warning"><i class="fa fa-file"></i> Buat Izin</a>
 <?php
 if(!empty($desa_id))
 {
@@ -28,6 +31,7 @@ if(!empty($desa_id))
 	$form->setLabel('created','waktu');
 	$form->setUrl('admin/absensi/clear_detail/'.$id);
 
+	$form->addInput('valid','checkbox');
 	// $form->setEdit(true);
 	$form->setDelete(true);
 	$form->form();
