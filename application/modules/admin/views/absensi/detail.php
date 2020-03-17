@@ -24,7 +24,7 @@ if(!empty($desa_id))
 	$form->addInput('foto','thumbnail');
 	$form->setNumbering(true);
 	$form->addInput('status','dropdown');
-	$form->setOptions('status',['1'=>'Berangkat','2'=>'Pulang','3'=>'Izin']);
+	$form->setOptions('status',['1'=>'<span class="btn-sm btn-success">Berangkat</span>','2'=>'<span class="btn-sm btn-success">Pulang</span>','3'=>'<span class="btn-sm btn-warning">Izin</span>','4'=>'<span class="btn-sm btn-danger">Terlambat</span>']);
 	$form->setAttribute('status','disabled');
 
 	$form->addInput('created','plaintext');
