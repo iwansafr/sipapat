@@ -26,6 +26,7 @@ function brgkt(){
 	btn_status = document.getElementById('btn_status');
 	btn_status.classList.remove("d-none");
 	btn_status.innerHTML = '<i class="fa fa-building"></i> Berangkat';
+	btn_status.classList.remove('btn-danger');
 	btn_upload = document.getElementById('btn_upload');
 	btn_upload.classList.remove("d-none");
 }
@@ -33,6 +34,7 @@ function plg(){
 	document.getElementById('status').value = '2';
 	btn_status = document.getElementById('btn_status');
 	btn_status.classList.remove("d-none");
+	btn_status.classList.remove('btn-danger');
 	btn_status.innerHTML = '<i class="fa fa-home"></i> Pulang';
 	btn_upload = document.getElementById('btn_upload');
 	btn_upload.classList.remove("d-none");

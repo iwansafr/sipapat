@@ -50,7 +50,10 @@ class Absensi extends CI_Controller
 
 	public function rekap($id = 0, $month = 0, $year = 0)
 	{
-		$month = $month <=10 ? '0'.$month : $month;
+		if($month!=10){
+			$month = str_replace('0', '', $month);
+			$month = $month <=10 ? '0'.$month : $month;
+		}
 		$this->esg_model->set_nav_title('Detail Absensi');
 		$data = ['id'=>$id];
 		if(empty($id))
@@ -71,27 +74,59 @@ class Absensi extends CI_Controller
 			foreach ($data['data'] as $key => $value) 
 			{
 				$index = substr($value['created'],0,10);
-				$tmp_data[$index]['foto'] = $value['foto'];
+				$tmp_data[$index]['foto_izin'] = '';
 				if($value['status'] == 1)
 				{
 					$tmp_data[$index]['jam_berangkat'] = substr($value['created'],11,16);
 					$tmp_data[$index]['tgl'] = substr($value['created'],0,10);
+					$tmp_data[$index]['foto_berangkat'] = '<img src="'.image_module('absensi',$value['id'].'/'.$value['foto']).'" class="img-responsive" width="50">';
 				}else if($value['status'] == 2)
 				{
 					$tmp_data[$index]['jam_pulang'] = substr($value['created'],11,16);
 					$tmp_data[$index]['tgl'] = substr($value['created'],0,10);
+					$tmp_data[$index]['foto_pulang'] = '<img src="'.image_module('absensi',$value['id'].'/'.$value['foto']).'" class="img-responsive" width="50">';
 				}else{
 					$tmp_data[$index]['izin'] = 1;
+					$tmp_data[$index]['foto_izin'] = !empty($tmp_data[$index]['foto_izin']) ? $tmp_data[$index]['foto_izin'] : 'Kosong';
 				}
+				$tmp_data[$index]['status'] = $value['status'];
 			}
 		}
 		$tgl = $this->absensi_model->tgl($year.'-'.$month.'-01');
-		pr($tgl);
-		pr($tmp_data);
-		$output = [];
-		foreach ($tmp_data as $key => $value) 
+		$output[] = [
+			'foto_berangkat','foto_pulang','foto_izin','tgl','status','jam_berangkat','jam_pulang','date_num','day_name'
+		];
+		foreach ($tgl as $key => $value) 
 		{
-			
+			if(!empty($tmp_data[$value['date']]))
+			{
+				$output[] =
+				[
+					'foto_berangkat' => $tmp_data[$value['date']]['foto_berangkat'],
+					'foto_pulang' => $tmp_data[$value['date']]['foto_pulang'],
+					'foto_izin' => $tmp_data[$value['date']]['foto_izin'],
+					'tgl' => $tmp_data[$value['date']]['tgl'],
+					'status' => $tmp_data[$value['date']]['status'],
+					'jam_berangkat' => $tmp_data[$value['date']]['jam_berangkat'],
+					'jam_pulang' => $tmp_data[$value['date']]['jam_pulang'],
+					'date_num' => $value['num'],
+					'day_name' => $value['name']
+				];
+			}else{
+				$output[] =
+				[
+					'foto_berangkat' => 'kosong',
+					'foto_pulang' => 'kosong',
+					'foto_izin' => 'kosong',
+					'tgl' => $value['date'],
+					'status' => 0,
+					'jam_berangkat' => 'kosong',
+					'jam_pulang' => 'kosong',
+					'date_num' => $value['num'],
+					'day_name' => $value['name']
+				];
+			}
 		}
+		$this->load->view('index',['data'=>$output]);
 	}
 }
