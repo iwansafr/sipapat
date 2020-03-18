@@ -145,7 +145,22 @@ class Absensi extends CI_Controller
 			}
 		}
 		$this->esg->add_js(base_url('assets/absensi/script.js'));
-		$this->load->view('index',['id'=>$id,'data'=>$output,'bulan'=>$this->absensi_model->bulan()]);
+		$this->load->view('index',['id'=>$id,'data'=>$output,'bulan'=>$this->absensi_model->bulan(),'month'=>$month,'year'=>$year]);
+	}
+
+	public function rekap_data($desa_id = 0,$month = 0,$year = 0)
+	{
+		$desa_id = !empty($desa_id) ? $desa_id : $this->sipapat_model->get_desa_id();
+		if(!empty($_GET['desa_id'])){
+			$desa_id = intval($_GET['desa_id']);
+		}
+		if(!empty($_GET['bl'])){
+			$month = intval($_GET['bl']);
+		}
+		if(!empty($_GET['th'])){
+			$year = intval($_GET['th']);
+		}
+		$this->load->view('index');
 	}
 
 	public function tambah_izin($id=0)

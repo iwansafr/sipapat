@@ -39,13 +39,13 @@ $this->table->set_template($template);
 		<div class="row">
 			<form action="<?php echo base_url('admin/absensi/rekap/'.$id) ?>" method="get">
 				<div class="col-sm-3">
-					<label>Tahun</label><input class="form-control" type="number" name="th" value="<?php echo @$_GET['th'] ?>" required>
+					<label>Tahun</label><input class="form-control" type="number" name="th" value="<?php echo @$year ?>" required>
 				</div>
 				<div class="col-sm-3">
 					<label>Bulan</label>
 					<select class="form-control" required name="bl">
 						<?php foreach ($bulan as $key => $value): ?>
-							<?php $selected = $key == @$_GET['bl'] ? 'selected' : ''; ?>
+							<?php $selected = $key == @$month ? 'selected' : ''; ?>
 							<option <?php echo $selected ?> value="<?php echo $key ?>"><?php echo $value ?></option>
 						<?php endforeach ?>
 					</select>

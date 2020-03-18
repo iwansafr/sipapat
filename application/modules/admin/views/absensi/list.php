@@ -47,7 +47,7 @@ if(!empty($desa_id))
 	$form->setDelete(true);
 	?>
 	<div class="row">
-		<div class="col-xs-3">
+		<div class="col-md-3">
 			<form action="" method="get">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -67,7 +67,7 @@ if(!empty($desa_id))
 				</div>
 			</form>
 		</div>
-		<div class="col-xs-3">
+		<div class="col-md-3">
 			<form action="" method="get">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -96,7 +96,7 @@ if(!empty($desa_id))
 				</div>
 			</form>
 		</div>
-		<div class="col-xs-3">
+		<div class="col-md-3">
 			<form action="" method="get">
 				<div class="panel panel-default">
 					<div class="panel-heading">
