@@ -30,7 +30,7 @@ RewriteCond %{HTTPS} !=on
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
 # Force www, if not in localhost
-RewriteCond %{HTTP_HOST} ^patikab.go.id [NC,OR]
+RewriteCond %{HTTP_HOST} ^sipapat.patikab.go.id [NC,OR]
 RewriteCond %{HTTP_HOST} !^www\.
 RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
 RewriteCond %{HTTP_HOST} ^[^.]+\.[^.]{3}$
