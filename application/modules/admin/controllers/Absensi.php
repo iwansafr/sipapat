@@ -187,4 +187,8 @@ class Absensi extends CI_Controller
 		$this->load->view('index', $data);
 	}
 
+	public function config()
+	{
+		$this->load->view('index');
+	}
 }

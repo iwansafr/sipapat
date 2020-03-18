@@ -4,6 +4,10 @@ $form = new zea();
 
 $desa_id = $this->sipapat_model->get_desa_id();
 
+if(is_kecamatan() && !empty($_GET['desa']))
+{
+	$desa_id = intval($_GET['desa']);
+}
 if(!empty($desa_id))
 {
 	$get = [];
@@ -34,7 +38,7 @@ if(!empty($desa_id))
 	$form->addInput('foto','thumbnail');
 
 	$form->addInput('status','dropdown');
-	$form->setOptions('status',['1'=>'<span class="btn-sm btn-success">Berangkat</span>','2'=>'<span class="btn-sm btn-success">Pulang</span>','3'=>'<span class="btn-sm btn-warning">Izin</span>','4'=>'<span class="btn-sm btn-danger">Terlambat</span>']);
+	$form->setOptions('status',$this->absensi_model->status());
 	$form->setAttribute('status','disabled');
 
 	$form->addInput('created','plaintext');

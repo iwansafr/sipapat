@@ -56,4 +56,13 @@ class Sipapatconfig extends CI_Controller
 		output_json($config);
 	}
 
+	public function absensi()
+	{
+		$this->load->view('index');
+	}
+	public function dashboard()
+	{
+		$this->load->view('index');
+	}
+
 }

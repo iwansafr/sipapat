@@ -6,6 +6,24 @@ $mod['task'] = $this->router->fetch_method();
 $this->load->model('sipapat_model');
 if($mod['name'] == 'admin' && $mod['task'] == 'index')
 {
+	$dashboard_config = $this->esg->get_config(base_url('_dashboard_config'));
+	if(!empty($dashboard_config))
+	{
+		$this->esg->set_esg('dashboard_config',$dashboard_config);
+		if(!empty($dashboard_config['absensi']) && is_kecamatan())
+		{
+			$user = $this->esg->get_esg('user');
+			if(!empty($user['pengguna']['district_id']))
+			{
+				$this->load->model('absensi_model');
+				$absensi = $this->absensi_model->get_all($user['pengguna']['district_id']);
+				if(!empty($absensi))
+				{
+					$this->esg->set_esg('absensi',$absensi);
+				}
+			}
+		}
+	}
 	$this->load->model('notification_model');
 	$this->load->model('pengguna_model');
 	$pengguna = $this->pengguna_model->get_pengguna();
@@ -15,7 +33,7 @@ if($mod['name'] == 'admin' && $mod['task'] == 'index')
 	{
 		$desa = $this->sipapat_model->get_desa($pengguna['desa_id']);
 	}
-	if(!empty($desa))
+	if(!empty($desa) && !empty($dashboard_config['pengumuman']))
 	{
 		$pengumuman = $this->sipapat_model->get_pengumuman(strtolower($desa['kecamatan']));
 	}
@@ -42,6 +60,7 @@ $allowed = TRUE;
 // }
 if($allowed)
 {
+	// pr($this->esg->get_esg());die();
 	$this->load->view('templates'.DIRECTORY_SEPARATOR.$this->esg->get_esg('templates')['admin_template'].DIRECTORY_SEPARATOR.'index', $this->esg->get_esg());
 }else{
 	?>

@@ -60,3 +60,5 @@ ALTER TABLE `user_desa` ADD `district_id` INT(11) NULL DEFAULT NULL AFTER `desa_
 
 
 ALTER TABLE `desa_rekening` ADD `bank_detail` VARCHAR(100) NOT NULL AFTER `bank`;
+
+ALTER TABLE `absensi` ADD `keterangan` TINYINT(1) NOT NULL AFTER `foto`;

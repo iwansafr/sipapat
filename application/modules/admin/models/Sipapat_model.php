@@ -15,6 +15,18 @@ class Sipapat_model extends CI_Model
 		if(!empty($sipapat_config))
 		{
 			$this->esg->set_esg('sipapat_config', $sipapat_config);
+			if(!empty($this->session->userdata()[base_url('_logged_in')]))
+			{
+				$user = $this->session->userdata()[base_url('_logged_in')];
+			}
+			if(!empty($user)){
+				if(empty($user['pengguna'])){
+					$pengguna = $this->db->get_where('user_desa',['user_id'=>$user['id']])->row_array();
+					$user['pengguna'] = $pengguna;
+					$this->session->set_userdata(base_url().'_logged_in', $user);
+					$user = $this->session->userdata()[base_url('_logged_in')];
+				}
+			}
 		}
 	}
 
