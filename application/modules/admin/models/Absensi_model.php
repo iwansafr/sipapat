@@ -27,4 +27,10 @@ class Absensi_model extends CI_Model{
 	{
 		return ['0'=>'<span class="btn-sm btn-info">Belum diValidasi</span>','1'=>'<span class="btn-sm btn-success">Valid</span>','2'=>'<span class="btn-sm btn-danger">Tidak Valid</span>'];
 	}
+	public function bulan()
+	{
+		$bulan = ['januari','februari','maret','april','mei','juni','juli','agustus','september','oktober','november','desember'];
+	  $bulan = array_start_one($bulan);
+	  return $bulan;
+	}
 }

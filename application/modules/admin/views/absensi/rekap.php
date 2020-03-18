@@ -36,7 +36,26 @@ $this->table->set_template($template);
 ?>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		
+		<div class="row">
+			<form action="<?php echo base_url('admin/absensi/rekap/'.$id) ?>" method="get">
+				<div class="col-sm-3">
+					<label>Tahun</label><input class="form-control" type="number" name="th" value="<?php echo @$_GET['th'] ?>" required>
+				</div>
+				<div class="col-sm-3">
+					<label>Bulan</label>
+					<select class="form-control" required name="bl">
+						<?php foreach ($bulan as $key => $value): ?>
+							<?php $selected = $key == @$_GET['bl'] ? 'selected' : ''; ?>
+							<option <?php echo $selected ?> value="<?php echo $key ?>"><?php echo $value ?></option>
+						<?php endforeach ?>
+					</select>
+				</div>
+				<div class="col-sm-3">
+					<label>Filter</label><br>
+					<button class="btn btn-info btn-sm"><i class="fa fa-chart-bar"></i></button>
+				</div>
+			</form>
+		</div>
 	</div>
 	<div class="panel-body">
 		<?php

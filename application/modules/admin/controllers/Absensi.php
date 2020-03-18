@@ -50,6 +50,12 @@ class Absensi extends CI_Controller
 
 	public function rekap($id = 0, $month = 0, $year = 0)
 	{
+		if(!empty($_GET['bl'])){
+			$month = $_GET['bl'];
+		}
+		if(!empty($_GET['th'])){
+			$year = $_GET['th'];
+		}
 		if($month!=10){
 			$month = str_replace('0', '', $month);
 			$month = $month <=10 ? '0'.$month : $month;
@@ -101,41 +107,45 @@ class Absensi extends CI_Controller
 				}
 				$tmp_data[$index]['status'] = $value['status'];
 			}
+			$tgl = $this->absensi_model->tgl($year.'-'.$month.'-01');
 		}
-		$tgl = $this->absensi_model->tgl($year.'-'.$month.'-01');
 		$output[] = [
 			'tgl','hari','status','jam_berangkat','jam_pulang','valid'
 		];
 		$message_status = $this->absensi_model->status();
 		$message_validation = $this->absensi_model->valid();
-		foreach ($tgl as $key => $value) 
+		if(!empty($tgl))
 		{
-			if(!empty($tmp_data[$value['date']]))
+			foreach ($tgl as $key => $value) 
 			{
-				$output[] =
-				[
-					'tgl' => $tmp_data[$value['date']]['tgl'],
-					'day_name' => $value['name'],
-					'status' => $message_status[$tmp_data[$value['date']]['status']],
-					'jam_berangkat' => $tmp_data[$value['date']]['jam_berangkat'],
-					'jam_pulang' => $tmp_data[$value['date']]['jam_pulang'],
-					// 'date_num' => $value['num'],
-					'valid' => $message_validation[$tmp_data[$value['date']]['valid']]
-				];
-			}else{
-				$output[] =
-				[
-					'tgl' => $value['date'],
-					'day_name' => $value['name'],
-					'status' => $message_status[0],
-					'jam_berangkat' => 'kosong',
-					'jam_pulang' => 'kosong',
-					// 'date_num' => $value['num'],
-					'valid' => $message_validation[0]
-				];
+				if(!empty($tmp_data[$value['date']]))
+				{
+					$output[] =
+					[
+						'tgl' => $tmp_data[$value['date']]['tgl'],
+						'day_name' => $value['name'],
+						'status' => $message_status[$tmp_data[$value['date']]['status']],
+						'jam_berangkat' => $tmp_data[$value['date']]['jam_berangkat'],
+						'jam_pulang' => $tmp_data[$value['date']]['jam_pulang'],
+						// 'date_num' => $value['num'],
+						'valid' => $message_validation[$tmp_data[$value['date']]['valid']]
+					];
+				}else{
+					$output[] =
+					[
+						'tgl' => $value['date'],
+						'day_name' => $value['name'],
+						'status' => $message_status[0],
+						'jam_berangkat' => 'kosong',
+						'jam_pulang' => 'kosong',
+						// 'date_num' => $value['num'],
+						'valid' => $message_validation[0]
+					];
+				}
 			}
 		}
-		$this->load->view('index',['data'=>$output]);
+		$this->esg->add_js(base_url('assets/absensi/script.js'));
+		$this->load->view('index',['id'=>$id,'data'=>$output,'bulan'=>$this->absensi_model->bulan()]);
 	}
 
 	public function tambah_izin($id=0)
