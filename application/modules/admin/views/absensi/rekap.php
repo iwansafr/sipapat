@@ -58,9 +58,11 @@ $this->table->set_template($template);
 		</div>
 	</div>
 	<div class="panel-body">
-		<?php
-		echo $this->table->generate($data);
-		?>
+		<div class="table-responsive">
+			<?php
+			echo $this->table->generate($data);
+			?>
+		</div>
 	</div>
 	<div class="panel-footer">
 		

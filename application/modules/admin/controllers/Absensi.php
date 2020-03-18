@@ -144,7 +144,6 @@ class Absensi extends CI_Controller
 				}
 			}
 		}
-		$this->esg->add_js(base_url('assets/absensi/script.js'));
 		$this->load->view('index',['id'=>$id,'data'=>$output,'bulan'=>$this->absensi_model->bulan(),'month'=>$month,'year'=>$year]);
 	}
 

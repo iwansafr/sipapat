@@ -11,12 +11,16 @@ function jam() {
   var h = addZero(d.getHours());
   var m = addZero(d.getMinutes());
   var s = addZero(d.getSeconds());
-  if(h<8){
+  if(h<8 && h>=6){
   	brgkt();
-  }else if(h>=16){
-  	plg();
-  }else if(h>=8){
+  }else if(h>=8 && h<14){
   	terlambat();
+  }else if(h<16 && h>=14){
+  	plg();
+  }else if(h==16 && m==0){
+  	plg();
+  }else{
+  	off();
   }
   x.innerHTML = "Jam : "+h + ":" + m + ":" + s;
 }
@@ -38,6 +42,16 @@ function plg(){
 	btn_status.innerHTML = '<i class="fa fa-home"></i> Pulang';
 	btn_upload = document.getElementById('btn_upload');
 	btn_upload.classList.remove("d-none");
+}
+function off(){
+	document.getElementById('status').value = '4';
+	btn_status = document.getElementById('btn_status');
+	btn_status.classList.remove("d-none");
+	btn_status.classList.remove('btn-success');
+	btn_status.classList.add('btn-danger');
+	btn_status.innerHTML = '<i class="fa fa-building"></i> Absensi Off';
+	btn_upload = document.getElementById('btn_upload');
+	btn_upload.classList.add("d-none");
 }
 function terlambat(){
 	document.getElementById('status').value = '4';
