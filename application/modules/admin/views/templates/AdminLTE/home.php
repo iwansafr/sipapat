@@ -160,7 +160,7 @@ if(!is_bumdes())
 	if(!empty($absensi) && !empty($dashboard_config['absensi']) && is_kecamatan())
 	{
 		$absensi_config = $this->esg->get_config(base_url('_absensi_config'));
-		?><h1 style="text-align: center; color: <?php echo @$absensi_config['header_color']; ?>; font-weight: bold;"><?php echo @$absensi_config['header'].' '.str_replace('kec_','',$user['username']) ?></h1><?php
+		?><h1 style="text-align: center; color: <?php echo @$absensi_config['header_color']; ?>; font-weight: bold;"><?php echo @$absensi_config['header'].' '.@$user['district']['name'] ?></h1><?php
 		foreach ($absensi as $key => $value) 
 		{
 			?>
@@ -183,7 +183,7 @@ if(!is_bumdes())
 					    <?php endforeach ?>
 						</table>
 				  </div>
-				  <a href="<?php echo @$value['link'] ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+				  <a href="" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
 			<?php

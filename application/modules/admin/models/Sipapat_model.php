@@ -22,6 +22,9 @@ class Sipapat_model extends CI_Model
 			if(!empty($user)){
 				if(empty($user['pengguna'])){
 					$pengguna = $this->db->get_where('user_desa',['user_id'=>$user['id']])->row_array();
+					if(!empty($pengguna['district_id'])){
+						$user['distrct'] = $this->db->get_where('districts',['id'=>$user['district_id']])->row_array();
+					}
 					$user['pengguna'] = $pengguna;
 					$this->session->set_userdata(base_url().'_logged_in', $user);
 					$user = $this->session->userdata()[base_url('_logged_in')];
