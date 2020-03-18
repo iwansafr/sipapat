@@ -10,12 +10,21 @@ class Absensi_model extends CI_Model{
 			$tgl = [];
 			while(strtotime($date) <= strtotime($end))
 			{
+				$current_date = $date;
 	      $day_num = date('d', strtotime($date));
 	      $day_name = date('l', strtotime($date));
 	      $date = date("Y-m-d", strtotime("+1 day", strtotime($date)));
-	      $tgl[] = ['num'=>$day_num,'name'=>$day_name,'date'=>$date];
+	      $tgl[] = ['num'=>$day_num,'name'=>$day_name,'date'=>$current_date];
 	    }
 	    return $tgl;
 		}
+	}
+	public function status()
+	{
+		return ['0'=>'<span class="btn-sm btn-info">Kosong</span>','1'=>'<span class="btn-sm btn-success">Berangkat</span>','2'=>'<span class="btn-sm btn-success">Pulang</span>','3'=>'<span class="btn-sm btn-warning">Izin</span>','4'=>'<span class="btn-sm btn-danger">Terlambat</span>'];
+	}
+	public function valid()
+	{
+		return ['0'=>'<span class="btn-sm btn-info">Belum diValidasi</span>','1'=>'<span class="btn-sm btn-success">Valid</span>','2'=>'<span class="btn-sm btn-danger">Tidak Valid</span>'];
 	}
 }

@@ -12,6 +12,7 @@ $desa_id = $this->sipapat_model->get_desa_id();
 	<h1><?php echo $perangkat['nama'] ?></h1>
 <?php endif ?>
 <a href="<?php echo base_url('admin/absensi/tambah_izin/'.$id) ?>" class="btn btn-warning"><i class="fa fa-file"></i> Buat Izin</a>
+<a href="<?php echo base_url('admin/absensi/rekap/'.$id.'/'.date('m').'/'.date('Y')) ?>" class="btn btn-primary"><i class="fa fa-chart-bar"></i> Rekap</a>
 <?php
 if(!empty($desa_id))
 {

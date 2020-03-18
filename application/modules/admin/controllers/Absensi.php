@@ -81,7 +81,7 @@ class Absensi extends CI_Controller
 					$tmp_data[$index]['jam_pulang'] = 'Kosong';
 				}
 				if(empty($value['valid'])){
-					$tmp_data[$index]['valid'] = 'Kosong';
+					$tmp_data[$index]['valid'] = 0;
 				}else{
 					$tmp_data[$index]['valid'] = $value['valid'];
 				}
@@ -104,8 +104,10 @@ class Absensi extends CI_Controller
 		}
 		$tgl = $this->absensi_model->tgl($year.'-'.$month.'-01');
 		$output[] = [
-			'tgl','status','jam_berangkat','jam_pulang','date_num','day_name','valid'
+			'tgl','hari','status','jam_berangkat','jam_pulang','valid'
 		];
+		$message_status = $this->absensi_model->status();
+		$message_validation = $this->absensi_model->valid();
 		foreach ($tgl as $key => $value) 
 		{
 			if(!empty($tmp_data[$value['date']]))
@@ -113,23 +115,23 @@ class Absensi extends CI_Controller
 				$output[] =
 				[
 					'tgl' => $tmp_data[$value['date']]['tgl'],
-					'status' => $tmp_data[$value['date']]['status'],
+					'day_name' => $value['name'],
+					'status' => $message_status[$tmp_data[$value['date']]['status']],
 					'jam_berangkat' => $tmp_data[$value['date']]['jam_berangkat'],
 					'jam_pulang' => $tmp_data[$value['date']]['jam_pulang'],
-					'date_num' => $value['num'],
-					'day_name' => $value['name'],
-					'valid' => $tmp_data[$value['date']]['valid']
+					// 'date_num' => $value['num'],
+					'valid' => $message_validation[$tmp_data[$value['date']]['valid']]
 				];
 			}else{
 				$output[] =
 				[
 					'tgl' => $value['date'],
-					'status' => 0,
+					'day_name' => $value['name'],
+					'status' => $message_status[0],
 					'jam_berangkat' => 'kosong',
 					'jam_pulang' => 'kosong',
-					'date_num' => $value['num'],
-					'day_name' => $value['name'],
-					'valid' => 'Kosong'
+					// 'date_num' => $value['num'],
+					'valid' => $message_validation[0]
 				];
 			}
 		}
@@ -145,6 +147,18 @@ class Absensi extends CI_Controller
 			$data = ['status'=>'danger','msg'=>'Data Tidak ditemukan'];
 		}else{
 			$data['perangkat'] = json_decode(file_get_contents(base_url('api/perangkat/get_by_id/'.$id)),1);
+		}
+		$post = $this->input->post();
+		$exist = [];
+		if(!empty($post))
+		{
+			$this->db->select('id');
+			$exist = $this->db->get_where('absensi',['perangkat_desa_id'=>$id,'CAST(created AS date) = '=>$post['created']])->row_array();
+			if(!empty($exist)){
+				$data['exist'] = $exist;
+				$data['status'] = 'danger';
+				$data['msg'] = 'Izin sudah ada';
+			}
 		}
 		$this->load->view('index', $data);
 	}
