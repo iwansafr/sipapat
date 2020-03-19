@@ -2,17 +2,18 @@
 <html>
 <head>
   <?php 
-  if(is_sipapat())
-  {
+  $base_url_name = str_replace('/','_', base_url());
+  $site_title = $base_url_name.'_site';
+  $logo_title = $base_url_name.'_logo';
+  $site['site'] = $this->esg->get_config($site_title);
+  $site['logo'] = $this->esg->get_config($logo_title);
+
+  if(empty($site['logo'])){
     $site = $this->esg->get_esg('site');
     $site_title = 'site';
     $logo_title = 'logo';
-  }else{
-    $site['site'] = $this->esg->get_config('sispudes_site');
-    $site['logo'] = $this->esg->get_config('sispudes_logo');
-    $site_title = 'sispudes_site';
-    $logo_title = 'sispudes_logo';
   }
+
   ?>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">

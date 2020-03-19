@@ -1,14 +1,12 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-if(is_sipapat())
+if(is_root())
 {
-	$this->load->view('admin/config/logo');
-}else{
 	$form = new Zea();
 	$form->init('param');
 	$form->setTable('config');
-	$form->setParamName('sispudes_logo');
-	$form->setHeading('Sispudes Logo Configuration');
+	$form->setParamName(str_replace('/','_',base_url()).'_logo');
+	$form->setHeading('Custom Logo Configuration');
 	$form->addInput('title', 'text');
 	$form->addInput('image', 'upload');
 	$form->setAccept('image', 'image/jpeg,image/png');

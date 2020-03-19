@@ -1,15 +1,13 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-if(is_sipapat())
+if(is_root())
 {
-	$this->load->view('admin/config/site');
-}else{
 	$form  = new zea();
 
 	$form->init('param');
 	$form->setTable('config');
-	$form->setParamName('sispudes_site');
-	$form->setHeading('Sispudes Site Configuration');
+	$form->setParamName(str_replace('/','_',base_url()).'_site');
+	$form->setHeading('Custom Site Configuration');
 	$form->addInput('title', 'text');
 	$form->addInput('link', 'text');
 	$form->addInput('image', 'upload');

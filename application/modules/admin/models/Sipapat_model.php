@@ -261,16 +261,25 @@ class Sipapat_model extends CI_Model
 	public function site()
 	{
 		$data = array();
-		if(is_sipapat())
+
+		$base_url_name = str_replace('/','_',base_url());
+		$site_title = $base_url_name.'_site';
+		
+		$data['logo'] = $this->esg->get_config($base_url_name.'_logo');
+		$data['site'] = $this->esg->get_config($base_url_name.'_site');
+
+		if(empty($data['logo']))
+		{
+			$data['logo'] = $this->esg->get_config('logo');
+		}
+		if(empty($data['site']))
 		{
 			$site_title = 'site';
-			$data['logo'] = $this->esg->get_config('logo');
 			$data['site'] = $this->esg->get_config('site');
-		}else{
-			$site_title = 'sispudes_site';
-			$data['logo'] = $this->esg->get_config('sispudes_logo');
-			$data['site'] = $this->esg->get_config('sispudes_site');
 		}
+			// pr($data);die();
+
+
 		$this->esg->set_esg('site', $data);
 
 		$site = $this->esg->get_esg('site')['site'];
