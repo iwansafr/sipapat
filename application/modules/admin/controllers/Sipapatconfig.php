@@ -25,6 +25,11 @@ class Sipapatconfig extends CI_Controller
 		$this->load->view('index');
 	}
 
+	public function custom_api()
+	{
+		$this->load->view('index');
+	}
+
 	public function nomor_surat()
 	{
 		$this->load->view('index');

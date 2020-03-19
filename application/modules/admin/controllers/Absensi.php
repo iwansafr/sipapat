@@ -14,7 +14,6 @@ class Absensi extends CI_Controller
 		$this->load->library('ZEA/zea');
 		$this->esg_model->init();
 	}
-
 	public function list()
 	{
 		$this->load->view('index');
@@ -31,7 +30,8 @@ class Absensi extends CI_Controller
 		{
 			$data = ['status'=>'danger','msg'=>'Data Tidak ditemukan'];
 		}else{
-			$data['perangkat'] = json_decode(curl(base_url('api/perangkat/get_by_id/'.$id)),1);
+			$custom_api = $this->esg->get_config(base_url().'_api')['url'];
+			$data['perangkat'] = json_decode(curl($custom_api.'api/perangkat/get_by_id/'.$id),1);
 		}
 		$this->load->view('index', $data);
 	}
@@ -43,7 +43,8 @@ class Absensi extends CI_Controller
 		{
 			$data = ['status'=>'danger','msg'=>'Data Tidak ditemukan'];
 		}else{
-			$data['perangkat'] = json_decode(file_get_contents(base_url('api/perangkat/get_by_id/'.$id)),1);
+			$custom_api = $this->esg->get_config(base_url().'_api')['url'];
+			$data['perangkat'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_by_id/'.$id),1);
 		}
 		$this->load->view('absensi/detail',$data);
 	}
@@ -66,7 +67,8 @@ class Absensi extends CI_Controller
 		{
 			$data = ['status'=>'danger','msg'=>'Data Tidak ditemukan'];
 		}else{
-			$data['perangkat'] = json_decode(file_get_contents(base_url('api/perangkat/get_by_id/'.$id)),1);
+			$custom_api = $this->esg->get_config(base_url().'_api')['url'];
+			$data['perangkat'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_by_id/'.$id),1);
 		}
 
 		if(empty($month)){
@@ -170,7 +172,8 @@ class Absensi extends CI_Controller
 		{
 			$data = ['status'=>'danger','msg'=>'Data Tidak ditemukan'];
 		}else{
-			$data['perangkat'] = json_decode(file_get_contents(base_url('api/perangkat/get_by_id/'.$id)),1);
+			$custom_api = $this->esg->get_config(base_url().'_api')['url'];
+			$data['perangkat'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_by_id/'.$id),1);
 		}
 		$post = $this->input->post();
 		$exist = [];
