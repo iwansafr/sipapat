@@ -82,8 +82,8 @@ class Absensi_model extends CI_Model{
 						$data[$value['desa_id']]['desa']['id'] = $value['desa_id'];
 					}
 				}
-				return $data;
 			}
+			return $data;
 		}
 	}
 }
