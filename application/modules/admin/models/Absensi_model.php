@@ -47,29 +47,29 @@ class Absensi_model extends CI_Model{
 		{
 			$tmp_data = $this->db->query('SELECT a.id,a.desa_id,a.status,d.nama,d.district_id FROM absensi AS a INNER JOIN desa AS d ON(d.id=a.desa_id) WHERE district_id = ? AND CAST(a.created AS date) = ?',[$district_id, date('Y-m-d')])->result_array();
 			$data = [];
-			if(!empty($tmp_data))
+			$status_message = $this->absensi_model->status();
+			$this->db->select('id,nama');
+			$desa = $this->db->get_where('desa',['district_id'=>$district_id])->result_array();
+			if(!empty($desa))
 			{
-				$status_count = [];
-				$status_message = $this->absensi_model->status();
-				
-				$this->db->select('id,nama');
-				$desa = $this->db->get_where('desa',['district_id'=>$district_id])->result_array();
-				if(!empty($desa))
+				foreach ($desa as $key => $value) 
 				{
-					foreach ($desa as $key => $value) 
+					foreach ($status_message as $smkey => $smvalue) 
 					{
-						foreach ($status_message as $smkey => $smvalue) 
+						if($smkey > 0)
 						{
-							if($smkey > 0)
-							{
-								$data[$value['id']]['absensi'][$smkey]['total'] = 0;
-								$data[$value['id']]['absensi'][$smkey]['judul'] = $smvalue;
-								$data[$value['id']]['desa']['nama'] = $value['nama'];
-								$data[$value['id']]['desa']['id'] = $value['id'];
-							}
+							$data[$value['id']]['absensi'][$smkey]['total'] = 0;
+							$data[$value['id']]['absensi'][$smkey]['judul'] = $smvalue;
+							$data[$value['id']]['desa']['nama'] = $value['nama'];
+							$data[$value['id']]['desa']['id'] = $value['id'];
 						}
 					}
 				}
+			}
+			if(!empty($tmp_data))
+			{
+				$status_count = [];
+				
 
 				foreach ($tmp_data as $key => $value) 
 				{
