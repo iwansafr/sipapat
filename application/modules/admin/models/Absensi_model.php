@@ -27,6 +27,10 @@ class Absensi_model extends CI_Model{
 	{
 		return ['0'=>'<span class="btn-sm btn-info">Kosong</span>','1'=>'<span class="btn-sm btn-success">Berangkat</span>','2'=>'<span class="btn-sm btn-success">Pulang</span>','3'=>'<span class="btn-sm btn-warning">Izin Kantor</span>','4'=>'<span class="btn-sm btn-danger">Terlambat</span>','5'=>'<span class="btn-sm btn-warning">Dinas Kantor</span>'];
 	}
+	public function clean_status()
+	{
+		return ['0'=>'Kosong','1'=>'Berangkat','2'=>'Pulang','3'=>'Izin Kantor','4'=>'Terlambat','5'=>'Dinas Kantor'];
+	}
 	public function valid()
 	{
 		return ['0'=>'<span class="btn-sm btn-info">Belum diValidasi</span>','1'=>'<span class="btn-sm btn-success">Valid</span>','2'=>'<span class="btn-sm btn-danger">Tidak Valid</span>'];
@@ -47,6 +51,26 @@ class Absensi_model extends CI_Model{
 			{
 				$status_count = [];
 				$status_message = $this->absensi_model->status();
+				
+				$this->db->select('id,nama');
+				$desa = $this->db->get_where('desa',['district_id'=>$district_id])->result_array();
+				if(!empty($desa))
+				{
+					foreach ($desa as $key => $value) 
+					{
+						foreach ($status_message as $smkey => $smvalue) 
+						{
+							if($smkey > 0)
+							{
+								$data[$value['id']]['absensi'][$smkey]['total'] = 0;
+								$data[$value['id']]['absensi'][$smkey]['judul'] = $smvalue;
+								$data[$value['id']]['desa']['nama'] = $value['nama'];
+								$data[$value['id']]['desa']['id'] = $value['id'];
+							}
+						}
+					}
+				}
+
 				foreach ($tmp_data as $key => $value) 
 				{
 					$status_count[$value['status']] = !empty($status_count[$value['status']]) ? $status_count[$value['status']]+1 : 1;
