@@ -11,14 +11,18 @@ if(is_dir(FCPATH.'application/modules/home/views/templates/'.$public_template))
   	$site['logo']['module'] = $logo_title;
     $this->esg->set_esg('logo',$site['logo']);
   }else{
+  	$site['logo'] = $this->esg->get_config('logo');
   	$site['logo']['module'] = 'logo';
+    $this->esg->set_esg('logo',$site['logo']);
   }
   if(!empty($site['site']))
   {
   	$site['site']['module'] = $site_title;
     $this->esg->set_esg('site',$site['site']);
   }else{
+  	$site['site'] = $this->esg->get_config('site');
   	$site['site']['module'] = 'site';
+    $this->esg->set_esg('site',$site['logo']);
   }
 
 	$this->load->view('templates'.DIRECTORY_SEPARATOR.$public_template.DIRECTORY_SEPARATOR.'index', $this->esg->get_esg());
