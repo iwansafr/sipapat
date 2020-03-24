@@ -1,5 +1,5 @@
 <div class="container">
-  <a class="navbar-brand" href="<?php echo base_url('home') ?>"><?php echo @$logo['title'] ?></a>
+  <a class="navbar-brand" href="<?php echo base_url('home') ?>"><img src="<?php echo image_module('config',$logo['module'].'/'.$logo['image']) ?>" height="50"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
