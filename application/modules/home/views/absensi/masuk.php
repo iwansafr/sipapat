@@ -68,6 +68,8 @@
 						<i class="fa fa-camera" style="font-size: 500%;"></i>
 						<input type="file"  name="foto" class="form-control" accept=".gif, .jpg, .jpeg, .png" required>
 					</label>
+					<br>
+					<img src="" class="image_place" class="img img-responsive" style="object-fit: cover; height: 200px;" alt="">
 				</div>
 			</div>
 			<div class="panel-footer panel card-footer">

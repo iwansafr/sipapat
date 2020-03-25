@@ -69,4 +69,24 @@ $(document).ready(function(){
 		clearInterval(rm_msg);
 	}
 	var rm_msg = setInterval(remove_alert,5000);
+	
+	function readURL(input,a){
+	  if (input.files && input.files[0]){
+	    var reader = new FileReader();
+	    reader.onload = function(e){
+	    	// if(e.total>500000 && isFileImage(input.files[0])){
+	    	// 	var suc = $(a).siblings('input[type="file"]').val('');
+	  			// alert('ukuran file tidak boleh lebih dari 500KB');
+	    	// }else{
+	      	$(a).attr('src', e.target.result);
+	    	// }
+	    };
+	    reader.readAsDataURL(input.files[0]);
+	  }
+	}
+	$(document).on('change', 'input[type="file"]', function(){
+		console.log($(this));
+		var a = $('.image_place');
+		readURL(this,a);
+	});
 });
