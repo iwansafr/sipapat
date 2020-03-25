@@ -157,34 +157,43 @@ if(!is_bumdes())
 		</div>
 		<?php
 	}
-	if(!empty($absensi) && !empty($dashboard_config['absensi']) && is_kecamatan())
+	if(!empty($dashboard_config['absensi']) && is_kecamatan())
 	{
-		$absensi_config = $this->esg->get_config(base_url('_absensi_config'));
-		?><h1 style="text-align: center; color: <?php echo @$absensi_config['header_color']; ?>; font-weight: bold;"><?php echo @$absensi_config['header'].' '.@$user['district']['name'] ?></h1><?php
-		foreach ($absensi as $key => $value) 
+		if(!empty($absensi))
 		{
-			?>
-			<div class="col-md-3" style="height: 100%; margin-bottom: 2%;">
-				<div class="small-box" style="background:  #222d32; color:white; height: 100%;">
-				  <div class="inner">
-				    <h5><?php echo $value['desa']['nama'] ?></h5>
-						<table class="table">
-					    <?php foreach ($value['absensi'] as $abkey => $abvalue): ?>
-					    	<tr>
-					    		<td>
-					    			<?php echo $abvalue['judul']; ?>
-					    		</td>
-					    		<td>:</td>
-					    		<td>
-					    			<?php echo $abvalue['total'] ?> | 
-					    			<a target="_blank" href="<?php echo base_url('admin/absensi/list/?desa='.$value['desa']['id'].'&tgl='.date('Y-m-d').'&status='.$abkey) ?>">detail</a>
-					    		</td>
-					    	</tr>
-					    <?php endforeach ?>
-						</table>
-				  </div>
-				  <a href="" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+			$absensi_config = $this->esg->get_config(base_url('_absensi_config'));
+			?><h1 style="text-align: center; color: <?php echo @$absensi_config['header_color']; ?>; font-weight: bold;"><?php echo @$absensi_config['header'].' '.@$user['district']['name'] ?></h1><?php
+			foreach ($absensi as $key => $value) 
+			{
+				?>
+				<div class="col-md-3" style="height: 100%; margin-bottom: 2%;">
+					<div class="small-box" style="background:  #222d32; color:white; height: 100%;">
+					  <div class="inner">
+					    <h5><?php echo $value['desa']['nama'] ?></h5>
+							<table class="table">
+						    <?php foreach ($value['absensi'] as $abkey => $abvalue): ?>
+						    	<tr>
+						    		<td>
+						    			<?php echo $abvalue['judul']; ?>
+						    		</td>
+						    		<td>:</td>
+						    		<td>
+						    			<?php echo $abvalue['total'] ?> | 
+						    			<a target="_blank" href="<?php echo base_url('admin/absensi/list/?desa='.$value['desa']['id'].'&tgl='.date('Y-m-d').'&status='.$abkey) ?>">detail</a>
+						    		</td>
+						    	</tr>
+						    <?php endforeach ?>
+							</table>
+					  </div>
+					  <a href="" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+					</div>
 				</div>
+				<?php
+			}
+		}else{
+			?>
+			<div class="center text-center">
+				<a class="btn btn-warning" href=""><i class="fa fa-refresh"></i> Refresh</a>
 			</div>
 			<?php
 		}
