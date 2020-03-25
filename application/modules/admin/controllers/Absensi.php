@@ -194,4 +194,12 @@ class Absensi extends CI_Controller
 	{
 		$this->load->view('index');
 	}
+	public function perangkat_list()
+	{
+		$this->load->view('index');
+	}
+	public function clear_perangkat_list()
+	{
+		$this->load->view('absensi/perangkat_list');
+	}
 }
