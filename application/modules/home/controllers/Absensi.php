@@ -51,13 +51,13 @@ class Absensi extends CI_Controller
 	  	{
 	  		if(!empty($data['perangkat_pagi']))
 	  		{
-	  			$perangkat_tmp = [];
+	  			$perangkat_tmp = $data['perangkat'];
 	  			foreach ($data['perangkat'] as $key => $value)
 					{
 						foreach ($data['perangkat_pagi'] as $pgkey => $pgvalue) 
 						{
-							if($pgvalue['id'] != $value['id']){
-								$perangkat_tmp[$key] = $value;
+							if($pgvalue['id'] == $value['id']){
+								unset($perangkat_tmp[$key]);
 							}
 						}
 					}
@@ -67,20 +67,19 @@ class Absensi extends CI_Controller
 	  	{
 	  		if(!empty($data['perangkat_pagi']))
 	  		{
-	  			$perangkat_tmp = [];
+	  			$perangkat_tmp = $data['perangkat'];
 	  			foreach ($data['perangkat'] as $key => $value)
 					{
 						foreach ($data['perangkat_sore'] as $pgkey => $pgvalue) 
 						{
-							if($pgvalue['id'] != $value['id']){
-								$perangkat_tmp[$key] = $value;
+							if($pgvalue['id'] == $value['id']){
+								unset($perangkat_tmp[$key]);
 							}
 						}
 					}
 	  		}
 	  	}
 	  }
-
 	  if(!empty($perangkat_tmp))
 	  {
 	  	$data['perangkat'] = $perangkat_tmp;
