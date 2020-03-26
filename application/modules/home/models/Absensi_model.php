@@ -26,6 +26,7 @@ class Absensi_model extends CI_Model
 
         if (!$this->upload->do_upload('foto'))
         {
+          $this->db->delete('absensi',['id'=>$last_id]);
           return ['status'=>'danger','msg'=>'Mohon Maaf Proses Absensi Gagal'];
         }else{
           $config_image_lib['image_library']  = 'gd2';
