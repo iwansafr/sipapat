@@ -41,11 +41,15 @@ class Absensi_model extends CI_Model{
 	  $bulan = array_start_one($bulan);
 	  return $bulan;
 	}
-	public function get_all($district_id = 0)
+	public function get_all($district_id = 0, $date = 0)
 	{
+		if(empty($date)){
+			 $date= date('Y-m-d');
+		}
 		if(!empty($district_id))
 		{
-			$tmp_data = $this->db->query('SELECT a.id,a.desa_id,a.status,d.nama,d.district_id FROM absensi AS a INNER JOIN desa AS d ON(d.id=a.desa_id) WHERE district_id = ? AND CAST(a.created AS date) = ?',[$district_id, date('Y-m-d')])->result_array();
+			$tmp_data = $this->db->query('SELECT a.id,a.desa_id,a.status,d.nama,d.district_id,a.created FROM absensi AS a INNER JOIN desa AS d ON(d.id=a.desa_id) WHERE district_id = ? AND CAST(a.created AS date) = ?',[$district_id, $date])->result_array();
+			// pr($this->db->last_query());die();
 			$data = [];
 			$status_message = $this->absensi_model->status();
 			$this->db->select('id,nama');

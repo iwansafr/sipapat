@@ -162,7 +162,25 @@ if(!is_bumdes())
 		if(!empty($absensi))
 		{
 			$absensi_config = $this->esg->get_config(base_url('_absensi_config'));
-			?><h1 style="text-align: center; color: <?php echo @$absensi_config['header_color']; ?>; font-weight: bold;"><?php echo @$absensi_config['header'].' '.@$user['district']['name'] ?></h1><?php
+			if(empty($_GET['date'])){
+				$date = date('Y-m-d');
+			}else{
+				$date = $_GET['date'];
+				$date = strtotime($date);
+				$date = date('Y-m-d',$date);
+			}
+			?>
+			<h1 style="text-align: center; color: <?php echo @$absensi_config['header_color']; ?>; font-weight: bold;"><?php echo @$absensi_config['header'].' '.@$user['district']['name'] ?></h1>
+			<div class="text-center">
+				<form action="" method="get">
+					<div class="form-inline">
+						<input type="date" name="date" class="form-control" value="<?php echo $date ?>">
+						<button class="btn btn-warning">Filter</button>
+					</div>
+				</form>
+				<br>
+			</div>
+			<?php
 			foreach ($absensi as $key => $value) 
 			{
 				?>
@@ -179,7 +197,7 @@ if(!is_bumdes())
 						    		<td>:</td>
 						    		<td>
 						    			<?php echo $abvalue['total'] ?> | 
-						    			<a target="_blank" href="<?php echo base_url('admin/absensi/list/?desa='.$value['desa']['id'].'&tgl='.date('Y-m-d').'&status='.$abkey) ?>">detail</a>
+						    			<a target="_blank" href="<?php echo base_url('admin/absensi/list/?desa='.$value['desa']['id'].'&tgl='.$date.'&status='.$abkey) ?>">detail</a>
 						    		</td>
 						    	</tr>
 						    <?php endforeach ?>

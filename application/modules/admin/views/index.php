@@ -16,7 +16,13 @@ if($mod['name'] == 'admin' && $mod['task'] == 'index')
 			if(!empty($user['pengguna']['district_id']))
 			{
 				$this->load->model('absensi_model');
-				$absensi = $this->absensi_model->get_all($user['pengguna']['district_id']);
+				$date = 0;
+				if(!empty($_GET['date'])){
+					$date = $_GET['date'];
+					$date = strtotime($date);
+					$date = date('Y-m-d',$date);
+				}
+				$absensi = $this->absensi_model->get_all($user['pengguna']['district_id'],$date);
 				if(!empty($absensi))
 				{
 					$this->esg->set_esg('absensi',$absensi);

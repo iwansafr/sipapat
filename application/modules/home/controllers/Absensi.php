@@ -35,7 +35,7 @@ class Absensi extends CI_Controller
 		$data['perangkat_sore'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_absensi_sore/'.$desa_id.'/1'),1);
 		$data['perangkat_izin'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_absensi_izin/'.$desa_id.'/1'),1);
 		$data['desa'] = json_decode(file_get_contents($custom_api.'api/desa/detail/'.$desa_id),1);
-		
+		$data['sudah'] = [];		
 		$h = date('h');
 		if($h<8 && $h>=6){
   		$status = 1;
@@ -69,11 +69,12 @@ class Absensi extends CI_Controller
 							}
 						}
 					}
+					$data['sudah'] = $data['perangkat_pagi'];
 	  		}
 	  	}
 	  	if($status == 3)
 	  	{
-	  		if(!empty($data['perangkat_pagi']))
+	  		if(!empty($data['perangkat_sore']))
 	  		{
 	  			$perangkat_tmp = $data['perangkat'];
 	  			foreach ($data['perangkat'] as $key => $value)
@@ -85,6 +86,7 @@ class Absensi extends CI_Controller
 							}
 						}
 					}
+					$data['sudah'] = $data['perangkat_sore'];
 	  		}
 	  	}
 	  }

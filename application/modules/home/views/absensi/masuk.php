@@ -55,11 +55,41 @@
 				</div>		
 				<div class="form-group">
 					<label for="">Nama Perangkat</label>
-					<select name="perangkat_desa_id" class="form-control select2" id="select2" style="width: 100%;">
+					<table class="table table-bordered table-sm tb_perangkat">
+						<input type="hidden" id="pdid" name="perangkat_desa_id" value="0">
+						<thead>
+							<h5>Belum Absen</h5>
+						</thead>
+						<?php $i = 1;?>
 						<?php foreach ($perangkat as $key => $value): ?>
-							<option value="<?php echo $value['id'] ?>"><?php echo $value['nama'].' | '.$jabatan[$value['jabatan']] ?></option>
+							<tr>
+								<td>
+									<?php echo $i ?>
+								</td>
+								<td>
+									<label class="btn btn-sm btn-warning sel_pd" data-id="<?php echo $value['id'] ?>"><?php echo $value['nama'].' | '.$jabatan[$value['jabatan']] ?></label>
+								</td>
+							</tr>
+							<?php $i++ ?>
 						<?php endforeach ?>
-					</select>
+					</table>
+					<table class="table table-bordered">
+						<thead>
+							<h5>Sudah Absen</h5>
+						</thead>
+						<?php $i = 1; ?>
+						<?php foreach ($sudah as $key => $value): ?>
+							<tr>
+								<td>
+									<?php echo $i ?>
+								</td>
+								<td>
+									<label class="btn btn-sm btn-success" data-id="<?php echo $value['id'] ?>"><?php echo $value['nama'].' | '.$jabatan[$value['jabatan']] ?></label>
+								</td>
+							</tr>
+							<?php $i++ ?>
+						<?php endforeach ?>
+					</table>
 				</div>
 				<div class="form-group" style="text-align: center;">
 					<label for="foto">Foto</label>

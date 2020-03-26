@@ -32,7 +32,7 @@ function brgkt(){
 	btn_status.innerHTML = '<i class="fa fa-building"></i> Berangkat';
 	btn_status.classList.remove('btn-danger');
 	btn_upload = document.getElementById('btn_upload');
-	btn_upload.classList.remove("d-none");
+	// btn_upload.classList.remove("d-none");
 }
 function plg(){
 	document.getElementById('status').value = '2';
@@ -41,7 +41,7 @@ function plg(){
 	btn_status.classList.remove('btn-danger');
 	btn_status.innerHTML = '<i class="fa fa-home"></i> Pulang';
 	btn_upload = document.getElementById('btn_upload');
-	btn_upload.classList.remove("d-none");
+	// btn_upload.classList.remove("d-none");
 }
 function off(){
 	document.getElementById('status').value = '4';
@@ -61,7 +61,7 @@ function terlambat(){
 	btn_status.classList.add('btn-danger');
 	btn_status.innerHTML = '<i class="fa fa-building"></i> Terlambat';
 	btn_upload = document.getElementById('btn_upload');
-	btn_upload.classList.remove("d-none");
+	// btn_upload.classList.remove("d-none");
 }
 $(document).ready(function(){
 	function remove_alert(){
@@ -89,4 +89,15 @@ $(document).ready(function(){
 		var a = $('.image_place');
 		readURL(this,a);
 	});
+	$(document).on('click','.sel_pd',function(){
+		var id = $(this).data('id');
+		$('input[name="perangkat_desa_id"]').val(id);
+		btn_upload = document.getElementById('btn_upload');
+		btn_upload.classList.remove("d-none");
+		$('.sel_pd').removeClass('btn-success');
+		$('.sel_pd').addClass('btn-warning');
+
+		$(this).addClass('btn-success')
+		$(this).removeClass('btn-warning')
+	});	
 });
