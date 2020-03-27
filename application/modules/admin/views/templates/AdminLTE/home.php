@@ -197,7 +197,11 @@ if(!is_bumdes())
 						    		<td>:</td>
 						    		<td>
 						    			<?php echo $abvalue['total'] ?> | 
-						    			<a target="_blank" href="<?php echo base_url('admin/absensi/list/?desa='.$value['desa']['id'].'&tgl='.$date.'&status='.$abkey) ?>">detail</a>
+						    			<?php if (!empty($abkey)): ?>
+						    				<a target="_blank" href="<?php echo base_url('admin/absensi/list/?desa='.$value['desa']['id'].'&tgl='.$date.'&status='.$abkey) ?>">detail</a>
+						    			<?php else: ?>
+						    				<a target="_blank" href="<?php echo base_url('admin/absensi/bolos_list/?desa='.$value['desa']['id'].'&tgl='.$date) ?>">detail</a>
+						    			<?php endif ?>
 						    		</td>
 						    	</tr>
 						    <?php endforeach ?>

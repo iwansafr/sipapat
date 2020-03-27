@@ -22,6 +22,27 @@ class Absensi extends CI_Controller
 	{
 		$this->load->view('absensi/list');
 	}
+
+	public function bolos_list()
+	{
+		$this->load->model('pengguna_model');
+		$desa_id = @intval($_GET['desa']);
+		$date = $this->input->get('tgl');
+		$date = strtotime($date);
+		$date = date('Y-m-d',$date);
+		$jabatan = $this->pengguna_model->jabatan()[1];
+		$tmp_data = $this->absensi_model->get_bolos_list($desa_id,$date);
+		pr($tmp_data);die();
+		$data['data'][] = [
+			'id','nama','jabatan'
+		];
+		foreach ($tmp_data as $key => $value) {
+			$value['jabatan'] = @$jabatan[$value['jabatan']];
+			$data['data'][] = $value;
+		}
+		$this->load->view('index',$data);
+	}
+	
 	public function detail($id = 0)
 	{
 		$this->esg_model->set_nav_title('Detail Absensi');
