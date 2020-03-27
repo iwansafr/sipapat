@@ -101,7 +101,7 @@
 					</label>
 					<br>
 					<img src="" class="image_place" class="img img-responsive" style="object-fit: cover; height: 200px;" alt="">
-					<label id="filename"></label>
+					<p id="filename"></p>
 				</div>
 			</div>
 			<div class="panel-footer panel card-footer">
