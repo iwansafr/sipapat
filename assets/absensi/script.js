@@ -80,6 +80,7 @@ $(document).ready(function(){
 	    	// }else{
 	    		console.log(e);
 	      	$(a).attr('src', e.target.result);
+	      	$('#filename').html(e.target.result);
 	    	// }
 	    };
 	    reader.readAsDataURL(input.files[0]);

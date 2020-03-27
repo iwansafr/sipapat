@@ -22,20 +22,6 @@ class Absensi extends CI_Controller
 
 	public function masuk($desa_id = 0)
 	{
-		if(!empty($this->input->post()))
-		{
-			$upload = $this->input->post();
-			$success = 1;
-			$upload['desa_id'] = $desa_id;
-			$data['status'] = $this->absensi_model->upload($upload);
-		}
-		$custom_api = $this->esg->get_config(base_url().'_api')['url'];
-		$data['perangkat'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_by_desa/'.$desa_id.'/1'),1);
-		$data['perangkat_pagi'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_absensi_pagi/'.$desa_id.'/1'),1);
-		$data['perangkat_sore'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_absensi_sore/'.$desa_id.'/1'),1);
-		$data['perangkat_izin'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_absensi_izin/'.$desa_id.'/1'),1);
-		$data['desa'] = json_decode(file_get_contents($custom_api.'api/desa/detail/'.$desa_id),1);
-		$data['sudah'] = [];		
 		$h = date('H');
 		if($h<8 && $h>=6){
   		$status = 1;
@@ -53,6 +39,20 @@ class Absensi extends CI_Controller
   		$status = 0;
   		//off
 	  }
+		if(!empty($this->input->post()))
+		{
+			$upload = $this->input->post();
+			$success = 1;
+			$upload['desa_id'] = $desa_id;
+			$data['status'] = $this->absensi_model->upload($upload);
+		}
+		$custom_api = $this->esg->get_config(base_url().'_api')['url'];
+		$data['perangkat'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_by_desa/'.$desa_id.'/1'),1);
+		$data['perangkat_pagi'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_absensi_pagi/'.$desa_id.'/1'),1);
+		$data['perangkat_sore'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_absensi_sore/'.$desa_id.'/1'),1);
+		$data['perangkat_izin'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_absensi_izin/'.$desa_id.'/1'),1);
+		$data['desa'] = json_decode(file_get_contents($custom_api.'api/desa/detail/'.$desa_id),1);
+		$data['sudah'] = [];		
 	  if(!empty($status))
 	  {
 	  	if($status == 1 || $status == 4)
@@ -89,10 +89,10 @@ class Absensi extends CI_Controller
 					$data['sudah'] = $data['perangkat_sore'];
 	  		}
 	  	}
-	  }
-	  if(!empty($perangkat_tmp))
-	  {
-	  	$data['perangkat'] = $perangkat_tmp;
+		  if(!empty($perangkat_tmp))
+		  {
+		  	$data['perangkat'] = $perangkat_tmp;
+		  }
 	  }
 		$this->load->model('admin/pengguna_model');
 		$this->home_model->home();
