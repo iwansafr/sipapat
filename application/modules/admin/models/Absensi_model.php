@@ -48,7 +48,7 @@ class Absensi_model extends CI_Model{
 		}
 		if(!empty($district_id))
 		{
-			$tmp_data = $this->db->query('SELECT a.id,a.desa_id,a.status,d.nama,d.district_id,a.created FROM absensi AS a INNER JOIN desa AS d ON(d.id=a.desa_id) WHERE district_id = ? AND CAST(a.created AS date) = ?',[$district_id, $date])->result_array();
+			$tmp_data = $this->db->query('SELECT a.id,a.desa_id,a.status,d.nama,d.district_id,a.created FROM absensi AS a INNER JOIN desa AS d ON(d.id=a.desa_id) WHERE district_id = ? AND CAST(a.created AS date) = ? ORDER BY status ASC',[$district_id, $date])->result_array();
 			// pr($this->db->last_query());
 			$data = [];
 			$status_message = $this->absensi_model->status();
@@ -84,19 +84,23 @@ class Absensi_model extends CI_Model{
 					}
 				}
 			}
+			// pr($tmp_data);die();
+			// pr($data);die();
 			if(!empty($tmp_data))
 			{
 				$status_count = [];
 				foreach ($tmp_data as $key => $value) 
 				{
-					$status_count[$value['status']] = !empty($status_count[$value['status']]) ? $status_count[$value['status']]+1 : 1;
-					if(!empty($value['status']))
-					{
-						$data[$value['desa_id']]['absensi']['0']['total'] = $data[$value['desa_id']]['absensi']['0']['total']-1;
-						$data[$value['desa_id']]['absensi'][$value['status']]['total'] = $status_count[$value['status']];
-						$data[$value['desa_id']]['absensi'][$value['status']]['judul'] = $status_message[$value['status']];
-						$data[$value['desa_id']]['desa']['nama'] = $value['nama'];
-						$data[$value['desa_id']]['desa']['id'] = $value['desa_id'];
+					if($value['desa_id']=='148'){
+						$status_count[$value['desa_id']][$value['status']] = !empty($status_count[$value['desa_id']][$value['status']]) ? $status_count[$value['desa_id']][$value['status']]+1 : 1;
+						if(!empty($value['status']))
+						{
+							$data[$value['desa_id']]['absensi']['0']['total'] = $data[$value['desa_id']]['absensi']['0']['total']-1;
+							$data[$value['desa_id']]['absensi'][$value['status']]['total'] = $status_count[$value['desa_id']][$value['status']];
+							$data[$value['desa_id']]['absensi'][$value['status']]['judul'] = $status_message[$value['status']];
+							$data[$value['desa_id']]['desa']['nama'] = $value['nama'];
+							$data[$value['desa_id']]['desa']['id'] = $value['desa_id'];
+						}
 					}
 				}
 			}
