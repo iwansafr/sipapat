@@ -78,6 +78,7 @@ $(document).ready(function(){
 	    	// 	var suc = $(a).siblings('input[type="file"]').val('');
 	  			// alert('ukuran file tidak boleh lebih dari 500KB');
 	    	// }else{
+	    		console.log(e);
 	      	$(a).attr('src', e.target.result);
 	    	// }
 	    };
@@ -88,6 +89,13 @@ $(document).ready(function(){
 		console.log($(this));
 		var a = $('.image_place');
 		readURL(this,a);
+		// if (this.files && this.files[0]){
+	 //    var reader = new FileReader();
+	 //    reader.onload = function(e){
+		// 	$('#filename').html(e.target.result);
+	 //    };
+	 //    reader.readAsDataURL(this.files[0]);
+	 //  }
 	});
 	$(document).on('click','.sel_pd',function(){
 		var id = $(this).data('id');

@@ -36,7 +36,7 @@ class Absensi extends CI_Controller
 		$data['perangkat_izin'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_absensi_izin/'.$desa_id.'/1'),1);
 		$data['desa'] = json_decode(file_get_contents($custom_api.'api/desa/detail/'.$desa_id),1);
 		$data['sudah'] = [];		
-		$h = date('h');
+		$h = date('H');
 		if($h<8 && $h>=6){
   		$status = 1;
   		//berangkat
