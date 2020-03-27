@@ -9,7 +9,7 @@ $form->setTable('perangkat_desa');
 $form->search();
 
 $form->addInput('id','plaintext');
-$form->setWhere('desa_id = '.$desa_id);
+$form->setWhere('desa_id = '.$desa_id.' AND kelompok = 1');
 $form->setLabel('id','detail');
 $form->setPlainText('id',[base_url('admin/absensi/detail/{id}')=>'Detail']);
 
