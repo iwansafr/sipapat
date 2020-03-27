@@ -55,6 +55,7 @@
 				</div>		
 				<div class="form-group">
 					<label for="">Nama Perangkat</label>
+					<a href="" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i> Refresh</a>
 					<table class="table table-bordered table-sm tb_perangkat">
 						<input type="hidden" id="pdid" name="perangkat_desa_id" value="0">
 						<thead>
