@@ -91,16 +91,14 @@ class Absensi_model extends CI_Model{
 				$status_count = [];
 				foreach ($tmp_data as $key => $value) 
 				{
-					if($value['desa_id']=='148'){
-						$status_count[$value['desa_id']][$value['status']] = !empty($status_count[$value['desa_id']][$value['status']]) ? $status_count[$value['desa_id']][$value['status']]+1 : 1;
-						if(!empty($value['status']))
-						{
-							$data[$value['desa_id']]['absensi']['0']['total'] = $data[$value['desa_id']]['absensi']['0']['total']-1;
-							$data[$value['desa_id']]['absensi'][$value['status']]['total'] = $status_count[$value['desa_id']][$value['status']];
-							$data[$value['desa_id']]['absensi'][$value['status']]['judul'] = $status_message[$value['status']];
-							$data[$value['desa_id']]['desa']['nama'] = $value['nama'];
-							$data[$value['desa_id']]['desa']['id'] = $value['desa_id'];
-						}
+					$status_count[$value['desa_id']][$value['status']] = !empty($status_count[$value['desa_id']][$value['status']]) ? $status_count[$value['desa_id']][$value['status']]+1 : 1;
+					if(!empty($value['status']))
+					{
+						$data[$value['desa_id']]['absensi']['0']['total'] = $data[$value['desa_id']]['absensi']['0']['total']-1;
+						$data[$value['desa_id']]['absensi'][$value['status']]['total'] = $status_count[$value['desa_id']][$value['status']];
+						$data[$value['desa_id']]['absensi'][$value['status']]['judul'] = $status_message[$value['status']];
+						$data[$value['desa_id']]['desa']['nama'] = $value['nama'];
+						$data[$value['desa_id']]['desa']['id'] = $value['desa_id'];
 					}
 				}
 			}
