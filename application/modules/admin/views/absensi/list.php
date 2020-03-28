@@ -33,7 +33,7 @@ if(!empty($desa_id))
 	$form->setNumbering(true);
 	$form->addInput('perangkat_desa_id','dropdown');
 	$form->setLabel('perangkat_desa_id','Nama Perangkat');
-	$form->tableOptions('perangkat_desa_id','perangkat_desa','id','nama','desa_id = '.$desa_id);
+	$form->tableOptions('perangkat_desa_id','perangkat_desa','id','nama','desa_id = '.$desa_id.' AND kelompok = 1');
 	$form->setAttribute('perangkat_desa_id','disabled');
 	$form->addInput('foto','thumbnail');
 
