@@ -59,16 +59,16 @@ class Absensi extends CI_Controller
 	  	{
 	  		if(!empty($data['perangkat_pagi']))
 	  		{
-	  			$perangkat_tmp = $data['perangkat'];
-	  			foreach ($data['perangkat'] as $key => $value)
-					{
-						foreach ($data['perangkat_pagi'] as $pgkey => $pgvalue) 
-						{
-							if($pgvalue['id'] == $value['id']){
-								unset($perangkat_tmp[$key]);
-							}
-						}
-					}
+	  		// 	$perangkat_tmp = $data['perangkat'];
+	  		// 	foreach ($data['perangkat'] as $key => $value)
+					// {
+					// 	foreach ($data['perangkat_pagi'] as $pgkey => $pgvalue) 
+					// 	{
+					// 		if($pgvalue['id'] == $value['id']){
+					// 			unset($perangkat_tmp[$key]);
+					// 		}
+					// 	}
+					// }
 					$data['sudah'] = $data['perangkat_pagi'];
 	  		}
 	  	}
@@ -76,16 +76,16 @@ class Absensi extends CI_Controller
 	  	{
 	  		if(!empty($data['perangkat_sore']))
 	  		{
-	  			$perangkat_tmp = $data['perangkat'];
-	  			foreach ($data['perangkat'] as $key => $value)
-					{
-						foreach ($data['perangkat_sore'] as $pgkey => $pgvalue) 
-						{
-							if($pgvalue['id'] == $value['id']){
-								unset($perangkat_tmp[$key]);
-							}
-						}
-					}
+	  		// 	$perangkat_tmp = $data['perangkat'];
+	  		// 	foreach ($data['perangkat'] as $key => $value)
+					// {
+					// 	foreach ($data['perangkat_sore'] as $pgkey => $pgvalue) 
+					// 	{
+					// 		if($pgvalue['id'] == $value['id']){
+					// 			unset($perangkat_tmp[$key]);
+					// 		}
+					// 	}
+					// }
 					$data['sudah'] = $data['perangkat_sore'];
 	  		}
 	  	}
@@ -93,6 +93,15 @@ class Absensi extends CI_Controller
 		  {
 		  	$data['perangkat'] = $perangkat_tmp;
 		  }
+	  }
+	  if(!empty($data['sudah']))
+	  {
+	  	$data_tmp_sudah = [];
+	  	foreach ($data['sudah'] as $key => $value) 
+	  	{
+	  		$data_tmp_sudah[$value['id']] = $value;
+	  	}
+	  	$data['sudah'] = $data_tmp_sudah;
 	  }
 		$this->load->model('admin/pengguna_model');
 		$this->home_model->home();

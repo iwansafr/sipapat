@@ -4,41 +4,46 @@
 		.fileContainer {
 	    overflow: hidden;
 	    position: relative;
-	}
+		}
 
-	.fileContainer [type=file] {
-	    cursor: inherit;
-	    display: block;
-	    font-size: 999px;
-	    filter: alpha(opacity=0);
-	    min-height: 100%;
-	    min-width: 100%;
-	    opacity: 0;
-	    position: absolute;
-	    right: 0;
-	    text-align: right;
-	    top: 0;
-	}
+		.fileContainer [type=file] {
+		    cursor: inherit;
+		    display: block;
+		    font-size: 999px;
+		    filter: alpha(opacity=0);
+		    min-height: 100%;
+		    min-width: 100%;
+		    opacity: 0;
+		    position: absolute;
+		    right: 0;
+		    text-align: right;
+		    top: 0;
+		}
 
-	/* Example stylistic flourishes */
+		/* Example stylistic flourishes */
 
-	.fileContainer {
-	    background: grey;
-	    border-radius: .5em;
-	    /*float: left;*/
-	    padding: .5em;
-	}
+		.fileContainer {
+		    background: grey;
+		    border-radius: .5em;
+		    /*float: left;*/
+		    padding: .5em;
+		}
 
-	.fileContainer [type=file] {
-	    cursor: pointer;
-	}
-	}
+		.fileContainer [type=file] {
+		    cursor: pointer;
+		}
 	</style>
 	<form action="" method="post" enctype="multipart/form-data">
 		<hr>
 		<div class="panel panel-success card card-success">
-			<div class="card-header panel panel-heading">
-				<h5>Absensi <?php echo $desa['nama'].' | '.$desa['kecamatan']?></h5>
+			<div class="card-header panel panel-heading" style="padding-bottom:1px;">
+				<div class="form-group">
+					<h5>Absensi <?php echo $desa['nama'].' | '.$desa['kecamatan']?></h5>
+					<div class="btn-group" role="group" aria-label="Basic example">
+						<input type="hidden" id="status" name="status" value="1">
+					  <label style="margin-bottom: 0;font-size: 12px;" id="btn_status" class="btn btn-sm d-none btn-success"></label>
+					</div>
+				</div>		
 			</div>
 			<div class="panel-body panel card-body">
 				<?php 
@@ -48,46 +53,41 @@
 				}
 				?>
 				<div class="form-group">
-					<div class="btn-group" role="group" aria-label="Basic example">
-						<input type="hidden" id="status" name="status" value="1">
-					  <label id="btn_status" class="btn d-none btn-success"></label>
-					</div>
-				</div>		
-				<div class="form-group">
-					<label for="">Nama Perangkat</label>
-					<a href="" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i> Refresh</a>
 					<table class="table table-bordered table-sm tb_perangkat">
 						<input type="hidden" id="pdid" name="perangkat_desa_id" value="0">
+						<a href="" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i> Refresh</a>
 						<thead>
-							<h5>Belum Absen</h5>
+							<th>no</th>
+							<th>nama</th>
+							<th>jabatan</th>
 						</thead>
 						<?php $i = 1;?>
 						<?php foreach ($perangkat as $key => $value): ?>
-							<tr>
-								<td>
-									<?php echo $i ?>
-								</td>
-								<td>
-									<label class="btn btn-sm btn-warning sel_pd" data-id="<?php echo $value['id'] ?>"><?php echo $value['nama'].' | '.$jabatan[$value['jabatan']] ?></label>
-								</td>
-							</tr>
-							<?php $i++ ?>
-						<?php endforeach ?>
-					</table>
-					<table class="table table-bordered">
-						<thead>
-							<h5>Sudah Absen</h5>
-						</thead>
-						<?php $i = 1; ?>
-						<?php foreach ($sudah as $key => $value): ?>
-							<tr>
-								<td>
-									<?php echo $i ?>
-								</td>
-								<td>
-									<label class="btn btn-sm btn-success" data-id="<?php echo $value['id'] ?>"><?php echo $value['nama'].' | '.$jabatan[$value['jabatan']] ?></label>
-								</td>
-							</tr>
+							<?php if ($value['id'] == @intval($sudah[$value['id']]['id'])): ?>
+								<tr class="btn-secondary">
+									<td style="font-size: 12px;">
+										<?php echo $i ?>
+									</td>
+									<td>
+										<label style="margin-bottom: 0;font-size: 12px;"><?php echo $value['nama'] ?></label>
+									</td>
+									<td>
+										<label style="margin-bottom: 0;font-size: 12px;"><?php echo $jabatan[$value['jabatan']] ?></label>
+									</td>
+								</tr>
+							<?php else: ?>
+								<tr class="sel_pd btn-warning" data-id="<?php echo $value['id'] ?>">
+									<td style="font-size: 12px;">
+										<?php echo $i ?>
+									</td>
+									<td>
+										<label style="margin-bottom: 0;font-size: 12px;"><?php echo $value['nama'] ?></label>
+									</td>
+									<td>
+										<label style="margin-bottom: 0;font-size: 12px;"><?php echo $jabatan[$value['jabatan']] ?></label>
+									</td>
+								</tr>
+							<?php endif ?>
 							<?php $i++ ?>
 						<?php endforeach ?>
 					</table>
