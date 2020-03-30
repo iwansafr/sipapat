@@ -14,6 +14,7 @@ class Absensi extends CI_Controller
 		$this->load->library('ZEA/zea');
 		$this->esg_model->init();
 	}
+
 	public function list()
 	{
 		$this->load->view('index');
@@ -212,6 +213,10 @@ class Absensi extends CI_Controller
 	}
 
 	public function config()
+	{
+		$this->load->view('index');
+	}
+	public function config_jam()
 	{
 		$this->load->view('index');
 	}

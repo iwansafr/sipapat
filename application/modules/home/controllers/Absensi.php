@@ -22,23 +22,37 @@ class Absensi extends CI_Controller
 
 	public function masuk($desa_id = 0)
 	{
-		$h = date('H');
-		if($h<8 && $h>=6){
+		$custom_api = $this->esg->get_config(base_url().'_api')['url'];
+		$data['desa'] = json_decode(file_get_contents($custom_api.'api/desa/detail/'.$desa_id),1);
+		$config_jam = [
+			'mulai_masuk' => '06:00',
+			'selesai_masuk' => '08:00',
+			'mulai_pulang' => '13:00',
+			'selesai_pulang' => '16:00'
+		];
+		if(!empty($data['desa']['district_id']))
+		{
+			$config_jam = $this->esg->get_config(base_url().'_'.$data['desa']['district_id'].'_absensi_config_jam');
+		}
+		$h = date('H:m');
+		if($h<=$config_jam['selesai_masuk'] && $h>=$config_jam['mulai_masuk']){
   		$status = 1;
   		//berangkat
-	  }else if($h>=8 && $h<14){
+	  }else if($h>$config_jam['selesai_masuk'] && $h<$config_jam['mulai_pulang']){
   		$status = 4;
   		//terlambat
-	  }else if($h<16 && $h>=14){
-  		$status = 3;
-  		//pulang
-	  }else if($h==16 && $m==0){
+	  }else if($h<$config_jam['selesai_pulang'] && $h>=$config_jam['mulai_pulang']){
   		$status = 3;
   		//pulang
 	  }else{
   		$status = 0;
   		//off
 	  }
+	  ?>
+		<script type="text/javascript">
+			var config_jam = <?php echo json_encode($config_jam);?>;
+		</script>
+	  <?php
 		if(!empty($this->input->post()))
 		{
 			$upload = $this->input->post();
@@ -46,12 +60,10 @@ class Absensi extends CI_Controller
 			$upload['desa_id'] = $desa_id;
 			$data['status'] = $this->absensi_model->upload($upload);
 		}
-		$custom_api = $this->esg->get_config(base_url().'_api')['url'];
 		$data['perangkat'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_by_desa/'.$desa_id.'/1'),1);
 		$data['perangkat_pagi'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_absensi_pagi/'.$desa_id.'/1'),1);
 		$data['perangkat_sore'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_absensi_sore/'.$desa_id.'/1'),1);
 		$data['perangkat_izin'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_absensi_izin/'.$desa_id.'/1'),1);
-		$data['desa'] = json_decode(file_get_contents($custom_api.'api/desa/detail/'.$desa_id),1);
 		$data['sudah'] = [];		
 	  if(!empty($status))
 	  {

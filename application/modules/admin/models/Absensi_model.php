@@ -77,7 +77,7 @@ class Absensi_model extends CI_Model{
 							$data[$value['id']]['desa']['id'] = $value['id'];
 						}else{
 							$data[$value['id']]['absensi']['0']['total'] = $data_perangkat[$value['id']];
-							$data[$value['id']]['absensi']['0']['judul'] = '<span class="btn-sm btn-danger">Bolos</span>';
+							$data[$value['id']]['absensi']['0']['judul'] = '<span class="btn-sm btn-danger">Tidak Masuk</span>';
 							$data[$value['id']]['desa']['nama'] = $value['nama'];
 							$data[$value['id']]['desa']['id'] = $value['id'];
 						}
