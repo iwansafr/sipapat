@@ -12,8 +12,12 @@ class Notification_model extends CI_Model{
 	public function notification()
 	{
 		$data = array();
-		$data['list'] = $this->db->query('SELECT * FROM notification WHERE status = 0 LIMIT 10')->result_array();
-		$data['total'] = $this->db->query('SELECT id FROM notification WHERE status = 0')->num_rows();
-		$this->esg->set_esg('notification', $data);
+		$user = $this->esg->get_esg('user');
+		if(!empty($user))
+		{
+			$data['list'] = $this->db->query('SELECT * FROM notification WHERE status = 0 AND user_id = ? LIMIT 10',$user['id'])->result_array();
+			$data['total'] = $this->db->query('SELECT id FROM notification WHERE status = 0 AND user_id = ?',$user['id'])->num_rows();
+			$this->esg->set_esg('notification', $data);
+		}
 	}
 }
