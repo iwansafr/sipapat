@@ -32,6 +32,9 @@
 		.fileContainer [type=file] {
 		    cursor: pointer;
 		}
+		.image_place[src=""] {
+		  display:none;
+		}
 	</style>
 	<form action="" method="post" enctype="multipart/form-data">
 		<hr>
@@ -100,7 +103,7 @@
 						<input type="file"  name="foto" class="form-control" accept=".gif, .jpg, .jpeg, .png" required>
 					</label>
 					<br>
-					<img src="" class="image_place" class="img img-responsive" style="object-fit: cover; height: 200px;" alt="">
+					<img src="" class="image_place" class="img img-responsive" style="object-fit: cover; height: 200px;" alt="foto">
 					<p id="filename"></p>
 				</div>
 			</div>
