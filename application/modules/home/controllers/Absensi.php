@@ -86,7 +86,7 @@ class Absensi extends CI_Controller
 	  	}
 	  	if($status == 3)
 	  	{
-				$perangkat_tmp = $data['perangkat_pagi'];
+				// $perangkat_tmp = $data['perangkat_pagi'];
 	  		if(!empty($data['perangkat_sore']))
 	  		{
 	  		// 	$perangkat_tmp = $data['perangkat'];

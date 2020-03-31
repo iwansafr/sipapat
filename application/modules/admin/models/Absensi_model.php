@@ -92,7 +92,7 @@ class Absensi_model extends CI_Model{
 					}
 				}
 			}
-			// pr($tmp_data);die();
+			// pr($tmp_data);
 			// pr($data);die();
 			if(!empty($tmp_data))
 			{
@@ -102,7 +102,9 @@ class Absensi_model extends CI_Model{
 					$status_count[$value['desa_id']][$value['status']] = !empty($status_count[$value['desa_id']][$value['status']]) ? $status_count[$value['desa_id']][$value['status']]+1 : 1;
 					if(!empty($value['status']))
 					{
-						$data[$value['desa_id']]['absensi']['0']['total'] = $data[$value['desa_id']]['absensi']['0']['total']-1;
+						if($value['status'] != 2){
+							$data[$value['desa_id']]['absensi']['0']['total'] = $data[$value['desa_id']]['absensi']['0']['total']-1;
+						}
 						$data[$value['desa_id']]['absensi'][$value['status']]['total'] = $status_count[$value['desa_id']][$value['status']];
 						$data[$value['desa_id']]['absensi'][$value['status']]['judul'] = $status_message[$value['status']];
 						$data[$value['desa_id']]['desa']['nama'] = $value['nama'];
