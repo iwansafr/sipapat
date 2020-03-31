@@ -25,7 +25,15 @@ class Absensi_model extends CI_Model{
 	}
 	public function status()
 	{
-		return ['0'=>'<span class="btn-sm btn-info">Kosong</span>','1'=>'<span class="btn-sm btn-success">Berangkat</span>','2'=>'<span class="btn-sm btn-success">Pulang</span>','3'=>'<span class="btn-sm btn-warning">Izin Kantor</span>','4'=>'<span class="btn-sm btn-danger">Terlambat</span>','5'=>'<span class="btn-sm btn-warning">Dinas Kantor</span>'];
+		return 
+		[
+			'0'=>'<span class="btn-sm btn-info">Kosong</span>',
+			'1'=>'<span class="btn-sm btn-success">Berangkat</span>',
+			'4'=>'<span class="btn-sm btn-danger">Terlambat</span>',
+			'3'=>'<span class="btn-sm btn-warning">Izin Kantor</span>',
+			'2'=>'<span class="btn-sm btn-success">Pulang</span>',
+			'5'=>'<span class="btn-sm btn-warning">Dinas Kantor</span>',
+		];
 	}
 	public function clean_status()
 	{
