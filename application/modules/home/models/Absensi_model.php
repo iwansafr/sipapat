@@ -9,7 +9,8 @@ class Absensi_model extends CI_Model
       $file_name = time().'_'.$data['desa_id'].'_'.$data['perangkat_desa_id'];
       $ext = pathinfo($_FILES['foto']['name']);
       $data['foto'] = $file_name.'.'.$ext['extension'];
-      $check_exist = $this->db->get_where('absensi',['desa_id'=>$data['desa_id'],'status'=>$data['status'],'perangkat_desa_id'=>$data['perangkat_desa_id']])->row_array();
+      $date = date('Y-m-d');
+      $check_exist = $this->db->get_where('absensi',['desa_id'=>$data['desa_id'],'status'=>$data['status'],'perangkat_desa_id'=>$data['perangkat_desa_id'],'CAST(created AS date) = '=>$date])->row_array();
       if(empty($check_exist))
       {
         if($this->db->insert('absensi', $data))
