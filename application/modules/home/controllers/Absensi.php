@@ -35,6 +35,14 @@ class Absensi extends CI_Controller
 			$config_jam = $this->esg->get_config(base_url().'_'.$data['desa']['district_id'].'_absensi_config_jam');
 		}
 		$h = date('H:m');
+		if(empty($config_jam['selesai_masuk'])){
+			?>
+			<p style="background: red;color: white;">Maaf Sepertinya Jaringan Anda bermasalah, silahkan hubungi teknisi</p>
+			<hr>
+			<a href=""><button>Refresh</button></a>
+			<?php
+			die();
+		}
 		if($h<=$config_jam['selesai_masuk'] && $h>=$config_jam['mulai_masuk']){
   		$status = 1;
   		//berangkat
