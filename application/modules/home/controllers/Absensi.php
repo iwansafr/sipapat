@@ -37,7 +37,8 @@ class Absensi extends CI_Controller
 		$h = date('H:m');
 		if(empty($config_jam['selesai_masuk'])){
 			?>
-			<p style="background: red;color: white;">Maaf Sepertinya Jaringan Anda bermasalah, silahkan hubungi teknisi</p>
+			<p style="background: red;color: white;">Maaf Sepertinya Jaringan Anda bermasalah</p>
+			<p style="background: red;color: white;">silahkan hubungi teknisi</p>
 			<hr>
 			<a href=""><button>Refresh</button></a>
 			<?php
