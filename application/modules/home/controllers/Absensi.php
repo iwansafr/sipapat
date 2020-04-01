@@ -42,7 +42,7 @@ class Absensi extends CI_Controller
 				silahkan hubungi teknisi
 			</p>
 			<hr>
-			<a href=""><button>Refresh</button></a>
+			<a href=""><button>Refresh halaman</button></a>
 			<?php
 			die();
 		}
