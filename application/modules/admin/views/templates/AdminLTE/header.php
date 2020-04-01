@@ -1,14 +1,17 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->model('pesan_model');
 $message = $this->esg->get_esg('pesan');
-if(is_sipapat())
-{
-  $site_title = 'site';
-  $logo_title = 'logo';
-}else{
-  $site_title = 'sispudes_site';
-  $logo_title = 'sispudes_logo';
-}
+$base_url_name = str_replace('/','_', base_url());
+  $site_title = $base_url_name.'_site';
+  $logo_title = $base_url_name.'_logo';
+  $site['site'] = $this->esg->get_config($site_title);
+  $site['logo'] = $this->esg->get_config($logo_title);
+
+  if(empty($site['logo'])){
+    $site = $this->esg->get_esg('site');
+    $site_title = 'site';
+    $logo_title = 'logo';
+  }
 ?>
 <?php if (is_bupati()): ?>
   <style>
