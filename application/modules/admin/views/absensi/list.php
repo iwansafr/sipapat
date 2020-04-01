@@ -4,7 +4,7 @@ $form = new zea();
 
 $desa_id = $this->sipapat_model->get_desa_id();
 
-if(is_kecamatan() && !empty($_GET['desa']))
+if(is_kecamatan() && !empty($_GET['desa']) || is_root())
 {
 	$desa_id = intval($_GET['desa']);
 }
@@ -39,7 +39,10 @@ if(!empty($desa_id))
 
 	$form->addInput('status','dropdown');
 	$form->setOptions('status',$this->absensi_model->status());
-	$form->setAttribute('status','disabled');
+	if(!is_root())
+	{
+		$form->setAttribute('status','disabled');
+	}
 
 	$form->addInput('created','plaintext');
 	$form->setLabel('created','waktu');

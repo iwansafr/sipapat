@@ -76,6 +76,11 @@ $(document).ready(function(){
 		clearInterval(rm_msg);
 	}
 	var rm_msg = setInterval(remove_alert,5000);
+
+	function show_camera(){
+		clearInterval(sh_cmr);
+	}
+	var sh_cmr = setInterval(show_camera,5000);
 	
 	function readURL(input,a){
 	  if (input.files && input.files[0]){
