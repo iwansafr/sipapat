@@ -98,7 +98,7 @@
 				<div class="form-group" style="text-align: center;">
 					<label for="foto">Foto</label>
 					<br>
-					<label class="fileContainer" style="padding: 10%;">
+					<label class="fileContainer hidden" style="padding: 10%;">
 						<i class="fa fa-camera" style="font-size: 500%;"></i>
 						<input type="file"  name="foto" class="form-control" accept=".gif, .jpg, .jpeg, .png" required>
 					</label>
