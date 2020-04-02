@@ -66,6 +66,7 @@
 						</thead>
 						<?php $i = 1;?>
 						<?php foreach ($perangkat as $key => $value): ?>
+						<?php $ganjil = $i%2;?>
 							<?php if ($value['id'] == @intval($sudah[$value['id']]['id'])): ?>
 								<?php 
 								if($sudah[$value['id']]['valid'] == 2){
