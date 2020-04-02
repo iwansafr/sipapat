@@ -1,23 +1,20 @@
+<hr>
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-if(is_desa() || is_root())
+if(!empty($desa))
 {
-	$desa_id = 0;
-	if(!empty($user['pengguna']['desa_id']))
-	{
-		$desa_id = $user['pengguna']['desa_id'];
-	}
-
 	$form = new zea();
 	$form->init('edit');
 	$form->setTable('corona');
+	$form->setHeading('Data Orang Dalam Pengawasan');
 
-	$form->setId(@intval($_GET['id']));
 	$form->addInput('nama','text');
 	$form->addInput('rt','text');
 	$form->setType('rt','number');
+	$form->setlabel('rt','RT');
 	$form->addInput('rw','text');
 	$form->setType('rw','number');
+	$form->setlabel('rw','RW');
 	$form->addInput('umur','text');
 	$form->setType('umur','number');
 	$form->addInput('jk','dropdown');
@@ -26,18 +23,9 @@ if(is_desa() || is_root())
 	$form->addInput('hp','text');
 	$form->setLabel('hp','No Handphone');
 	$form->setType('hp','number');
-
 	
-	if(!empty($desa_id))
-	{
-		$form->addInput('desa_id','static');
-		$form->setValue('desa_id',$desa_id);
-	}else{
-		$form->addInput('desa_id','dropdown');
-		$form->setLabel('desa_id','desa');
-		$form->tableOptions('desa_id','desa','id','nama','regency_id = '.$sipapat_config['regency_id']);
-	}
-	// $form->setAttribute('desa_id','disabled');
+	$form->addInput('desa_id','static');
+	$form->setValue('desa_id',$desa['id']);
 
 	$form->addInput('dari','text');
 	$form->setLabel('dari','Dari Negara / Daerah');
@@ -84,4 +72,14 @@ if(is_desa() || is_root())
 	$form->setRequired('All');
 
 	$form->form();
+	if(!empty($this->input->post()))
+	{
+		$last_id = $form->get_insert_id();
+		if(!empty($last_id))
+		{
+			header('Location: '.base_url('covid19/detail/'.$last_id));
+		}
+	}
+}else{
+	msg('Mohon Maaf Desa Tidak diketahui','danger');
 }

@@ -1,34 +1,19 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Corona extends CI_controller
+class Corona extends CI_Controller
 {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->db->cache_off();
-		$this->load->model('esg_model');
-		$this->load->model('admin_model');
-		$this->load->model('sipapat_model');
-		$this->load->library('esg');
+		$this->load->model('home_model');
 		$this->load->library('ZEA/zea');
-		$this->esg_model->init();
+		$this->load->helper('content');
+		$this->load->library('esg');
 	}
-
-	public function list()
+	public function index()
 	{
-		$this->load->view('index');
-	}
 
-	public function clear_list()
-	{
-		$this->load->view('corona/list');
 	}
-
-	public function edit()
-	{
-		$this->load->view('index');
-	}
-
 	public function detail($id = 0)
 	{
 		if(!empty($id))
@@ -52,5 +37,20 @@ class Corona extends CI_controller
 			}
 		}
 	}
-
+	public function lapor($id = 0)
+	{
+		$custom_api = $this->esg->get_config(base_url().'_api');
+		$desa = [];
+		if(!empty($custom_api['url']))
+		{
+			$custom_api = $custom_api['url'];
+			$desa = file_get_contents($custom_api.'/api/desa/detail/'.$id);
+			if(!empty($desa))
+			{
+				$desa = json_decode($desa,1);
+			}
+		}
+		$data['desa'] = $desa;
+		$this->load->view('index',$data);
+	}
 }

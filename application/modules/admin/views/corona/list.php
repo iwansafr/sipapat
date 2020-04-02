@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-if(is_desa())
+if(is_desa() || is_root())
 {
 	$desa_id = 0;
 	if(!empty($user['pengguna']['desa_id']))
@@ -22,7 +22,9 @@ if(is_desa())
 	<a href="<?php echo base_url('admin/corona/edit') ?>" class="btn btn-sm btn-default">tambah data</a>
 	<?php
 	$form->setNumbering(true);
-	$form->addInput('id','hidden');
+	$form->addInput('id','plaintext');
+	$form->setLabel('id','action');
+	$form->setPlainText('id',[base_url('admin/corona/detail/{id}')=>'Detail']);
 	$form->addInput('nama','plaintext');
 	$form->addInput('umur','plaintext');
 
@@ -43,9 +45,9 @@ if(is_desa())
 	$form->addInput('tgl','plaintext');
 	$form->addInput('hp','plaintext');
 
-	$form->addInput('status','dropdown');
-	$form->setOptions('status',['1'=>'ODP','2'=>'PDP','3'=>'Positive']);
-	$form->setAttribute('status','disabled');
+	// $form->addInput('status','dropdown');
+	// $form->setOptions('status',['1'=>'ODP','2'=>'PDP','3'=>'Positive']);
+	// $form->setAttribute('status','disabled');
 
 	$form->setUrl('admin/corona/clear_list');
 
