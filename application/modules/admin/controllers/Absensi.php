@@ -228,4 +228,16 @@ class Absensi extends CI_Controller
 	{
 		$this->load->view('absensi/perangkat_list');
 	}
+	public function not_valid($id = 0)
+	{
+		if(!empty($id))
+		{
+			if($this->db->update('absensi',['valid'=>2],['id'=>$id])){
+				$data = ['status'=>'success','msg'=>'Data Berhasil dirubah'];
+			}else{
+				$data = ['status'=>'danger','msg'=>'Data tidak ditemukan'];
+			}
+			$this->load->view('index',$data);
+		}
+	}
 }

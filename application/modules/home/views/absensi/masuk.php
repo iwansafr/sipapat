@@ -67,12 +67,21 @@
 						<?php $i = 1;?>
 						<?php foreach ($perangkat as $key => $value): ?>
 							<?php if ($value['id'] == @intval($sudah[$value['id']]['id'])): ?>
+								<?php 
+								if($sudah[$value['id']]['valid'] == 2){
+									$color = 'btn-danger';
+								}else if($sudah[$value['id']]['valid'] == 1){
+									$color = 'btn-success';
+								}else{
+									$color = 'btn-primary';
+								}
+								?>
 								<tr class="btn-secondary">
 									<td style="font-size: 12px;">
 										<?php echo $i ?>
 									</td>
 									<td>
-										<label style="margin-bottom: 0;font-size: 12px;"><?php echo $value['nama'] ?></label>
+										<label style="margin-bottom: 0;font-size: 12px;"><?php echo $value['nama'].' | <label class="'.$color.'">'.$valid[$sudah[$value['id']]['valid']].'</label>' ?></label>
 									</td>
 									<td>
 										<label style="margin-bottom: 0;font-size: 12px;"><?php echo $jabatan[$value['jabatan']] ?></label>

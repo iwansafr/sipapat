@@ -28,7 +28,12 @@ if(!empty($desa_id))
 
 	$form->addInput('id','plaintext');
 	$form->setLabel('id','action');
-	$form->setPlainText('id',[base_url('admin/absensi/detail/{perangkat_desa_id}')=>'Detail']);
+	$form->setPlainText('id',
+		[
+			base_url('admin/absensi/detail/{perangkat_desa_id}')=>'Detail',
+			base_url('admin/absensi/not_valid/{id}')=>'Tidak Valid'
+		]
+	);
 
 	$form->setNumbering(true);
 	$form->addInput('perangkat_desa_id','dropdown');

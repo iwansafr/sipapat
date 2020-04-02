@@ -25,9 +25,9 @@ Options -Indexes
 
 
 # Force https, if not in localhost
-RewriteCond %{HTTP_HOST} !=localhost    
-RewriteCond %{HTTPS} !=on
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+# RewriteCond %{HTTP_HOST} !=localhost    
+# RewriteCond %{HTTPS} !=on
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
 # Force www, if not in localhost
 # RewriteCond %{HTTP_HOST} !=localhost
