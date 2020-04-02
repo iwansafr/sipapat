@@ -6,7 +6,7 @@ if(!empty($desa))
 	$form = new zea();
 	$form->init('edit');
 	$form->setTable('corona');
-	$form->setHeading('Data Orang Dalam Pengawasan');
+	$form->setHeading('Data Orang Dalam Pengawasan Desa '.$desa['nama']);
 
 	$form->addInput('nama','text');
 	$form->addInput('rt','text');
