@@ -8,16 +8,17 @@ if(!empty($dashboard_config['pengumuman']))
 	}else{
 		$pengumuman = $this->esg->get_config('sispudes_pengumuman');
 	}
-}
-?>
-<style type="text/css">
-	.content-wrapper{
-		background: url(<?php echo image_module('config','pengumuman'.'/'.$pengumuman['background_image']) ?>) center top no-repeat;
-    /*height: 100vh;*/
-    background-size: cover;
-    position: relative;
-	}	
-</style>
+	?>
+	<style type="text/css">
+		.content-wrapper{
+			background: url(<?php echo image_module('config','pengumuman'.'/'.$pengumuman['background_image']) ?>) center top no-repeat;
+	    /*height: 100vh;*/
+	    background-size: cover;
+	    position: relative;
+		}	
+	</style>
+	<?php
+}?>
 <h1 style="text-align: center; color: <?php echo @$pengumuman['header_color']; ?>; font-weight: bold;"><?php echo @$pengumuman['header'] ?></h1>
 <div class="col-md-12">
 	<?php
