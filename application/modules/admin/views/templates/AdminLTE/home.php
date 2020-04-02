@@ -229,6 +229,6 @@ if(is_root())
 ?>
 <div class="hidden">
 	<?php pr($user) ?>
-	<?php pr($notification) ?>
+	<?php pr($_SERVER) ?>
 </div>
 

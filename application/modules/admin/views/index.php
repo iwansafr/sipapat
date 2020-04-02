@@ -10,23 +10,29 @@ if($mod['name'] == 'admin' && $mod['task'] == 'index')
 	if(!empty($dashboard_config))
 	{
 		$this->esg->set_esg('dashboard_config',$dashboard_config);
-		if(!empty($dashboard_config['absensi']) && is_kecamatan())
+		if(!empty($dashboard_config['absensi']))
 		{
 			$user = $this->esg->get_esg('user');
-			if(!empty($user['pengguna']['district_id']))
+			$date = 0;
+			if(!empty($_GET['date'])){
+				$date = $_GET['date'];
+				$date = strtotime($date);
+				$date = date('Y-m-d',$date);
+			}
+			if(is_kecamatan())
 			{
-				$this->load->model('absensi_model');
-				$date = 0;
-				if(!empty($_GET['date'])){
-					$date = $_GET['date'];
-					$date = strtotime($date);
-					$date = date('Y-m-d',$date);
-				}
-				$absensi = $this->absensi_model->get_all($user['pengguna']['district_id'],$date);
-				if(!empty($absensi))
+				if(!empty($user['pengguna']['district_id']))
 				{
-					$this->esg->set_esg('absensi',$absensi);
+					$this->load->model('absensi_model');
+					$absensi = $this->absensi_model->get_all($user['pengguna']['district_id'],$date);
+					if(!empty($absensi))
+					{
+						$this->esg->set_esg('absensi',$absensi);
+					}
 				}
+			}else if(is_desa())
+			{
+
 			}
 		}
 	}
