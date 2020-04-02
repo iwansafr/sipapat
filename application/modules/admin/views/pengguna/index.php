@@ -35,6 +35,10 @@ if(is_kecamatan())
 	user_desa.active,
 	desa.kecamatan');
 }
+if(is_admin())
+{
+	$where = " username NOT LIKE 'abs_%'";
+}
 if(!empty($sipapat_config))
 {
 	if(!empty($where)){
