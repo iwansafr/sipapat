@@ -87,27 +87,7 @@ if(empty($data) && !empty($_GET['nik']))
 				Suket
 			</div>
 			<div class="card-body">
-				<div class="form-group">
-					<label>Provinsi</label>
-					<select name="province_id" class="form-control select2">
-					</select>
-				</div>
-				<div class="form-group">
-					<label>Kabupaten</label>
-					<select name="regency_id" class="form-control select2">
-					</select>
-				</div>
-				<div class="form-group">
-					<label>Kecamatan</label>
-					<select name="district_id" class="form-control select2">
-						
-					</select>
-				</div>
-				<div class="form-group">
-					<label>Desa</label>
-					<select name="village_id" class="form-control select2" required>
-					</select>
-				</div>
+				<input type="hidden" name="village_id" value="<?php echo @intval($_GET['village_id']) ?>">
 				<div class="form-group">
 					<label>NIK</label>
 					<input type="number" class="form-control" name="nik" required>

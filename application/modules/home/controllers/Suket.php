@@ -13,13 +13,13 @@ class Suket extends CI_Controller
 	}
 	public function index()
 	{
-		$sipapat_config = $this->esg->get_esg('sipapat_config');
-		if(empty($sipapat_config))
-		{
-			$this->esg->add_js([base_url('assets/sipapatconfig/script.js')]);
-		}else{
-			$this->esg->add_js([base_url('assets/desa/script.js')]);
-		}
+		// $sipapat_config = $this->esg->get_esg('sipapat_config');
+		// if(empty($sipapat_config))
+		// {
+		// 	$this->esg->add_js([base_url('assets/sipapatconfig/script.js')]);
+		// }else{
+		// 	$this->esg->add_js([base_url('assets/desa/script.js')]);
+		// }
 		$this->home_model->home();
 		$data = [];
 		$get = $this->input->get();
