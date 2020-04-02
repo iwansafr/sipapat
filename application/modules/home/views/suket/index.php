@@ -2,6 +2,9 @@
 
 <hr>
 <?php 
+if(empty($_GET['village_id'])){
+	msg('maaf Link tidak valid','danger');die();
+}
 if(empty($data) && !empty($_GET['nik']))
 {
 	msg('maaf data penduduk tidak ditemukan','danger');
