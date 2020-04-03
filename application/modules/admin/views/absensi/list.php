@@ -51,6 +51,9 @@ if(!empty($desa_id))
 
 	$form->addInput('created','plaintext');
 	$form->setLabel('created','waktu');
+
+	$form->addInput('koordinat','plaintext');
+
 	$form->setUrl('admin/absensi/clear_list');
 
 	$form->addInput('valid','checkbox');
