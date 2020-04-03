@@ -64,3 +64,5 @@ ALTER TABLE `desa_rekening` ADD `bank_detail` VARCHAR(100) NOT NULL AFTER `bank`
 ALTER TABLE `absensi` ADD `keterangan` TINYINT(1) NOT NULL AFTER `foto`;
 
 ALTER TABLE `config` CHANGE `name` `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+
+ALTER TABLE `absensi` ADD `koordinat` VARCHAR(255) NOT NULL AFTER `status`;
