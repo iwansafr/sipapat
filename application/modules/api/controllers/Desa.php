@@ -9,6 +9,15 @@ class Desa extends CI_Controller
 		$this->load->model('desa_model');
 	}
 
+	public function get_all_id()
+	{
+		$data = $this->db->query('SELECT id,nama,kecamatan FROM desa ORDER BY id ASC')->result_array();
+		foreach ($data as $key => $value) 
+		{
+			echo 'https://sipapat.patikab.go.id/covid19/lapor/'.$value['id'].' | '.$value['nama'].' | '.$value['kecamatan'].'<br>';
+		}
+	}
+
 	public function index()
 	{
 		$field = @$_GET['field'];

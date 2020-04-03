@@ -32,7 +32,15 @@ if($mod['name'] == 'admin' && $mod['task'] == 'index')
 				}
 			}else if(is_desa())
 			{
-
+				if(!empty($user['pengguna']['desa_id']))
+				{
+					$this->load->model('absensi_model');
+					$absensi = $this->absensi_model->get_absensi($user['pengguna']['desa_id'],$date);
+					if(!empty($absensi))
+					{
+						$this->esg->set_esg('absensi',$absensi);
+					}
+				}
 			}
 		}
 	}

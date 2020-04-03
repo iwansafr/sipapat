@@ -158,7 +158,7 @@ if(!is_bumdes())
 		</div>
 		<?php
 	}
-	if(!empty($dashboard_config['absensi']) && is_kecamatan())
+	if(!empty($dashboard_config['absensi']) && (is_kecamatan() || is_desa()))
 	{
 		if(!empty($absensi))
 		{
