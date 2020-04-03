@@ -15,6 +15,126 @@ class Absensi extends CI_Controller
 		$this->esg_model->init();
 	}
 
+	public function masuk()
+	{
+		$data = [];
+		$user = $this->esg->get_esg('user');
+		if(!empty($user['pengguna']['desa_id']))
+		{
+			$id = $user['pengguna']['desa_id'];
+			$custom_api = $this->esg->get_config(base_url().'_api');
+			if(!empty($custom_api['url']))
+			{
+				$custom_api = $custom_api['url'];
+				$desa = file_get_contents($custom_api.'/api/desa/detail/'.$id);
+				if(!empty($desa))
+				{
+					$desa = json_decode($desa,1);
+					if(!empty($desa))
+					{
+						$data['desa'] = $desa;
+						$kepdes = file_get_contents($custom_api.'/api/perangkat/get_kepdes_by_desa/'.$id);
+						if(!empty($kepdes))
+						{
+							$kepdes = json_decode($kepdes,1);
+							$data['perangkat'] = $kepdes;
+							$data['kepdes'] = $kepdes;
+							$config_jam = [
+								'mulai_masuk' => '06:00',
+								'selesai_masuk' => '08:00',
+								'mulai_pulang' => '13:00',
+								'selesai_pulang' => '16:00'
+							];
+							if(!empty($desa['district_id']))
+							{
+								$config_jam_tmp = $this->esg->get_config(base_url().'_'.$desa['district_id'].'_absensi_config_jam');
+								if(!empty($config_jam_tmp))
+								{
+									$config_jam = $config_jam_tmp;
+								}
+							}
+							$h = date('H:m');
+							if(empty($config_jam['selesai_masuk'])){
+								?>
+								<p style="background: red;color: white;">
+									Maaf Sepertinya Jaringan Anda bermasalah<br>
+									silahkan hubungi teknisi
+								</p>
+								<hr>
+								<a href=""><button>Refresh halaman</button></a>
+								<?php
+								die();
+							}
+							if($config_jam['mulai_masuk']<=$h && $h<=$config_jam['selesai_masuk']){
+					  		$status = 1;
+					  		//berangkat
+						  }else if($config_jam['selesai_masuk'] <= $h && $h <= $config_jam['mulai_pulang']){
+					  		$status = 4;
+					  		//terlambat
+						  }else if($h <= $config_jam['selesai_pulang'] && $h >= $config_jam['mulai_pulang']){
+					  		$status = 3;
+					  		//pulang
+						  }else{
+					  		$status = 0;
+					  		//off
+						  }
+						  ?>
+							<script type="text/javascript">
+								var config_jam = <?php echo json_encode($config_jam);?>;
+							</script>
+						  <?php
+							if(!empty($this->input->post()))
+							{
+								$upload = $this->input->post();
+								$success = 1;
+								$upload['desa_id'] = $desa['id'];
+								$data['status'] = $this->absensi_model->upload($upload);
+							}
+							$data['perangkat_pagi'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_absensi_pagi/'.$desa['id'].'/1'),1);
+							$data['perangkat_sore'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_absensi_sore/'.$desa['id'].'/1'),1);
+							$data['perangkat_izin'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_absensi_izin/'.$desa['id'].'/1'),1);
+							$data['sudah'] = [];
+							if(!empty($status))
+						  {
+						  	if($status == 1 || $status == 4)
+						  	{
+						  		if(!empty($data['perangkat_pagi']))
+						  		{
+										$data['sudah'] = $data['perangkat_pagi'];
+						  		}
+						  	}
+						  	if($status == 3)
+						  	{
+									$perangkat_tmp = $data['perangkat_pagi'];
+						  		if(!empty($data['perangkat_sore']))
+						  		{
+										$data['sudah'] = $data['perangkat_sore'];
+						  		}
+						  	}
+							  if(!empty($perangkat_tmp))
+							  {
+							  	$data['perangkat'] = $perangkat_tmp;
+							  }
+						  }
+						  if(!empty($data['sudah']))
+						  {
+						  	$data_tmp_sudah = [];
+						  	foreach ($data['sudah'] as $key => $value) 
+						  	{
+						  		$data_tmp_sudah[$value['id']] = $value;
+						  	}
+						  	$data['sudah'] = $data_tmp_sudah;
+						  }
+						  $data['valid'] = ['0'=>'Belum divalidasi','1'=>'Valid','2'=>'Tidak Valid'];
+						}
+					}
+				}
+			}
+		}
+		$this->esg->add_js(base_url('assets/absensi/script.js'));
+		$this->load->view('index',$data);
+	}
+
 	public function list()
 	{
 		$this->load->view('index');

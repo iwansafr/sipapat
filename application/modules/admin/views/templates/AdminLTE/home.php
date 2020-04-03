@@ -206,6 +206,13 @@ if(!is_bumdes())
 						    		</td>
 						    	</tr>
 						    <?php endforeach ?>
+						    <?php if (is_desa()): ?>
+						    	<tr>
+						    		<td colspan="3">
+						    			<a href="<?php echo base_url('admin/absensi/masuk/'.$value['desa']['id']) ?>" target="_blank" class="btn btn-sm btn-primary" style="width: 100%;">ABSEN KEPDES</a>
+						    		</td>
+						    	</tr>
+						    <?php endif ?>
 							</table>
 					  </div>
 					  <a href="" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>

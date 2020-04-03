@@ -311,21 +311,51 @@ class Perangkat extends CI_Controller
 		}
 	}
 
-	public function get_absensi_pagi($desa_id = 0, $kelompok = 0)
+	public function get_kepdes_by_desa($desa_id = 0)
 	{
-		$data = $this->db->query("SELECT absensi.perangkat_desa_id AS id,absensi.valid,perangkat_desa.nama,perangkat_desa.jabatan,absensi.created FROM absensi INNER JOIN perangkat_desa ON(perangkat_desa.id=absensi.perangkat_desa_id) WHERE absensi.desa_id = ? AND (CAST(absensi.created AS DATE) = '".date('Y-m-d')."' AND (absensi.status = 1 OR absensi.status = 4 AND kelompok = 1))  ORDER BY perangkat_desa.jabatan ASC", $desa_id)->result_array();
+		if(!empty($desa_id))
+		{
+			$data = $this->db->query('SELECT * FROM perangkat_desa WHERE desa_id = ? AND kelompok = 1 AND jabatan = 1 ORDER BY jabatan ASC', $desa_id)->result_array();
+			output_json($data);
+		}
+	}
+
+	public function get_absensi_pagi($desa_id = 0, $jabatan = 0)
+	{
+		$argumen = [$desa_id];
+		$where = '';
+		if(!empty($jabatan))
+		{
+			$where = ' AND jabatan = ? ';
+			$argumen = [$desa_id,$jabatan];
+		}
+		$data = $this->db->query("SELECT absensi.perangkat_desa_id AS id,absensi.valid,perangkat_desa.nama,perangkat_desa.jabatan,absensi.created FROM absensi INNER JOIN perangkat_desa ON(perangkat_desa.id=absensi.perangkat_desa_id) WHERE absensi.desa_id = ? AND (CAST(absensi.created AS DATE) = '".date('Y-m-d')."' AND (absensi.status = 1 OR absensi.status = 4 AND kelompok = 1 {$where} ))  ORDER BY perangkat_desa.jabatan ASC", $argumen)->result_array();
 		output_json($data);
 	}
 
-	public function get_absensi_sore($desa_id = 0, $kelompok = 0)
+	public function get_absensi_sore($desa_id = 0, $jabatan = 0)
 	{
-		$data = $this->db->query("SELECT absensi.perangkat_desa_id AS id,absensi.valid,perangkat_desa.nama,perangkat_desa.jabatan,absensi.created FROM absensi INNER JOIN perangkat_desa ON(perangkat_desa.id=absensi.perangkat_desa_id) WHERE absensi.desa_id = ? AND (CAST(absensi.created AS DATE) = '".date('Y-m-d')."' AND (absensi.status = 2 AND kelompok = 1))  ORDER BY perangkat_desa.jabatan ASC", $desa_id)->result_array();
+		$argumen = [$desa_id];
+		$where = '';
+		if(!empty($jabatan))
+		{
+			$where = ' AND jabatan = ? ';
+			$argumen = [$desa_id,$jabatan];
+		}
+		$data = $this->db->query("SELECT absensi.perangkat_desa_id AS id,absensi.valid,perangkat_desa.nama,perangkat_desa.jabatan,absensi.created FROM absensi INNER JOIN perangkat_desa ON(perangkat_desa.id=absensi.perangkat_desa_id) WHERE absensi.desa_id = ? AND (CAST(absensi.created AS DATE) = '".date('Y-m-d')."' AND (absensi.status = 2 AND kelompok = 1 {$where} ))  ORDER BY perangkat_desa.jabatan ASC", $argumen)->result_array();
 		output_json($data);
 	}
 
-	public function get_absensi_izin($desa_id = 0, $kelompok = 0)
+	public function get_absensi_izin($desa_id = 0, $jabatan = 0)
 	{
-		$data = $this->db->query("SELECT absensi.perangkat_desa_id AS id,absensi.valid,perangkat_desa.nama,perangkat_desa.jabatan,absensi.created FROM absensi INNER JOIN perangkat_desa ON(perangkat_desa.id=absensi.perangkat_desa_id) WHERE absensi.desa_id = ? AND (CAST(absensi.created AS DATE) = '".date('Y-m-d')."' AND (absensi.status = 3 AND kelompok = 1))  ORDER BY perangkat_desa.jabatan ASC", $desa_id)->result_array();
+		$argumen = [$desa_id];
+		$where = '';
+		if(!empty($jabatan))
+		{
+			$where = ' AND jabatan = ? ';
+			$argumen = [$desa_id,$jabatan];
+		}
+		$data = $this->db->query("SELECT absensi.perangkat_desa_id AS id,absensi.valid,perangkat_desa.nama,perangkat_desa.jabatan,absensi.created FROM absensi INNER JOIN perangkat_desa ON(perangkat_desa.id=absensi.perangkat_desa_id) WHERE absensi.desa_id = ? AND (CAST(absensi.created AS DATE) = '".date('Y-m-d')."' AND (absensi.status = 3 AND kelompok = 1 {$where} ))  ORDER BY perangkat_desa.jabatan ASC", $argumen)->result_array();
 		output_json($data);
 	}
 }
