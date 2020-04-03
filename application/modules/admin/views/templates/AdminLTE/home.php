@@ -209,7 +209,7 @@ if(!is_bumdes())
 						    <?php if (is_desa()): ?>
 						    	<tr>
 						    		<td colspan="3">
-						    			<a href="<?php echo base_url('admin/absensi/masuk/') ?>" target="_blank" class="btn btn-sm btn-primary" style="width: 100%;">ABSEN KEPDES</a>
+						    			<a href="<?php echo base_url('admin/absensi/masuk/') ?>" target="_blank" class="btn btn-sm btn-primary" style="width: 100%;">ABSEN KEPALA DESA</a>
 						    		</td>
 						    	</tr>
 						    <?php endif ?>
