@@ -22,7 +22,7 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
 
-  <meta name="google-signin-client_id" content="13443026150-36lm0h6cf9rf77mqqghfct1hg19l8trc.apps.googleusercontent.com">
+  <meta name="google-signin-client_id" content="13443026150-r3cqu2omsod90qusglsu684dpqg4bsao.apps.googleusercontent.com">
 
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="<?php echo base_url('templates/AdminLTE/assets/')?>bootstrap/css/bootstrap.min.css">
