@@ -50,13 +50,13 @@ class Absensi extends CI_Controller
 			<?php
 			die();
 		}
-		if($config_jam['mulai_masuk']<=$h && $h<=$config_jam['selesai_masuk']){
+		if($h<=$config_jam['selesai_masuk'] && $h>=$config_jam['mulai_masuk']){
   		$status = 1;
   		//berangkat
-	  }else if($config_jam['selesai_masuk'] <= $h && $h <= $config_jam['mulai_pulang']){
+	  }else if($h>$config_jam['selesai_masuk'] && $h<$config_jam['mulai_pulang']){
   		$status = 4;
   		//terlambat
-	  }else if($h <= $config_jam['selesai_pulang'] && $h >= $config_jam['mulai_pulang']){
+	  }else if($h<$config_jam['selesai_pulang'] && $h>=$config_jam['mulai_pulang']){
   		$status = 3;
   		//pulang
 	  }else{
