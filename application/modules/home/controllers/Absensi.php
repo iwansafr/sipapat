@@ -28,7 +28,7 @@ class Absensi extends CI_Controller
 			'mulai_masuk' => '06:00',
 			'selesai_masuk' => '08:00',
 			'mulai_pulang' => '13:00',
-			'selesai_pulang' => '16:00'
+			'selesai_pulang' => '16:00',
 		];
 		if(!empty($data['desa']['district_id']))
 		{
@@ -63,10 +63,10 @@ class Absensi extends CI_Controller
   		$status = 0;
   		//off
 	  }
+	  $config_jam['status'] = $status;
 	  ?>
 		<script type="text/javascript">
 			var config_jam = <?php echo json_encode($config_jam);?>;
-			console.log(status);
 		</script>
 	  <?php
 		if(!empty($this->input->post()))
