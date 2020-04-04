@@ -66,6 +66,7 @@ class Absensi extends CI_Controller
 	  ?>
 		<script type="text/javascript">
 			var config_jam = <?php echo json_encode($config_jam);?>;
+			console.log(status);
 		</script>
 	  <?php
 		if(!empty($this->input->post()))
