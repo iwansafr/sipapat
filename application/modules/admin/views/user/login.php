@@ -51,6 +51,11 @@
 	<?php
   $msg  = $this->esg->get_esg('msg');
   $data = $this->input->post();
+  if(!empty($this->input->get('username') && !empty($this->input->get('password'))))
+  {
+    $data['username'] = $this->input->get('username');
+    $data['password'] = $this->input->get('password');
+  }
   ?>
 <div class="login-box">
   <div class="login-logo">
