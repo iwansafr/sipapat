@@ -26,14 +26,14 @@ class Absensi extends CI_Controller
 			if(!empty($custom_api['url']))
 			{
 				$custom_api = $custom_api['url'];
-				$desa = file_get_contents($custom_api.'/api/desa/detail/'.$id);
+				$desa = curl($custom_api.'/api/desa/detail/'.$id);
 				if(!empty($desa))
 				{
 					$desa = json_decode($desa,1);
 					if(!empty($desa))
 					{
 						$data['desa'] = $desa;
-						$kepdes = file_get_contents($custom_api.'/api/perangkat/get_kepdes_by_desa/'.$id);
+						$kepdes = curl($custom_api.'/api/perangkat/get_kepdes_by_desa/'.$id);
 						if(!empty($kepdes))
 						{
 							$kepdes = json_decode($kepdes,1);
@@ -90,9 +90,9 @@ class Absensi extends CI_Controller
 								$upload['desa_id'] = $desa['id'];
 								$data['status'] = $this->absensi_model->upload($upload);
 							}
-							$data['perangkat_pagi'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_absensi_pagi/'.$desa['id'].'/1'),1);
-							$data['perangkat_sore'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_absensi_sore/'.$desa['id'].'/1'),1);
-							$data['perangkat_izin'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_absensi_izin/'.$desa['id'].'/1'),1);
+							$data['perangkat_pagi'] = json_decode(curl($custom_api.'api/perangkat/get_absensi_pagi/'.$desa['id'].'/1'),1);
+							$data['perangkat_sore'] = json_decode(curl($custom_api.'api/perangkat/get_absensi_sore/'.$desa['id'].'/1'),1);
+							$data['perangkat_izin'] = json_decode(curl($custom_api.'api/perangkat/get_absensi_izin/'.$desa['id'].'/1'),1);
 							$data['sudah'] = [];
 							if(!empty($status))
 						  {
@@ -186,7 +186,7 @@ class Absensi extends CI_Controller
 			$data = ['status'=>'danger','msg'=>'Data Tidak ditemukan'];
 		}else{
 			$custom_api = $this->esg->get_config(base_url().'_api')['url'];
-			$data['perangkat'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_by_id/'.$id),1);
+			$data['perangkat'] = json_decode(curl($custom_api.'api/perangkat/get_by_id/'.$id),1);
 		}
 		$this->load->view('absensi/detail',$data);
 	}
@@ -210,7 +210,7 @@ class Absensi extends CI_Controller
 			$data = ['status'=>'danger','msg'=>'Data Tidak ditemukan'];
 		}else{
 			$custom_api = $this->esg->get_config(base_url().'_api')['url'];
-			$data['perangkat'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_by_id/'.$id),1);
+			$data['perangkat'] = json_decode(curl($custom_api.'api/perangkat/get_by_id/'.$id),1);
 		}
 
 		if(empty($month)){
@@ -315,7 +315,7 @@ class Absensi extends CI_Controller
 			$data = ['status'=>'danger','msg'=>'Data Tidak ditemukan'];
 		}else{
 			$custom_api = $this->esg->get_config(base_url().'_api')['url'];
-			$data['perangkat'] = json_decode(file_get_contents($custom_api.'api/perangkat/get_by_id/'.$id),1);
+			$data['perangkat'] = json_decode(curl($custom_api.'api/perangkat/get_by_id/'.$id),1);
 		}
 		$post = $this->input->post();
 		$exist = [];
