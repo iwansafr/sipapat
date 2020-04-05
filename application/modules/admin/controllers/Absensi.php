@@ -53,7 +53,7 @@ class Absensi extends CI_Controller
 									$config_jam = $config_jam_tmp;
 								}
 							}
-							$h = date('H:m');
+							$h = date('H:i');
 							if(empty($config_jam['selesai_masuk'])){
 								?>
 								<p style="background: red;color: white;">
