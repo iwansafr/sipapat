@@ -6,6 +6,9 @@ if(is_desa() || is_root())
 	if(!empty($user['pengguna']['desa_id']))
 	{
 		$desa_id = $user['pengguna']['desa_id'];
+	}else if(!empty($user['desa_id']))
+	{
+		$desa_id = $user['desa_id'];
 	}
 
 	$form = new zea();
