@@ -9,6 +9,7 @@ class Corona extends CI_controller
 		$this->load->model('esg_model');
 		$this->load->model('admin_model');
 		$this->load->model('sipapat_model');
+		$this->load->model('pengguna_model');
 		$this->load->library('esg');
 		$this->load->library('ZEA/zea');
 		$this->esg_model->init();
