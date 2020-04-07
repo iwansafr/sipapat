@@ -16,12 +16,14 @@ class Corona extends CI_controller
 
 	public function list()
 	{
-		$this->load->view('index');
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$this->load->view('index',['user'=>$pengguna]);
 	}
 
 	public function clear_list()
 	{
-		$this->load->view('corona/list');
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$this->load->view('corona/list',['user'=>$pengguna]);
 	}
 
 	public function edit()
