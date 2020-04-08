@@ -37,6 +37,7 @@ $this->load->library('table');
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				rekap data ODP
+				<a href="<?php echo base_url('admin/corona/kecamatan/') ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Filter Data</a>
 			</div>
 			<div class="panel-body">
 				<div class="table-responsive">

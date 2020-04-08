@@ -16,9 +16,22 @@ class Corona extends CI_controller
 		$this->esg_model->init();
 	}
 
+	public function desa($group = '')
+	{
+		$kec = !empty(@$_GET['kec']) ? $_GET['kec'] : '';
+		$this->load->view('index', ['desa_option'=>$this->pengguna_model->get_desa($kec),'group'=>$group]);
+	}
+
+	public function kecamatan()
+	{
+		$this->load->helper('filter');
+		$this->load->view('index',['kec_option'=>$this->pengguna_model->get_kecamatan()]);
+	}
+
 	public function excel_list()
 	{
-		$data['data'] = $this->corona_model->get_data();
+		$desa_id = $this->input->get('desa_id');
+		$data['data'] = $this->corona_model->get_data($desa_id);
 		$this->load->view('index',$data);
 	}
 
