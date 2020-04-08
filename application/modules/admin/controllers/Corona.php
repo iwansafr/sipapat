@@ -9,6 +9,7 @@ class Corona extends CI_controller
 		$this->load->model('esg_model');
 		$this->load->model('admin_model');
 		$this->load->model('sipapat_model');
+		$this->load->model('corona_model');
 		$this->load->model('pengguna_model');
 		$this->load->library('esg');
 		$this->load->library('ZEA/zea');
@@ -54,6 +55,11 @@ class Corona extends CI_controller
 				<?php
 			}
 		}
+	}
+	public function rekap()
+	{
+		$data['rekap'] = $this->corona_model->get_rekap();
+		$this->load->view('index',$data);
 	}
 
 }

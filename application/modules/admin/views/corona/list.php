@@ -22,7 +22,8 @@ if(is_desa() || is_root() || is_admin())
 	}
 
 	?>
-	<a href="<?php echo base_url('admin/corona/edit') ?>" class="btn btn-sm btn-default">tambah data</a>
+	<a href="<?php echo base_url('admin/corona/edit') ?>" class="btn btn-sm btn-default"><i class="fa fa-plus-circle"></i> tambah data</a>
+	<a href="<?php echo base_url('admin/corona/rekap') ?>" class="btn btn-sm btn-default"><i class="fa fa-chart-bar"></i> rekap data</a>
 	<?php
 	$form->setNumbering(true);
 	$form->addInput('id','plaintext');
