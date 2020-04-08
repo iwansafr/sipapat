@@ -30,8 +30,13 @@ class Corona extends CI_controller
 
 	public function excel_list()
 	{
-		$desa_id = $this->input->get('desa_id');
-		$data['data'] = $this->corona_model->get_data($desa_id);
+		$desa_id = @intval($this->input->get('desa_id'));
+		$kec = '';
+		if(empty($desa_id))
+		{
+			$kec = $this->input->get('kec');
+		}
+		$data['data'] = $this->corona_model->get_data($desa_id,$kec);
 		$this->load->view('index',$data);
 	}
 
