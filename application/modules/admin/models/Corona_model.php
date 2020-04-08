@@ -23,4 +23,9 @@ class Corona_model extends CI_Model
 		return $output;
 	}
 
+	public function get_data()
+	{
+		$data = $this->db->query('SELECT corona.nama,corona.umur,corona.jk AS jenis_kelamin,corona.rt,corona.rw,desa.nama AS desa,corona.dari,corona.tgl AS tgl_kedatangan,corona.hp,corona.demam,corona.bpst AS `Batuk Pilek Sakit Tenggorokan`,corona.pkdpc AS `pernah kontak dg penderita covid` FROM corona INNER JOIN desa ON(desa.id=corona.desa_id) ORDER BY corona.desa_id ASC');
+		return $data;
+	}
 }

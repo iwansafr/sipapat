@@ -16,6 +16,12 @@ class Corona extends CI_controller
 		$this->esg_model->init();
 	}
 
+	public function excel_list()
+	{
+		$data['data'] = $this->corona_model->get_data();
+		$this->load->view('index',$data);
+	}
+
 	public function list()
 	{
 		$pengguna = $this->pengguna_model->get_pengguna();
