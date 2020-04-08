@@ -28,7 +28,7 @@ if(is_desa() || is_root() || is_admin())
 	if(is_admin() || is_root())
 	{
 		?>
-		<a href="<?php echo base_url('admin/corona/rekap') ?>" class="btn btn-sm btn-default"><i class="fa fa-chart-bar"></i> rekap data odp</a>
+		<a href="<?php echo base_url('admin/corona/excel_list') ?>" class="btn btn-sm btn-default"><i class="fa fa-chart-bar"></i> rekap data odp</a>
 		<?php
 	}
 	$form->setNumbering(true);
