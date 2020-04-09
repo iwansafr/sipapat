@@ -31,6 +31,13 @@ class Corona extends CI_controller
 	public function excel_list()
 	{
 		$desa_id = @intval($this->input->get('desa_id'));
+		if(is_desa())
+		{
+			if(!empty($this->session->userdata()[base_url().'_logged_in']['pengguna']['desa_id']))
+			{
+				$desa_id = $this->session->userdata()[base_url().'_logged_in']['pengguna']['desa_id'];
+			}
+		}
 		$kec = '';
 		if(empty($desa_id))
 		{
