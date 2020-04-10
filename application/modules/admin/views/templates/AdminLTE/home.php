@@ -158,7 +158,7 @@ if(!is_bumdes())
 		</div>
 		<?php
 	}
-	if(!empty($dashboard_config['absensi']) && (is_kecamatan() || is_desa()))
+	if(!empty($dashboard_config['absensi']) && (is_kecamatan() || is_desa() || is_admin()))
 	{
 		if(!empty($absensi))
 		{
@@ -175,6 +175,9 @@ if(!is_bumdes())
 			<div class="text-center">
 				<form action="" method="get">
 					<div class="form-inline">
+						<?php if (is_admin()): ?>
+							<select name="district_id" class="form-control"></select>
+						<?php endif ?>
 						<input type="date" name="date" class="form-control" value="<?php echo $date ?>">
 						<button class="btn btn-warning">Filter</button>
 					</div>
@@ -221,11 +224,25 @@ if(!is_bumdes())
 				<?php
 			}
 		}else{
-			?>
-			<div class="center text-center">
-				<a class="btn btn-warning" href=""><i class="fa fa-refresh"></i> Refresh</a>
-			</div>
-			<?php
+			if(is_admin())
+			{
+				?>
+				<div class="center text-center">
+					<form action="" method="get">
+						<div class="form-inline">
+							<select name="district_id" class="form-control"></select>
+							<button class="btn btn-warning"><i class="fa fa-search"></i></button>
+						</div>
+					</form>
+				</div>
+				<?php
+			}else{
+				?>
+				<div class="center text-center">
+					<a class="btn btn-warning" href=""><i class="fa fa-refresh"></i> Refresh</a>
+				</div>
+				<?php
+			}
 		}
 	}
 	echo '</div>';

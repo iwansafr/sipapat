@@ -12,6 +12,7 @@ if($mod['name'] == 'admin' && $mod['task'] == 'index')
 		$this->esg->set_esg('dashboard_config',$dashboard_config);
 		if(!empty($dashboard_config['absensi']))
 		{
+			$this->load->model('absensi_model');
 			$user = $this->esg->get_esg('user');
 			$date = 0;
 			if(!empty($_GET['date'])){
@@ -19,11 +20,20 @@ if($mod['name'] == 'admin' && $mod['task'] == 'index')
 				$date = strtotime($date);
 				$date = date('Y-m-d',$date);
 			}
-			if(is_kecamatan())
+			if(is_admin()){
+				$district_id = @intval($_GET['district_id']);
+				if(!empty($district_id))
+				{
+					$absensi = $this->absensi_model->get_all($district_id,$date);
+					if(!empty($absensi))
+					{
+						$this->esg->set_esg('absensi',$absensi);
+					}
+				}
+			}else if(is_kecamatan())
 			{
 				if(!empty($user['pengguna']['district_id']))
 				{
-					$this->load->model('absensi_model');
 					$absensi = $this->absensi_model->get_all($user['pengguna']['district_id'],$date);
 					if(!empty($absensi))
 					{
@@ -34,7 +44,6 @@ if($mod['name'] == 'admin' && $mod['task'] == 'index')
 			{
 				if(!empty($user['pengguna']['desa_id']))
 				{
-					$this->load->model('absensi_model');
 					$absensi = $this->absensi_model->get_absensi($user['pengguna']['desa_id'],$date);
 					if(!empty($absensi))
 					{

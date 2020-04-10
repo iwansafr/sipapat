@@ -101,5 +101,8 @@ if (
     });
   </script>
 <?php endif ?>
+<?php if ($mod['name'].'/'.$mod['task'] == 'admin/index'): ?>
+  <script src="<?php echo base_url('assets/absensi/kecamatan.js') ?>"></script>
+<?php endif ?>
 </body>
 </html>
