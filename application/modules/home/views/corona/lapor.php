@@ -8,6 +8,10 @@ if(!empty($desa))
 	$form->setTable('corona');
 	$form->setHeading('Data Orang Dalam Pengawasan Desa '.$desa['nama']);
 
+	$form->addInput('nik','text');
+	$form->setType('nik','number');
+	$form->setUnique(['nik'],'{value} sudah terdata sebelumnya');
+
 	$form->addInput('nama','text');
 	$form->addInput('rt','text');
 	$form->setType('rt','number');

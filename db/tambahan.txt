@@ -66,3 +66,5 @@ ALTER TABLE `absensi` ADD `keterangan` TINYINT(1) NOT NULL AFTER `foto`;
 ALTER TABLE `config` CHANGE `name` `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
 
 ALTER TABLE `absensi` ADD `koordinat` VARCHAR(255) NOT NULL AFTER `status`;
+
+ALTER TABLE `corona` ADD `nik` VARCHAR(20) NOT NULL AFTER `id`;
