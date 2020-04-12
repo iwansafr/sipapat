@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-if(is_root())
+if(is_root() || is_admin())
 {
 	$form = new zea();
 	$form->setNumbering(true);
