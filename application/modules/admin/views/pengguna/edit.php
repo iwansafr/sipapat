@@ -52,7 +52,7 @@ if(is_admin() || is_root())
 	$this->zea->addInput('district_id','dropdown');
 	// $this->zea->removeNone('district_id',true);
 	$this->zea->tableOptions('district_id','districts','id','name',' regency_id = '.$sipapat_config['regency_id']);
-	$this->zea->setLabel('district_id','kecatamatan');
+	$this->zea->setLabel('district_id','kecamatan');
 	$this->zea->setHelp('district_id','pilih jika akun yg dibuat adalah akun kecamatan');
 
 	$this->zea->addInput('desa_id','dropdown');
