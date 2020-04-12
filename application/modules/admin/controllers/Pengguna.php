@@ -28,7 +28,7 @@ class Pengguna extends CI_Controller
 
 	public function edit()
 	{
-		$this->esg->add_js([base_url('assets/pengguna/script.js')]);
+		// $this->esg->add_js([base_url('assets/pengguna/script.js')]);
 		$this->load->view('index');
 		$this->pengguna_model->save();
 	}
