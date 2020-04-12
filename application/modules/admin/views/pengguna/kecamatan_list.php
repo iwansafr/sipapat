@@ -5,7 +5,7 @@ if(is_root() || is_admin() || is_inspektorat())
   $form = new zea();
   $form->init('roll');
   $form->setTable('user_desa');
-  $where = '';
+  $where = " user_role_id = 4";
 
   if(!empty($sipapat_config))
   {
@@ -41,7 +41,7 @@ if(is_root() || is_admin() || is_inspektorat())
   // $form->setLabel('nama','Nama Lengkap');
   $form->addInput('email','plaintext');
   $form->setAttribute('email',['type'=>'email']);
-  if(is_root() || is_admin())
+  if(is_root() || is_admin() || is_kecamatan())
   {
     $form->addInput('sandi','plaintext');
   }

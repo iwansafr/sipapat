@@ -37,7 +37,7 @@ if(is_kecamatan())
 }
 if(is_admin())
 {
-	$where = " username NOT LIKE 'abs_%'";
+	$where = " user_role_id = 3";
 }
 if(!empty($sipapat_config))
 {
@@ -74,7 +74,7 @@ $form->tableOptions('user_role_id','user_role','id','title','level > 1');
 $form->setLabel('nama','Nama Lengkap');
 $form->addInput('email','plaintext');
 $form->setAttribute('email',['type'=>'email']);
-if(is_root() || is_admin())
+if(is_root() || is_admin() || is_kecamatan())
 {
 	$form->addInput('sandi','plaintext');
 }
