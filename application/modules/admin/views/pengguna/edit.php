@@ -57,7 +57,7 @@ if(is_admin() || is_root())
 
 	$this->zea->addInput('desa_id','dropdown');
 	// $this->zea->setOptions('desa_id',['None']);
-	$this->zea->tableOptions('desa_id','desa','id','nama','regency_id = '.$sipapat_config['regency_id']);
+	$this->zea->tableOptions('desa_id','desa','id','nama','regency_id = '.$sipapat_config['regency_id'],'kecamatan');
 	$this->zea->setLabel('desa_id','nama desa');
 	// $this->zea->setFirstOption('desa_id',['0'=>'Pilih Desa']);
 	$this->zea->addInput('sandi','password');
