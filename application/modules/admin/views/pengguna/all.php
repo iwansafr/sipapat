@@ -28,5 +28,8 @@ if(is_root() || is_admin())
 
 	$form->setUrl('admin/pengguna/clear_all');
 
+	$form->setEdit(true);
+	$form->setDelete(true);
+
 	$form->form();
 }

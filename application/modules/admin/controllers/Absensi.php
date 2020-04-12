@@ -144,6 +144,19 @@ class Absensi extends CI_Controller
 		$this->load->view('absensi/list');
 	}
 
+	public function user_list()
+	{
+		$this->load->view('index');
+	}
+	public function user_clear_list()
+	{
+		$this->load->view('absensi/user_list');
+	}
+	public function user_edit()
+	{
+		$this->load->view('index');
+	}
+
 	public function bolos_list()
 	{
 		$this->load->model('pengguna_model');
