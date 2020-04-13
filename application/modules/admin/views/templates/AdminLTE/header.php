@@ -115,7 +115,7 @@ $base_url_name = str_replace('/','_', base_url());
                 </ul>
               </li>
             <?php endif ?>
-            <li class="footer"><a href="#">Lihat semua pemberitahuan</a></li>
+            <li class="footer"><a href="<?php echo base_url('admin/notification') ?>">Lihat semua pemberitahuan</a></li>
           </ul>
         </li>
         <li class="dropdown tasks-menu">

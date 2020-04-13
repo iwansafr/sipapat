@@ -4,6 +4,7 @@ class Esg_model extends CI_Model
 {
 	var $templates = array();
 	var $esg_data  = array();
+	var $navigation = [];
 
 	public function __construct()
 	{
@@ -46,6 +47,11 @@ class Esg_model extends CI_Model
 		$uri = array();
 		$uri['string'] = $this->uri->uri_string();
 		$uri['array'] = explode('/',$uri['string']);
+		// $uri['array'] = ['Beranda',end($uri['array'])];
+		if(!empty($this->navigation))
+		{
+
+		}
 		$this->esg->set_esg('navigation',$uri);
 	}
 	public function set_nav_title($title = '')
