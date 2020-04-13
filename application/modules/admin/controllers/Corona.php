@@ -93,4 +93,9 @@ class Corona extends CI_controller
 		$this->load->view('index',$data);
 	}
 
+	public function posko_list()
+	{
+		$this->load->view('index');
+	}
+
 }
