@@ -18,7 +18,7 @@ if(is_desa() || is_root() || is_admin())
 
 	if(!empty($desa_id))
 	{
-		$form->setWhere('desa_id = '.$desa_id);
+		$form->setWhere('desa_id = '.$desa_id.' AND status = 1');
 	}
 
 	?>

@@ -13,6 +13,11 @@ if(is_desa() || is_root())
 	$form->setTable('corona');
 
 	$form->setId(@intval($_GET['id']));
+
+	$form->addInput('nik','text');
+	$form->setType('nik','number');
+	$form->setUnique(['nik'],'{value} sudah terdata sebelumnya');
+	
 	$form->addInput('nama','text');
 	$form->addInput('rt','text');
 	$form->setType('rt','number');

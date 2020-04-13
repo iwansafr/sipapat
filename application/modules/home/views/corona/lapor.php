@@ -72,7 +72,7 @@ if(!empty($desa))
 	$form->setLabel('keterangan','keterangan (alasan penyebab mudik / pulang)');
 
 	$form->addInput('status','static');
-	$form->setValue('status',1);
+	$form->setValue('status',0);
 	$form->setRequired('All');
 
 	$form->form();
@@ -81,7 +81,19 @@ if(!empty($desa))
 		$last_id = $form->get_insert_id();
 		if(!empty($last_id))
 		{
-			header('Location: '.base_url('covid19/detail/'.$last_id));
+			$user_id = @$this->db->query('SELECT user_id FROM user_desa WHERE desa_id = ?',$this->input->post('desa_id'))->row_array()['user_id'];
+			if(!empty($user_id))
+			{
+				
+				$notification = [
+					'user_id' => $user_id,
+					'title' => 'Laporan ODP',
+					'link' => base_url('admin/corona/detail/'.$last_id)
+				];
+				$this->db->insert('notification',$notification);
+
+				header('Location: '.base_url('covid19/detail/'.$last_id));
+			}
 		}
 	}
 }else{
