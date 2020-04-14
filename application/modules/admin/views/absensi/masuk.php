@@ -62,6 +62,7 @@
 					<table class="table table-bordered table-sm tb_perangkat" style="text-align: center;">
 						<input type="hidden" id="pdid" name="perangkat_desa_id" value="0">
 						<a href="" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i> Refresh</a>
+						| <span class="badge badge-info">pastikan nama sudah diklik dan sudah capture foto agar tombol upload muncul</span>
 						<thead>
 							<th style="text-align: center;">nama</th>
 						</thead>
