@@ -329,7 +329,7 @@ class Perangkat extends CI_Controller
 			$where = ' AND jabatan = ? ';
 			$argumen = [$desa_id,$jabatan];
 		}
-		$data = $this->db->query("SELECT absensi.perangkat_desa_id AS id,absensi.valid,perangkat_desa.nama,perangkat_desa.jabatan,absensi.created FROM absensi INNER JOIN perangkat_desa ON(perangkat_desa.id=absensi.perangkat_desa_id) WHERE absensi.desa_id = ? AND (CAST(absensi.created AS DATE) = '".date('Y-m-d')."' AND (absensi.status = 1 OR absensi.status = 4 AND kelompok = 1 {$where} ))  ORDER BY perangkat_desa.jabatan ASC", $argumen)->result_array();
+		$data = $this->db->query("SELECT absensi.perangkat_desa_id AS id,absensi.valid,perangkat_desa.nama,perangkat_desa.jabatan,absensi.created FROM absensi INNER JOIN perangkat_desa ON(perangkat_desa.id=absensi.perangkat_desa_id) WHERE absensi.desa_id = ? AND (CAST(absensi.created AS DATE) = '".date('Y-m-d')."' AND (absensi.status = 1 OR absensi.status = 4 AND kelompok = 1 ) {$where} )  ORDER BY perangkat_desa.jabatan ASC", $argumen)->result_array();
 		output_json($data);
 	}
 
@@ -342,7 +342,7 @@ class Perangkat extends CI_Controller
 			$where = ' AND jabatan = ? ';
 			$argumen = [$desa_id,$jabatan];
 		}
-		$data = $this->db->query("SELECT absensi.perangkat_desa_id AS id,absensi.valid,perangkat_desa.nama,perangkat_desa.jabatan,absensi.created FROM absensi INNER JOIN perangkat_desa ON(perangkat_desa.id=absensi.perangkat_desa_id) WHERE absensi.desa_id = ? AND (CAST(absensi.created AS DATE) = '".date('Y-m-d')."' AND (absensi.status = 2 AND kelompok = 1 {$where} ))  ORDER BY perangkat_desa.jabatan ASC", $argumen)->result_array();
+		$data = $this->db->query("SELECT absensi.perangkat_desa_id AS id,absensi.valid,perangkat_desa.nama,perangkat_desa.jabatan,absensi.created FROM absensi INNER JOIN perangkat_desa ON(perangkat_desa.id=absensi.perangkat_desa_id) WHERE absensi.desa_id = ? AND (CAST(absensi.created AS DATE) = '".date('Y-m-d')."' AND (absensi.status = 2 AND kelompok = 1 ) {$where} )  ORDER BY perangkat_desa.jabatan ASC", $argumen)->result_array();
 		output_json($data);
 	}
 
