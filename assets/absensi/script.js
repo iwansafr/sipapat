@@ -133,9 +133,11 @@ $(document).ready(function(){
 		btn_upload = document.getElementById('btn_upload');
 		btn_upload.classList.remove("d-none");
 		$('.sel_pd').removeClass('btn-success');
+		// $('.sel_pd').removeClass('display-1');
 		$('.sel_pd').addClass('btn-warning');
 
 		$(this).addClass('btn-success')
+		// $(this).addClass('display-1');
 		$(this).removeClass('btn-warning')
 	});	
 });
