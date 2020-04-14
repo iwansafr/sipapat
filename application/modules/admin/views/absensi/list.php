@@ -139,23 +139,26 @@ if(!empty($desa_id))
 	</div>
 	<?php
 
-	$foto = new zea();
-	$foto->setHeading('Foto Pertama');
-	$foto->init('roll');
-	$foto->setNumbering(true);
-	$foto->setTable('absensi');
-	$foto->setWhere('desa_id = '.$desa_id);
-	$foto->group_by('perangkat_desa_id');
-	$foto->order_by('id','ASC');
-	$foto->addInput('id','hidden');
-	$foto->addInput('perangkat_desa_id','dropdown');
-	$foto->setLabel('perangkat_desa_id','Nama Perangkat');
-	$foto->tableOptions('perangkat_desa_id','perangkat_desa','id','nama','desa_id = '.$desa_id.' AND kelompok = 1');
-	$foto->setAttribute('perangkat_desa_id','disabled');
-	$foto->addInput('foto','thumbnail');
+	if(is_admin() || is_kecamatan() || is_root())
+	{
+		$foto = new zea();
+		$foto->setHeading('Foto Pertama');
+		$foto->init('roll');
+		$foto->setNumbering(true);
+		$foto->setTable('absensi');
+		$foto->setWhere('desa_id = '.$desa_id);
+		$foto->group_by('perangkat_desa_id');
+		$foto->order_by('id','ASC');
+		$foto->addInput('id','hidden');
+		$foto->addInput('perangkat_desa_id','dropdown');
+		$foto->setLabel('perangkat_desa_id','Nama Perangkat');
+		$foto->tableOptions('perangkat_desa_id','perangkat_desa','id','nama','desa_id = '.$desa_id.' AND kelompok = 1');
+		$foto->setAttribute('perangkat_desa_id','disabled');
+		$foto->addInput('foto','thumbnail');
 
-	$foto->setUrl('admin/absensi/clear_list');
-	$foto->form();
+		$foto->setUrl('admin/absensi/clear_list');
+		$foto->form();
+	}
 
 	$form->form();
 }else{
