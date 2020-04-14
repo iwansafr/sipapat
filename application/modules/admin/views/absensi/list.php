@@ -150,16 +150,15 @@ if(!empty($desa_id))
 		$foto->group_by('perangkat_desa_id');
 		$foto->order_by('id','ASC');
 		$foto->addInput('id','hidden');
-		$foto->addInput('perangkat_desa_id','dropdown');
-		$foto->setLabel('perangkat_desa_id','Nama Perangkat');
-		$foto->tableOptions('perangkat_desa_id','perangkat_desa','id','nama','desa_id = '.$desa_id.' AND kelompok = 1');
-		$foto->setAttribute('perangkat_desa_id','disabled');
+		$foto->addInput('perangkat_desa_id','plaintext');
 		$foto->addInput('foto','thumbnail');
 
 		$foto->setUrl('admin/absensi/clear_list');
+		$foto->setFormName('data_awal');
 		$foto->form();
 	}
 
+	$form->setFormName('data_list');
 	$form->form();
 }else{
 	msg('desa tidak diketahui','danger');
