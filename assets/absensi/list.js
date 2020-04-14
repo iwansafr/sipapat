@@ -8,5 +8,9 @@ $(document).ready(function(){
 			var d = $('#data_list').find('td[perangkat_desa_id="'+id+'"]').closest('tr').prepend(img);
 		}
 	});
-	$('#data_awal').remove();
+	function remove_pertama(){
+		$('#data_awal').remove();
+		clearInterval(rm_msg);
+	}
+	var rm_msg = setInterval(remove_pertama,1000);
 });

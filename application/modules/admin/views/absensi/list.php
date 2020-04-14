@@ -142,7 +142,7 @@ if(!empty($desa_id))
 	if(is_admin() || is_kecamatan() || is_root())
 	{
 		$foto = new zea();
-		$foto->setHeading('Foto Pertama');
+		// $foto->setHeading('Foto Pertama');
 		$foto->init('roll');
 		$foto->setNumbering(true);
 		$foto->setTable('absensi');
