@@ -157,6 +157,7 @@ if(!empty($desa_id))
 
 		$foto->setUrl('admin/absensi/clear_list');
 		$foto->setFormName('data_awal');
+		$foto->setLimit(20);
 		$foto->form();
 		?>
 		<div class="hidden">
