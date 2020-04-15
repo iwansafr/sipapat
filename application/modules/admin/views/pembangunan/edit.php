@@ -121,10 +121,13 @@ if((is_desa() || is_root()))
 		$this->esg->add_js(base_url('assets/pembangunan/script.js'));
 		if((!empty($_GET['bankeu_prov']) || !empty($_GET['bankeu_kab'])) || (@$data['sumber_dana'] == 4 || @$data['sumber_dana'] == 5) ){
 			$form->addInput('doc_0',$file_type);
+			$form->setAccept('doc_0','.jpg,.png,.jpeg');
 			$form->setLabel('doc_0','Dokumantasi 0 %');
 			$form->addInput('doc_50',$file_type);
+			$form->setAccept('doc_50','.jpg,.png,.jpeg');
 			$form->setLabel('doc_50','Dokumantasi 50 %');
 			$form->addInput('doc_100',$file_type);
+			$form->setAccept('doc_100','.jpg,.png,.jpeg');
 			$form->setLabel('doc_100','Dokumantasi 100 %');
 			if(empty($id))
 			{
@@ -135,12 +138,16 @@ if((is_desa() || is_root()))
 			}
 		}else{
 			$form->addInput('doc_0',$file_type);
+			$form->setAccept('doc_0','.jpg,.png,.jpeg');
 			$form->setLabel('doc_0','Dokumantasi 0 %');
 			$form->addInput('doc_40',$file_type);
+			$form->setAccept('doc_40','.jpg,.png,.jpeg');
 			$form->setLabel('doc_40','Dokumantasi 40 %');
 			$form->addInput('doc_80',$file_type);
+			$form->setAccept('doc_80','.jpg,.png,.jpeg');
 			$form->setLabel('doc_80','Dokumantasi 80 %');
 			$form->addInput('doc_100',$file_type);
+			$form->setAccept('doc_100','.jpg,.png,.jpeg');
 			$form->setLabel('doc_100','Dokumantasi 100 %');
 			if(empty($id))
 			{
