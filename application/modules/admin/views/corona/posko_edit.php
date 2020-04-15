@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-if(!empty($desa_id) && !empty($data))
+if(!empty($desa_id))
 {
 	$form = new zea();
 
