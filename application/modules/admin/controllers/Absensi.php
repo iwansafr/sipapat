@@ -188,6 +188,8 @@ class Absensi extends CI_Controller
 		}else{
 			$custom_api = $this->esg->get_config(base_url().'_api')['url'];
 			$data['perangkat'] = json_decode(curl($custom_api.'api/perangkat/get_by_id/'.$id),1);
+			$this->load->model('pengguna_model');
+			$data['jabatan'] = $this->pengguna_model->jabatan()[1];
 		}
 		$this->load->view('index', $data);
 	}

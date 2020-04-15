@@ -9,7 +9,7 @@ $form = new zea();
 $desa_id = $this->sipapat_model->get_desa_id();
 ?>
 <?php if (!empty($perangkat)): ?>
-	<h1><?php echo $perangkat['nama'] ?></h1>
+	<h1><?php echo $perangkat['nama'].' | '.$jabatan[$perangkat['jabatan']] ?></h1>
 <?php endif ?>
 <div class="btn-group">
   <a href="#" type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
