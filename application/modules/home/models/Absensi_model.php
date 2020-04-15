@@ -11,6 +11,17 @@ class Absensi_model extends CI_Model
       $data['foto'] = $file_name.'.'.$ext['extension'];
       $date = date('Y-m-d');
       $check_exist = $this->db->get_where('absensi',['desa_id'=>$data['desa_id'],'status'=>$data['status'],'perangkat_desa_id'=>$data['perangkat_desa_id'],'CAST(created AS date) = '=>$date])->row_array();
+      $this->load->library('faced/FaceDetector');
+      $faceDetect = new FaceDetector();
+      $valid_face = false;
+      if($faceDetect->faceDetect($_FILES['foto']['tmp_name']))
+      {
+        $valid_face = true;
+      }
+      if(!$valid_face)
+      {
+        return ['status'=>'danger','msg'=>'Wajah Tidak Valid, pastikan wajah terlihat saat mengambil gambar'];
+      }
       if(empty($check_exist))
       {
         if($this->db->insert('absensi', $data))
