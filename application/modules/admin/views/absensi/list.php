@@ -138,6 +138,8 @@ if(!empty($desa_id))
 		</div>
 	</div>
 	<?php
+	$form->setFormName('data_list');
+	$form->form();
 
 	if(is_admin() || is_kecamatan() || is_root())
 	{
@@ -156,10 +158,12 @@ if(!empty($desa_id))
 		$foto->setUrl('admin/absensi/clear_list');
 		$foto->setFormName('data_awal');
 		$foto->form();
+		?>
+		<div class="hidden">
+			<?php pr($foto->getData()) ?>
+		</div>
+		<?php
 	}
-
-	$form->setFormName('data_list');
-	$form->form();
 }else{
 	msg('desa tidak diketahui','danger');
 }
