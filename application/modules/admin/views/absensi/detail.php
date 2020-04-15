@@ -46,8 +46,11 @@ if(!empty($desa_id))
 	$form->setLabel('created','waktu');
 	$form->setUrl('admin/absensi/clear_detail/'.$id);
 
-	$form->addInput('valid','checkbox');
-	// $form->setEdit(true);
-	$form->setDelete(true);
+	if(is_admin() || is_root() || is_kecamatan())
+	{
+		$form->addInput('valid','checkbox');
+		// $form->setEdit(true);
+		$form->setDelete(true);
+	}
 	$form->form();
 }

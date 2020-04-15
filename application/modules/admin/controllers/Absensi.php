@@ -137,7 +137,10 @@ class Absensi extends CI_Controller
 
 	public function list()
 	{
-		$this->esg->add_js(base_url('assets/absensi/list.js'));
+		if(is_root() || is_admin() || is_kecamatan())
+		{
+			$this->esg->add_js(base_url('assets/absensi/list.js'));
+		}
 		$this->load->view('index');
 	}
 	public function clear_list()

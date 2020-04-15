@@ -56,10 +56,13 @@ if(!empty($desa_id))
 
 	$form->setUrl('admin/absensi/clear_list');
 
-	$form->addInput('valid','checkbox');
+	if(is_admin() || is_kecamatan() || is_root())
+	{
+		$form->addInput('valid','checkbox');
+		$form->setDelete(true);
+	}
 
 	// $form->setEdit(true);
-	$form->setDelete(true);
 	?>
 	<div class="row">
 		<div class="col-md-3">
