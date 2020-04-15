@@ -98,4 +98,45 @@ class Corona extends CI_controller
 		$this->load->view('index');
 	}
 
+	public function posko_detail($id = 0)
+	{
+		$this->esg_model->set_nav_title('Detail Posko');
+
+		$custom_api = $this->esg->get_config(base_url().'_api')['url'];
+		$desa       = curl($custom_api.'/api/desa/detail/'.$id);
+
+		if(!empty($desa))
+		{
+			$desa = json_decode($desa,1);
+		}
+		$data = $this->corona_model->get_posko($id);
+		$this->load->view('index',['data'=>$data,'desa'=>$desa]);
+		if(@$_GET['s']=='print')
+		{
+			?>
+			<script type="text/javascript">
+				window.print();
+			</script>
+			<?php
+		}
+	}
+
+	public function posko_edit()
+	{
+		$desa_id = 0;
+		$data = [];
+		if(is_desa())
+		{
+			$desa_id = $_SESSION[base_url().'_logged_in']['pengguna']['desa_id'];
+		}else if(is_root() || is_kecamatan() || is_admin())
+		{
+			$desa_id = @intval($_GET['desa_id']);
+		}
+		if(!empty($desa_id))
+		{
+			$data = $this->corona_model->get_posko($desa_id);
+		}
+		$this->load->view('index',['desa_id'=>$desa_id,'data'=>$data]);
+	}
+
 }

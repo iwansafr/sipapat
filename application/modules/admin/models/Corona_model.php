@@ -42,4 +42,11 @@ class Corona_model extends CI_Model
 		}
 		return $data;
 	}
+	public function get_posko($desa_id = 0)
+	{
+		if(!empty($desa_id))
+		{
+			return $this->db->get_where('corona_posko',['desa_id'=>$desa_id])->row_array();
+		}
+	}
 }
