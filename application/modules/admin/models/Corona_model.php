@@ -30,14 +30,14 @@ class Corona_model extends CI_Model
 		if(!empty($desa_id))
 		{
 			$where = ' WHERE desa_id = '.$desa_id.' AND status = 1';
-			$data = $this->db->query('SELECT corona.nama,corona.umur,case jk WHEN 1 then "laki-laki" WHEN 2 then "Perempuan" END AS kelamin,corona.rt,corona.rw,desa.nama AS desa,corona.dari,corona.tgl AS tgl_kedatangan,corona.hp,corona.demam,corona.bpst AS `Batuk Pilek Sakit Tenggorokan`,corona.pkdpc AS `pernah kontak dg penderita covid` FROM corona INNER JOIN desa ON(desa.id=corona.desa_id) '.$where.' ORDER BY corona.desa_id ASC');
+			$data = $this->db->query('SELECT corona.nik,corona.nama,corona.umur,case jk WHEN 1 then "laki-laki" WHEN 2 then "Perempuan" END AS kelamin,corona.rt,corona.rw,desa.nama AS desa,corona.dari,corona.tgl AS tgl_kedatangan,corona.hp,corona.demam,corona.bpst AS `Batuk Pilek Sakit Tenggorokan`,corona.pkdpc AS `pernah kontak dg penderita covid` FROM corona INNER JOIN desa ON(desa.id=corona.desa_id) '.$where.' ORDER BY corona.desa_id ASC');
 		}else{
 			if(!empty($kec))
 			{
 				$where = " WHERE kecamatan = ? AND status = 1 ";
-				$data = $this->db->query('SELECT corona.nama,corona.umur,case jk WHEN 1 then "laki-laki" WHEN 2 then "Perempuan" END AS kelamin,corona.rt,corona.rw,desa.nama AS desa,corona.dari,corona.tgl AS tgl_kedatangan,corona.hp,corona.demam,corona.bpst AS `Batuk Pilek Sakit Tenggorokan`,corona.pkdpc AS `pernah kontak dg penderita covid` FROM corona INNER JOIN desa ON(desa.id=corona.desa_id) '.$where.' ORDER BY corona.desa_id ASC',$kec);
+				$data = $this->db->query('SELECT corona.nik,corona.nama,corona.umur,case jk WHEN 1 then "laki-laki" WHEN 2 then "Perempuan" END AS kelamin,corona.rt,corona.rw,desa.nama AS desa,corona.dari,corona.tgl AS tgl_kedatangan,corona.hp,corona.demam,corona.bpst AS `Batuk Pilek Sakit Tenggorokan`,corona.pkdpc AS `pernah kontak dg penderita covid` FROM corona INNER JOIN desa ON(desa.id=corona.desa_id) '.$where.' ORDER BY corona.desa_id ASC',$kec);
 			}else{
-				$data = $this->db->query('SELECT corona.nama,corona.umur,case jk WHEN 1 then "laki-laki" WHEN 2 then "Perempuan" END AS kelamin,corona.rt,corona.rw,desa.nama AS desa,corona.dari,corona.tgl AS tgl_kedatangan,corona.hp,corona.demam,corona.bpst AS `Batuk Pilek Sakit Tenggorokan`,corona.pkdpc AS `pernah kontak dg penderita covid` FROM corona INNER JOIN desa ON(desa.id=corona.desa_id) WHERE status = 1 ORDER BY corona.desa_id ASC');
+				$data = $this->db->query('SELECT corona.nik,corona.nama,corona.umur,case jk WHEN 1 then "laki-laki" WHEN 2 then "Perempuan" END AS kelamin,corona.rt,corona.rw,desa.nama AS desa,corona.dari,corona.tgl AS tgl_kedatangan,corona.hp,corona.demam,corona.bpst AS `Batuk Pilek Sakit Tenggorokan`,corona.pkdpc AS `pernah kontak dg penderita covid` FROM corona INNER JOIN desa ON(desa.id=corona.desa_id) WHERE status = 1 ORDER BY corona.desa_id ASC');
 			}
 		}
 		return $data;

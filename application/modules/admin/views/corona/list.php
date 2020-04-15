@@ -30,6 +30,8 @@ if(is_desa() || is_root() || is_admin())
 	$form->addInput('id','plaintext');
 	$form->setLabel('id','action');
 	$form->setPlainText('id',[base_url('admin/corona/detail/{id}')=>'Detail']);
+
+	$form->addInput('nik','plaintext');
 	$form->addInput('nama','plaintext');
 	$form->addInput('umur','plaintext');
 
