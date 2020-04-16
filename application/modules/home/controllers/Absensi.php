@@ -84,7 +84,6 @@ class Absensi extends CI_Controller
 		$data['sudah'] = [];		
 	  if(!empty($status))
 	  {
-	  	pr($status);
 	  	if($status == 1 || $status == 4)
 	  	{
 	  		if(!empty($data['perangkat_pagi']))
