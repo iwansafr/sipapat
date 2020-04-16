@@ -130,6 +130,49 @@
 			</div>
 		</div>
 	</form>
+	<?php if (!empty($perangkat_bolos)): ?>
+		<div class="accordion" id="accordionData">
+		  <div class="card">
+		    <div class="card-header" id="headingOne">
+		      <h2 class="mb-0">
+		        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+		        	<span class="badge badge-danger">Data Perangkat Absensi Tidak Valid / Tidak Berangkat Pagi</span>
+		        </button>
+		      </h2>
+		    </div>
+
+		    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionData">
+		      <div class="card-body">
+		      	<table class="table table-bordered table-sm tb_perangkat">
+		      		<thead>
+		      			<th>No</th>
+		      			<th>Nama</th>
+		      			<th>Jabatan</th>
+		      		</thead>
+		      		<tbody>
+		      			<?php $i = 1; ?>
+				        <?php foreach ($perangkat_bolos as $key => $value): ?>
+				        	<tr class="btn-secondary">
+										<td style="font-size: 12px;">
+											<?php echo $i ?>
+										</td>
+										<td>
+											<label style="margin-bottom: 0;font-size: 12px;"><?php echo $value['nama']; ?></label>
+										</td>
+										<td>
+											<label style="margin-bottom: 0;font-size: 12px;"><?php echo $jabatan[$value['jabatan']] ?></label>
+										</td>
+									</tr>
+									<?php $i++; ?>
+				        <?php endforeach ?>
+		      		</tbody>
+		      	</table>
+		      </div>
+		    </div>
+		    <hr>
+		  </div>
+		</div>
+	<?php endif ?>
 	<script>
 
 	</script>
