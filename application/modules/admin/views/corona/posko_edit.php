@@ -4,10 +4,9 @@ if(!empty($desa_id))
 {
 	$form = new zea();
 
-	if(!empty($data))
-	{
-		$form->setId($data['id']);
-	}
+	$id = @intval($_GET['id']);
+	$form->setId($id);
+
 	$form->init('edit');
 	$form->setTable('corona_posko');
 	$form->addInput('desa_id','static');
@@ -26,6 +25,19 @@ if(!empty($desa_id))
 	$form->addInput('foto','file');
 	$form->setLabel('foto','Foto Posko');
 	$form->setAccept('foto','.jpg,.png,.jpeg');
+
+	$form->addInput('kegiatan','textarea');
+	if(empty($id))
+	{
+		$form->setValue('kegiatan',"-\n-");
+	}
+	$form->setLabel('kegiatan','kegiatan <span style="background: red;color:white;">(nyalakan capslock saat input kegiatan)</span>');
+	$form->addInput('peralatan','textarea');
+	if(empty($id))
+	{
+		$form->setValue('peralatan',"-\n-");
+	}
+	$form->setLabel('peralatan','peralatan / perlengkapan <span style="background: red;color:white;">(nyalakan capslock saat input peralatan)</span>');
 
 	$form->setRequired('All');
 

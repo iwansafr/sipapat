@@ -68,3 +68,5 @@ ALTER TABLE `config` CHANGE `name` `name` VARCHAR(255) CHARACTER SET utf8 COLLAT
 ALTER TABLE `absensi` ADD `koordinat` VARCHAR(255) NOT NULL AFTER `status`;
 
 ALTER TABLE `corona` ADD `nik` VARCHAR(20) NOT NULL AFTER `id`;
+
+ALTER TABLE `corona_posko` ADD `peralatan` TEXT NOT NULL AFTER `foto`, ADD `kegiatan` TEXT NOT NULL AFTER `peralatan`;
