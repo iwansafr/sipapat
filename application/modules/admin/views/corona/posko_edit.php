@@ -24,6 +24,7 @@ if(!empty($desa_id))
 	$form->setLabel('hp','Nomor Hp');
 
 	$form->addInput('foto','file');
+	$form->setLabel('foto','Foto Posko');
 	$form->setAccept('foto','.jpg,.png,.jpeg');
 
 	$form->setRequired('All');
