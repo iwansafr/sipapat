@@ -6,7 +6,13 @@ if(is_kecamatan() || is_root())
 	$form->init('param');
 	if(!empty($user['pengguna']['district_id']))
 	{
-		$form->setParamName(base_url().'_'.$user['pengguna']['district_id'].'_absensi_config_jam');
+		$paramname = base_url().'_'.$user['pengguna']['district_id'].'_absensi_config_jam';
+		if(!empty($desa['id']))
+		{
+			$paramname = base_url().'_'.$user['pengguna']['district_id'].'_'.$desa['id'].'_absensi_config_jam';
+			$form->setHeading('desa '.$desa['nama']);
+		}
+		$form->setParamName($paramname);
 	}else{
 		$form->setParamName(base_url().'_absensi_config_jam');
 	}

@@ -191,7 +191,7 @@ if(!is_bumdes())
 				<div class="col-md-3" style="height: 100%; margin-bottom: 2%;">
 					<div class="small-box" style="background:  #222d32; color:white; height: 100%;">
 					  <div class="inner">
-					    <h5><?php echo $value['desa']['nama'] ?> | <?php echo $date ?></h5>
+					    <h5><?php echo $value['desa']['nama'] ?> | <?php echo $date ?> | <a href="<?php echo base_url('admin/absensi/config_jam/'.$value['desa']['id']) ?>" style="color: white;" title="atur jadwal"><i class="fa fa-clock"></i></a></h5>
 							<table class="table">
 						    <?php foreach ($value['absensi'] as $abkey => $abvalue): ?>
 						    	<tr>

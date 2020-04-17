@@ -355,9 +355,17 @@ class Absensi extends CI_Controller
 	{
 		$this->load->view('index');
 	}
-	public function config_jam()
+	public function config_jam($id = 0)
 	{
-		$this->load->view('index');
+		$this->esg_model->set_nav_title('Config Jam');
+		$custom_api = $this->esg->get_config(base_url().'_api')['url'];
+		$desa = json_decode(curl($custom_api.'/api/desa/detail/'.$id),1);
+		$data = [];
+		if(!empty($desa))
+		{
+			$data['desa'] = $desa;
+		}
+		$this->load->view('index',$data);
 	}
 	public function perangkat_list()
 	{
