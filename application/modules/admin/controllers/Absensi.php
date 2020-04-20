@@ -59,6 +59,26 @@ class Absensi extends CI_Controller
 								{
 									$config_jam = $config_jam_tmp;
 								}
+
+								$config_hari = $this->esg->get_config(base_url().'_'.$data['desa']['district_id'].'_absensi_config_hari');
+								if(empty($config_hari))
+								{
+									$config_hari = $this->esg->get_config(base_url().'_absensi_config_hari');
+								}
+								if(!empty($config_hari['hari']))
+								{
+									$config_hari = $config_hari['hari'];
+									$today = date('w');
+									if(in_array($today, $config_hari))
+									{
+										$libur = false;
+									}else{
+										$libur = true;
+									}
+									$data['libur'] = $libur;
+								}else{
+									echo 'Mohon Maaf Sistem Belum tersetting';die();
+								}
 							}
 							$h = date('H:i');
 							if(empty($config_jam['selesai_masuk'])){
@@ -373,6 +393,11 @@ class Absensi extends CI_Controller
 			$data['desa'] = $desa;
 		}
 		$this->load->view('index',$data);
+	}
+	public function config_hari()
+	{
+		$this->esg_model->set_nav_title('Config Hari Kerja');
+		$this->load->view('index');
 	}
 	public function perangkat_list()
 	{

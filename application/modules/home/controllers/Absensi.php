@@ -30,6 +30,7 @@ class Absensi extends CI_Controller
 			'mulai_pulang' => '13:00',
 			'selesai_pulang' => '16:00',
 		];
+		// $config_hari = ['1','2','3','4','5','6'];
 		if(!empty($data['desa']['district_id']))
 		{
 			if(!empty($data['desa']['id']))
@@ -65,6 +66,24 @@ class Absensi extends CI_Controller
 			if(!empty($config_jam_tmp))
 			{
 				$config_jam = $config_jam_tmp;
+			}
+			$config_hari = $this->esg->get_config(base_url().'_'.$data['desa']['district_id'].'_absensi_config_hari');
+			if(empty($config_hari))
+			{
+				$config_hari = $this->esg->get_config(base_url().'_absensi_config_hari');
+			}
+			if(!empty($config_hari['hari']))
+			{
+				$config_hari = $config_hari['hari'];
+				$today = date('w');
+				if(in_array($today, $config_hari))
+				{
+					$libur = false;
+				}else{
+					$libur = true;
+				}
+			}else{
+				echo 'Mohon Maaf Sistem Belum tersetting';die();
 			}
 		}
 		$h = date('H:i');
@@ -170,6 +189,7 @@ class Absensi extends CI_Controller
 	  	}
 	  	$data['sudah'] = $data_tmp_sudah;
 	  }
+	  $data['libur'] = $libur;
 	  $data['valid'] = ['0'=>'Belum divalidasi','1'=>'Valid','2'=>'Tidak Valid'];
 		$this->load->model('admin/pengguna_model');
 		$this->home_model->home();

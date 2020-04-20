@@ -43,6 +43,14 @@ class Corona extends CI_controller
 		{
 			$kec = $this->input->get('kec');
 		}
+		if(is_kecamatan())
+		{
+			$user = $this->session->userdata(base_url().'_logged_in');
+			if(!empty($user['district']))
+			{
+				$kec = strtolower($user['district']['name']);
+			}
+		}
 		$data['data'] = $this->corona_model->get_data($desa_id,$kec);
 		$this->load->view('index',$data);
 	}
