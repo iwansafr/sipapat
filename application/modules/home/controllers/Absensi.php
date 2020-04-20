@@ -78,9 +78,9 @@ class Absensi extends CI_Controller
 				$today = date('w');
 				if(in_array($today, $config_hari))
 				{
-					$libur = false;
-				}else{
 					$libur = true;
+				}else{
+					$libur = false;
 				}
 			}else{
 				echo 'Mohon Maaf Sistem Belum tersetting';die();
