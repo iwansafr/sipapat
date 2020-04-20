@@ -58,22 +58,25 @@ if($mod['name'] == 'admin' && $mod['task'] == 'index')
 	$pengguna = $this->pengguna_model->get_pengguna();
 	$desa = array();
 	$pengumuman = array();
-	if(!empty($pengguna))
+	if(!is_root())
 	{
-		$desa = $this->sipapat_model->get_desa($pengguna['desa_id']);
-	}
-	if(!empty($desa) && !empty($dashboard_config['pengumuman']))
-	{
-		$pengumuman = $this->sipapat_model->get_pengumuman(strtolower($desa['kecamatan']));
-	}
-	$amj_alert = $this->sipapat_model->perangkat_alert();
-	if(!empty($amj_alert))
-	{
-		$this->esg->set_esg('amj_alert', $amj_alert);
-	}
-	if(!empty($pengumuman))
-	{
-		$this->esg->set_esg('pengumuman_kecamatan', $pengumuman);
+		if(!empty($pengguna))
+		{
+			$desa = $this->sipapat_model->get_desa($pengguna['desa_id']);
+		}
+		if(!empty($desa) && !empty($dashboard_config['pengumuman']))
+		{
+			$pengumuman = $this->sipapat_model->get_pengumuman(strtolower($desa['kecamatan']));
+		}
+		$amj_alert = $this->sipapat_model->perangkat_alert();
+		if(!empty($amj_alert))
+		{
+			$this->esg->set_esg('amj_alert', $amj_alert);
+		}
+		if(!empty($pengumuman))
+		{
+			$this->esg->set_esg('pengumuman_kecamatan', $pengumuman);
+		}
 	}
 }
 $this->sipapat_model->site();
