@@ -47,9 +47,13 @@ if($is_admin || $is_root || $is_kecamatan || $is_desa)
 	$form->addInput('kegiatan','plaintext');
 
 	$form->setDataTable(true);
-	if(is_root())
+	if(is_desa() || is_root())
 	{
 		$form->setDelete(true);
+	}
+	if(is_desa())
+	{
+		$form->setEdit(true);
 	}
 	$form->form();
 	?>
