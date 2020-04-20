@@ -2,11 +2,14 @@
 
 if(!empty($dashboard_config['pengumuman']))
 {
-	if(is_sipapat())
+	if(!is_root())
 	{
-		$pengumuman = $this->esg->get_config('pengumuman');
-	}else{
-		$pengumuman = $this->esg->get_config('sispudes_pengumuman');
+		if(is_sipapat())
+		{
+			$pengumuman = $this->esg->get_config('pengumuman');
+		}else{
+			$pengumuman = $this->esg->get_config('sispudes_pengumuman');
+		}
 	}
 	?>
 	<style type="text/css">
@@ -47,7 +50,7 @@ if(!empty($dashboard_config['pengumuman']))
 </div>
 <hr>
 <?php
-if(!is_bumdes())
+if(!is_bumdes() && !is_root())
 {
 	echo '<div class="row">';
 	if(!empty($pengumuman))
