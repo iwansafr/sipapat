@@ -82,6 +82,7 @@ class Absensi extends CI_Controller
 				}else{
 					$libur = false;
 				}
+				$libur = false;
 			}else{
 				echo 'Mohon Maaf Sistem Belum tersetting';die();
 			}
