@@ -17,6 +17,11 @@
       		<td style="text-align: right;"><span style="font-weight: bold;"><?php echo number_format($data['young'],0,'.','.'); ?></span> Orang</td>
       	</tr>
       	<tr>
+      		<td>usia Tidak Valid</td>
+      		<td>:</td>
+      		<td style="text-align: right;"><span style="font-weight: bold;"><?php echo number_format($data['age_n_valid'],0,'.','.'); ?></span> Orang</td>
+      	</tr>
+      	<tr>
       		<td>Tidak Sekolah</td>
       		<td>:</td>
       		<td style="text-align: right;"><span style="font-weight: bold;"><?php echo number_format($data['tidak_sekolah'],0,'.','.'); ?></span> Orang</td>
