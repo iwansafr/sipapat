@@ -91,7 +91,8 @@ if (
   $content!='config/custom_dashboard' &&
   $content!='dilan/surat_pengantar_form' &&
   $content!='sipapatconfig/api' && 
-  $content!='sipapatconfig/custom_api'
+  $content!='sipapatconfig/custom_api' &&
+  $content!='pengumuman/index'
 
 ): ?>
   <script type="text/javascript">
