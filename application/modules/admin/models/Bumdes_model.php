@@ -156,4 +156,46 @@ class Bumdes_model extends CI_Model{
 	{
 		return $this->db->get_where('bumdes_product_cat',['id'=>$id])->row_array();
 	}
+
+	public function get_indikator_usaha()
+	{
+		$data = $this->db->query('SELECT i.value,d.nama,d.kecamatan FROM bumdes_indikator_usaha AS i INNER JOIN desa AS d ON(i.desa_id = d.id)')->result_array();
+		$output = [];
+		$output[] = [
+			'DESA',
+			'KECAMATAN',
+			'UNIT_USAHA',
+			'TAHUN_2015',
+			'TAHUN_2016',
+			'TAHUN_2017',
+			'TAHUN_2018',
+			'TAHUN_2019',
+			'BANKEU_PEMERINTAH_PUSAT',
+			'BANKEU_PROVINSI',
+			'BANKEU_KABUPATEN',
+			'INVESTASI',
+			'SWASTA',
+			'ASET_TAHUN_TERAKHIR',
+			'OMSET_PERTAHUN',
+			'KEUNTUNGAN_PERTAHUN',
+			'HUTANG_PIHAK_KE_3',
+		];
+		if(!empty($data))
+		{
+			foreach ($data as $key => $value) 
+			{
+				$data_value = json_decode($value['value'],1);
+				unset($value['value']);
+				if(!empty($data_value))
+				{
+					foreach ($data_value as $dkey => $dvalue)
+					{
+						$value[$dkey] = $dvalue;
+					}
+				}
+				$output[] = $value;
+			}
+		}
+		return $output;
+	}
 }

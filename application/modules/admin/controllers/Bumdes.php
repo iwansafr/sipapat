@@ -195,10 +195,17 @@ class Bumdes extends CI_Controller{
 
 	public function indikator_usaha()
 	{
-		$pengguna = $this->pengguna_model->get_pengguna();
-		$bumdes_id = $this->bumdes_model->get_bumdes_id($pengguna['desa_id']);
-		$dana_kat = $this->bumdes_model->get_dana_kat();
-		$this->load->view('index',['dana_kat'=>$dana_kat,'bumdes_id'=>$bumdes_id,'desa_id'=>$pengguna['desa_id'],'user_id'=>$pengguna['user_id']]);
+		$data = [];
+		if(is_desa())
+		{
+			$pengguna = $this->pengguna_model->get_pengguna();
+			$bumdes_id = $this->bumdes_model->get_bumdes_id($pengguna['desa_id']);
+			$dana_kat = $this->bumdes_model->get_dana_kat();
+			$data = ['dana_kat'=>$dana_kat,'bumdes_id'=>$bumdes_id,'desa_id'=>$pengguna['desa_id'],'user_id'=>$pengguna['user_id']];
+		}else{
+			$data['data'] = $this->bumdes_model->get_indikator_usaha();
+		}
+		$this->load->view('index',$data);
 	}
 
 	public function simpan_pinjam()
