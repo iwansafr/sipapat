@@ -52,7 +52,7 @@ class Perangkat_model extends CI_Model
 	{
 		$data = [];
 		$data['old'] = 0;
-		$old_tmp = $this->db->query('SELECT tgl_lahir,nama FROM perangkat_desa WHERE kelompok = 1')->result_array();
+		$old_tmp = $this->db->query('SELECT p.nama,p.tgl_lahir FROM perangkat_desa AS p INNER JOIN desa AS d ON(d.id=p.desa_id) WHERE kelompok = 1')->result_array();
 		$data['sekolah'] = $this->db->query('SELECT id FROM perangkat_desa WHERE pendidikan_terakhir < 10 AND kelompok = 1')->num_rows();
 		$data['tidak_sekolah'] = $this->db->query('SELECT id FROM perangkat_desa WHERE pendidikan_terakhir = 10 AND kelompok = 1')->num_rows();
 		if(!empty($old_tmp))
