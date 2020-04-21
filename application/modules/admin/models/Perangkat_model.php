@@ -48,4 +48,29 @@ class Perangkat_model extends CI_Model
 		}
 		return $output;
 	}
+	public function rekap()
+	{
+		$data = [];
+		$data['old'] = 0;
+		$old_tmp = $this->db->query('SELECT tgl_lahir FROM perangkat_desa WHERE kelompok = 1')->result_array();
+		$data['sekolah'] = $this->db->query('SELECT id FROM perangkat_desa WHERE pendidikan_terakhir < 10')->num_rows();
+		$data['tidak_sekolah'] = $this->db->query('SELECT id FROM perangkat_desa WHERE pendidikan_terakhir = 10')->num_rows();
+		if(!empty($old_tmp))
+		{
+			$i = 1;
+			foreach ($old_tmp as $key => $value) 
+			{
+				$bday = new DateTime($value['tgl_lahir']);
+				$today = new Datetime(date('y-m-d'));
+				$diff = $today->diff($bday);
+				if($diff->y > 45 && $diff->y < 100)
+				{
+					$data['old'] = $i;
+					$i++;
+				}
+				// printf(' Your age : %d years, %d month, %d days', $diff->y, $diff->m, $diff->d);
+			}
+		}
+		return $data;
+	}
 }

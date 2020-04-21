@@ -25,6 +25,12 @@ class Perangkat extends CI_Controller
 		$this->load->view('index', ['pengguna'=>$pengguna,'jabatan'=>$jabatan]);
 	}
 
+	public function rekap()
+	{
+		$data['data'] = $this->perangkat_model->rekap(); 
+		$this->load->view('index',$data);
+	}
+
 	public function old()
 	{
 		$data = [];
