@@ -53,8 +53,8 @@ class Perangkat_model extends CI_Model
 		$data = [];
 		$data['old'] = 0;
 		$old_tmp = $this->db->query('SELECT tgl_lahir FROM perangkat_desa WHERE kelompok = 1')->result_array();
-		$data['sekolah'] = $this->db->query('SELECT id FROM perangkat_desa WHERE pendidikan_terakhir < 10')->num_rows();
-		$data['tidak_sekolah'] = $this->db->query('SELECT id FROM perangkat_desa WHERE pendidikan_terakhir = 10')->num_rows();
+		$data['sekolah'] = $this->db->query('SELECT id FROM perangkat_desa WHERE pendidikan_terakhir < 10 AND kelompok = 1')->num_rows();
+		$data['tidak_sekolah'] = $this->db->query('SELECT id FROM perangkat_desa WHERE pendidikan_terakhir = 10 AND kelompok = 1')->num_rows();
 		if(!empty($old_tmp))
 		{
 			$i = 1;
