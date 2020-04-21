@@ -25,6 +25,13 @@ class Perangkat extends CI_Controller
 		$this->load->view('index', ['pengguna'=>$pengguna,'jabatan'=>$jabatan]);
 	}
 
+	public function old()
+	{
+		$data = [];
+		$data['data'] = $this->perangkat_model->get_old();
+		$this->load->view('index',$data);
+	}
+
 	public function clean_excel($kelompok = '')
 	{
 		$sipapat_config = $this->esg->get_esg('sipapat_config');
