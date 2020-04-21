@@ -52,12 +52,14 @@ class Perangkat_model extends CI_Model
 	{
 		$data = [];
 		$data['old'] = 0;
+		$data['young'] = 0;
 		$old_tmp = $this->db->query('SELECT p.nama,p.tgl_lahir FROM perangkat_desa AS p INNER JOIN desa AS d ON(d.id=p.desa_id) WHERE kelompok = 1')->result_array();
 		$data['sekolah'] = $this->db->query('SELECT id FROM perangkat_desa WHERE pendidikan_terakhir < 10 AND kelompok = 1')->num_rows();
 		$data['tidak_sekolah'] = $this->db->query('SELECT id FROM perangkat_desa WHERE pendidikan_terakhir = 10 AND kelompok = 1')->num_rows();
 		if(!empty($old_tmp))
 		{
 			$i = 1;
+			$j = 1;
 			foreach ($old_tmp as $key => $value) 
 			{
 				$bday = new DateTime($value['tgl_lahir']);
@@ -67,6 +69,10 @@ class Perangkat_model extends CI_Model
 				{
 					$data['old'] = $i;
 					$i++;
+				}else if(($diff->y < 46) && !empty($value['nama']))
+				{
+					$data['young'] = $j;
+					$j++;
 				}
 				// printf(' Your age : %d years, %d month, %d days', $diff->y, $diff->m, $diff->d);
 			}
