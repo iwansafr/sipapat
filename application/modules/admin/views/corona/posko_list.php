@@ -53,6 +53,7 @@ if($is_admin || $is_root || $is_kecamatan || $is_desa)
 	}
 	if(is_desa())
 	{
+		$form->setEditLink(base_url('admin/corona/posko_edit?id='),'id');
 		$form->setEdit(true);
 	}
 	$form->form();
