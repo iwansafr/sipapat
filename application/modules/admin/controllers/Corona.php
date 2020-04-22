@@ -61,6 +61,12 @@ class Corona extends CI_controller
 		$this->load->view('index',['user'=>$pengguna]);
 	}
 
+	public function request_list()
+	{
+		$pengguna = $this->pengguna_model->get_pengguna();
+		$this->load->view('index',['user'=>$pengguna]);
+	}
+
 	public function clear_list()
 	{
 		$pengguna = $this->pengguna_model->get_pengguna();
