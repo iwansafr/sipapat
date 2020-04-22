@@ -55,5 +55,4 @@ if(is_desa() || is_root())
 	// $form->setEdit(true);
 	$form->setDelete(true);
 	$form->form();
-	pr($form->getData());
 }
