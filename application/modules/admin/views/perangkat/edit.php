@@ -62,20 +62,7 @@ if(is_root() || is_desa())
 
 	$form->addInput('pendidikan_terakhir','dropdown');
 	$form->setLabel('pendidikan_terakhir','Pendidikan Terakhir');
-	$form->setOptions('pendidikan_terakhir',
-		[
-			'1'=>strtoupper('akademi/diploma iii/s.muda'),
-			'2'=>strtoupper('belum tamat sd/sederajat'),
-			'3'=>strtoupper('diploma i/ii'),
-			'4'=>strtoupper('diploma iv/strata i'),
-			'5'=>strtoupper('slta/sederajat'),
-			'6'=>strtoupper('sltp/sederajat'),
-			'7'=>strtoupper('strata ii'),
-			'8'=>strtoupper('strata iii'),
-			'9'=>strtoupper('tamat sd/sederajat'),
-			'10'=>strtoupper('tidak/belum sekolah')
-		]
-	);
+	$form->setOptions('pendidikan_terakhir',$this->perangkat_model->pendidikan_terakhir());
 	if(!empty($jabatan[$kelompok]))
 	{
 		$form->addInput('jamkes','text');

@@ -57,6 +57,11 @@ class Perangkat_model extends CI_Model
 		$old_tmp = $this->db->query('SELECT p.nama,p.tgl_lahir FROM perangkat_desa AS p INNER JOIN desa AS d ON(d.id=p.desa_id) WHERE kelompok = 1')->result_array();
 		$data['sekolah'] = $this->db->query('SELECT id FROM perangkat_desa WHERE pendidikan_terakhir < 10 AND kelompok = 1')->num_rows();
 		$data['tidak_sekolah'] = $this->db->query('SELECT id FROM perangkat_desa WHERE pendidikan_terakhir = 10 AND kelompok = 1')->num_rows();
+		$pddk_trakhir = $this->pendidikan_terakhir();
+		foreach ($pddk_trakhir as $key => $value) 
+		{
+			$data['pendidikan_terakhir'][$value] = $this->db->query('SELECT id FROM perangkat_desa WHERE pendidikan_terakhir = ? AND kelompok = 1',$key)->num_rows();
+		}
 		if(!empty($old_tmp))
 		{
 			$i = 1;
@@ -83,5 +88,21 @@ class Perangkat_model extends CI_Model
 			}
 		}
 		return $data;
+	}
+	public function pendidikan_terakhir()
+	{
+		return
+		[
+			'1'=>strtoupper('akademi/diploma iii/s.muda'),
+			'2'=>strtoupper('belum tamat sd/sederajat'),
+			'3'=>strtoupper('diploma i/ii'),
+			'4'=>strtoupper('diploma iv/strata i'),
+			'5'=>strtoupper('slta/sederajat'),
+			'6'=>strtoupper('sltp/sederajat'),
+			'7'=>strtoupper('strata ii'),
+			'8'=>strtoupper('strata iii'),
+			'9'=>strtoupper('tamat sd/sederajat'),
+			'10'=>strtoupper('tidak/belum sekolah')
+		];
 	}
 }

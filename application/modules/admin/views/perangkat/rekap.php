@@ -21,16 +21,23 @@
       		<td>:</td>
       		<td style="text-align: right;"><span style="font-weight: bold;"><?php echo number_format($data['age_n_valid'],0,'.','.'); ?></span> Orang</td>
       	</tr>
-      	<tr>
+      	<!-- <tr>
       		<td>Tidak Sekolah</td>
       		<td>:</td>
       		<td style="text-align: right;"><span style="font-weight: bold;"><?php echo number_format($data['tidak_sekolah'],0,'.','.'); ?></span> Orang</td>
-      	</tr>
+      	</tr> -->
       	<tr>
       		<td>Sekolah</td>
       		<td>:</td>
       		<td style="text-align: right;"><span style="font-weight: bold;"><?php echo number_format($data['sekolah'],0,'.','.'); ?></span> Orang</td>
       	</tr>
+        <?php foreach ($data['pendidikan_terakhir'] as $key => $value): ?>
+          <tr>
+            <td> - <?php echo $key ?></td>
+            <td>:</td>
+            <td style="text-align: right;"><span style="font-weight: bold;"><?php echo number_format($value,0,'.','.'); ?></span> Orang</td>
+          </tr>
+        <?php endforeach ?>
       </table>
     </div>
   </div>

@@ -395,9 +395,9 @@ class Absensi extends CI_Controller
 		}
 		$this->load->view('index',$data);
 	}
-	public function config_hari()
+	public function config_off_day()
 	{
-		$this->esg_model->set_nav_title('Config Hari Kerja');
+		$this->esg_model->set_nav_title('Config Hari Libur');
 		$this->load->view('index');
 	}
 	public function perangkat_list()
