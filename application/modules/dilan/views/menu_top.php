@@ -1,7 +1,7 @@
 		
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="<?php echo base_url('dilan') ?>">Dilan</a>
   <?php if (!empty($user)): ?>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

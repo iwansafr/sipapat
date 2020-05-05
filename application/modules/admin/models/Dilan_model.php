@@ -59,6 +59,13 @@ class Dilan_model extends CI_Model
 		return $data;
 
 	}
+	public function get_penduduk_by_nik($nik = 0)
+	{
+		if(!empty($nik))
+		{
+			return $this->db->query('SELECT * FROM penduduk WHERE nik = ?',$nik)->row_array();
+		}
+	}
 	public function get_penduduk($id = 0)
 	{
 		return $this->db->get_where('penduduk',['id'=>$id])->row_array();

@@ -3,16 +3,22 @@
 	<?php
 	if(!empty($user))
 	{
-		$form = new zea();
-		$form->setHeading('Konfigurasi Dilan');
-		$form->init('param');
-		$form->setTable('config');
+		$this->zea->init('param');
+		$this->zea->setTable('config');
+		$this->zea->setHeading('Konfigurasi Dilan');
 		$paramname = str_replace('/', '_', base_url().'_dilan_config');
-		$form->setParamName($paramname);
-		$form->addInput('image','upload');
-		$form->setAccept('image', 'image/jpeg,image/png');
+		$this->zea->setParamName($paramname);
+		$this->zea->addInput('title','text');
+		$this->zea->addInput('image','upload');
+		$this->zea->setAccept('image', 'image/jpeg,image/png');
 
-		$form->form();
+		$this->zea->addInput('audio','upload');
+		$this->zea->setAccept('audio', '.mp3');
+
+		$this->zea->addInput('audio_nik','upload');
+		$this->zea->setAccept('audio_nik', '.mp3');
+
+		$this->zea->form();
 	}else{
 		msg('mohon maaf anda tidak memiliki akses ke halaman ini','danger');
 	}?>
