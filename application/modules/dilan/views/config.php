@@ -9,11 +9,10 @@
 		$form->setTable('config');
 		$paramname = str_replace('/', '_', base_url().'_dilan_config');
 		$form->setParamName($paramname);
-		$form->addInput('background','upload');
-		$form->setAccept('background', 'image/jpeg,image/png');
+		$form->addInput('image','upload');
+		$form->setAccept('image', 'image/jpeg,image/png');
 
 		$form->form();
-		pr($form->getData());
 	}else{
 		msg('mohon maaf anda tidak memiliki akses ke halaman ini','danger');
 	}?>
