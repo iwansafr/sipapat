@@ -437,6 +437,10 @@ class Dilan extends CI_Controller{
 				// pr($desa);
 
 				$image = $this->sipapat_model->get_image_kab();
+				if(!curl($image))
+				{
+					msg('Load Halaman Gagal','danger');
+				}
 
 				$teks1 = 'PEMERINTAH KABUPATEN PATI';
 				$teks2 = 'KECAMATAN '.@$desa['kecamatan'];
