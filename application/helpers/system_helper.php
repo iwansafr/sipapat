@@ -247,6 +247,8 @@ function curl($url, $cookie = false, $post = false, $header = false, $follow_loc
   curl_setopt($ch, CURLOPT_HEADER, $header);
   curl_setopt($ch, CURLOPT_PROXY, $proxy);
   curl_setopt($ch, CURLOPT_FOLLOWLOCATION, $follow_location);
+  curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+
   if ($cookie) {
     curl_setopt ($ch, CURLOPT_COOKIE, $cookie);
   }
