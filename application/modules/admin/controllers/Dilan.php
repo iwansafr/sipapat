@@ -565,13 +565,13 @@ class Dilan extends CI_Controller{
 				$ln_ket = strlen($surat['keterangan']);
 				$tot_ln = $ln_kep+$ln_ket;
 				if($tot_ln <= 100){
-					$height_stem = 215;
+					$height_stem = 205;
 				}else if($tot_ln <= 200){
-					$height_stem = 220;
+					$height_stem = 210;
 				}else if($tot_ln <= 300){
-					$height_stem = 230;
+					$height_stem = 220;
 				}else if($tot_ln <= 400){
-					$height_stem = 235;
+					$height_stem = 225;
 				}
 				
 				// $pdf->cell(2,5, $ln_kep);
@@ -602,7 +602,7 @@ class Dilan extends CI_Controller{
 					if(!empty($config['show_ttd']))
 					{
 						// $pdf->Image(image_module('desa',$desa['id'].'/'.$desa['ttd_img']),135,165,40,30);
-						$pdf->Image(image_module('desa',$desa['id'].'/'.$desa['ttd_img']),135,$height_stem,40,30);
+						$pdf->Image(image_module('desa',$desa['id'].'/'.$desa['ttd_img']),135,$height_stem,50,40);
 					}
 				}
 				$pdf->Ln(30);
