@@ -440,6 +440,7 @@ class Dilan extends CI_Controller{
 				if(!curl($image))
 				{
 					msg('Load Halaman Gagal','danger');
+					die();
 				}
 
 				$teks1 = 'PEMERINTAH KABUPATEN PATI';
