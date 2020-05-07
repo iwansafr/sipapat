@@ -380,7 +380,7 @@ class Dilan extends CI_Controller{
 				$keterangan = $this->dilan_model->get_keterangan($ket_id);
 				if(!empty($keterangan))
 				{
-					$keterangan = $keterangan[0];
+					$keterangan = $keterangan[$ket_id];
 				}
 			}
 			$this->load->view('index',['penduduk' => $penduduk,'desa'=>$desa,'keterangan'=>$keterangan,'pekerjaan'=>$pekerjaan,'kelamin'=>$this->dilan_model->kelamin()]);
