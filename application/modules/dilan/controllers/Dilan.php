@@ -8,6 +8,7 @@ class Dilan extends CI_Controller
 		$this->load->library('ZEA/zea');
 		$this->load->helper('content');
 		$this->load->library('esg');
+		$this->load->model('admin/sipapat_model');
 		$this->load->model('admin/dilan_model');
 	}
 	
