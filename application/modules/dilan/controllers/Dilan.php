@@ -38,7 +38,38 @@ class Dilan extends CI_Controller
 		if(!empty($nik))
 		{
 			$data['surat_group'] = $this->dilan_model->surat_group();
+			$data['nik'] = $nik;
 		}
 		$this->load->view('index',$data);
+	}
+
+	public function surat_pengantar_form($nik = 0, $ket_id = 0)
+	{
+		$data = 0;
+		if(!empty($nik) && !empty($ket_id))
+		{
+			$penduduk = $this->dilan_model->get_penduduk_by_nik($nik);
+			$pekerjaan = $this->dilan_model->pekerjaan();
+			$desa = $this->sipapat_model->get_desa($penduduk['desa_id']);
+			$kabupaten = $this->esg->get_config('sipapat_config');
+			$keterangan = [];
+			if(!empty($ket_id))
+			{
+				$keterangan = $this->dilan_model->get_keterangan($ket_id);
+				if(!empty($keterangan))
+				{
+					$keterangan = $keterangan[$ket_id];
+				}
+				if(!empty($keterangan['keterangan']))
+				{
+					$keterangan['keterangan'] = str_replace('{desa}', @ucfirst(strtolower($desa['nama'])), $keterangan['keterangan']);
+					$keterangan['keterangan'] = str_replace('{kecamatan}', @ucfirst(strtolower($desa['kecamatan'])), $keterangan['keterangan']);
+					$keterangan['keterangan'] = str_replace('{kabupaten}', @ucfirst(strtolower($kabupaten['kabupaten'])), $keterangan['keterangan']);
+				}
+
+			}
+			$this->load->view('index',['penduduk' => $penduduk,'desa'=>$desa,'keterangan'=>$keterangan,'pekerjaan'=>$pekerjaan,'kelamin'=>$this->dilan_model->kelamin()]);
+		}
+
 	}
 }

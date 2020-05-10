@@ -12,27 +12,17 @@ $color =
 	'#2196f3',
 	'#03a9f4',
 	'#00bcd4',
-	'#009688',
-	'#4caf50',
-	'#cddc39',
-	'#ffeb3b',
-	'#ffc107',
-	'#ff9800'
 ];
 $icon =
 [
-	'fa-map-marked',
-	'fa-passport',
+	'fa-map',
+	'fa-address-book',
 	'fa-address-card',
 	'fa-briefcase',
 	'fa-heart',
-	'fa-money-bill-wave',
-	'fa-pray',
+	'fa-money',
+	'fa-users',
 	'fa-building',
-	'fa-map-marked',
-	'fa-map-marked',
-	'fa-map-marked',
-	'fa-map-marked',
 ];
 ?>
 <style>
@@ -54,18 +44,22 @@ $icon =
 		<form action="" method="get" style="background: white;">
 			<?php if (!empty($surat_group)): ?>
 				<?php 
-				$surat_group = array_chunk($surat_group, 3);
+				$surat_group = array_chunk($surat_group, 4);
 				$i = 0;
 				?>
 				<?php foreach ($surat_group as $key => $value): ?>
 					<div class="card-group">
 						<?php foreach ($value as $vkey => $vvalue): ?>
+							<?php 
+							$colori = !empty($color[$i]) ? $color[$i] : 'black';
+							$iconi = !empty($icon[$i]) ? $icon[$i] : 'fa-home';
+							?>
 						  <div class="card">
-						    <div class="card-body" style="background: <?php echo $color[$i];?>;height: 200px;">
-						      <h5 class="card-title"><i class="fa <?php echo $icon[$i];?>"></i></h5>
+						    <div class="card-body" style="background: <?php echo $colori;?>;height: 200px;">
+						      <h5 style="font-size: 500%;"><i class="fa <?php echo $iconi;?>"></i></h5>
 						      <p class="card-text"><?php echo $vvalue['title'] ?></p>
 						    </div>
-						    <a href="<?php echo base_url('dilan/surat') ?>" class="btn btn-light">
+						    <a href="<?php echo base_url('dilan/surat_pengantar_form/'.$nik.'/'.$vvalue['id']) ?>" class="btn btn-light">
 							    <div>
 							    	<i class="fa fa-send"></i> Buat Surat
 							    </div>
