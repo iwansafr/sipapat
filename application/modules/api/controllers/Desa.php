@@ -48,4 +48,8 @@ class Desa extends CI_Controller
 	{
 		output_json($this->desa_model->detail($id));
 	}
+	public function is_exist($id = 0)
+	{
+		output_json($this->db->query('SELECT id FROM desa WHERE id = ?',$id)->row_array());
+	}
 }

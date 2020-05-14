@@ -17,6 +17,16 @@ class Dilan extends CI_Controller
 		$this->load->view('index');
 	}
 
+	public function ajukan($desa_id = 0)
+	{
+		$custom_api = $this->esg->get_config(base_url().'_api')['url'];
+		$desa_id = curl($custom_api.'/api/desa/is_exist/'.$desa_id);
+		$desa_id = json_decode($desa_id,1);
+		$data = [];
+		$data['desa_id'] = $desa_id;
+		$this->load->view('index',$data);
+	}
+
 	public function config()
 	{
 		$this->load->view('index');

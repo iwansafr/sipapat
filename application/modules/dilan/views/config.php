@@ -12,6 +12,10 @@
 		$this->zea->addInput('image','upload');
 		$this->zea->setAccept('image', 'image/jpeg,image/png');
 
+		$this->zea->addInput('image_light','upload');
+		$this->zea->setAccept('image_light', 'image/jpeg,image/png');
+
+
 		$this->zea->addInput('audio','upload');
 		$this->zea->setAccept('audio', '.mp3');
 

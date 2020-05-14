@@ -48,7 +48,7 @@ $dilan_config = $this->esg->get_config($paramname);
 					<a href="<?php echo base_url('dilan/search') ?>" class="btn btn-danger">TIDAK</a>
 				<?php else: ?>
 					<?php msg('Maaf Data Anda Tidak Ditemukan','danger') ?>
-					<a href="" class="btn btn-primary"><i class="fa fa-send"></i> Ajukan Data Baru</a>
+					<a href="<?php echo base_url('dilan/ajukan');?>" class="btn btn-primary"><i class="fa fa-send"></i> Ajukan Data Baru</a>
 				<?php endif ?>
 			<?php endif ?>
 		</div>

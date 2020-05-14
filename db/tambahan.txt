@@ -70,3 +70,5 @@ ALTER TABLE `absensi` ADD `koordinat` VARCHAR(255) NOT NULL AFTER `status`;
 ALTER TABLE `corona` ADD `nik` VARCHAR(20) NOT NULL AFTER `id`;
 
 ALTER TABLE `corona_posko` ADD `peralatan` TEXT NOT NULL AFTER `foto`, ADD `kegiatan` TEXT NOT NULL AFTER `peralatan`;
+
+ALTER TABLE `penduduk` ADD `aktif` TINYINT(1) NOT NULL DEFAULT '1' COMMENT '1=aktif, 0=tidak aktif, 2=pengajuan' AFTER `no_rw`;
