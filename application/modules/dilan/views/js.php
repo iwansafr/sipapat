@@ -4,3 +4,6 @@
 <script>
 	$('.select2').select2();
 </script>
+<?php
+$this->esg->extra_js();
+$this->esg->script();

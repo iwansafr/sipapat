@@ -6,3 +6,13 @@
 <link rel="stylesheet" href="<?php echo base_url('templates/AdminLTE'); ?>/bower_components/select2/dist/css/select2.min.css">
 <link rel="stylesheet" href="<?php echo base_url('templates/AdminLTE'); ?>/assets/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="<?php echo base_url('templates/AdminLTE'); ?>/assets/dist/css/transition.css">
+
+<script type="text/javascript">
+	var _ID = <?php echo @intval($_GET['id'])?>;
+</script>
+<script type="text/javascript">
+	var _URL = '<?php echo base_url() ?>';
+</script>
+<?php
+echo $this->esg->extra_css();
+?>

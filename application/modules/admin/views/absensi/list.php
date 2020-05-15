@@ -6,7 +6,7 @@ $desa_id = $this->sipapat_model->get_desa_id();
 
 if(is_kecamatan() && !empty($_GET['desa']) || (is_root() || is_admin() ))
 {
-	$desa_id = intval($_GET['desa']);
+	$desa_id = @intval($_GET['desa']);
 }
 if(!empty($desa_id))
 {
