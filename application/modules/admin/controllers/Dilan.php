@@ -424,6 +424,11 @@ class Dilan extends CI_Controller{
 				$desa     = $this->sipapat_model->get_desa($penduduk['desa_id']);
 				$agama    = $this->pengguna_model->agama();
 				$user     = $this->session->userdata(base_url().'_logged_in');
+				if(empty($user))
+				{
+					$user = $this->db->get_where('user_desa',['desa_id'=>$desa['id']])->row_array();
+					$user['id'] = $user['user_id'];
+				}
 				$config   = $this->dilan_model->get_config($desa['id'].'_'.$user['id']);
 				$kepdes   = [];
 				if(!empty($desa['id']))
@@ -822,10 +827,19 @@ class Dilan extends CI_Controller{
 		$this->load->view('index',['data'=>$data]);
 	}
 
-	public function list()
+	public function list($type = '')
 	{
 		$this->db->cache_off();
-		$this->load->view('index');
+		$data = [];
+		if($type == 'pengajuan')
+		{
+			$data['aktif_num'] = 2;
+			$data['type'] = $type;
+		}else{
+			$data['aktif_num'] = 1;
+			$data['type'] = '';
+		}
+		$this->load->view('index',$data);
 	}
 
 	public function filter_by()
@@ -867,9 +881,18 @@ class Dilan extends CI_Controller{
 		$this->load->view('index', ['data'=>$data]);
 	}
 
-	public function clear_list()
+	public function clear_list($type = '')
 	{
 		$this->db->cache_off();
-		$this->load->view('dilan/list');
+		$data = [];
+		if($type == 'pengajuan')
+		{
+			$data['aktif_num'] = 2;
+			$data['type'] = $type;
+		}else{
+			$data['aktif_num'] = 1;
+			$data['type'] = '';
+		}
+		$this->load->view('dilan/list',$data);
 	}
 }

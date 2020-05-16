@@ -33,7 +33,7 @@ $dilan_config = $this->esg->get_config($paramname);
 					</div>
 					<div class="col">
 						<div class="form-group">
-							<input type="text" required class="form-control" name="nik" placeholder="NIK" style="text-align: center;" oninvalid="this.setCustomValidity('NIK tidak boleh kosong')"oninput="setCustomValidity('')">
+							<input type="number" required class="form-control" name="nik" placeholder="NIK" style="text-align: center;" oninvalid="this.setCustomValidity('NIK tidak boleh kosong')"oninput="setCustomValidity('')">
 						</div>
 					</div>
 					<div class="col-1">
@@ -48,7 +48,7 @@ $dilan_config = $this->esg->get_config($paramname);
 					<a href="<?php echo base_url('dilan/search') ?>" class="btn btn-danger">TIDAK</a>
 				<?php else: ?>
 					<?php msg('Maaf Data Anda Tidak Ditemukan','danger') ?>
-					<a href="<?php echo base_url('dilan/ajukan');?>" class="btn btn-primary"><i class="fa fa-send"></i> Ajukan Data Baru</a>
+					<a href="<?php echo base_url('dilan/ajukan/'.$desa_id);?>" class="btn btn-primary"><i class="fa fa-send"></i> Ajukan Data Baru</a>
 				<?php endif ?>
 			<?php endif ?>
 		</div>

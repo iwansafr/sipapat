@@ -22,7 +22,9 @@ $dilan_config = $this->esg->get_config($paramname);
 	<center>
 		<?php if (empty($_GET['page'])): ?>
 			<h1 id="welcome_text">MULAI LAYANAN DIGITAL</h1>
-			<a href="?page=start" class="btn btn-primary"><i class="fa fa-sign-in"></i> MULAI</a>
+			<?php if (!empty($_GET['id'])): ?>
+				<a href="?page=start&id=<?php echo @intval($_GET['id']);?>" class="btn btn-primary"><i class="fa fa-sign-in"></i> MULAI</a>
+			<?php endif ?>
 		<?php else: ?>
 			<h1 id="welcome_text"></h1>
 			<!-- <h1 id="start" class="mt-3"></h1> -->
@@ -44,7 +46,7 @@ $dilan_config = $this->esg->get_config($paramname);
 		    setTimeout(typeWriter, speed);
 		  }else{
 				// document.getElementById("start").innerHTML = txts;	
-				document.location = '<?php echo base_url('dilan/search');?>';
+				document.location = '<?php echo base_url('dilan/search/'.@intval($_GET['id']));?>';
 		  }
 		}
 

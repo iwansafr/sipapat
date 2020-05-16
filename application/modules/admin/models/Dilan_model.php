@@ -56,17 +56,22 @@ class Dilan_model extends CI_Model
 				$keterangan = str_replace('{kabupaten}', @ucfirst(strtolower($kabupaten['kabupaten'])), $keterangan);
 			}
 			$value['keterangan'] = $keterangan;
-			$data[$i] = $value;
+			$data[$value['id']] = $value;
 			$i++;
 		}
 		return $data;
 
 	}
-	public function get_penduduk_by_nik($nik = 0)
+	public function get_penduduk_by_nik($nik = 0, $desa_id = 0)
 	{
 		if(!empty($nik))
 		{
-			return $this->db->query('SELECT * FROM penduduk WHERE nik = ?',$nik)->row_array();
+			if(!empty($desa_id))
+			{
+				return $this->db->query('SELECT * FROM penduduk WHERE nik = ? AND desa_id = ?',[$nik,$desa_id])->row_array();
+			}else{
+				return $this->db->query('SELECT * FROM penduduk WHERE nik = ?',$nik)->row_array();
+			}
 		}
 	}
 	public function get_penduduk($id = 0)
@@ -333,5 +338,39 @@ class Dilan_model extends CI_Model
 		$janda = $this->db->query("SELECT count(id) AS total FROM penduduk where desa_id = ? AND (status = 3 OR status = 4) AND jk = 2",$desa_id)->row_array();
 		$janda = @intval($janda['total']);		
 		return ['penduduk'=>$total,'kk'=>$total_kk,'pria'=>$total_pria,'wanita'=>$total_wanita,'usia'=>$usia_tmp,'janda'=>$janda];
+	}
+
+	public function save_surat_pengajuan()
+	{
+		$last_id = $this->zea->get_insert_id();
+		if(!empty($last_id))
+		{
+			$data = $this->db->get_where('dilan_surat',['id'=>$last_id])->row_array();
+			if(!empty($data))
+			{
+				$last_surat = $this->db->query('SELECT no_urut FROM dilan_surat WHERE desa_id = ? AND MONTH(created) = ? AND YEAR(created) = ? ORDER BY no_urut DESC',[$data['desa_id'],date('m'),date('Y')])->row_array();
+				if(!empty($last_surat))
+				{
+					$last_surat = @intval($last_surat['no_urut']);
+					$no_urut = $last_surat+1;
+				}else{
+					$no_urut = 1;
+				}
+				if($no_urut < 10){
+					$text_no = '000';
+				}else if($no_urut < 100){
+					$text_no = '00';
+				}else if($no_urut < 1000){
+					$text_no = '0';
+				}else{
+					$text_no = '';
+				}
+				$nomor = 'DLN/'.$text_no.$no_urut.'/'.$data['desa_id'].'/'.date('d').'/'.date('Y');
+				if($this->db->update('dilan_surat',['no_urut'=>$no_urut,'nomor'=>$nomor],['id'=>$last_id]))
+				{
+					header('location: '.base_url('dilan/cetak/'.$last_id));
+				}
+			}
+		}
 	}
 }

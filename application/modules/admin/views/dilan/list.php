@@ -17,7 +17,7 @@ if(!$is_desa)
 	$desa_id = @intval($_GET['desa_id']);
 	if(!empty($desa_id))
 	{
-		$form->setWhere("desa_id = ".$desa_id);
+		$form->setWhere("desa_id = ".$desa_id." AND aktif = ".$aktif_num);
 	}else{
 		$kecamatan = @$_GET['kec'];
 		if(!empty($kecamatan))
@@ -29,7 +29,7 @@ if(!$is_desa)
 	}
 }else{
 	$desa_id = $this->sipapat_model->get_desa_id();
-	$q = 'desa_id = '.$desa_id;
+	$q = 'desa_id = '.$desa_id.' AND aktif = '.$aktif_num;
 	if(!empty($group))
 	{
 		$q .= ' AND '.$group.' = '.@intval($_GET[$group]);
@@ -41,10 +41,13 @@ $form->order_by('penduduk.id','DESC');
 // $form->disable_order_by();
 if(!$is_desa && !is_kecamatan())
 {
-	?>
-	<a href="<?php echo base_url('admin/dilan/kecamatan_list/') ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Filter Data</a>
-	<a href="<?php echo base_url('admin/dilan/laporan/') ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Record Data</a>
-	<?php
+	if(empty($type))
+	{
+		?>
+		<a href="<?php echo base_url('admin/dilan/kecamatan_list/') ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Filter Data</a>
+		<a href="<?php echo base_url('admin/dilan/laporan/') ?>" class="btn btn-sm btn-default"><i class="fa fa-sort"></i> Record Data</a>
+		<?php
+	}
 }
 
 if(!empty($desa_id) || $is_desa)
@@ -66,21 +69,23 @@ if(!empty($desa_id) || $is_desa)
 		'pekerjaan'=>'Pekerjaan'
 	];
 	?>
-	<a target="_blank" href="<?php echo base_url('admin/dilan/download_excel/'.$excel_get) ?>" class="btn btn-sm btn-success"><i class="fa fa-file-excel-o"></i> Download</a>
-	<a href="<?php echo base_url('admin/dilan/detail_desa/') ?>" class="btn btn-sm btn-success"><i class="fa fa-chart-bar"></i> Statistik</a>
-	<div class="col-md-4 pull-right">
-		<form action="<?php echo base_url('admin/dilan/filter_by/') ?>" class="pull-right" method="get">
-			<div class="form-group form-inline">
-				<select class="form-control" name="group">
-					<?php foreach ($filter_group as $key => $value): ?>
-						<?php $selected = $key == $group ? 'selected' : '';?>
-						<option value="<?php echo $key ?>" <?php echo $selected ?>><?php echo $value ?></option>
-					<?php endforeach ?>
-				</select>
-				<button class="btn btn-default"><i class="fa fa-list"></i> filter</button>
-			</div>
-		</form>
-	</div>
+	<?php if (empty($type)): ?>
+		<a target="_blank" href="<?php echo base_url('admin/dilan/download_excel/'.$excel_get) ?>" class="btn btn-sm btn-success"><i class="fa fa-file-excel-o"></i> Download</a>
+		<a href="<?php echo base_url('admin/dilan/detail_desa/') ?>" class="btn btn-sm btn-success"><i class="fa fa-chart-bar"></i> Statistik</a>
+		<div class="col-md-4 pull-right">
+			<form action="<?php echo base_url('admin/dilan/filter_by/') ?>" class="pull-right" method="get">
+				<div class="form-group form-inline">
+					<select class="form-control" name="group">
+						<?php foreach ($filter_group as $key => $value): ?>
+							<?php $selected = $key == $group ? 'selected' : '';?>
+							<option value="<?php echo $key ?>" <?php echo $selected ?>><?php echo $value ?></option>
+						<?php endforeach ?>
+					</select>
+					<button class="btn btn-default"><i class="fa fa-list"></i> filter</button>
+				</div>
+			</form>
+		</div>
+	<?php endif ?>
 	<?php	
 }
 
@@ -122,7 +127,13 @@ if($is_desa)
 	$form->addInput('no_rt','plaintext');
 	$form->addInput('no_rw','plaintext');
 }
-$form->setUrl('admin/dilan/clear_list');
+if(!empty($type))
+{
+	$form->addInput('aktif','dropdown');
+	$form->setLabel('aktif','tindakan');
+	$form->setOptions('aktif',['Tidak Aktif','Terima','Mengajukan']);
+}
+$form->setUrl('admin/dilan/clear_list/'.$type);
 if(is_desa() || is_root())
 {
 	$form->setDelete(true);

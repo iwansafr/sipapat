@@ -1,29 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 $paramname = str_replace('/', '_', base_url().'_dilan_config');
 $dilan_config = $this->esg->get_config($paramname);
-
-$color =
-[
-	'#f44336',
-	'#e91e63',
-	'#9c27b0',
-	'#673ab7',
-	'#3f51b5',
-	'#2196f3',
-	'#03a9f4',
-	'#00bcd4',
-];
-$icon =
-[
-	'fa-map',
-	'fa-address-book',
-	'fa-address-card',
-	'fa-briefcase',
-	'fa-heart',
-	'fa-money',
-	'fa-users',
-	'fa-building',
-];
 ?>
 <style>
 	body{
@@ -116,7 +93,9 @@ $icon =
 		$this->zea->addInput('keterangan','textarea');
 		$this->zea->setLabel('keterangan','Keterangan Lain-lain');
 
-		$this->zea->addInput('nomor','text');
+		// $this->zea->addInput('nomor','text');
+		// DLN/01/RONGGO/04/2020
+		// DLN/01/
 		$this->zea->addInput('tgl','static');
 		$this->zea->setValue('tgl',$current_date);
 		if(!empty($keterangan))

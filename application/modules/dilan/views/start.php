@@ -1,34 +1,52 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
+$paramname = str_replace('/', '_', base_url().'_dilan_config');
+$dilan_config = $this->esg->get_config($paramname);
+?>
+<style>
+	body{
+		background-image: url(<?php echo image_module('config',$paramname.'/'.$dilan_config['image_light'])?>);
+		background-size: cover;
+	}
 
-$form = new zea();
-$form->setTable('config');
-$form->init('param');
-$form->setParamName('ujicoba');
-
-$form->addInput('province_id','dropdown');
-$form->setLabel('province_id','Provinsi');
-$form->setOptions('province_id',['none']);
-
-$form->addInput('regency_id','dropdown');
-$form->setLabel('regency_id','Kabupaten');
-$form->setOptions('regency_id',['none']);
-
-$form->addInput('district_id','dropdown');
-$form->setLabel('district_id','Kecamatan');
-$form->setOptions('district_id',['none']);
-
-$form->addInput('village_id','dropdown');
-$form->setLabel('village_id','Desa');
-$form->setOptions('village_id',['none']);
+</style>
+<?php
 
 $sipapat_config = $this->esg->get_config(base_url());
-if(!empty($sipapat_config))
+$form = new zea();
+$form->addInput('district_id','dropdown');
+$form->tableOptions('district_id','districts','id','name',' regency_id = '.$sipapat_config['regency_id']);
+$kecamatan = [];
+if(!empty($form->options['district_id']))
 {
-	$form->tableOptions('province_id','provinces','id','name',' id = '.$sipapat_config['province_id']);
-	$form->tableOptions('regency_id','regencies','id','name',' id = '.$sipapat_config['regency_id']);
-	$form->setSelected('province_id',$sipapat_config['province_id']);
-	$form->setSelected('regency_id',$sipapat_config['regency_id']);
-	$form->tableOptions('district_id','districts','id','name',' regency_id = '.$sipapat_config['regency_id']);
+	$kecamatan = $form->options['district_id'];
+	unset($kecamatan[0]);
 }
-
-$form->form();
+?>
+<div class="container mt-5">
+	<form action="" method="post">
+		<div class="card">
+			<div class="card-header">
+				Setting Up
+			</div>
+			<div class="card-body">
+				<div class="form-group">
+					<label for="kecamatan">KECAMATAN</label>
+					<select class="form-control select2" name="district_id">
+						<?php foreach ($kecamatan as $key => $value): ?>
+							<option value="<?php echo $key ?>"><?php echo $value ?></option>
+						<?php endforeach ?>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="desa">DESA</label>
+					<select class="form-control select2" name="village_id">
+						
+					</select>
+				</div>
+			</div>
+			<div class="card-footer">
+				<button class="btn btn-primary"><i class="fa fa-save"></i> Submit</button>
+			</div>
+		</div>
+	</form>
+</div>

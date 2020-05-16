@@ -147,12 +147,12 @@ class Sipapat_model extends CI_Model
 
 	public function get_image_kab()
 	{
-		$data = $this->db->query('SELECT id,image FROM user WHERE user_role_id = 2')->row_array();
-		if(!empty($data))
+		// $data = $this->db->query('SELECT id,image FROM user WHERE user_role_id = 2')->row_array();
+		$data = $this->esg->get_config(base_url());
+		if(!empty($data['image']))
 		{
 			$image = $data['image'];
-			$id = $data['id'];
-			return image_module('user', $id.'/'.$image);
+			return image_module('config', 'kabupaten_image_'.str_replace('/', '_', base_url()).'/'.$image);
 		}
 	}
 
