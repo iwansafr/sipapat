@@ -18,9 +18,11 @@
 
 		$this->zea->addInput('audio','upload');
 		$this->zea->setAccept('audio', '.mp3');
+		$this->zea->setFile('audio','audio');
 
 		$this->zea->addInput('audio_nik','upload');
 		$this->zea->setAccept('audio_nik', '.mp3');
+		$this->zea->setFile('audio_nik','audio');
 
 		$this->zea->form();
 	}else{
