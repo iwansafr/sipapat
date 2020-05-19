@@ -82,7 +82,7 @@ class Absensi extends CI_Controller
 								}
 
 								$libur_status = $this->absensi_model->is_libur();
-								pr($libur_status);
+								$data['libur_status'] = $libur_status;
 							}
 							$h = date('H:i');
 							if(empty($config_jam['selesai_masuk'])){
