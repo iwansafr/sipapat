@@ -266,4 +266,13 @@ class Absensi_model extends CI_Model{
       }
     }
 	}	
+	public function is_libur($date = '')
+	{
+		if(empty($date))
+		{
+			$date = date('Y-m-d');
+		}
+		$libur = $this->db->query('SELECT * FROM absensi_libur WHERE date = ? ORDER BY id DESC',$date)->row_array();
+		return $libur;
+	}
 }

@@ -6,7 +6,8 @@ class Absensi extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('home_model');
-		$this->load->model('absensi_model');
+		$this->load->model('absensi_home_model');
+		$this->load->model('admin/absensi_model');
 		$this->load->library('ZEA/zea');
 		$this->load->helper('content');
 		$this->load->library('esg');
@@ -84,8 +85,11 @@ class Absensi extends CI_Controller
 				}
 				$libur = false;
 			}else{
-				echo 'Mohon Maaf Sistem Belum tersetting';die();
+				$libur = false;
+				// echo 'Mohon Maaf Sistem Belum tersetting';die();
 			}
+			$libur_status = $this->absensi_model->is_libur();
+			$data['libur_status'] = $libur_status;
 		}
 		$h = date('H:i');
 		if(empty($config_jam['selesai_masuk'])){
@@ -124,7 +128,7 @@ class Absensi extends CI_Controller
 			$upload = $this->input->post();
 			$success = 1;
 			$upload['desa_id'] = $desa_id;
-			$data['status'] = $this->absensi_model->upload($upload);
+			$data['status'] = $this->absensi_home_model->upload($upload);
 		}
 		$data['perangkat'] = json_decode(curl($custom_api.'api/perangkat/get_by_desa/'.$desa_id.'/1'),1);
 		$data['perangkat_pagi'] = json_decode(curl($custom_api.'api/perangkat/get_absensi_pagi/'.$desa_id),1);

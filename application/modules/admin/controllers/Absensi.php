@@ -80,6 +80,9 @@ class Absensi extends CI_Controller
 								}else{
 									echo 'Mohon Maaf Sistem Belum tersetting';die();
 								}
+
+								$libur_status = $this->absensi_model->is_libur();
+								pr($libur_status);
 							}
 							$h = date('H:i');
 							if(empty($config_jam['selesai_masuk'])){
@@ -419,5 +422,14 @@ class Absensi extends CI_Controller
 			}
 			$this->load->view('index',$data);
 		}
+	}
+
+	public function libur()
+	{
+		$this->load->view('index');
+	}
+	public function clear_libur()
+	{
+		$this->load->view('admin/absensi/libur');
 	}
 }

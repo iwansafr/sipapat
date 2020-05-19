@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Absensi_model extends CI_Model
+class Absensi_home_model extends CI_Model
 {
 	public function upload($data = array())
 	{
