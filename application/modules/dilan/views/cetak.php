@@ -24,11 +24,10 @@ $surat_link = str_replace(' ', '_', base_url('admin/dilan/surat_pengantar/'.$id.
 				</h6>
 			</div>
 			<div class="card-body" style="min-height: 1000px;">
-				<iframe src="<?php echo $surat_link; ?>" onload="window.print()" style="width: 100%;min-height: 1000px;"></iframe>
+				<iframe src="<?php echo $surat_link; ?>" style="width: 100%;min-height: 1000px;"></iframe>
 			</div>
 			<div class="card-footer">
 				surat tidak tampil ? <button onclick="klikSurat()" class="btn btn-sm btn-secondary">Klik di sini</button>
-				<?php echo $surat_link ?>
 			</div>
 		</div>
 		<div id="end_section"></div>

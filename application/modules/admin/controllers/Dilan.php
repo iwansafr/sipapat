@@ -649,15 +649,6 @@ class Dilan extends CI_Controller{
 				}else{
 					$pdf->Cell(60,5,'',0,1,'C');
 				}
-				if(!empty($_GET['print']))
-				{
-					$pdf->AutoPrint();
-					?>
-					<script type="text/javascript">
-						window.print();
-					</script>
-					<?php
-				}
 				$pdf->Output('Surat_Keterangan_Pengantar.pdf','I');
 			}
 		}
