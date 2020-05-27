@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 $paramname = str_replace('/', '_', base_url().'_dilan_config');
 $dilan_config = $this->esg->get_config($paramname);
-
+$surat_link = str_replace(' ', '_', base_url('admin/dilan/surat_pengantar/'.$id.'/surat pengantar'));
 ?>
 <style>
 	body{
@@ -24,7 +24,7 @@ $dilan_config = $this->esg->get_config($paramname);
 				</h6>
 			</div>
 			<div class="card-body" style="min-height: 1000px;">
-				<iframe src="<?php echo base_url('admin/dilan/surat_pengantar/'.$id.'/surat pengantar') ?>" style="width: 100%;min-height: 1000px;"></iframe>
+				<iframe src="<?php echo $surat_link; ?>" style="width: 100%;min-height: 1000px;"></iframe>
 			</div>
 			<div class="card-footer">
 				surat tidak tampil ? <button onclick="klikSurat()" class="btn btn-sm btn-secondary">Klik di sini</button>
@@ -35,6 +35,6 @@ $dilan_config = $this->esg->get_config($paramname);
 </div>
 <script>
 function klikSurat() {
-  window.open("<?php echo base_url('admin/dilan/surat_pengantar/'.$id.'/surat pengantar') ?>");
+  window.open("<?php echo $surat_link; ?>");
 }
 </script>
