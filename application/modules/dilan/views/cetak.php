@@ -33,4 +33,3 @@ $dilan_config = $this->esg->get_config($paramname);
 		<div id="end_section"></div>
 	</div>
 </div>
-?>
