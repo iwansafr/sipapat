@@ -28,6 +28,7 @@ $surat_link = str_replace(' ', '_', base_url('admin/dilan/surat_pengantar/'.$id.
 			</div>
 			<div class="card-footer">
 				surat tidak tampil ? <button onclick="klikSurat()" class="btn btn-sm btn-secondary">Klik di sini</button>
+				<?php echo $surat_link ?>
 			</div>
 		</div>
 		<div id="end_section"></div>
