@@ -27,9 +27,14 @@ $dilan_config = $this->esg->get_config($paramname);
 				<iframe src="<?php echo base_url('admin/dilan/surat_pengantar/'.$id.'/surat pengantar') ?>" style="width: 100%;min-height: 1000px;"></iframe>
 			</div>
 			<div class="card-footer">
-				
+				surat tidak tampil ? <button onclick="klikSurat()" class="btn btn-sm btn-secondary">Klik di sini</button>
 			</div>
 		</div>
 		<div id="end_section"></div>
 	</div>
 </div>
+<script>
+function klikSurat() {
+  window.open("<?php echo base_url('admin/dilan/surat_pengantar/'.$id.'/surat pengantar') ?>");
+}
+</script>
