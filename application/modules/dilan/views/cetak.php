@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 $paramname = str_replace('/', '_', base_url().'_dilan_config');
 $dilan_config = $this->esg->get_config($paramname);
-$surat_link = str_replace(' ', '_', base_url('admin/dilan/surat_pengantar/'.$id.'/surat pengantar'));
+$surat_link = str_replace(' ', '_', base_url('admin/dilan/surat_pengantar/'.$id.'/surat pengantar?print=1'));
 ?>
 <style>
 	body{
