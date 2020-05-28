@@ -73,3 +73,5 @@ ALTER TABLE `corona_posko` ADD `peralatan` TEXT NOT NULL AFTER `foto`, ADD `kegi
 
 ALTER TABLE `penduduk` ADD `aktif` TINYINT(1) NOT NULL DEFAULT '1' COMMENT '1=aktif, 0=tidak aktif, 2=pengajuan' AFTER `no_rw`;
 ALTER TABLE `dilan_surat` ADD `no_urut` INT(11) NOT NULL AFTER `nomor`;
+
+ALTER TABLE `dilan_surat` CHANGE `keterangan` `keterangan` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL COMMENT 'keterangan lain-lain';
