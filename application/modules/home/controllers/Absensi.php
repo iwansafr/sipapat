@@ -195,7 +195,7 @@ class Absensi extends CI_Controller
 	  	$data['sudah'] = $data_tmp_sudah;
 	  }
 	  $data['libur'] = $libur;
-	  $data['valid'] = ['0'=>'Belum divalidasi','1'=>'Valid','2'=>'Tidak Valid'];
+	  $data['valid'] = ['0'=>'Belum divalidasi','1'=>'Data Tersimpan','2'=>'Tidak Valid'];
 		$this->load->model('admin/pengguna_model');
 		$this->home_model->home();
 		$data['jabatan'] = $this->pengguna_model->jabatan()[1];
