@@ -10,6 +10,8 @@ if(is_kecamatan() && !empty($_GET['desa']) || (is_root() || is_admin() ))
 }
 if(!empty($desa_id))
 {
+	// $this->db->query("SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))"));
+	// pr($this->db->query('SELECT sql_mode FROM mysql')->result_array());
 	$get = [];
 	if(!empty($_GET))
 	{
@@ -162,6 +164,10 @@ if(!empty($desa_id))
 		$foto->setFormName('data_awal');
 		$foto->setLimit(20);
 		$foto->form();
+		if(empty($foto->getData()['data']))
+		{
+			$this->db->query("SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))"));
+		}
 		?>
 		<div class="hidden">
 			<?php pr($foto->getData()) ?>

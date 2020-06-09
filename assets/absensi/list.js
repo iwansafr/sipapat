@@ -9,8 +9,8 @@ $(document).ready(function(){
 		}
 	});
 	function remove_pertama(){
-		$('#data_awal').remove();
-		clearInterval(rm_msg);
+		// $('#data_awal').remove();
+		// clearInterval(rm_msg);
 	}
-	var rm_msg = setInterval(remove_pertama,1000);
+	// var rm_msg = setInterval(remove_pertama,1000);
 });
