@@ -166,7 +166,7 @@ if(!empty($desa_id))
 		$foto->form();
 		if(empty($foto->getData()['data']))
 		{
-			$this->db->query("SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))"));
+			$this->db->query("SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
 		}
 		?>
 		<div class="hidden">
