@@ -161,7 +161,7 @@ if(!is_bumdes() && !is_root())
 		</div>
 		<?php
 	}
-	if(!empty($dashboard_config['absensi']) && (is_kecamatan() || is_desa() || is_admin()))
+	if(!empty($dashboard_config['absensi']) && (is_kecamatan() || is_desa() || is_admin() || is_operator_absensi()))
 	{
 		if(!empty($absensi))
 		{
