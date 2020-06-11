@@ -40,7 +40,7 @@ if($mod['name'] == 'admin' && $mod['task'] == 'index')
 						$this->esg->set_esg('absensi',$absensi);
 					}
 				}
-			}else if(is_desa())
+			}else if(is_desa() || is_operator_absensi())
 			{
 				if(!empty($user['pengguna']['desa_id']))
 				{
