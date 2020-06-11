@@ -23,6 +23,11 @@ function is_inspektorat()
 	return set_user(3);
 }
 
+function is_operator_absensi()
+{
+	return set_role('operator absensi');
+}
+
 function set_role($group = 'admin')
 {
 	$return = false;
