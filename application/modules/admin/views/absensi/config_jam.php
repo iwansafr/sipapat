@@ -1,7 +1,56 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
+?>
+<button type="button" class="btn btn-warning btn-sm pull-right" data-toggle="modal" data-target="#modal-day">
+ <i class="fa fa-cog"></i> HARI
+</button>
+<a class="btn btn-warning pull-right btn-sm" href="<?php echo base_url('admin/absensi/config_jam/'.$desa['id']) ?>">
+ <i class="fa fa-undo"></i> Reset
+</a>
+<div class="modal fade" id="modal-day">
+  <div class="modal-dialog">
+    <form action="" method="get">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	        <h4 class="modal-title">Pilih Hari</h4>
+	      </div>
+	      <div class="modal-body">
+	        	<div class="form-group">
+	        		<label>Hari</label>
+		        	<?php
+		        	$cur_options = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+		        	$input_array = array(
+								'name'     => 'day',
+								'class'    => 'form-control',
+								'options'  => @$cur_options,
+								// 'selected' => $data_value,
+							);
+							echo form_dropdown($input_array);
+							?>
+	        	</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+	        <button type="submit" class="btn btn-primary">Send</button>
+	      </div>
+	    </div>
+    </form>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<?php
+
 if(is_kecamatan() || is_root())
 {
+	$day = @intval($_GET['day']);
+	// pr($day);
+	$day = !empty($_GET['day']) ? date('w', $day) : '';
+	// pr($day);
+	// pr(date('l'));
 	$form = new zea();
 	$form->init('param');
 	if(!empty($user['pengguna']['district_id']))
