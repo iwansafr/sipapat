@@ -205,9 +205,9 @@ if(!is_bumdes() && !is_root())
 						    		<td>
 						    			<?php echo $abvalue['total'] ?>
 						    			<?php if (!empty($abkey)): ?>
-						    				 | <a target="_blank" href="<?php echo base_url('admin/absensi/list/?desa='.$value['desa']['id'].'&tgl='.$date.'&status='.$abkey) ?>">detail</a>
+						    				| <a target="_blank" href="<?php echo base_url('admin/absensi/list/?desa='.$value['desa']['id'].'&tgl='.$date.'&status='.$abkey) ?>">detail</a>
 						    			<?php else: ?>
-						    				<!-- <a target="_blank" href="<?php echo base_url('admin/absensi/bolos_list/?desa='.$value['desa']['id'].'&tgl='.$date) ?>">detail</a> -->
+						    				| <a target="_blank" href="<?php echo base_url('admin/absensi/bolos_list/?desa='.$value['desa']['id'].'&tgl='.$date) ?>">detail</a>
 						    			<?php endif ?>
 						    		</td>
 						    	</tr>

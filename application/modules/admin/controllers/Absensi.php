@@ -195,7 +195,14 @@ class Absensi extends CI_Controller
 	public function bolos_list()
 	{
 		$this->load->model('pengguna_model');
-		$desa_id = @intval($_GET['desa']);
+		
+		if(!empty(($this->session->userdata(base_url('_logged_in'))['pengguna']['desa_id'])))
+		{
+			$desa_id = $this->session->userdata(base_url('_logged_in'))['pengguna']['desa_id'];
+		}else{
+			$desa_id = @intval($_GET['desa']);
+		}
+		
 		$date = $this->input->get('tgl');
 		$date = empty($date) ? date('Y-m-d'): $date;
 		$date = strtotime($date);
