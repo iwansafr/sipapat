@@ -195,13 +195,13 @@ class Absensi_model extends CI_Model{
 					$per_ids[] = $value['perangkat_desa_id'];
 				}
 			}
+			$this->db->select('id,nama,jabatan');
+			$this->db->where(['desa_id'=>$desa_id,'kelompok'=>'1']);
 			if(!empty($per_ids))
 			{
-				$this->db->select('id,nama,jabatan');
-				$this->db->where(['desa_id'=>$desa_id]);
 				$this->db->where_not_in('id',$per_ids);
-				$data = $this->db->get('perangkat_desa')->result_array();
 			}
+			$data = $this->db->get('perangkat_desa')->result_array();
 		}
 		return $data;
 	}
