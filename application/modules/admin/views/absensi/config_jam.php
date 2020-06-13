@@ -1,10 +1,11 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-
+$day = !empty($_GET['day']) ? intval($_GET['day']) : 0;
+$cur_options = $this->absensi_model->hari();
 ?>
 <button type="button" class="btn btn-warning btn-sm pull-right" data-toggle="modal" data-target="#modal-day">
  <i class="fa fa-cog"></i> HARI
 </button>
-<a class="btn btn-warning pull-right btn-sm" href="<?php echo base_url('admin/absensi/config_jam/'.$desa['id']) ?>">
+<a class="btn btn-warning pull-right btn-sm" href="<?php echo base_url('admin/absensi/config_jam/'.@$desa['id']) ?>">
  <i class="fa fa-undo"></i> Reset
 </a>
 <div class="modal fade" id="modal-day">
@@ -21,12 +22,11 @@
 	        	<div class="form-group">
 	        		<label>Hari</label>
 		        	<?php
-		        	$cur_options = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
 		        	$input_array = array(
 								'name'     => 'day',
 								'class'    => 'form-control',
-								'options'  => @$cur_options,
-								// 'selected' => $data_value,
+								'options'  => $cur_options,
+								'selected' => $day,
 							);
 							echo form_dropdown($input_array);
 							?>
@@ -46,10 +46,11 @@
 
 if(is_kecamatan() || is_root())
 {
-	$day = @intval($_GET['day']);
-	// pr($day);
-	$day = !empty($_GET['day']) ? date('w', $day) : '';
-	// pr($day);
+	pr($day);
+	if(!empty($day))
+	{
+		pr($cur_options[$day]);
+	}
 	// pr(date('l'));
 	$form = new zea();
 	$form->init('param');
@@ -63,9 +64,16 @@ if(is_kecamatan() || is_root())
 		}
 		$form->setParamName($paramname);
 	}else{
-		$form->setParamName(base_url().'_absensi_config_jam');
+		$paramname = base_url().'_absensi_config_jam';
+		$form->setParamName($paramname);
 	}
 	$form->setTable('config');
+	if(!empty($day))
+	{
+		$form->setHeading('Config jadwal '.$cur_options[$day]);
+		$paramname = $paramname.'_'.$day;
+		$form->setParamName($paramname);
+	}
 	
 	$form->addInput('mulai_masuk','text');
 	$form->setType('mulai_masuk','time');

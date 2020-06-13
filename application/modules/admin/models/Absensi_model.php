@@ -275,4 +275,9 @@ class Absensi_model extends CI_Model{
 		$libur = $this->db->query('SELECT * FROM absensi_libur WHERE date = ? ORDER BY id DESC',$date)->row_array();
 		return $libur;
 	}
+
+	public function hari()
+	{
+		return [1=>'Minggu',2=>'Senin',3=>'Selasa',4=>'Rabu',5=>'Kamis',6=>'Jumat',7=>'Sabtu'];
+	}
 }
