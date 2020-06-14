@@ -23,6 +23,7 @@ class Absensi extends CI_Controller
 
 	public function masuk($desa_id = 0)
 	{
+		$day = date('w')+1;
 		$custom_api = $this->esg->get_config(base_url().'_api')['url'];
 		$data['desa'] = json_decode(curl($custom_api.'api/desa/detail/'.$desa_id),1);
 		$config_jam = [
@@ -36,7 +37,11 @@ class Absensi extends CI_Controller
 		{
 			if(!empty($data['desa']['id']))
 			{
-				$config_jam_tmp = $this->esg->get_config(base_url().'_'.$data['desa']['district_id'].'_'.$data['desa']['id'].'_absensi_config_jam');
+				$config_jam_tmp = $this->esg->get_config(base_url().'_'.$data['desa']['district_id'].'_'.$data['desa']['id'].'_absensi_config_jam_'.$day);
+				if(empty($config_jam_tmp))
+				{
+					$config_jam_tmp = $this->esg->get_config(base_url().'_'.$data['desa']['district_id'].'_'.$data['desa']['id'].'_absensi_config_jam');
+				}
 				if(!empty($config_jam_tmp))
 				{
 					foreach ($config_jam_tmp as $key => $value) 
@@ -51,7 +56,11 @@ class Absensi extends CI_Controller
 			}
 			if(empty($config_jam_tmp))
 			{
-				$config_jam_tmp = $this->esg->get_config(base_url().'_'.$data['desa']['district_id'].'_absensi_config_jam');
+				$config_jam_tmp = $this->esg->get_config(base_url().'_'.$data['desa']['district_id'].'_absensi_config_jam_'.$day);
+				if(empty($config_jam_tmp))
+				{
+					$config_jam_tmp = $this->esg->get_config(base_url().'_'.$data['desa']['district_id'].'_absensi_config_jam');
+				}
 				if(!empty($config_jam_tmp))
 				{
 					foreach ($config_jam_tmp as $key => $value) 

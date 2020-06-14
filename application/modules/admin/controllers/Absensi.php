@@ -47,9 +47,14 @@ class Absensi extends CI_Controller
 							];
 							if(!empty($desa['district_id']))
 							{
+								$day = date('w')+1;
 								if(!empty($data['desa']['id']))
 								{
-									$config_jam_tmp = $this->esg->get_config(base_url().'_'.$data['desa']['district_id'].'_'.$data['desa']['id'].'_absensi_config_jam');
+									$config_jam_tmp = $this->esg->get_config(base_url().'_'.$data['desa']['district_id'].'_'.$data['desa']['id'].'_absensi_config_jam_'+$day);
+									if(empty($config_jam_tmp))
+									{
+										$config_jam_tmp = $this->esg->get_config(base_url().'_'.$data['desa']['district_id'].'_'.$data['desa']['id'].'_absensi_config_jam');
+									}
 								}
 								if(empty($config_jam_tmp))
 								{
