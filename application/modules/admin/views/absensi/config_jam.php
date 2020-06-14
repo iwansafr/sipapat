@@ -3,7 +3,7 @@ $day = !empty($_GET['day']) ? intval($_GET['day']) : 0;
 $cur_options = $this->absensi_model->hari();
 ?>
 <button type="button" class="btn btn-warning btn-sm pull-right" data-toggle="modal" data-target="#modal-day">
- <i class="fa fa-cog"></i> HARIs
+ <i class="fa fa-cog"></i> HARI
 </button>
 <a class="btn btn-warning pull-right btn-sm" href="<?php echo base_url('admin/absensi/config_jam/'.@$desa['id']) ?>">
  <i class="fa fa-undo"></i> Reset
@@ -46,12 +46,6 @@ $cur_options = $this->absensi_model->hari();
 
 if(is_kecamatan() || is_root())
 {
-	pr($day);
-	if(!empty($day))
-	{
-		pr($cur_options[$day]);
-	}
-	// pr(date('l'));
 	$form = new zea();
 	$form->init('param');
 	if(!empty($user['pengguna']['district_id']))
