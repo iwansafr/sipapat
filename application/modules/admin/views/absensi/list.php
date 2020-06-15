@@ -148,25 +148,26 @@ if(!empty($desa_id))
 
 	if(is_admin() || is_kecamatan() || is_root())
 	{
-		$sql_mode = $this->db->query('SELECT @@sql_mode')->row_array();
-		if(!empty($sql_mode['@@sql_mode']))
-		{
-			if(preg_match('~ONLY_FULL_GROUP_BY~', $sql_mode['@@sql_mode']))
-			{
-				$this->db->query("SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
-			}
-		}
+		// $sql_mode = $this->db->query('SELECT @@sql_mode')->row_array();
+		// if(!empty($sql_mode['@@sql_mode']))
+		// {
+		// 	if(preg_match('~ONLY_FULL_GROUP_BY~', $sql_mode['@@sql_mode']))
+		// 	{
+		// 		$this->db->query("SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
+		// 	}
+		// }
 		
 		$foto = new zea();
 		// $foto->setHeading('Foto Pertama');
 		$foto->init('roll');
 		$foto->setNumbering(true);
-		$foto->setTable('absensi');
-		$foto->setWhere('desa_id = '.$desa_id);
-		$foto->group_by('perangkat_desa_id');
+		$foto->setTable('perangkat_desa');
+		// $foto->join('desa','ON(desa.id=perangkat_desa.desa_id)','perangkat_desa.id,perangkat_desa.id AS perangkat_desa_id,perangkat_desa.foto');
+		$foto->setWhere('desa_id = '.$desa_id.' AND kelompok = 1');
+		// $foto->group_by('perangkat_desa_id');
 		$foto->order_by('id','ASC');
-		$foto->addInput('id','hidden');
-		$foto->addInput('perangkat_desa_id','plaintext');
+		$foto->addInput('id','plaintext');
+		// $foto->addInput('desa_id','plaintext');
 		$foto->addInput('foto','thumbnail');
 
 		$foto->setUrl('admin/absensi/clear_list');
