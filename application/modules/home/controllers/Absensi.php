@@ -143,7 +143,7 @@ class Absensi extends CI_Controller
 		$data['perangkat_pagi'] = json_decode(curl($custom_api.'api/perangkat/get_absensi_pagi/'.$desa_id),1);
 		$data['perangkat_sore'] = json_decode(curl($custom_api.'api/perangkat/get_absensi_sore/'.$desa_id),1);
 		$data['perangkat_izin'] = json_decode(curl($custom_api.'api/perangkat/get_absensi_izin/'.$desa_id),1);
-		$data['sudah'] = [];		
+		$data['sudah'] = [];
 	  if(!empty($status))
 	  {
 	  	if($status == 1 || $status == 4)
@@ -192,6 +192,8 @@ class Absensi extends CI_Controller
 		  if(!empty($perangkat_tmp))
 		  {
 		  	$data['perangkat'] = $perangkat_tmp;
+		  }else{
+		  	$data['perangkat'] = [];
 		  }
 	  }
 	  if(!empty($data['sudah']))
@@ -203,7 +205,10 @@ class Absensi extends CI_Controller
 	  	}
 	  	$data['sudah'] = $data_tmp_sudah;
 	  }
-	  $data['libur'] = $libur;
+	  if(!empty($libur))
+	  {
+	  	$data['libur'] = $libur;
+	  }
 	  $data['valid'] = ['0'=>'Belum divalidasi','1'=>'Data Tersimpan','2'=>'Tidak Valid'];
 		$this->load->model('admin/pengguna_model');
 		$this->home_model->home();

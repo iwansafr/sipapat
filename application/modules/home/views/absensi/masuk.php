@@ -1,4 +1,4 @@
-<?php if (!empty($perangkat)): ?>
+<?php if (!empty($desa)): ?>
 	
 	<style>
 		.fileContainer {
