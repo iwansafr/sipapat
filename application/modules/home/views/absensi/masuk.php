@@ -1,6 +1,34 @@
 <?php if (!empty($desa)): ?>
 	
 	<style>
+		.container-detected {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .container-image {
+        position: relative;
+        /* width: image.width,
+        height: image.height, */
+        margin: 0px auto;
+        max-width: 700px;
+        max-height: 700px;
+        overflow: auto;
+    }
+    .data-container {
+       position: relative;
+        /* width: image.width,
+        height: image.height, */
+        margin: 5px auto;
+        max-width: 500px;
+        max-height: 500px;
+        overflow: auto;
+        width: 100%;
+    }
 		.fileContainer {
 	    overflow: hidden;
 	    position: relative;
@@ -116,11 +144,22 @@
 							<br>
 							<label class="fileContainer hidden" style="padding: 10%;">
 								<i class="fa fa-camera" style="font-size: 500%;"></i>
-								<input type="file"  name="foto" class="form-control" accept=".gif, .jpg, .jpeg, .png" required>
+								<input type="file" id="imageUpload" name="foto" class="form-control" accept=".gif, .jpg, .jpeg, .png" required oninvalid="this.setCustomValidity('Anda Belum Foto')" oninput="setCustomValidity('')">
 							</label>
 							<br>
 							<img src="" class="image_place" class="img img-responsive" style="object-fit: cover; height: 200px;" alt="foto">
 							<p id="filename"></p>
+						</div>
+						<div class="container-detected">
+							<div class="container-image" id="container-image">
+
+					    </div>
+					    <div class="data-container" id="container-data">
+
+					    </div>
+					    <div id="loading">
+
+					    </div>
 						</div>
 						<?php
 					}else{

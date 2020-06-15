@@ -50,7 +50,7 @@ class Absensi extends CI_Controller
 								$day = date('w')+1;
 								if(!empty($data['desa']['id']))
 								{
-									$config_jam_tmp = $this->esg->get_config(base_url().'_'.$data['desa']['district_id'].'_'.$data['desa']['id'].'_absensi_config_jam_'+$day);
+									$config_jam_tmp = $this->esg->get_config(base_url().'_'.$data['desa']['district_id'].'_'.$data['desa']['id'].'_absensi_config_jam_'.$day);
 									if(empty($config_jam_tmp))
 									{
 										$config_jam_tmp = $this->esg->get_config(base_url().'_'.$data['desa']['district_id'].'_'.$data['desa']['id'].'_absensi_config_jam');
@@ -64,31 +64,32 @@ class Absensi extends CI_Controller
 								{
 									$config_jam = $config_jam_tmp;
 								}
-
-								$config_hari = $this->esg->get_config(base_url().'_'.$data['desa']['district_id'].'_absensi_config_hari');
-								if(empty($config_hari))
-								{
-									$config_hari = $this->esg->get_config(base_url().'_absensi_config_hari');
-								}
-								if(!empty($config_hari['hari']))
-								{
-									$config_hari = $config_hari['hari'];
-									$today = date('w');
-									if(in_array($today, $config_hari))
-									{
-										$libur = true;
-									}else{
-										$libur = false;
-									}
-									$libur = false;
-									$data['libur'] = $libur;
-								}else{
-									echo 'Mohon Maaf Sistem Belum tersetting';die();
-								}
+								// $config_hari = $this->esg->get_config(base_url().'_'.$data['desa']['district_id'].'_absensi_config_hari');
+								// if(empty($config_hari))
+								// {
+								// 	$config_hari = $this->esg->get_config(base_url().'_absensi_config_hari');
+								// }
+								// if(!empty($config_hari['hari']))
+								// {
+								// 	$config_hari = $config_hari['hari'];
+								// 	$today = date('w');
+								// 	if(in_array($today, $config_hari))
+								// 	{
+								// 		$libur = true;
+								// 	}else{
+								// 		$libur = false;
+								// 	}
+								// 	$libur = false;
+								// }else{
+								// 	$libur = false;
+								// 	// echo 'Mohon Maaf Sistem Belum tersetting';die();
+								// }
+								$libur = false;
 
 								$libur_status = $this->absensi_model->is_libur();
 								$data['libur_status'] = $libur_status;
 							}
+							$data['libur'] = $libur;
 							$h = date('H:i');
 							if(empty($config_jam['selesai_masuk'])){
 								?>
@@ -117,6 +118,7 @@ class Absensi extends CI_Controller
 						  ?>
 							<script type="text/javascript">
 								var config_jam = <?php echo json_encode($config_jam);?>;
+								var __desa_id = <?php echo $id;?>
 							</script>
 						  <?php
 							if(!empty($this->input->post()))
@@ -167,7 +169,14 @@ class Absensi extends CI_Controller
 				}
 			}
 		}
-		$this->esg->add_js(base_url('assets/absensi/script.js'));
+		$this->esg->add_js(
+			[
+				base_url('assets/absensi/script.js'),
+				base_url('assets/absensi/js/face-api.min.js'),
+				base_url('assets/absensi/js/script.js'),
+				'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js',
+			]
+		);
 		$this->load->view('index',$data);
 	}
 
