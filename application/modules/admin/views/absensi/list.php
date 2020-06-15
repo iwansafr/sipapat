@@ -148,6 +148,15 @@ if(!empty($desa_id))
 
 	if(is_admin() || is_kecamatan() || is_root())
 	{
+		$sql_mode = $this->db->query('SELECT @@sql_mode')->row_array();
+		if(!empty($sql_mode['@@sql_mode']))
+		{
+			if(preg_match('~ONLY_FULL_GROUP_BY~', $sql_mode['@@sql_mode']))
+			{
+				$this->db->query("SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
+			}
+		}
+		
 		$foto = new zea();
 		// $foto->setHeading('Foto Pertama');
 		$foto->init('roll');
@@ -163,11 +172,8 @@ if(!empty($desa_id))
 		$foto->setUrl('admin/absensi/clear_list');
 		$foto->setFormName('data_awal');
 		$foto->setLimit(20);
+
 		$foto->form();
-		if(empty($foto->getData()['data']))
-		{
-			$this->db->query("SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
-		}
 		?>
 		<div class="hidden">
 			<?php pr($foto->getData()) ?>
