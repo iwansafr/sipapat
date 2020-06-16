@@ -115,18 +115,18 @@ $(document).ready(function(){
 	    reader.readAsDataURL(input.files[0]);
 	  }
 	}
-	// $(document).on('change', 'input[type="file"]', function(){
+	$(document).on('change', 'input[type="file"]', function(){
 		// console.log($(this));
-		// var a = $('.image_place');
-		// readURL(this,a);
-		// if (this.files && this.files[0]){
-	 //    var reader = new FileReader();
-	 //    reader.onload = function(e){
-		// 	$('#filename').html(e.target.result);
-	 //    };
-	 //    reader.readAsDataURL(this.files[0]);
-	 //  }
-	// });
+		var a = $('.image_place');
+		readURL(this,a);
+		if (this.files && this.files[0]){
+	    var reader = new FileReader();
+	    reader.onload = function(e){
+			// $('#filename').html(e.target.result);
+	    };
+	    reader.readAsDataURL(this.files[0]);
+	  }
+	});
 	$(document).on('click','.sel_pd',function(){
 		var id = $(this).data('id');
 		$('input[name="perangkat_desa_id"]').val(id);
