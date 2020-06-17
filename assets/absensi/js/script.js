@@ -8,7 +8,6 @@ Promise.all([
 ]).then(start);
 async function start() {
   console.log("Loaded");
-  alert('selamat datang di sitem absensi');
   const labeledFaceDescriptors = await loadLableImages();
   const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.5);
   imageUpload.addEventListener("change", async () => {
@@ -78,7 +77,7 @@ async function start() {
         newDataQuery += `<div class="user"><img src="images/${addData.image}" style='max-width: 100px; max-height: 100px;' />${addData.name}</div>`;
       }
     });
-
+    alert('gambar berhasil diambil');
     document.getElementById("container-image").innerHTML = contentImage;
     document.getElementById("container-data").innerHTML = newDataQuery;
   });
