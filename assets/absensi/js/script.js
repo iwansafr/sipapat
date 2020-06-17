@@ -8,6 +8,7 @@ Promise.all([
 ]).then(start);
 async function start() {
   console.log("Loaded");
+  alert('selamat datang di sitem absensi');
   const labeledFaceDescriptors = await loadLableImages();
   const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.5);
   imageUpload.addEventListener("change", async () => {
