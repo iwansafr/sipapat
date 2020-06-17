@@ -13,7 +13,7 @@ async function start() {
   imageUpload.addEventListener("change", async () => {
     document.getElementById("container-image").innerHTML = "";
     document.getElementById("loading").innerHTML =
-      '<img src = "loading/loading.gif" style="width: 200px" /><p>Uploading</p>';
+      '<img src = '+_URL+'"assets/absensi/loading/loading.gif" style="width: 200px" /><p>Uploading</p>';
     const image = await faceapi.bufferToImage(imageUpload.files[0]);
 
     const displaySize = direction_resize(image.width, image.height);
