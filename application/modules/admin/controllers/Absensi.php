@@ -172,9 +172,9 @@ class Absensi extends CI_Controller
 		$this->esg->add_js(
 			[
 				base_url('assets/absensi/script.js?v=1.0'),
-				base_url('assets/absensi/js/face-api.min.js?v=1.0'),
-				base_url('assets/absensi/js/script.js?v=1.0'),
-				'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js',
+				// base_url('assets/absensi/js/face-api.min.js?v=1.0'),
+				// base_url('assets/absensi/js/script.js?v=1.0'),
+				// 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js',
 			]
 		);
 		$this->load->view('index',$data);
