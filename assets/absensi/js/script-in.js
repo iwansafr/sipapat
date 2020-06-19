@@ -7,7 +7,7 @@ Promise.all([
   faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL),
 ]).then(start);
 async function start() {
-  console.log("Loaded");
+  alert("Loaded");
   const labeledFaceDescriptors = await loadLableImages();
   const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.5);
   imageUpload.addEventListener("change", async () => {
@@ -84,15 +84,18 @@ async function start() {
     document.getElementById("container-image").innerHTML = contentImage;
     document.getElementById("container-data").innerHTML = newDataQuery;
   });
+  alert('ok');
 }
 
 function usersApi() {
+  alert('userapi');
   const api = axios.get(_URL+"api/perangkat/get_by_desa/"+__desa_id+"/1");
   console.log(api);
   return api;
 }
 
 async function loadLableImages() {
+  alert('laodlabel');
   const response = await usersApi();
   const data = response.data;
   return Promise.all(
@@ -112,6 +115,7 @@ async function loadLableImages() {
 }
 
 function direction_resize(width, height) {
+  alert('direction');
   const variable = width > height ? width : height;
 
   const to = 250;
