@@ -109,7 +109,6 @@ $(document).ready(function(){
 	    	// }else{
 	    		// console.log(e);
 	      	$(a).attr('src', e.target.result);
-	      	$('#log').html(e.target.result);
 	      	// $('#filename').html(e.target.result);
 	    	// }
 	    };
@@ -141,4 +140,9 @@ $(document).ready(function(){
 		// $(this).addClass('display-1');
 		$(this).removeClass('btn-warning')
 	});	
+	$('body').toggleClass('loaded');
+	setTimeout(function(){
+      $('body').addClass('loaded');
+      $('h1').css('color','#222222');
+  }, 5000);
 });
