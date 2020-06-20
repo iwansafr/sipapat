@@ -182,6 +182,11 @@
 				</div>
 			</div>
 		</form>
+		<div class="row">
+			<p id="log" class="small">
+				
+			</p>
+		</div>
 		<?php if (!empty($perangkat_bolos)): ?>
 			<div class="accordion" id="accordionData">
 			  <div class="card">
