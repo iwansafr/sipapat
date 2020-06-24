@@ -139,6 +139,7 @@ $(document).ready(function(){
 		$(this).addClass('btn-success')
 		// $(this).addClass('display-1');
 		$(this).removeClass('btn-warning')
+		$('input[type="file"]').trigger('click');
 	});	
 	$('body').toggleClass('loaded');
 	setTimeout(function(){
