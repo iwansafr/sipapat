@@ -118,7 +118,7 @@
 														$color = 'btn-primary';
 													}
 													?>
-													<td class="sel_pd btn-danger" style="background: red;" data-id="<?php echo $value['id'] ?>">
+													<td class="btn-danger" style="background: red;" data-id="<?php echo $value['id'] ?>">
 														<label style="margin-bottom: 0;font-size: 24px;"><?php echo $value['nama'].' | <label class="'.$color.'" style="font-size:12px;">'.$valid[$sudah[$value['id']]['valid']].'</label>' ?></label>
 													</td>
 												<?php else: ?>
