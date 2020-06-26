@@ -111,7 +111,7 @@
 											$color = 'btn-primary';
 										}
 										?>
-										<tr class="btn-secondary">
+										<tr class="btn-danger">
 											<td style="font-size: 12px;">
 												<?php echo $i ?>
 											</td>
