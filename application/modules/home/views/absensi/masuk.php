@@ -63,6 +63,9 @@
 		.image_place[src=""] {
 		  display:none;
 		}
+		td{
+			border-radius: 5em;
+		}
 	</style>
 	<?php if (empty($libur)): ?>
 		<form action="" method="post" enctype="multipart/form-data">
@@ -87,63 +90,53 @@
 					}
 					if(empty($libur_status))
 					{
+						$clustp = array_chunk($perangkat, 2);
+						// $clustp = $perangkat;
+						// pr($clustp);
 						?>
 						<div class="form-group">
-							<table class="table table-bordered table-sm tb_perangkat">
+							<table class="table tb_perangkat">
 								<input type="hidden" id="pdid" name="perangkat_desa_id" value="0">
 								<a href="" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i> Refresh</a>
 								<!-- | <span class="badge badge-info">pastikan nama sudah diklik dan sudah capture foto agar tombol upload muncul</span> -->
-								<thead>
-									<th>no</th>
-									<th>nama</th>
-									<th>jabatan</th>
-								</thead>
+								<!-- <thead> -->
+								<!-- 	<th>no</th>
+									<th>nama</th> -->
+									<!-- <th>jabatan</th> -->
+								<!-- </thead> -->
 								<?php $i = 1;?>
-								<?php foreach ($perangkat as $key => $value): ?>
-								<?php $ganjil = $i%2;?>
-									<?php if ($value['id'] == @intval($sudah[$value['id']]['id'])): ?>
-										<?php 
-										if($sudah[$value['id']]['valid'] == 2){
-											$color = 'btn-danger';
-										}else if($sudah[$value['id']]['valid'] == 1){
-											$color = 'btn-success';
-										}else{
-											$color = 'btn-primary';
-										}
-										?>
-										<tr class="btn-danger">
-											<td style="font-size: 12px;">
-												<?php echo $i ?>
-											</td>
-											<td>
-												<label style="margin-bottom: 0;font-size: 12px;"><?php echo $value['nama'].' | <label class="'.$color.'">'.$valid[$sudah[$value['id']]['valid']].'</label>' ?></label>
-											</td>
-											<td>
-												<label style="margin-bottom: 0;font-size: 12px;"><?php echo $jabatan[$value['jabatan']] ?></label>
-											</td>
-										</tr>
-									<?php else: ?>
-										<tr class="sel_pd btn-warning" data-id="<?php echo $value['id'] ?>">
-											<td style="font-size: 12px;">
-												<?php echo $i ?>
-											</td>
-											<td>
-												<label style="margin-bottom: 0;font-size: 12px;"><?php echo $value['nama'] ?></label>
-											</td>
-											<td>
-												<label style="margin-bottom: 0;font-size: 12px;"><?php echo $jabatan[$value['jabatan']] ?></label>
-											</td>
-										</tr>
-									<?php endif ?>
-									<?php $i++ ?>
+								<?php foreach ($clustp as $vkey => $vvalue): ?>
+									<tr>
+										<?php foreach ($vvalue as $key => $value): ?>
+												<?php if ($value['id'] == @intval($sudah[$value['id']]['id'])): ?>
+													<?php 
+													if($sudah[$value['id']]['valid'] == 2){
+														$color = 'btn-danger';
+													}else if($sudah[$value['id']]['valid'] == 1){
+														$color = 'btn-success';
+													}else{
+														$color = 'btn-primary';
+													}
+													?>
+													<td class="sel_pd btn-danger" style="background: red;" data-id="<?php echo $value['id'] ?>">
+														<label style="margin-bottom: 0;font-size: 24px;"><?php echo $value['nama'].' | <label class="'.$color.'" style="font-size:12px;">'.$valid[$sudah[$value['id']]['valid']].'</label>' ?></label>
+													</td>
+												<?php else: ?>
+													<td style="font-size: 24px;" class="sel_pd btn-warning" data-id="<?php echo $value['id'] ?>">
+														<label style="margin-bottom: 0;font-size: 24px;"><?php echo $value['nama'] ?></label>
+													</td>
+												<?php endif ?>
+												<?php $i++ ?>
+										<?php endforeach ?>
+									</tr>
 								<?php endforeach ?>
 							</table>
 						</div>
 						<div class="form-group" style="text-align: center;">
 							<label for="foto">Foto</label>
 							<br>
-							<label class="fileContainer hidden" style="padding: 10%;">
-								<i class="fa fa-camera" style="font-size: 500%;"></i>
+							<label class="fileContainer hidden" style="padding: 1%;">
+								<i class="fa fa-camera" style="font-size: 100%;"></i>
 								<input type="file" id="imageUpload" name="foto" class="form-control" accept=".gif, .jpg, .jpeg, .png" required oninvalid="this.setCustomValidity('Anda Belum Foto')" oninput="setCustomValidity('')">
 							</label>
 							<br>
