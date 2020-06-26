@@ -83,6 +83,9 @@
 					</div>		
 				</div>
 				<div class="panel-body panel card-body">
+					<!-- <audio id="audio" preload="auto" autoplay="autoplay" hidden="true">
+					  <source src="<?php echo base_url('assets/absensi/sound/terima_kasih_wanita.mp3')?>">
+					</audio> -->
 					<?php 
 					if(!empty($status))
 					{
@@ -98,6 +101,11 @@
 							<table class="table tb_perangkat">
 								<input type="hidden" id="pdid" name="perangkat_desa_id" value="0">
 								<a href="" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i> Refresh</a>
+								<div class="">
+									<label for="" class="btn btn-success"></label> Tanda Sudah 
+									Absen
+									<label for="" class="btn btn-danger"></label> Tanda Belum Absen
+								</div>
 								<!-- | <span class="badge badge-info">pastikan nama sudah diklik dan sudah capture foto agar tombol upload muncul</span> -->
 								<!-- <thead> -->
 								<!-- 	<th>no</th>
@@ -111,18 +119,19 @@
 												<?php if ($value['id'] == @intval($sudah[$value['id']]['id'])): ?>
 													<?php 
 													if($sudah[$value['id']]['valid'] == 2){
-														$color = 'btn-danger';
+														$color = 'btn-secondary';
 													}else if($sudah[$value['id']]['valid'] == 1){
-														$color = 'btn-success';
+														$color = 'btn-secondary';
 													}else{
 														$color = 'btn-primary';
 													}
 													?>
-													<td class="btn-danger" style="background: red;" data-id="<?php echo $value['id'] ?>">
-														<label style="margin-bottom: 0;font-size: 24px;"><?php echo $value['nama'].' | <label class="'.$color.'" style="font-size:12px;">'.$valid[$sudah[$value['id']]['valid']].'</label>' ?></label>
+													<td class="btn-success" data-id="<?php echo $value['id'] ?>" align="center">
+														<label style="margin-bottom: 0;font-size: 24px;"><?php echo $value['nama'] ?></label>
+														<!-- <label style="margin-bottom: 0;font-size: 24px;"><?php echo $value['nama'].' | <label class="'.$color.'" style="font-size:12px;">'.$valid[$sudah[$value['id']]['valid']].'</label>' ?></label> -->
 													</td>
 												<?php else: ?>
-													<td style="font-size: 24px;" class="sel_pd btn-warning" data-id="<?php echo $value['id'] ?>">
+													<td style="font-size: 24px;" class="sel_pd btn-danger" data-id="<?php echo $value['id'] ?>" align="center">
 														<label style="margin-bottom: 0;font-size: 24px;"><?php echo $value['nama'] ?></label>
 													</td>
 												<?php endif ?>
