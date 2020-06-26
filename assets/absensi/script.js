@@ -125,6 +125,7 @@ $(document).ready(function(){
 			// $('#filename').html(e.target.result);
 	    };
 	    reader.readAsDataURL(this.files[0]);
+    	setInterval($('#btn_upload').trigger('click'),300);
 	  }
 	});
 	$(document).on('click','.sel_pd',function(){
