@@ -7,8 +7,6 @@ export async function loadModels() {
   await faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL);
   await faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL);
   await faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL);
-
-  console.log("loadded");
 }
 
 export async function uploadImages(imageUpload) {

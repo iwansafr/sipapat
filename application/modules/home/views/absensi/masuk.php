@@ -144,8 +144,8 @@
 						<div class="form-group" style="text-align: center;">
 							<label for="foto">Foto</label>
 							<br>
-							<label class="fileContainer hidden" style="padding: 1%;">
-								<i class="fa fa-camera" style="font-size: 100%;"></i>
+							<label class="fileContainer hidden" style="padding: 0%;">
+								<i class="fa fa-camera" style="font-size: 0%;"></i>
 								<input type="file" id="imageUpload" name="foto" class="form-control" accept=".gif, .jpg, .jpeg, .png" required oninvalid="this.setCustomValidity('Anda Belum Foto')" oninput="setCustomValidity('')">
 							</label>
 							<br>

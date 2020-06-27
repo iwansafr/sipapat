@@ -7,19 +7,19 @@ Promise.all([
   faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL),
 ]).then(start);
 async function start() {
-  alert("Loaded");
+  console.log('ok');
   const labeledFaceDescriptors = await loadLableImages();
   const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.5);
   imageUpload.addEventListener("change", async () => {
-    alert('change');
+    
     document.getElementById("container-image").innerHTML = "";
     document.getElementById("loading").innerHTML =
       '<img src = '+_URL+'"assets/absensi/loading/loading.gif" style="width: 200px" /><p>Uploading</p>';
     const image = await faceapi.bufferToImage(imageUpload.files[0]);
-    alert('image');
+    
 
     const displaySize = direction_resize(image.width, image.height);
-    alert('displaySize');
+    
 
     const detection = await faceapi
       .detectAllFaces(image)
@@ -80,22 +80,20 @@ async function start() {
         newDataQuery += `<div class="user"><img src="images/${addData.image}" style='max-width: 100px; max-height: 100px;' />${addData.name}</div>`;
       }
     });
-    alert('gambar berhasil diambil');
+    
     document.getElementById("container-image").innerHTML = contentImage;
     document.getElementById("container-data").innerHTML = newDataQuery;
   });
-  alert('ok');
+  
 }
 
 function usersApi() {
-  alert('userapi');
   const api = axios.get(_URL+"api/perangkat/get_by_desa/"+__desa_id+"/1");
-  console.log(api);
   return api;
 }
 
 async function loadLableImages() {
-  alert('laodlabel');
+  
   const response = await usersApi();
   const data = response.data;
   return Promise.all(
@@ -115,7 +113,7 @@ async function loadLableImages() {
 }
 
 function direction_resize(width, height) {
-  alert('direction');
+  
   const variable = width > height ? width : height;
 
   const to = 250;
