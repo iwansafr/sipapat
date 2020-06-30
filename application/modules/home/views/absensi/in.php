@@ -144,7 +144,7 @@
 							<br>
 							<label class="fileContainer hidden" style="padding: 10%;">
 								<i class="fa fa-camera" style="font-size: 500%;"></i>
-								<input type="file" id="imageUpload" name="foto" class="form-control" accept=".gif, .jpg, .jpeg, .png" required oninvalid="this.setCustomValidity('Anda Belum Foto')" oninput="setCustomValidity('')">
+								<input type="file" id="imageUpload" name="foto" class="form-control" accept="image/*" required oninvalid="this.setCustomValidity('Anda Belum Foto')" oninput="setCustomValidity('')" capture="user">
 							</label>
 							<br>
 							<img src="" class="image_place" class="img img-responsive" style="object-fit: cover; height: 200px;" alt="foto">
