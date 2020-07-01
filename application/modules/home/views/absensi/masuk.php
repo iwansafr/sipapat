@@ -171,6 +171,8 @@
 						echo '</center>';
 					}
 					?>
+
+					<h5>CS : <i class="fa fa-phone"></i> 082322640839</h5>
 				</div>
 				<div class="panel-footer panel card-footer">
 					<button class="btn btn-success d-none" id="btn_upload"><i class="fa fa-upload"></i> Upload</button>
