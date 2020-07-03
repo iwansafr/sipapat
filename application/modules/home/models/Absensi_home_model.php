@@ -4,7 +4,7 @@ class Absensi_home_model extends CI_Model
 {
 	public function upload($data = array())
 	{
-    if(!empty($data))
+    if(!empty($data['perangkat_desa_id']))
     {
       $file_name = time().'_'.$data['desa_id'].'_'.$data['perangkat_desa_id'];
       $ext = pathinfo($_FILES['foto']['name']);
