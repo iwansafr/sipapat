@@ -23,7 +23,6 @@ class Provinces extends CI_Controller
 	}
 	public function all()
 	{
-		header('Access-Control-Allow-Origin', "*");
-		echo json_encode($this->db->get('provinces')->result_array());
+		output_json($this->db->get('provinces')->result_array());
 	}
 }
