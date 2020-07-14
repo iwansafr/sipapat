@@ -10,6 +10,7 @@ if(is_root() || is_admin() || (@$pengguna['desa_id'] == $id && !empty($id)))
 
 	if(is_desa())
 	{
+		msg('merubah kode desa dapat mengakibatkan data-data yang sudah diinput hilang, seperti data perangkat dll, mohon lapor pada admin untuk merubah kode desa','warning');
 		$form->addInput('provinsi','text');
 		$form->setAttribute('provinsi','onkeyup="this.value = this.value.toUpperCase();"');
 		
