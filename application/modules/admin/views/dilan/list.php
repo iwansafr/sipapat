@@ -29,16 +29,16 @@ if(!$is_desa)
 				$umur_sql = '';
 				switch ($umur_group) {
 					case '1':
-						$umur_sql = ' BETWEEN 0 AND 6';
+						$umur_sql = ' BETWEEN 0 AND 5';
 						break;
 					case '2':
-						$umur_sql = ' BETWEEN 5 AND 13';
+						$umur_sql = ' BETWEEN 6 AND 12';
 						break;
 					case '3':
-						$umur_sql = ' BETWEEN 12 AND 26';
+						$umur_sql = ' BETWEEN 13 AND 25';
 						break;
 					case '4':
-						$umur_sql = ' BETWEEN 25 AND 46';
+						$umur_sql = ' BETWEEN 26 AND 45';
 						break;
 					case '5':
 						$umur_sql = ' > 45';
