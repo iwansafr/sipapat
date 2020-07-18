@@ -330,8 +330,8 @@ class Perangkat extends CI_Controller
 		$pdf->Cell(18,6,'agama',1,0);
 		$pdf->Cell(18,6,'status',1,0);
 		$pdf->Cell(25,6,'pendidikan terakhir',1,0);
-		$pdf->Cell(18,6,'jabatan',1,0);
-		$pdf->Cell(30,6,'no sk',1,0);
+		$pdf->Cell(24,6,'jabatan',1,0);
+		$pdf->Cell(20,6,'no sk',1,0);
 		$pdf->Cell(20,6,'akhir m jabatan',1,1);
 
     $pdf->SetFont('Arial','',7);
@@ -388,9 +388,11 @@ class Perangkat extends CI_Controller
 			$pdf->Cell(18,6,$value['telepon'],1,0);
 			$pdf->Cell(18,6,$agama[$value['agama']],1,0);
 			$pdf->Cell(18,6,$status_perkawinan[$value['status_perkawinan']],1,0);
+			$pdf->SetFont('Arial','B',4);
 			$pdf->Cell(25,6,$pendidikan_terakhir[$value['pendidikan_terakhir']],1,0);
-			$pdf->Cell(18,6,$jabatan[$value['jabatan']],1,0);
-			$pdf->Cell(30,6,$value['no_sk'],1,0);
+			$pdf->Cell(24,6,$jabatan[$value['jabatan']],1,0);
+			$pdf->Cell(20,6,$value['no_sk'],1,0);
+			$pdf->SetFont('Arial','B',7);
 			$pdf->Cell(20,6,$value['akhir_masa_jabatan'],1,1);
       $i++;
     }
