@@ -33,6 +33,7 @@ if(is_desa())
 		$form->addInput('alamat','textarea');
 
 		$form->setRequired('All');
+		$form->setUnique(['kk','nik'],'{value} Sudah Terdaftar');
 		$form->form();
 	}
 }else{
