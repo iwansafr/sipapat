@@ -4,8 +4,11 @@
 	</div>
 	<div class="form-group form-inline">
 		<input type="hidden" value="<?php echo $_GET['group'] ?>" name="group">
-		<select class="form-control select2" name="<?php echo @$_GET['group'] ?>">
-			<option>pilih <?php echo @$_GET['group'] ?></option>
+		<?php if (!empty($_GET['desa_id'])): ?>
+			<input type="hidden" name="desa_id" value="<?php echo $_GET['desa_id'] ?>">
+		<?php endif ?>
+		<select class="form-control select2" name="<?php echo @$_GET['group'] ?>" required>
+			<option value="">pilih <?php echo @$_GET['group'] ?></option>
 			<?php foreach ($data[@$_GET['group']] as $key => $value): ?>
 				<option value="<?php echo $key ?>"><?php echo strtoupper($value) ?></option>
 			<?php endforeach ?>

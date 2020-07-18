@@ -17,7 +17,40 @@ if(!$is_desa)
 	$desa_id = @intval($_GET['desa_id']);
 	if(!empty($desa_id))
 	{
-		$form->setWhere("desa_id = ".$desa_id." AND aktif = ".$aktif_num);
+		// $form->setWhere("desa_id = ".$desa_id." AND aktif = ".$aktif_num);
+		$q = 'desa_id = '.$desa_id.' AND aktif = '.$aktif_num;
+		if(!empty($group))
+		{
+			if($group != 'umur')
+			{
+				$q .= ' AND '.$group.' = '.@intval($_GET[$group]);
+			}else{
+				$umur_group = intval($_GET[$group]);
+				$umur_sql = '';
+				switch ($umur_group) {
+					case '1':
+						$umur_sql = ' < 6';
+						break;
+					case '2':
+						$umur_sql = ' < 12';
+						break;
+					case '3':
+						$umur_sql = ' < 26';
+						break;
+					case '4':
+						$umur_sql = ' < 46';
+						break;
+					case '5':
+						$umur_sql = ' > 45';
+						break;
+					default:
+						$umur_sql = '';
+						break;
+				}
+				$q .= " AND DATEDIFF(CURRENT_DATE, STR_TO_DATE(tgl_lhr, '%Y-%m-%d'))/365 {$umur_sql}";
+			}
+		}
+		$form->setWhere($q);
 	}else{
 		$kecamatan = @$_GET['kec'];
 		if(!empty($kecamatan))
@@ -66,7 +99,8 @@ if(!empty($desa_id) || $is_desa)
 		'shdk'=>'Status dalam keluarga',
 		'pnydng_cct'=>'Penyandang Cacat',
 		'pddk_akhir'=>'Pendidikan',
-		'pekerjaan'=>'Pekerjaan'
+		'pekerjaan'=>'Pekerjaan',
+		'umur'=>'Umur',
 	];
 	?>
 	<?php if (empty($type)): ?>
@@ -75,6 +109,9 @@ if(!empty($desa_id) || $is_desa)
 		<div class="col-md-4 pull-right">
 			<form action="<?php echo base_url('admin/dilan/filter_by/') ?>" class="pull-right" method="get">
 				<div class="form-group form-inline">
+					<?php if (!empty($desa_id)): ?>
+						<input type="hidden" name="desa_id" value="<?php echo $desa_id ?>">
+					<?php endif ?>
 					<select class="form-control" name="group">
 						<?php foreach ($filter_group as $key => $value): ?>
 							<?php $selected = $key == $group ? 'selected' : '';?>
@@ -114,6 +151,7 @@ $form->addInput('no_kk','plaintext');
 $form->addInput('nik','plaintext');
 $form->addInput('nama','plaintext');
 $form->addInput('alamat','plaintext');
+$form->addInput('tgl_lhr','plaintext');
 $form->setLabel('alamat','desa');
 // $form->addInput('jk','dropdown');
 // $form->setOptions('jk',['1'=>'Laki-laki','2'=>'perempuan']);

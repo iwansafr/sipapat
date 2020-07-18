@@ -873,6 +873,9 @@ class Dilan extends CI_Controller{
 				case 'pekerjaan':
 					$data['pekerjaan'] = $this->dilan_model->pekerjaan();
 					break;
+				case 'umur':
+					$data['umur'] = $this->dilan_model->umur();
+					break;
 				default:
 					$data['jk'] = $this->dilan_model->kelamin();
 					break;

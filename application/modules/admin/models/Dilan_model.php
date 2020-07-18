@@ -266,6 +266,48 @@ class Dilan_model extends CI_Model
     ];
 	}
 
+	public function umur()
+	{
+		return [
+			'1'=>'balita (1-5 th)',
+			'2'=>'anak-anak (6-11 th)',
+			'3'=>'remaja (12-25 th)',
+			'4'=>'dewasa (26-45 th)',
+			'5'=>'lansia (lebih dari 45 th)',
+		];
+	}
+
+	public function data_by_umur()
+	{
+		$usia = $this->db->query("SELECT DATEDIFF(CURRENT_DATE, STR_TO_DATE(p.tgl_lhr, '%Y-%m-%d'))/365 AS usia FROM penduduk AS p where desa_id = ?",$desa_id)->result_array();
+		$usia_tmp = [];
+		if(!empty($usia))
+		{
+			$usia_tmp['balita'] = 0;
+			$usia_tmp['anak-anak'] = 0;
+			$usia_tmp['remaja'] = 0;
+			$usia_tmp['dewasa'] = 0;
+			$usia_tmp['lansia'] = 0;
+			foreach ($usia as $key => $value) 
+			{
+				if($value['usia'] < 5)
+				{
+					$usia_tmp['balita'] +=1;
+				}else if($value['usia'] <= 11)
+				{
+					$usia_tmp['anak-anak'] +=1;
+				}else if($value['usia'] <= 25)
+				{
+					$usia_tmp['remaja'] +=1;
+				}else if($value['usia'] <= 45){
+					$usia_tmp['dewasa'] +=1;
+				}else if($value['usia'] >= 46){
+					$usia_tmp['lansia'] +=1;
+				}
+			}
+		}		
+	}
+
 	public function surat_group($desa_id = 0)
 	{
 		$this->db->select('id,title');
