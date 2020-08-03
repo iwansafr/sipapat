@@ -502,6 +502,13 @@ class Desa extends CI_Controller
     $pdf->Output();
 	}
 
+	public function data()
+	{
+		$this->load->model('desa_model');
+		$data = $this->desa_model->rekap();
+		$this->load->view('index',['data'=>$data,'desa'=>$this->db->get_where('desa')->result_array()]);
+	}
+
 	public function clear_list()
 	{
 		$this->load->view('desa/list');
