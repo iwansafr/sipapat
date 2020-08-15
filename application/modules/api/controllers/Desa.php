@@ -56,4 +56,8 @@ class Desa extends CI_Controller
 	{
 		output_json($this->db->query('SELECT id FROM desa WHERE id = ?',$id)->row_array());
 	}
+	public function total()
+	{
+		output_json($this->db->count_all('desa'));
+	}
 }

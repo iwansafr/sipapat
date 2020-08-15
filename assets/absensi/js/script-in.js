@@ -1,6 +1,6 @@
 const imageUpload = document.getElementById("imageUpload");
 
-const MODEL_URL = _URL+"assets/absensi/models";
+const MODEL_URL = _URL + "assets/absensi/models";
 Promise.all([
   faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL),
   faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
@@ -11,15 +11,15 @@ async function start() {
   const labeledFaceDescriptors = await loadLableImages();
   const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.5);
   imageUpload.addEventListener("change", async () => {
-    
+
     document.getElementById("container-image").innerHTML = "";
     document.getElementById("loading").innerHTML =
-      '<img src = '+_URL+'"assets/absensi/loading/loading.gif" style="width: 200px" /><p>Uploading</p>';
+      '<img src = ' + _URL + '"assets/absensi/loading/loading.gif" style="width: 200px" /><p>Uploading</p>';
     const image = await faceapi.bufferToImage(imageUpload.files[0]);
-    
+
 
     const displaySize = direction_resize(image.width, image.height);
-    
+
 
     const detection = await faceapi
       .detectAllFaces(image)
@@ -45,7 +45,7 @@ async function start() {
       'px" />';
     // console.log(image);
     let newDataQuery = '';
-      // "<p style='width: 100%; margin-top: 20px; text-align: center;'>List users in photo</p>";
+    // "<p style='width: 100%; margin-top: 20px; text-align: center;'>List users in photo</p>";
 
     result.forEach((results, index) => {
       const box = resize[index].detection.box;
@@ -62,7 +62,7 @@ async function start() {
       // console.log(addData);
       // console.log(box);
       var hasil = results.toString();
-      if(hasil.match('unknown')){
+      if (hasil.match('unknown')) {
         hasil = 'tidak dikenali';
       }
       contentImage += `<div style="position:absolute;border:solid;border-color:red;width:${Math.round(
@@ -80,26 +80,26 @@ async function start() {
         newDataQuery += `<div class="user"><img src="images/${addData.image}" style='max-width: 100px; max-height: 100px;' />${addData.name}</div>`;
       }
     });
-    
+
     document.getElementById("container-image").innerHTML = contentImage;
     document.getElementById("container-data").innerHTML = newDataQuery;
   });
-  
+
 }
 
 function usersApi() {
-  const api = axios.get(_URL+"api/perangkat/get_by_desa/"+__desa_id+"/1");
+  const api = axios.get(_URL + "api/perangkat/get_by_desa/" + __desa_id + "/1");
   return api;
 }
 
 async function loadLableImages() {
-  
+
   const response = await usersApi();
   const data = response.data;
   return Promise.all(
     data.map(async (items) => {
       let description = [];
-      const img = await faceapi.fetchImage(_URL+`images/modules/perangkat_desa/${items.id}/${items.foto}`);
+      const img = await faceapi.fetchImage(_URL + `images/modules/perangkat_desa/${items.id}/${items.foto}`);
       const detection = await faceapi
         .detectSingleFace(img)
         .withFaceLandmarks()
@@ -113,7 +113,7 @@ async function loadLableImages() {
 }
 
 function direction_resize(width, height) {
-  
+
   const variable = width > height ? width : height;
 
   const to = 250;

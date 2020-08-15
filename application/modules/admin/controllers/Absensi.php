@@ -330,7 +330,7 @@ class Absensi extends CI_Controller
 			$tgl = $this->absensi_model->tgl($year.'-'.$month.'-01');
 		}
 		$output[] = [
-			'tgl','hari','status','jam_berangkat','jam_pulang','valid'
+			'tgl','nama','hari','status','jam_berangkat','jam_pulang','valid'
 		];
 		$message_status = $this->absensi_model->status();
 		$message_validation = $this->absensi_model->valid();
@@ -343,6 +343,7 @@ class Absensi extends CI_Controller
 					$output[] =
 					[
 						'tgl' => $tmp_data[$value['date']]['tgl'],
+						'nama' => $data['perangkat']['nama'],
 						'day_name' => $value['name'],
 						'status' => $message_status[$tmp_data[$value['date']]['status']],
 						'jam_berangkat' => $tmp_data[$value['date']]['jam_berangkat'],
@@ -354,6 +355,7 @@ class Absensi extends CI_Controller
 					$output[] =
 					[
 						'tgl' => $value['date'],
+						'nama' => $data['perangkat']['nama'],
 						'day_name' => $value['name'],
 						'status' => $message_status[0],
 						'jam_berangkat' => 'kosong',
