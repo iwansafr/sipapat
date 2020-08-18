@@ -78,7 +78,6 @@ function terlambat() {
 	// btn_upload.classList.remove("d-none");
 }
 $(document).ready(function () {
-	alert('ok');
 
 	function getLocation() {
 		if (navigator.geolocation) {
