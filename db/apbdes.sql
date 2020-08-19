@@ -16,7 +16,7 @@ CREATE TABLE `apbdes` (
   `tahun` year NOT NULL,
   `infografi` varchar(255) NOT NULL,
   `nominal` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 ALTER TABLE `apbdes`
