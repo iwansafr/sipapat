@@ -623,7 +623,7 @@ class Dilan extends CI_Controller{
 				// $pdf->Line(61,$line_len,24,$line_len);
 				if(!empty($config['show_camat']))
 				{
-					$pdf->Cell(60,5,'................................',0,0,'C');
+					// $pdf->Cell(60,5,'................................',0,0,'C');
 				}else{
 					$pdf->Cell(60,5,'',0,0,'C');
 				}
