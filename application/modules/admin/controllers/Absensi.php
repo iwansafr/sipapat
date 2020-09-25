@@ -317,7 +317,7 @@ class Absensi extends CI_Controller
 				}else{
 					$tmp_data[$index]['valid'] = $value['valid'];
 				}
-				if($value['status'] == 1)
+				if($value['status'] == 1 || $value['status'] == 4)
 				{
 					$tmp_data[$index]['jam_berangkat'] = substr($value['created'],11,16);
 					$tmp_data[$index]['tgl'] = substr($value['created'],0,10);
