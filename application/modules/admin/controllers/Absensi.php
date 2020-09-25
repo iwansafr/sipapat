@@ -349,21 +349,22 @@ class Absensi extends CI_Controller
 			foreach ($tgl as $key => $value) 
 			{
 				$is_libur = (array_key_exists($value['date'], $liburs)) ? $liburs[$value['date']] : 'kosong';
-				$pesan_status = $is_libur == 'kosong' ? $message_status[0] : '<span class="btn-sm btn-info">'.$liburs[$value['date']].'</span>';
 				if(!empty($tmp_data[$value['date']]))
 				{
+					$pesan_status = $tmp_data[$value['date']]['jam_pulang'] != 'Kosong' ? $message_status[1] : '<span class="btn-sm btn-warning">Bolos</span>';
 					$output[] =
 					[
 						'tgl' => $tmp_data[$value['date']]['tgl'],
 						'nama' => $data['perangkat']['nama'],
 						'day_name' => $value['name'],
-						'status' => $message_status[$tmp_data[$value['date']]['status']],
+						'status' => $pesan_status,
 						'jam_berangkat' => $tmp_data[$value['date']]['jam_berangkat'],
 						'jam_pulang' => $tmp_data[$value['date']]['jam_pulang'],
 						// 'date_num' => $value['num'],
 						'valid' => $message_validation[$tmp_data[$value['date']]['valid']]
 					];
 				}else{
+					$pesan_status = $is_libur == 'kosong' ? $message_status[0] : '<span class="btn-sm btn-info">'.$liburs[$value['date']].'</span>';
 					$output[] =
 					[
 						'tgl' => $value['date'],
