@@ -351,7 +351,7 @@ class Absensi extends CI_Controller
 				$is_libur = (array_key_exists($value['date'], $liburs)) ? $liburs[$value['date']] : 'kosong';
 				if(!empty($tmp_data[$value['date']]))
 				{
-					$pesan_status = $tmp_data[$value['date']]['jam_pulang'] != 'Kosong' ? $message_status[1] : '<span class="btn-sm btn-warning">Bolos</span>';
+					$pesan_status = $tmp_data[$value['date']]['jam_pulang'] != 'Kosong' ? $message_status[$tmp_data[$value['date']]['status']] : '<span class="btn-sm btn-warning">Bolos</span>';
 					$output[] =
 					[
 						'tgl' => $tmp_data[$value['date']]['tgl'],
