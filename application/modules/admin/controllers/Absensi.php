@@ -295,6 +295,12 @@ class Absensi extends CI_Controller
 			$data['data'] = $this->db->get_where('absensi', ['perangkat_desa_id'=>$id,'MONTH(created)'=> $month,'YEAR(created)'=>$year])->result_array();
 		}
 		$tmp_data = [];
+		$libur_month = $this->db->query('SELECT * FROM absensi_libur WHERE MONTH(date) = ? ORDER BY id DESC',$month)->result_array();
+		$liburs = [];
+		foreach ($libur_month as $key => $value) 
+		{
+			$liburs[$value['date']] = $value['title'];
+		}
 		if(!empty($data['data']))
 		{
 			foreach ($data['data'] as $key => $value) 
@@ -325,19 +331,25 @@ class Absensi extends CI_Controller
 					$tmp_data[$index]['jam_berangkat'] = 'Kosong';
 					$tmp_data[$index]['jam_pulang'] = 'Kosong';
 				}
-				$tmp_data[$index]['status'] = $value['status'];
+				$tmp_data[$index]['status'] = ($value['status'] == 0 || $value['status'] == 1 || $value['status'] == 4) ? 0 : 1;
 			}
 			$tgl = $this->absensi_model->tgl($year.'-'.$month.'-01');
 		}
 		$output[] = [
 			'tgl','nama','hari','status','jam_berangkat','jam_pulang','valid'
 		];
-		$message_status = $this->absensi_model->status();
+		$message_status = 
+			[
+				'<span class="btn-sm btn-danger">Absen</span>',
+				'<span class="btn-sm btn-success">Berangkat</span>'
+			];
 		$message_validation = $this->absensi_model->valid();
 		if(!empty($tgl))
 		{
 			foreach ($tgl as $key => $value) 
 			{
+				$is_libur = (array_key_exists($value['date'], $liburs)) ? $liburs[$value['date']] : 'kosong';
+				$pesan_status = $is_libur == 'kosong' ? $message_status[0] : '<span class="btn-sm btn-info">'.$liburs[$value['date']].'</span>';
 				if(!empty($tmp_data[$value['date']]))
 				{
 					$output[] =
@@ -357,15 +369,16 @@ class Absensi extends CI_Controller
 						'tgl' => $value['date'],
 						'nama' => $data['perangkat']['nama'],
 						'day_name' => $value['name'],
-						'status' => $message_status[0],
-						'jam_berangkat' => 'kosong',
-						'jam_pulang' => 'kosong',
+						'status' => $pesan_status,
+						'jam_berangkat' => $is_libur,
+						'jam_pulang' => $is_libur,
 						// 'date_num' => $value['num'],
 						'valid' => $message_validation[0]
 					];
 				}
 			}
 		}
+		// pr($output);die();
 		$this->load->view('index',['id'=>$id,'data'=>$output,'bulan'=>$this->absensi_model->bulan(),'month'=>$month,'year'=>$year]);
 	}
 
