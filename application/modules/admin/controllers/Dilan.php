@@ -164,7 +164,7 @@ class Dilan extends CI_Controller
 					echo output_json(['status' => 0]);
 				}
 			}
-			// echo output_json(array('status'=>1,'data'=>$data));
+			echo output_json(array('status'=>1,'data'=>$data));
 		}
 	}
 
