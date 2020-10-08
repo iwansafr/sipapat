@@ -157,13 +157,14 @@ class Dilan extends CI_Controller
 				// }
 				$i++;
 			}
+			$output = [];
 			if (!empty($data)) {
 				foreach ($data as $key => $value) 
 				{
 					if($this->db->insert('penduduk',$value)){
-						echo output_json(['status' => 1, 'value'=>$value]);
+						$output[] = ['status' => 1, 'value'=>$value]);
 					}else{
-						echo output_json(['status' => 0, 'value'=>$value]);
+						$output[] = ['status' => 0, 'value'=>$value]);
 					}
 				}
 				// if ($output = $this->db->insert_batch('penduduk', $data)) {
@@ -172,6 +173,7 @@ class Dilan extends CI_Controller
 				// 	// echo output_json(['status' => 0]);
 				// }
 			}
+			echo output_json($output);
 			// echo output_json(array('status'=>0,'data'=>$output,'query'=>$this->db->last_query()));
 		}
 	}
