@@ -24,6 +24,7 @@ $(document).ready(function(){
           var id = setInterval(frame,100);
           $('#dilan_success_load').removeClass('hidden');
           upload(re.data);
+          console.log(re.data);
           function frame(){
             if(width>=100){
               clearInterval(id);
