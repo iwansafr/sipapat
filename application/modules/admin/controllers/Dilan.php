@@ -161,9 +161,9 @@ class Dilan extends CI_Controller
 				foreach ($data as $key => $value) 
 				{
 					if($this->db->insert('penduduk',$value)){
-						echo output_json(['status' => 1]);
+						echo output_json(['status' => 1, 'value'=>$value]);
 					}else{
-						echo output_json(['status' => 0]);
+						echo output_json(['status' => 0, 'value'=>$value]);
 					}
 				}
 				// if ($output = $this->db->insert_batch('penduduk', $data)) {
