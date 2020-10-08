@@ -17,7 +17,7 @@ $(document).ready(function(){
       processData: false,
       contentType: false,
       success:function(re){
-        consoel.log(re);
+        console.log(re);
         if(re.status == 'success'){
           var elem = document.getElementById("dilan_pro");
           var width = 1;
