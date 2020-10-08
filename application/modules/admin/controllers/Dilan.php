@@ -158,13 +158,14 @@ class Dilan extends CI_Controller
 				$i++;
 			}
 			if (!empty($data)) {
-				if ($output = $this->db->insert_batch('penduduk', $data)) {
+				// if ($output = $this->db->insert_batch('penduduk', $data)) {
+				if ($output = $this->db->insert('penduduk', $data)) {
 					echo output_json(['status' => 1]);
 				} else {
-					// echo output_json(['status' => 0]);
+					echo output_json(['status' => 0]);
 				}
 			}
-			echo output_json(array('status'=>0,'data'=>$output,'query'=>$this->db->last_query()));
+			// echo output_json(array('status'=>0,'data'=>$output,'query'=>$this->db->last_query()));
 		}
 	}
 
