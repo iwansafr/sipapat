@@ -47,7 +47,7 @@ class Dilan extends CI_Controller
 			output_json($data);
 		} else {
 			$data = ['status' => 'error'];
-			outpur_json($data);
+			output_json($data);
 		}
 	}
 
@@ -859,5 +859,71 @@ class Dilan extends CI_Controller
 			$data['type'] = '';
 		}
 		$this->load->view('dilan/list', $data);
+	}
+
+
+
+	public function upload_penduduk()
+	{
+		$desa = [];
+		if(is_root()){
+			$sipapat_config = $this->esg->get_esg('sipapat_config');
+			if(!empty($sipapat_config['regency_id']))
+			{
+				$this->db->select('id,nama,kecamatan');
+				$desa = $this->db->get_where('desa',['regency_id'=>$sipapat_config['regency_id']])->result_array();
+			}
+		}
+		$this->esg->add_js(base_url('assets/dilan/upload.js?'.time()));
+		$this->load->view('index',['desa'=>$desa]);
+	}
+
+	public function upload_process()
+	{
+		$reader = PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
+		$reader->setReadDataOnly(TRUE);
+		$spreadsheet = $reader->load($_FILES['file']['tmp_name']);
+		$worksheet = $spreadsheet->getActiveSheet();
+		$data = array();
+		$title = array();
+		$i = 0;
+		$desa_id = $_POST['desa_id'];
+		$nik = [];
+		foreach ($worksheet->getRowIterator() as $row) 
+		{
+			$cellIterator = $row->getCellIterator();
+			$cellIterator->setIterateOnlyExistingCells(FALSE);
+			$j = 1;
+			$title[0] = 'desa_id';
+			foreach ($cellIterator as $cell) 
+			{
+				$cell_value = $cell->getValue();
+				if ($i == 0) {
+					if($cell_value != ''){
+						$title[] = $cell_value;
+					}
+				} else {
+					if(!empty($title[$j])){
+						if(strtolower($title[$j]) == 'nik'){
+							$nik[] = $cell_value;
+						}
+						// $data[$i]['desa_id'] = $desa_id;
+						// $data[$i][$title[$j]] = $cell_value;
+						$j++;
+					}
+				}
+
+			}
+			$i++;
+			if($i % 1000 == 0){
+				$this->db->select('nik');
+				$this->db->where_in('nik',$nik);
+				// $this->db->limit(25);
+				$check_exist[] = $this->db->get('penduduk')->result_array();
+				$nik = [];
+			}
+		}
+		echo json_encode(['check_exist'=>$check_exist]);
+		// echo json_encode(['data'=>$_POST,'file'=>$_FILES]);
 	}
 }
