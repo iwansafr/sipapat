@@ -101,7 +101,7 @@ class Dilan_model extends CI_Model
 
 	public function kelamin()
 	{
-		return ['1'=>'Laki-laki', '2'=>'Perempuan'];
+		return ['0'=>'Tidak Diketahui','1'=>'Laki-laki', '2'=>'Perempuan'];
 	}
 
 	public function golongan_darah()

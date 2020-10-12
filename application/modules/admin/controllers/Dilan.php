@@ -878,52 +878,192 @@ class Dilan extends CI_Controller
 		$this->load->view('index',['desa'=>$desa]);
 	}
 
+	private function special_col($data, $cell_value)
+	{
+		if(is_numeric($cell_value))
+		{
+			return $cell_value;
+		}else{
+			foreach ($data as $key => $value) 
+			{
+				if($value == $cell_value)
+				{
+					$cell_value = $key;
+					break;
+				}else{
+					$cell_value = 0;
+				}
+			}
+			return $cell_value;
+		}
+	}
+
 	public function upload_process()
 	{
-		$reader = PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
-		$reader->setReadDataOnly(TRUE);
-		$spreadsheet = $reader->load($_FILES['file']['tmp_name']);
-		$worksheet = $spreadsheet->getActiveSheet();
-		$data = array();
-		$title = array();
-		$i = 0;
-		$desa_id = $_POST['desa_id'];
-		$nik = [];
-		foreach ($worksheet->getRowIterator() as $row) 
+		if(!empty($_FILES['file']['tmp_name']))
 		{
-			$cellIterator = $row->getCellIterator();
-			$cellIterator->setIterateOnlyExistingCells(FALSE);
-			$j = 1;
-			$title[0] = 'desa_id';
-			foreach ($cellIterator as $cell) 
+			$reader = PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
+			$reader->setReadDataOnly(TRUE);
+			$spreadsheet = $reader->load($_FILES['file']['tmp_name']);
+			$worksheet = $spreadsheet->getActiveSheet();
+			$data = array();
+			$title = array();
+			$i = 0;
+			$desa_id = $_POST['desa_id'];
+			// $desa_id = -1;
+			$nik = [];
+
+			$gdr = $this->dilan_model->golongan_darah();
+			$kelamin = $this->dilan_model->kelamin();
+			$agama = $this->dilan_model->agama();
+			$status = $this->dilan_model->status();
+			$shdk = $this->dilan_model->shdk();
+			$pnydng_cct = $this->dilan_model->cacat();
+			$pddk_akhir = $this->dilan_model->pendidikan();
+			$pekerjaan = $this->dilan_model->pekerjaan();
+
+			$all_nik = [];
+
+			foreach ($worksheet->getRowIterator() as $row) 
 			{
-				$cell_value = $cell->getValue();
-				if ($i == 0) {
-					if($cell_value != ''){
-						$title[] = $cell_value;
-					}
-				} else {
-					if(!empty($title[$j])){
-						if(strtolower($title[$j]) == 'nik'){
-							$nik[] = $cell_value;
+				$cellIterator = $row->getCellIterator();
+				$cellIterator->setIterateOnlyExistingCells(FALSE);
+				$j = 1;
+				$title[0] = 'desa_id';
+				foreach ($cellIterator as $cell) 
+				{
+					$cell_value = $cell->getValue();
+					if ($i == 0) {
+						if($cell_value != ''){
+							$title[] = strtolower($cell_value);
 						}
-						// $data[$i]['desa_id'] = $desa_id;
-						// $data[$i][$title[$j]] = $cell_value;
-						$j++;
+					} else {
+						if(!empty($title[$j])){
+							if(strtolower($title[$j]) == 'nik'){
+								if(empty($cell_value)){
+									break;
+								}
+								if(in_array($cell_value, $all_nik)){
+									break;
+								}
+								$all_nik[] = $cell_value;
+								$nik[] = $cell_value;
+							}
+							if($title[$j] == 'jk')
+							{
+								$cell_value = $this->special_col($kelamin,$cell_value);
+							}
+							if($title[$j] == 'gdr')
+							{
+								$cell_value = $this->special_col($gdr,$cell_value);
+								if($cell_value==0){
+									$cell_value = 13;
+								}
+							}
+							if($title[$j] == 'agama')
+							{
+								$cell_value = $this->special_col($agama,$cell_value);
+								if($cell_value==0){
+									$cell_value = 8;
+								}
+							}
+							if($title[$j] == 'status')
+							{
+								$cell_value = $this->special_col($status,$cell_value);
+								if($cell_value==0){
+									$cell_value = 1;
+								}
+							}
+							if($title[$j] == 'shdk')
+							{
+								$cell_value = $this->special_col($shdk,$cell_value);
+								if($cell_value==0){
+									$cell_value = 11;
+								}
+							}
+							if($title[$j] == 'pnydng_cct')
+							{
+								$cell_value = $this->special_col($pnydng_cct,$cell_value);
+							}
+							if($title[$j] == 'pddk_akhir')
+							{
+								$cell_value = $this->special_col($pddk_akhir,$cell_value);
+								if($cell_value==0){
+									$cell_value = 1;
+								}
+							}
+							if($title[$j] == 'pekerjaan')
+							{
+								$cell_value = $this->special_col($pekerjaan,$cell_value);
+								if($cell_value==0){
+									$cell_value = 89;
+								}
+							}
+							$data[$i]['desa_id'] = $desa_id;
+							$data[$i][$title[$j]] = $cell_value;
+							$j++;
+						}
+					}
+
+				}
+				$i++;
+				if($i % 1000 == 0){
+					$this->db->select('nik');
+					$this->db->where_in('nik',$nik);
+					// $this->db->limit(25);
+					$check_exist[] = $this->db->get('penduduk')->result_array();
+					$nik = [];
+				}
+			}
+			$exist_output = [];
+			if(!empty($check_exist)){
+				foreach ($check_exist as $key => $value) 
+				{
+					foreach ($value as $item) 
+					{
+						$exist_output[] = $item['nik'];
 					}
 				}
-
+				foreach ($exist_output as $key => $value) 
+				{
+					foreach ($data as $dkey => $dvalue) 
+					{
+						if($dvalue['nik'] == $value){
+							unset($data[$dkey]);
+						}
+					}
+				}
+				output_json(['status'=>'warning','msg'=>'Ada data penduduk yang sudah terdaftar','check_exist'=>$exist_output,'data'=>$data]);
+			}else{
+				output_json(['status'=>'success','data'=>$data]);
 			}
-			$i++;
-			if($i % 1000 == 0){
-				$this->db->select('nik');
-				$this->db->where_in('nik',$nik);
-				// $this->db->limit(25);
-				$check_exist[] = $this->db->get('penduduk')->result_array();
-				$nik = [];
-			}
+		}else{
+			output_json(['status'=>'danger','msg'=>'File tidak valid,silahkan upload file excel yang valid']);
 		}
-		echo json_encode(['check_exist'=>$check_exist]);
 		// echo json_encode(['data'=>$_POST,'file'=>$_FILES]);
+	}
+	public function insert_penduduk()
+	{
+		if(!empty($_POST['data']))
+		{
+			$data_tmp = $_POST['data'];
+			$data = [];
+			$dt = new DateTime();
+			foreach ($data_tmp as $key => $value)
+			{
+				$value['tgl_lhr'] = (is_string($value['tgl_lhr']) && !empty($value['tgl_lhr'])) ? date('Y-m-d',strtotime($value['tgl_lhr'])) : '0000-00-00';
+				$data[] = $value;
+			}
+			if($this->db->insert_batch('penduduk',$data)){
+				output_json(['status'=>'success','msg'=>'50 Data berhasil di upload']);
+			}else{
+				output_json(['status'=>'danger','msg'=>'Data gagal di upload']);
+			}
+			// output_json(['data'=>$data]);
+			// $this->db->insert('penduduk',$first);
+			// output_json(['data'=>$data,'query'=>$this->db->last_query()]);
+		}else{
+			output_json(['data kosong']);
+		}
 	}
 }

@@ -23,7 +23,19 @@
 			<button type="submit" class="btn btn-sm btn-success">Upload</button>
 		</div>
 	</form>
-	<div id="upload_loading">
+</div>
+<div class="panel">
+	<div class="panel-body">
+		<div id="upload_loading">
 		
+		</div>
+		<div id="data_duplicate">
+			
+		</div>
+		<div class="progress progress-sm active hidden" id="load_bar">
+	    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+	      <span class="sr-only">20% Complete</span>
+	    </div>
+	  </div>
 	</div>
 </div>
