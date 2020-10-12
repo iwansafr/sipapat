@@ -89,7 +89,8 @@ $(document).ready(function(){
 			type: 'post',
 			data: {data:data_part},
 			success: function(re){
-				console.log(re);
+				var msg = `<div class="alert alert-${re.status}">${re.msg}</div>`
+	  		$('#upload_loading').html(msg);
 			}
 		});
   }

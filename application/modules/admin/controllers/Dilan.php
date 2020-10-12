@@ -1059,9 +1059,6 @@ class Dilan extends CI_Controller
 			}else{
 				output_json(['status'=>'danger','msg'=>'Data gagal di upload']);
 			}
-			// output_json(['data'=>$data]);
-			// $this->db->insert('penduduk',$first);
-			// output_json(['data'=>$data,'query'=>$this->db->last_query()]);
 		}else{
 			output_json(['data kosong']);
 		}
