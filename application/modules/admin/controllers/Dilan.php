@@ -1035,7 +1035,7 @@ class Dilan extends CI_Controller
 				}
 				output_json(['status'=>'warning','msg'=>'Ada data penduduk yang sudah terdaftar','check_exist'=>$exist_output,'data'=>$data]);
 			}else{
-				output_json(['status'=>'success','data'=>$data]);
+				output_json(['status'=>'success','msg'=>'Tidak Ada data duplikat','data'=>$data]);
 			}
 		}else{
 			output_json(['status'=>'danger','msg'=>'File tidak valid,silahkan upload file excel yang valid']);

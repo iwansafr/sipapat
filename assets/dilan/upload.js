@@ -43,7 +43,12 @@ $(document).ready(function(){
       			$('#data_duplicate').html(data_duplicate);
       			data = re.data;
       			clearInterval(id);
-
+	        }else if(re.status == 'success'){
+	        	var msg = `<div class="alert alert-${re.status}">${re.msg}</div> apakah anda ingin melanjutkan upload data penduduk tanpa penduduk tsb ? <br><button class="btn btn-sm btn-success" id="force_upload">Lanjutkan</button><br>`;
+	        	$('#upload_loading').html(msg);
+      			$('#load_bar').addClass('hidden');
+      			data = re.data;
+      			clearInterval(id);
 	        }
 	      }
 	    });
@@ -90,7 +95,7 @@ $(document).ready(function(){
 			data: {data:data_part},
 			success: function(re){
 				var msg = `<div class="alert alert-${re.status}">${re.msg}</div>`
-	  		$('#upload_loading').html(msg);
+	  		$('#upload_loading').append(msg);
 			}
 		});
   }
