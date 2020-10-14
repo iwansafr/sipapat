@@ -28,6 +28,16 @@ class Dilan extends CI_Controller
 		$this->load->view('index');
 	}
 
+	public function clear_penduduk($id=0)
+	{
+		$message = ['status'=>'danger','msg'=>'Data Penduduk gagal dihapus'];
+		if($this->db->delete('penduduk',['desa_id'=>$id]))
+		{
+			$message = ['status'=>'success','msg'=>'Data Penduduk berhasil dihapus'];
+		}
+		$this->load->view('index',$message);
+	}
+
 	public function detail_desa()
 	{
 		$desa_id = $this->sipapat_model->get_desa_id();

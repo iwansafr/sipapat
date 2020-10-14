@@ -106,6 +106,9 @@ if(!empty($desa_id) || $is_desa)
 	<?php if (empty($type)): ?>
 		<a target="_blank" href="<?php echo base_url('admin/dilan/download_excel/'.$excel_get) ?>" class="btn btn-sm btn-success"><i class="fa fa-file-excel-o"></i> Download</a>
 		<a href="<?php echo base_url('admin/dilan/detail_desa/') ?>" class="btn btn-sm btn-success"><i class="fa fa-chart-bar"></i> Statistik</a>
+		<?php if (is_root() && !empty($desa_id)): ?>
+			<a href="<?php echo base_url('admin/dilan/clear_penduduk/'.$desa_id) ?>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus penduduk</a>
+		<?php endif ?>
 		<div class="col-md-4 pull-right">
 			<form action="<?php echo base_url('admin/dilan/filter_by/') ?>" class="pull-right" method="get">
 				<div class="form-group form-inline">
