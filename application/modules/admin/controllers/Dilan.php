@@ -981,7 +981,7 @@ class Dilan extends CI_Controller
 									$cell_value = 1;
 								}
 							}
-							if($title[$j] == 'shdk')
+							if($title[$j] == 'shdk' || $title[$j] == 'shdrt')
 							{
 								$cell_value = $this->special_col($shdk,$cell_value);
 								if($cell_value==0){
