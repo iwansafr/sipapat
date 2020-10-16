@@ -82,7 +82,7 @@ $(document).ready(function(){
     data_send[k] = data_part;
     for(j in data_send){
     	// console.log(data_send[j]);
-    	insert_penduduk(_URL, data_send[j]);
+    	setTimeout(insert_penduduk(_URL, data_send[j]),1000);
     }
     // console.log(data_send);
     // console.log('last => '+data_part);
