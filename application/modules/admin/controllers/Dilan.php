@@ -898,13 +898,10 @@ class Dilan extends CI_Controller
 			{
 				if(strtolower($value) == strtolower($cell_value))
 				{
-					$cell_value = $key;
-					break;
-				}else{
-					$cell_value = 0;
+					return $key;
 				}
 			}
-			return $cell_value;
+			return 0;
 		}
 	}
 

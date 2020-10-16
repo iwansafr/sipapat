@@ -42,6 +42,7 @@ $(document).ready(function(){
       			data_duplicate += '</table>';
       			$('#data_duplicate').html(data_duplicate);
       			data = re.data;
+            console.log(data);
       			clearInterval(id);
 	        }else if(re.status == 'success'){
 	        	var msg = `<div class="alert alert-${re.status}">${re.msg}</div> apakah anda ingin melanjutkan upload data penduduk tanpa penduduk tsb ? <br><button class="btn btn-sm btn-success" id="force_upload">Lanjutkan</button><br>`;
