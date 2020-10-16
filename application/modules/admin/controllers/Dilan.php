@@ -896,7 +896,7 @@ class Dilan extends CI_Controller
 		}else{
 			foreach ($data as $key => $value) 
 			{
-				if($value == $cell_value)
+				if(strtolower($value) == strtolower($cell_value))
 				{
 					$cell_value = $key;
 					break;
