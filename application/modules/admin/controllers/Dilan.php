@@ -947,7 +947,7 @@ class Dilan extends CI_Controller
 					} else {
 						if(!empty($title[$j])){
 							if(strtolower($title[$j]) == 'nik'){
-								if(empty($cell_value)){
+								if(empty(intval($cell_value))){
 									break;
 								}
 								if(in_array($cell_value, $all_nik)){
