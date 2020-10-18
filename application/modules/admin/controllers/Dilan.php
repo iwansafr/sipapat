@@ -947,10 +947,15 @@ class Dilan extends CI_Controller
 					} else {
 						if(!empty($title[$j])){
 							if(strtolower($title[$j]) == 'nik'){
+								$cell_value = intval($cell_value);
+								// $cell_value = str_replace(' ', '', $cell_value);
 								if(empty(intval($cell_value))){
 									break;
 								}
 								if(in_array($cell_value, $all_nik)){
+									break;
+								}
+								if(strlen($cell_value) < 16){
 									break;
 								}
 								$all_nik[] = $cell_value;
@@ -1006,6 +1011,7 @@ class Dilan extends CI_Controller
 									$cell_value = 89;
 								}
 							}
+
 							$data[$i]['desa_id'] = $desa_id;
 							$data[$i][$title[$j]] = $cell_value;
 							$j++;
@@ -1019,11 +1025,23 @@ class Dilan extends CI_Controller
 					$this->db->where_in('nik',$nik);
 					// $this->db->limit(25);
 					$check_exist[] = $this->db->get('penduduk')->result_array();
+					// $query_exist[] = $this->db->last_query();
 					$nik = [];
 				}
 			}
+			if(!empty($nik))
+			{
+				$this->db->select('nik');
+				$this->db->where_in('nik',$nik);
+				// $this->db->limit(25);
+				$check_exist[] = $this->db->get('penduduk')->result_array();
+				// $query_exist[] = $this->db->last_query();
+				$nik = [];
+			}
 			$exist_output = [];
 			if(!empty($check_exist)){
+				$data_tmp = $data;
+				$check_data = [];
 				foreach ($check_exist as $key => $value) 
 				{
 					foreach ($value as $item) 
@@ -1031,16 +1049,16 @@ class Dilan extends CI_Controller
 						$exist_output[] = $item['nik'];
 					}
 				}
-				foreach ($exist_output as $key => $value) 
+				foreach ($data_tmp as $dkey => $dvalue) 
 				{
-					foreach ($data as $dkey => $dvalue) 
+					foreach ($exist_output as $key => $value) 
 					{
 						if($dvalue['nik'] == $value){
 							unset($data[$dkey]);
 						}
 					}
 				}
-				output_json(['status'=>'warning','msg'=>'Ada data penduduk yang sudah terdaftar','check_exist'=>$exist_output,'data'=>$data]);
+				output_json(['status'=>'warning','msg'=>'Ada data penduduk yang sudah terdaftar','check_exist'=>$exist_output,'data'=>$data,'debug'=>$debug]);
 			}else{
 				output_json(['status'=>'success','msg'=>'Tidak Ada data duplikat','data'=>$data]);
 			}
