@@ -82,11 +82,11 @@ $(document).ready(function(){
     data_send[k] = data_part;
     for(j in data_send){
     	// console.log(data_send[j]);
-    	setTimeout(insert_penduduk(_URL, data_send[j]),1000);
+    	insert_penduduk(_URL, data_send[j]);
     }
     // console.log(data_send);
     // console.log('last => '+data_part);
-    // insert_penduduk(_URL, data_part);
+    insert_penduduk(_URL, data_part);
     clearInterval(id);
   });
   function insert_penduduk(_URL, data_part){
