@@ -37,3 +37,5 @@ Options -Indexes
 
 # RewriteCond %{HTTP_HOST} ^www.absensi.pati.sipapat.id [NC]
 # RewriteRule ^(.*)$ http://absensi.pati.sipapat.id/$1 [L,R=301]
+
+php_value max_input_vars 3000

@@ -70,7 +70,7 @@ $(document).ready(function(){
     for(j in data){
     	data_part.push(data[j]);
     	i++;
-    	if(i==50){
+    	if(i==100){
     		data_send[k] = [];
     		data_send[k] = data_part;
     		// insert_penduduk(_URL, data_part);
