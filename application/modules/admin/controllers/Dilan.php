@@ -928,6 +928,7 @@ class Dilan extends CI_Controller
 			$pnydng_cct = $this->dilan_model->cacat();
 			$pddk_akhir = $this->dilan_model->pendidikan();
 			$pekerjaan = $this->dilan_model->pekerjaan();
+			$debug = [];
 
 			$all_nik = [];
 
@@ -1058,7 +1059,7 @@ class Dilan extends CI_Controller
 						}
 					}
 				}
-				output_json(['status'=>'warning','msg'=>'Ada data penduduk yang sudah terdaftar','check_exist'=>$exist_output,'data'=>$data,'debug'=>$debug]);
+				output_json(['status'=>'warning','msg'=>'Ada data penduduk yang sudah terdaftar','check_exist'=>$exist_output,'data'=>$data]);
 			}else{
 				output_json(['status'=>'success','msg'=>'Tidak Ada data duplikat','data'=>$data]);
 			}
