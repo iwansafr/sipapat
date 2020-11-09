@@ -56,5 +56,6 @@ if(is_desa() || is_root())
 }
 $form->setEditLink(base_url('admin/posyantekdes/edit?id='));
 $form->setUrl('admin/posyantekdes/clear_list');
+$form->setDataTable(true);
 
 $form->form();
