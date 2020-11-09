@@ -26,5 +26,6 @@ $form->setMoney('nominal');
 $form->setEdit(true);
 $form->setDelete(true);
 $form->setUrl('admin/apbdes/clear_list');
+$form->setDataTable(true);
 
 $form->form();
