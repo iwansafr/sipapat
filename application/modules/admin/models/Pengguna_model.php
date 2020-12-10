@@ -77,6 +77,7 @@ class Pengguna_model extends CI_Model
 								'18'=>strtoupper('perangkat desa lainnya (administrasi dan umum)'),
 								'20'=>strtoupper('staf administrasi dan umum'),
 								'9'=>strtoupper('kepala urusan keuangan'),
+								'21'=>strtoupper('kepala urusan perencanaan'),
 								'10'=>strtoupper('kepala seksi pemerintahan'),
 								'11'=>strtoupper('kepala seksi pelayanan'),
 								'12'=>strtoupper('kepala seksi kesejarhteraan'),
