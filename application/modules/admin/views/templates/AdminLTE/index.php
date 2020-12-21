@@ -32,8 +32,6 @@
     </section>
     <section class="content">
       <?php
-      // $content = $this->esg_model->esg_data['navigation']['string'];
-      // $content = $content == 'admin' ? 'home' : $content;
       $mod['name'] = $this->router->fetch_class();
       $mod['task'] = $this->router->fetch_method();
       $content  = $mod['name'].'/'.$mod['task'];
@@ -45,7 +43,8 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <div class="badge"><?php echo date('d/M/Y h:i A'); ?></div> <b>Version</b> 5.0.8
+      <!-- <div class="badge"><?php echo date('d/M/Y h:i A'); ?></div>  -->
+      <b>Version</b> 5.0.8
     </div>
     <strong>Copyright &copy; 2019-<?php echo date('Y'); ?> <a href="https://www.mandesa.co.id">mandesa</a>.</strong> All rights
     reserved.
