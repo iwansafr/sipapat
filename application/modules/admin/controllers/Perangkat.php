@@ -31,6 +31,30 @@ class Perangkat extends CI_Controller
 		$this->load->view('index',$data);
 	}
 
+	public function kepdes()
+	{
+		$rekap = [];
+		$rekap['SMA'] = $this->db->query('SELECT count(kecamatan) AS total, desa.kecamatan FROM desa INNER JOIN perangkat_desa ON(desa.id = perangkat_desa.desa_id) WHERE jabatan = 1 AND kelompok = 1 AND pendidikan_terakhir = 5 GROUP BY kecamatan')->result_array();
+		$rekap['D3'] = $this->db->query('SELECT count(kecamatan) AS total, desa.kecamatan FROM desa INNER JOIN perangkat_desa ON(desa.id = perangkat_desa.desa_id) WHERE jabatan = 1 AND kelompok = 1 AND pendidikan_terakhir = 1 GROUP BY kecamatan')->result_array();
+		$rekap['S1'] = $this->db->query('SELECT count(kecamatan) AS total, desa.kecamatan FROM desa INNER JOIN perangkat_desa ON(desa.id = perangkat_desa.desa_id) WHERE jabatan = 1 AND kelompok = 1 AND pendidikan_terakhir = 4 GROUP BY kecamatan')->result_array();
+		$rekap['S2'] = $this->db->query('SELECT count(kecamatan) AS total, desa.kecamatan FROM desa INNER JOIN perangkat_desa ON(desa.id = perangkat_desa.desa_id) WHERE jabatan = 1 AND kelompok = 1 AND pendidikan_terakhir = 7 GROUP BY kecamatan')->result_array();
+		$rekap['S3'] = $this->db->query('SELECT count(kecamatan) AS total, desa.kecamatan FROM desa INNER JOIN perangkat_desa ON(desa.id = perangkat_desa.desa_id) WHERE jabatan = 1 AND kelompok = 1 AND pendidikan_terakhir = 8 GROUP BY kecamatan')->result_array();
+		$kecamatan = $this->db->query('SELECT kecamatan FROM desa group by kecamatan')->result_array();
+		$this->load->view('index',['rekap' => $rekap, 'kecamatan'=>$kecamatan]);
+	}
+
+	public function kepdes_list()
+	{
+		$rekap = [];
+		$rekap['SMA'] = $this->db->query('SELECT count(kecamatan) AS total, desa.kecamatan FROM desa INNER JOIN perangkat_desa ON(desa.id = perangkat_desa.desa_id) WHERE jabatan = 1 AND kelompok = 1 AND pendidikan_terakhir = 5 GROUP BY kecamatan')->result_array();
+		$rekap['D3'] = $this->db->query('SELECT count(kecamatan) AS total, desa.kecamatan FROM desa INNER JOIN perangkat_desa ON(desa.id = perangkat_desa.desa_id) WHERE jabatan = 1 AND kelompok = 1 AND pendidikan_terakhir = 1 GROUP BY kecamatan')->result_array();
+		$rekap['S1'] = $this->db->query('SELECT count(kecamatan) AS total, desa.kecamatan FROM desa INNER JOIN perangkat_desa ON(desa.id = perangkat_desa.desa_id) WHERE jabatan = 1 AND kelompok = 1 AND pendidikan_terakhir = 4 GROUP BY kecamatan')->result_array();
+		$rekap['S2'] = $this->db->query('SELECT count(kecamatan) AS total, desa.kecamatan FROM desa INNER JOIN perangkat_desa ON(desa.id = perangkat_desa.desa_id) WHERE jabatan = 1 AND kelompok = 1 AND pendidikan_terakhir = 7 GROUP BY kecamatan')->result_array();
+		$rekap['S3'] = $this->db->query('SELECT count(kecamatan) AS total, desa.kecamatan FROM desa INNER JOIN perangkat_desa ON(desa.id = perangkat_desa.desa_id) WHERE jabatan = 1 AND kelompok = 1 AND pendidikan_terakhir = 8 GROUP BY kecamatan')->result_array();
+		$kecamatan = $this->db->query('SELECT kecamatan FROM desa group by kecamatan')->result_array();
+		$this->load->view('perangkat/kepdes',['rekap' => $rekap, 'kecamatan'=>$kecamatan]);
+	}
+
 	public function old()
 	{
 		$data = [];
