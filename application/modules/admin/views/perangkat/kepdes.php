@@ -91,11 +91,11 @@
 <?php
 $form = new Zea();
 $form->init('roll');
-$form->search();
 $form->setTable('perangkat_desa');
+$form->search();
 $form->setNumbering(TRUE);
 $form->setWhere(' kelompok = 1 AND jabatan = 1');
-$form->group_by('desa_id');
+// $form->group_by('desa_id');
 
 $form->addInput('id','link');
 $form->setLabel('id','detail');
@@ -172,7 +172,7 @@ $form->setType('akhir_masa_jabatan','date');
 $form->setUrl('admin/perangkat/kepdes_list/');
 
 $form->form();
-if(is_root())
-{
-	// pr($form->getData()['query']);
-}
+// if(is_root())
+// {
+// 	// pr($form->getData()['query']);
+// }
