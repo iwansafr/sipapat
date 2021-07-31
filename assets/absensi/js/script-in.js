@@ -7,8 +7,8 @@ Promise.all([
   faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL),
 ]).then(start);
 async function start() {
-  console.log('ok');
   const labeledFaceDescriptors = await loadLableImages();
+  alert('ok');
   const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.5);
   imageUpload.addEventListener("change", async () => {
 

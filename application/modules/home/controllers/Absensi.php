@@ -232,7 +232,11 @@ class Absensi extends CI_Controller
 	{
 		$day = date('w')+1;
 		$custom_api = $this->esg->get_config(base_url().'_api')['url'];
-		$data['desa'] = json_decode(curl($custom_api.'api/desa/detail/'.$desa_id),1);
+		if(!empty($custom_api)){
+			$data['desa'] = json_decode(curl($custom_api.'api/desa/detail/'.$desa_id),1);
+		}else{
+			$data['desa'] = $this->db->get_where('desa',['id'=>$desa_id])->row_array();
+		}
 		$config_jam = [
 			'mulai_masuk' => '06:00',
 			'selesai_masuk' => '08:00',
