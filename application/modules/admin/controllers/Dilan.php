@@ -964,16 +964,16 @@ class Dilan extends CI_Controller
 							}
 							if($title[$j] == 'jk')
 							{
-								switch(strtoupper($cell_value))
+								if(preg_match('/L/',$cell_value))
 								{
-									case 'L':
 										$cell_value = 1;
-									case 'P':
+								}else if(preg_match('/P/', $cell_value))
+								{
 										$cell_value = 2;
-									default:
-										$cell_value = $cell_value;
+								}else{
+									$cell_value = 3;
 								}
-								$cell_value = $this->special_col($kelamin,$cell_value);
+								// $cell_value = $this->special_col($kelamin,$cell_value);
 							}
 							if($title[$j] == 'gdr')
 							{
