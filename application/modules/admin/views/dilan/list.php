@@ -65,7 +65,34 @@ if(!$is_desa)
 	$q = 'desa_id = '.$desa_id.' AND aktif = '.$aktif_num;
 	if(!empty($group))
 	{
-		$q .= ' AND '.$group.' = '.@intval($_GET[$group]);
+		if($group == 'umur')
+		{
+			$umur_group = intval($_GET[$group]);
+			$umur_sql = '';
+			switch ($umur_group) {
+				case '1':
+					$umur_sql = ' BETWEEN 0 AND 5';
+					break;
+				case '2':
+					$umur_sql = ' BETWEEN 6 AND 12';
+					break;
+				case '3':
+					$umur_sql = ' BETWEEN 13 AND 25';
+					break;
+				case '4':
+					$umur_sql = ' BETWEEN 26 AND 45';
+					break;
+				case '5':
+					$umur_sql = ' > 45';
+					break;
+				default:
+					$umur_sql = '';
+					break;
+			}
+			$q .= " AND DATEDIFF(CURRENT_DATE, STR_TO_DATE(tgl_lhr, '%Y-%m-%d'))/365 {$umur_sql}";
+		}else{
+			$q .= ' AND '.$group.' = '.@intval($_GET[$group]);
+		}
 	}
 	$form->setWhere($q);
 }
@@ -105,7 +132,7 @@ if(!empty($desa_id) || $is_desa)
 	?>
 	<?php if (empty($type)): ?>
 		<a target="_blank" href="<?php echo base_url('admin/dilan/download_excel/'.$excel_get) ?>" class="btn btn-sm btn-success"><i class="fa fa-file-excel-o"></i> Download</a>
-		<a href="<?php echo base_url('admin/dilan/detail_desa/') ?>" class="btn btn-sm btn-success"><i class="fa fa-chart-bar"></i> Statistik</a>
+		<a href="<?php echo base_url('admin/dilan/detail_desa/'.$desa_id) ?>" class="btn btn-sm btn-success"><i class="fa fa-chart-bar"></i> Statistik</a>
 		<?php if (is_root() && !empty($desa_id)): ?>
 			<a href="<?php echo base_url('admin/dilan/clear_penduduk/'.$desa_id) ?>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus penduduk</a>
 		<?php endif ?>

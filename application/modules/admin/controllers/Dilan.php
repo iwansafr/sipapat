@@ -38,9 +38,13 @@ class Dilan extends CI_Controller
 		$this->load->view('index',$message);
 	}
 
-	public function detail_desa()
+	public function detail_desa($desa_input_id = 0)
 	{
 		$desa_id = $this->sipapat_model->get_desa_id();
+		if(empty($desa_id))
+		{
+			$desa_id = $desa_input_id;
+		}
 		$penduduk = $this->dilan_model->total_penduduk($desa_id);
 
 		$data = ['penduduk' => $penduduk];
