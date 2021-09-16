@@ -913,14 +913,27 @@ class Dilan extends CI_Controller
 	{
 		if(!empty($_FILES['file']['tmp_name']))
 		{
-			$reader = PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
+			$name = $_FILES['file']['name'];
+			$extention = explode('.',$name);
+			$extention = end($extention);
+			if($extention == 'xls'){
+				$reader = PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xls');
+			}else if($extention == 'xlsx'){
+				$reader = PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
+			}
+			// $reader = PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
 			$reader->setReadDataOnly(TRUE);
 			$spreadsheet = $reader->load($_FILES['file']['tmp_name']);
 			$worksheet = $spreadsheet->getActiveSheet();
 			$data = array();
 			$title = array();
 			$i = 0;
-			$desa_id = $_POST['desa_id'];
+			if(!empty($_POST['desa_id']))
+			{
+				$desa_id = $_POST['desa_id'];
+			}else{
+				$desa_id = $_SESSION[base_url('_logged_in')]['pengguna']['desa_id'];
+			}
 			// $desa_id = -1;
 			$nik = [];
 
@@ -1049,7 +1062,7 @@ class Dilan extends CI_Controller
 				$this->db->where_in('nik',$nik);
 				// $this->db->limit(25);
 				$check_exist[] = $this->db->get('penduduk')->result_array();
-				// $query_exist[] = $this->db->last_query();
+				$query_exist[] = $this->db->last_query();
 				$nik = [];
 			}
 			$exist_output = [];
@@ -1073,6 +1086,7 @@ class Dilan extends CI_Controller
 					}
 				}
 				output_json(['status'=>'warning','msg'=>'Ada data penduduk yang sudah terdaftar','check_exist'=>$exist_output,'data'=>$data]);
+				// output_json(['status'=>'warning','msg'=>'Ada data penduduk yang sudah terdaftar','check_exist'=>$check_exist]);
 			}else{
 				output_json(['status'=>'success','msg'=>'Tidak Ada data duplikat','data'=>$data]);
 			}

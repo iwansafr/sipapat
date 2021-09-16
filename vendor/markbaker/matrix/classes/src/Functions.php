@@ -9,7 +9,9 @@ class Functions
      *
      * @param Matrix $matrix The matrix whose adjoint we wish to calculate
      * @return Matrix
-     **/
+     *
+     * @throws Exception
+     */
     private static function getAdjoint(Matrix $matrix)
     {
         return self::transpose(
@@ -41,7 +43,9 @@ class Functions
      *
      * @param Matrix $matrix The matrix whose cofactors we wish to calculate
      * @return Matrix
-     **/
+     *
+     * @throws Exception
+     */
     private static function getCofactors(Matrix $matrix)
     {
         $cofactors = self::getMinors($matrix);
@@ -65,8 +69,9 @@ class Functions
      *
      * @param Matrix $matrix The matrix whose cofactors we wish to calculate
      * @return Matrix
+     *
      * @throws Exception
-     **/
+     */
     public static function cofactors(Matrix $matrix)
     {
         if (!$matrix->isSquare()) {
@@ -76,6 +81,13 @@ class Functions
         return self::getCofactors($matrix);
     }
 
+    /**
+     * @param Matrix $matrix
+     * @param int $row
+     * @param int $column
+     * @return float
+     * @throws Exception
+     */
     private static function getDeterminantSegment(Matrix $matrix, $row, $column)
     {
         $tmpMatrix = $matrix->toArray();
@@ -95,24 +107,32 @@ class Functions
      *
      * @param Matrix $matrix The matrix whose determinant we wish to calculate
      * @return float
-     **/
+     *
+     * @throws Exception
+     */
     private static function getDeterminant(Matrix $matrix)
     {
         $dimensions = $matrix->rows;
-        if ($dimensions == 1) {
-            return $matrix->getValue(1, 1);
-        } elseif ($dimensions == 2) {
-            return $matrix->getValue(1, 1) * $matrix->getValue(2, 2) - $matrix->getValue(1, 2) * $matrix->getValue(2, 1);
-        }
-        
         $determinant = 0;
-        for ($i = 1; $i <= $dimensions; ++$i) {
-            $det = $matrix->getValue(1, $i) * self::getDeterminantSegment($matrix, 0, $i-1);
-            if (($i % 2) == 0) {
-                $determinant -= $det;
-            } else {
-                $determinant += $det;
-            }
+
+        switch ($dimensions) {
+            case 1:
+                $determinant = $matrix->getValue(1, 1);
+                break;
+            case 2:
+                $determinant = $matrix->getValue(1, 1) * $matrix->getValue(2, 2) -
+                    $matrix->getValue(1, 2) * $matrix->getValue(2, 1);
+                break;
+            default:
+                for ($i = 1; $i <= $dimensions; ++$i) {
+                    $det = $matrix->getValue(1, $i) * self::getDeterminantSegment($matrix, 0, $i - 1);
+                    if (($i % 2) == 0) {
+                        $determinant -= $det;
+                    } else {
+                        $determinant += $det;
+                    }
+                }
+                break;
         }
 
         return $determinant;
@@ -209,15 +229,15 @@ class Functions
      * @return Matrix
      * @throws Exception
      **/
-    public static function inverse(Matrix $matrix)
+    public static function inverse(Matrix $matrix, string $type = 'inverse')
     {
         if (!$matrix->isSquare()) {
-            throw new Exception('Inverse can only be calculated for a square matrix');
+            throw new Exception(ucfirst($type) . ' can only be calculated for a square matrix');
         }
 
         $determinant = self::getDeterminant($matrix);
         if ($determinant == 0.0) {
-            throw new Exception('Inverse can only be calculated for a matrix with a non-zero determinant');
+            throw new Div0Exception(ucfirst($type) . ' can only be calculated for a matrix with a non-zero determinant');
         }
 
         if ($matrix->rows == 1) {
@@ -233,7 +253,9 @@ class Functions
      *
      * @param Matrix $matrix The matrix whose minors we wish to calculate
      * @return array[]
-     **/
+     *
+     * @throws Exception
+     */
     protected static function getMinors(Matrix $matrix)
     {
         $minors = $matrix->toArray();
@@ -301,16 +323,13 @@ class Functions
      *
      * @param Matrix $matrix The matrix whose transpose we wish to calculate
      * @return Matrix
-     * @throws Exception
      **/
     public static function transpose(Matrix $matrix)
     {
+        $array = array_values(array_merge([null], $matrix->toArray()));
         $grid = call_user_func_array(
             'array_map',
-            array_merge(
-                [null],
-                $matrix->toArray()
-            )
+            $array
         );
 
         return new Matrix($grid);

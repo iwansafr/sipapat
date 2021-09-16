@@ -16,7 +16,7 @@
 			</div>
 			<div class="form-group">
 				<label for="data penduduk">data penduduk</label>
-				<input type="file" class="form-control" name="file">
+				<input type="file" class="form-control" name="file" accept=".xls,.xlsx">
 			</div>
 		</div>
 		<div class="panel-footer">
