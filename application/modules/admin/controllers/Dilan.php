@@ -978,8 +978,7 @@ class Dilan extends CI_Controller
 								}
 								$all_nik[] = $cell_value;
 								$nik[] = $cell_value;
-							}
-							if($title[$j] == 'jk')
+							}else if($title[$j] == 'jk')
 							{
 								if(preg_match('/L/',$cell_value))
 								{
@@ -991,54 +990,48 @@ class Dilan extends CI_Controller
 									$cell_value = 3;
 								}
 								// $cell_value = $this->special_col($kelamin,$cell_value);
-							}
-							if($title[$j] == 'gdr')
+							}else if($title[$j] == 'gdr')
 							{
 								$cell_value = $this->special_col($gdr,$cell_value);
 								if($cell_value==0){
 									$cell_value = 13;
 								}
-							}
-							if($title[$j] == 'agama')
+							}else if($title[$j] == 'agama')
 							{
 								$cell_value = $this->special_col($agama,$cell_value);
 								if($cell_value==0){
 									$cell_value = 8;
 								}
-							}
-							if($title[$j] == 'status')
+							}else if($title[$j] == 'status')
 							{
 								$cell_value = $this->special_col($status,$cell_value);
 								if($cell_value==0){
 									$cell_value = 1;
 								}
-							}
-							if(($title[$j] == 'shdk') || ($title[$j] == 'shdrt'))
+							}else	if(($title[$j] == 'shdk') || ($title[$j] == 'shdrt'))
 							{
 								$cell_value = $this->special_col($shdk,$cell_value);
 								if($cell_value==0){
 									$cell_value = 11;
 								}
-							}
-							if($title[$j] == 'pnydng_cct')
+							}else	if($title[$j] == 'pnydng_cct')
 							{
 								$cell_value = $this->special_col($pnydng_cct,$cell_value);
-							}
-							if($title[$j] == 'pddk_akhir')
+							}else	if($title[$j] == 'pddk_akhir')
 							{
 								$cell_value = $this->special_col($pddk_akhir,$cell_value);
 								if($cell_value==0){
 									$cell_value = 1;
 								}
-							}
-							if($title[$j] == 'pekerjaan')
+							}else	if($title[$j] == 'pekerjaan')
 							{
 								$cell_value = $this->special_col($pekerjaan,$cell_value);
 								if($cell_value==0){
 									$cell_value = 89;
 								}
+							}else if($title[$j] == 'tgl_lhr'){
+								$cell_value = (is_string($cell_value) && !empty($cell_value)) ? date('Y-m-d',strtotime($cell_value)) : '0000-00-00';
 							}
-
 							$data[$i]['desa_id'] = $desa_id;
 							$data[$i][$title[$j]] = $cell_value;
 							$j++;
@@ -1104,7 +1097,7 @@ class Dilan extends CI_Controller
 			$dt = new DateTime();
 			foreach ($data_tmp as $key => $value)
 			{
-				$value['tgl_lhr'] = (is_string($value['tgl_lhr']) && !empty($value['tgl_lhr'])) ? date('Y-m-d',strtotime($value['tgl_lhr'])) : '0000-00-00';
+				// $value['tgl_lhr'] = (is_string($value['tgl_lhr']) && !empty($value['tgl_lhr'])) ? date('Y-m-d',strtotime($value['tgl_lhr'])) : '0000-00-00';
 				$data[] = $value;
 			}
 			if($this->db->insert_batch('penduduk',$data)){
