@@ -74,7 +74,7 @@ if(!is_desa())
 {
 	$form->setHeading
 	(
-		'<a target="_blank" href="'.base_url('admin/potensi/excel/'.@$kategori_item).$desa_id_get.'" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i> EXCEL</a>'
+		'<a target="_blank" href="'.base_url('admin/potensi/excel/'.@str_replace(' ','_',$kategori_item)).$desa_id_get.'" class="btn btn-sm btn-default"><i class="fa fa-file-excel-o"></i> EXCEL</a>'
 	);
 	$form->setWhere($where);
 	$form->addInput('desa_id','dropdown');

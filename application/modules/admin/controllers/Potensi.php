@@ -105,7 +105,6 @@ class Potensi extends CI_Controller
 			ON (desa.id = potensi_desa.desa_id)
 			'.$where
 		)->result_array();
-
 		$spreadsheet = new Spreadsheet();
 
 		// Set document properties
