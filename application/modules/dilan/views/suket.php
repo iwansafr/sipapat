@@ -55,7 +55,7 @@ $icon =
 							$iconi = !empty($icon[$i]) ? $icon[$i] : 'fa-home';
 							?>
 						  <div class="card">
-						  	<a href="<?php echo base_url('dilan/surat_pengantar_form/'.$nik.'/'.$vvalue['id']) ?>">
+						  	<a href="<?php echo base_url('dilan/surat_pengantar_form/'.$nik.'/'.$vvalue['id']) ?>" style="color:white;">
 							    <div class="card-body" style="background: <?php echo $colori;?>;height: 200px;">
 							      <h5 style="font-size: 500%;"><i class="fa <?php echo $iconi;?>"></i></h5>
 							      <p class="card-text"><?php echo $vvalue['title'] ?></p>
