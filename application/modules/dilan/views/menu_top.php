@@ -1,8 +1,18 @@
 		
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
-
+<style type="text/css">
+	.navbar-header {
+    float: left;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+	}
+	.navbar-brand {float:none;}
+</style>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="<?php echo base_url('dilan/start') ?>">Dilan</a>
+	<div class="navbar-header">
+  	<a class="navbar-brand" href="<?php echo base_url('dilan/start') ?>">DILAN</a>		
+	</div>
   <?php if (!empty($user)): ?>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
