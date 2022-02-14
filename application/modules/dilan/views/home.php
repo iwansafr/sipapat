@@ -38,7 +38,7 @@ $title = empty($dilan_config['title']) ? 'SELAMAT DATANG DI SISTEM TERINTEGRASI 
 	<script>
 		var i = 0;
 		var txt = '<?php echo $title;?>';
-		var speed = 70;
+		var speed = 150;
 		// var txts = 'MULAI LAYANAN DIGITAL';
 		function typeWriter() {
 		  if (i < txt.length) {
