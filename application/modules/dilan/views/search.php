@@ -58,7 +58,7 @@ $dilan_config = $this->esg->get_config($paramname);
 	<script>
 		var i = 0;
 		var txt = 'SILAHKAN MASUKKAN NOMOR IDENTITAS KTP ANDA';
-		var speed = 70;
+		var speed = 150;
 		var txts = '';
 		function typeWriter() {
 		  if (i < txt.length) {
