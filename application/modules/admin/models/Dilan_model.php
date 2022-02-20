@@ -390,7 +390,20 @@ class Dilan_model extends CI_Model
 			$data = $this->db->get_where('dilan_surat',['id'=>$last_id])->row_array();
 			if(!empty($data))
 			{
-				$last_surat = $this->db->query('SELECT no_urut FROM dilan_surat WHERE desa_id = ? AND MONTH(created) = ? AND YEAR(created) = ? ORDER BY no_urut DESC',[$data['desa_id'],date('m'),date('Y')])->row_array();
+				$desa     = $this->sipapat_model->get_desa($data['desa_id']);
+				$user     = $this->session->userdata(base_url() . '_logged_in');
+				if (empty($user)) {
+					$user = $this->db->get_where('user_desa', ['desa_id' => $desa['id']])->row_array();
+					$user['id'] = $user['user_id'];
+				}
+				$config   = $this->dilan_model->get_config($desa['id'] . '_' . $user['id']);
+
+				if(empty($config['is_dilan']))
+				{
+					$last_surat = $this->db->query('SELECT no_urut FROM dilan_surat WHERE desa_id = ? AND YEAR(created) = ? ORDER BY no_urut DESC',[$data['desa_id'],date('Y')])->row_array();
+				}else{
+					$last_surat = $this->db->query('SELECT no_urut FROM dilan_surat WHERE desa_id = ? AND MONTH(created) = ? AND YEAR(created) = ? ORDER BY no_urut DESC',[$data['desa_id'],date('m'),date('Y')])->row_array();
+				}
 				if(!empty($last_surat))
 				{
 					$last_surat = @intval($last_surat['no_urut']);
@@ -407,13 +420,6 @@ class Dilan_model extends CI_Model
 				}else{
 					$text_no = '';
 				}
-				$desa     = $this->sipapat_model->get_desa($data['desa_id']);
-				$user     = $this->session->userdata(base_url() . '_logged_in');
-				if (empty($user)) {
-					$user = $this->db->get_where('user_desa', ['desa_id' => $desa['id']])->row_array();
-					$user['id'] = $user['user_id'];
-				}
-				$config   = $this->dilan_model->get_config($desa['id'] . '_' . $user['id']);
 
 				$DLN = !empty($config['is_dilan']) ? 'DLN/' : '';
 				$nomor = $DLN.$text_no.$no_urut.'/'.$data['desa_id'].'/'.date('d').'/'.date('Y');
