@@ -437,9 +437,11 @@ class Dilan extends CI_Controller
 					die();
 				}
 
+				$text_desa = !empty($config['is_petinggi']) ? 'PETINGGI ' : 'DESA ';
+
 				$teks1 = 'PEMERINTAH '.@$desa['kabupaten'];
 				$teks2 = 'KECAMATAN ' . @$desa['kecamatan'];
-				$teks3 = 'DESA ' . $desa['nama'];
+				$teks3 = $text_desa . $desa['nama'];
 				// $teks4 = 'Alamat Kantor Kepala Desa '.strtolower(@$desa['nama']).' '.substr(@$desa['alamat'],0,20).' Kec. '.strtolower(@$desa['kecamatan']).' kab. '.$desa['kabupaten'];
 				$teks4 = ': ' . substr(@$desa['alamat'], 0, 25);
 				$teks5 = ': ' . @$desa['telepon'];
