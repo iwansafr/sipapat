@@ -506,7 +506,15 @@ class Dilan extends CI_Controller
 				$pdf->Line(70, 70, 150, 70);
 				$pdf->Ln(1);
 
-				$nomor_surat = !empty($config['is_dilan']) ? $surat['nomor'] : substr(str_replace('DLN/','450/',$surat['nomor']),0,8);
+				if(!empty($config['is_dilan']))
+				{
+					$nomor_surat = $surat['nomor'];
+				}else{
+					if(preg_match('~DLN~', $surat['nomor'])){
+						$nomor_surat = str_replace('DLN/','450/',$surat['nomor']);
+					}
+					$nomor_surat = substr($nomor_surat,0,8);
+				}
 
 				$pdf->Cell(200, 5, 'Nomor: ' . $nomor_surat, 0, 1, 'C');
 				$pdf->Ln(10);
