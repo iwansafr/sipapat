@@ -598,7 +598,8 @@ class Dilan extends CI_Controller
 						$pdf->Image(image_module('desa', $desa['id'] . '/' . $desa['ttd_img']), 135, $height_stem, 55, 40);
 					}
 				}
-				$pdf->Cell(60, 5, 'Kepala Desa ' . ucfirst(strtolower($desa['nama'])), 0, 0, 'C');
+				$text_petinggi = !empty($config['is_petinggi']) ? 'Petinggi ' : 'Kepala Desa ';
+				$pdf->Cell(60, 5, $text_petinggi . ucfirst(strtolower($desa['nama'])), 0, 0, 'C');
 				$pdf->Ln(30);
 
 				$pdf->Cell(65, 5, $penduduk['nama'], 0, 0, 'C');
