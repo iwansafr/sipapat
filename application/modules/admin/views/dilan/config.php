@@ -33,6 +33,10 @@ $form->addInput('is_petinggi','radio');
 $form->setLabel('is_petinggi','Ganti Kepala Desa jadi Petinggi');
 $form->setRadio('is_petinggi',['Tidak','Iya']);
 
+$form->addInput('is_dilan','radio');
+$form->setLabel('is_dilan','Gunakan Kode DLN pada nomor surat ?');
+$form->setRadio('is_dilan',['Tidak','Iya']);
+
 $form->setFormName('dilan_config');
 
 $form->form();
