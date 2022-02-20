@@ -421,7 +421,7 @@ class Dilan_model extends CI_Model
 					$text_no = '';
 				}
 
-				$DLN = !empty($config['is_dilan']) ? 'DLN/' : '';
+				$DLN = !empty($config['is_dilan']) ? 'DLN/' : '450/';
 				$nomor = $DLN.$text_no.$no_urut.'/'.$data['desa_id'].'/'.date('d').'/'.date('Y');
 				if($this->db->update('dilan_surat',['no_urut'=>$no_urut,'nomor'=>$nomor],['id'=>$last_id]))
 				{
