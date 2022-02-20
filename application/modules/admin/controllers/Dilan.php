@@ -510,6 +510,7 @@ class Dilan extends CI_Controller
 				{
 					$nomor_surat = $surat['nomor'];
 				}else{
+					$nomor_surat = $surat['nomor'];
 					if(preg_match('~DLN~', $surat['nomor'])){
 						$nomor_surat = str_replace('DLN/','450/',$surat['nomor']);
 					}
