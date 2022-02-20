@@ -505,7 +505,10 @@ class Dilan extends CI_Controller
 				$pdf->SetLineWidth(0);
 				$pdf->Line(70, 70, 150, 70);
 				$pdf->Ln(1);
-				$pdf->Cell(200, 5, 'Nomor: ' . $surat['nomor'], 0, 1, 'C');
+
+				$nomor_surat = !empty($config['is_dilan']) ? $surat['nomor'] : str_replace('DLN/','',$surat['nomor']);
+
+				$pdf->Cell(200, 5, 'Nomor: ' . $nomor_surat, 0, 1, 'C');
 				$pdf->Ln(10);
 				$pdf->Cell(150, 5, 'Yang bertanda tangan di bawah ini, menerangkan bahwa : ', 0, 1, 'C');
 				$pdf->Ln(5);
