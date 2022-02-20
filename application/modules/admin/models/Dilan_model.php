@@ -407,7 +407,16 @@ class Dilan_model extends CI_Model
 				}else{
 					$text_no = '';
 				}
-				$nomor = 'DLN/'.$text_no.$no_urut.'/'.$data['desa_id'].'/'.date('d').'/'.date('Y');
+				$desa     = $this->sipapat_model->get_desa($data['desa_id']);
+				$user     = $this->session->userdata(base_url() . '_logged_in');
+				if (empty($user)) {
+					$user = $this->db->get_where('user_desa', ['desa_id' => $desa['id']])->row_array();
+					$user['id'] = $user['user_id'];
+				}
+				$config   = $this->dilan_model->get_config($desa['id'] . '_' . $user['id']);
+
+				$DLN = !empty($config['is_dilan']) ? 'DLN/' : '';
+				$nomor = $DLN.$text_no.$no_urut.'/'.$data['desa_id'].'/'.date('d').'/'.date('Y');
 				if($this->db->update('dilan_surat',['no_urut'=>$no_urut,'nomor'=>$nomor],['id'=>$last_id]))
 				{
 					header('location: '.base_url('dilan/cetak/'.$last_id));
