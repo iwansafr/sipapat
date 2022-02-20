@@ -46,7 +46,9 @@
       <!-- <div class="badge"><?php echo date('d/M/Y h:i A'); ?></div>  -->
       <b>Version</b> 5.0.8
     </div>
-    <strong>Copyright &copy; 2019-<?php echo date('Y'); ?> <a href="https://www.mandesa.co.id">mandesa</a>.</strong> All rights
+    <strong>Copyright &copy; <?php echo !empty($site['site']['year']) ? $site['site']['year'] : '2019' ?>-<?php echo date('Y'); ?>
+
+     <a href="<?php echo !empty($site['site']['link']) ? $site['site']['link'] : 'https://esoftgreat.com' ?>"><?php echo !empty($site['site']['title']) ? $site['site']['title'] : 'esoftgreat' ?></a>.</strong> All rights
     reserved.
   </footer>
 

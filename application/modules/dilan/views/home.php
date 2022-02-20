@@ -1,6 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 $paramname = str_replace('/', '_', base_url().'_dilan_config');
 $dilan_config = $this->esg->get_config($paramname);
+$title = empty($dilan_config['title']) ? 'SELAMAT DATANG DI SISTEM TERINTEGRASI KABUPATEN PATI' : $dilan_config['title'];
 ?>
 <style>
 	body{
@@ -36,8 +37,8 @@ $dilan_config = $this->esg->get_config($paramname);
 <?php if (!empty($_GET['page'])): ?>
 	<script>
 		var i = 0;
-		var txt = 'SELAMAT DATANG DI SISTEM TERINTEGRASI KABUPATEN PATI';
-		var speed = 70;
+		var txt = '<?php echo $title;?>';
+		var speed = 150;
 		// var txts = 'MULAI LAYANAN DIGITAL';
 		function typeWriter() {
 		  if (i < txt.length) {

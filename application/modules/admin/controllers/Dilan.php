@@ -437,7 +437,7 @@ class Dilan extends CI_Controller
 					die();
 				}
 
-				$teks1 = 'PEMERINTAH KABUPATEN PATI';
+				$teks1 = 'PEMERINTAH '.@$desa['kabupaten'];
 				$teks2 = 'KECAMATAN ' . @$desa['kecamatan'];
 				$teks3 = 'DESA ' . $desa['nama'];
 				// $teks4 = 'Alamat Kantor Kepala Desa '.strtolower(@$desa['nama']).' '.substr(@$desa['alamat'],0,20).' Kec. '.strtolower(@$desa['kecamatan']).' kab. '.$desa['kabupaten'];
