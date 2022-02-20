@@ -74,7 +74,7 @@ class Dilan extends CI_Controller
 			output_json($data);
 		} else {
 			$data = ['status' => 'error'];
-			outpur_json($data);
+			output_json($data);
 		}
 	}
 
@@ -598,7 +598,8 @@ class Dilan extends CI_Controller
 						$pdf->Image(image_module('desa', $desa['id'] . '/' . $desa['ttd_img']), 135, $height_stem, 55, 40);
 					}
 				}
-				$pdf->Cell(60, 5, 'Kepala Desa ' . ucfirst(strtolower($desa['nama'])), 0, 0, 'C');
+				$text_petinggi = !empty($config['is_petinggi']) ? 'Petinggi ' : 'Kepala Desa ';
+				$pdf->Cell(60, 5, $text_petinggi . ucfirst(strtolower($desa['nama'])), 0, 0, 'C');
 				$pdf->Ln(30);
 
 				$pdf->Cell(65, 5, $penduduk['nama'], 0, 0, 'C');
@@ -702,6 +703,7 @@ class Dilan extends CI_Controller
 
 	public function penduduk_excel()
 	{
+		$kelamin = $this->dilan_model->kelamin();
 		$desa_id = $this->sipapat_model->get_desa_id();
 		$data = $this->db->get_where('penduduk', ['desa_id' => $desa_id])->result_array();
 		$spreadsheet = new Spreadsheet();
@@ -731,7 +733,7 @@ class Dilan extends CI_Controller
 			->setCellValue('L1', strtoupper('status perkawinan'))
 			->setCellValue('M1', strtoupper('pendidikan terakhir'))
 			->setCellValue('N1', strtoupper('jamkes'))
-			->setCellValue('O1', strtoupper('jabatan'))
+			// ->setCellValue('O1', strtoupper('jabatan'))
 			->setCellValue('P1', strtoupper('no sk'))
 			->setCellValue('Q1', strtoupper('sk penetapan kembali'))
 			->setCellValue('R1', strtoupper('tgl pelantikan'))
@@ -745,6 +747,9 @@ class Dilan extends CI_Controller
 		// Miscellaneous glyphs, UTF-8
 		$i = 2;
 		$j = 1;
+		$status_perkawinan = $this->dilan_model->status();
+		$pendidikan_terakhir = $this->dilan_model->pendidikan();
+		$agama = $this->dilan_model->agama();
 		foreach ($data as $key => $value) {
 			$spreadsheet->setActiveSheetIndex(0)
 				->setCellValue('A' . $i, $j)
@@ -762,7 +767,7 @@ class Dilan extends CI_Controller
 				->setCellValue('L' . $i, strtoupper($status_perkawinan[$value['status_perkawinan']]))
 				->setCellValue('M' . $i, strtoupper($pendidikan_terakhir[$value['pendidikan_terakhir']]))
 				->setCellValue('N' . $i, strtoupper($value['jamkes']))
-				->setCellValue('O' . $i, strtoupper($jabatan[$value['jabatan']]))
+				// ->setCellValue('O' . $i, strtoupper($jabatan[$value['jabatan']]))
 				->setCellValue('P' . $i, strtoupper($value['no_sk']))
 				->setCellValue('Q' . $i, strtoupper($value['sk_penetapan_kembali']))
 				->setCellValue('R' . $i, strtoupper($value['tgl_pelantikan']))

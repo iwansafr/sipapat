@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Sistem Terintergrasi Kabupaten Pati</title>
+	<?php $sipapat_config = $this->esg->get_config('sipapat_config'); ?>
+	<title>Sistem Terintergrasi Kabupaten <?php echo @$sipapat_config['kabupaten'];?></title>
 	<?php $this->load->view('meta') ?>
 	<style>
 		/*#myVideo {

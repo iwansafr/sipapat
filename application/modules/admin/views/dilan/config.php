@@ -29,6 +29,10 @@ $form->addInput('show_kades','radio');
 $form->setLabel('show_kades','Nama kepala desa');
 $form->setRadio('show_kades',['Sembunyikan','Tampilkan']);
 
+$form->addInput('is_petinggi','radio');
+$form->setLabel('is_petinggi','Ganti Kepala Desa jadi Petinggi');
+$form->setRadio('is_petinggi',['Tidak','Iya']);
+
 $form->setFormName('dilan_config');
 
 $form->form();
