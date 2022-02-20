@@ -47,7 +47,8 @@ if (!empty($desa_id)) {
 
 	$form->addInput('agama_lainnya', 'text');
 	$form->setLabel('agama_lainnya', 'Agama Lainnya');
-	$form->setLabel('agama_lainnya', 'sebutkan (jika anda memilih penghayat kepercayaan atau lainnya)*');;
+	$form->setLabel('agama_lainnya', 'sebutkan (jika anda memilih penghayat kepercayaan atau lainnya)*');
+	$form->setValue('agama_lainnya','-');
 
 	$form->startCollapse('agama', 'agama');
 	$form->endCollapse('agama_lainnya');
