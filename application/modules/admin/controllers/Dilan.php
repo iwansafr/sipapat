@@ -432,7 +432,7 @@ class Dilan extends CI_Controller
 				// pr($desa);
 
 				$image = $this->sipapat_model->get_image_kab();
-				// $image = 'https://dilan.tulakan.id/images/modules/config/kabupaten_image_https:__dilan.tulakan.id_/image_image.png';
+				$image = 'https://dilan.tulakan.id/images/modules/config/kabupaten_image_https:__dilan.tulakan.id_/image_image.png';
 				if (!curl($image)) {
 					// $image = 'https://dilan.tulakan.id/images/modules/config/kabupaten_image_https:__dilan.tulakan.id_/image_image.png';
 					msg('Load Halaman Gagal, logo kabupaten belum diatur', 'danger');
@@ -520,7 +520,7 @@ class Dilan extends CI_Controller
 				$pdf->Line(10, 45, 200, 45);
 				$pdf->SetLineWidth(0);
 				$pdf->Line(10, 46, 200, 46);
-				$pdf->Ln(10);
+				$pdf->Ln(5);
 
 				$pdf->Cell(0, 5, 'No. Kode Desa : ' . $desa['kode'], 0, 1, 'L');
 				$pdf->Ln(10);
