@@ -434,9 +434,9 @@ class Dilan extends CI_Controller
 				$image = $this->sipapat_model->get_image_kab();
 				// $image = 'https://dilan.tulakan.id/images/modules/config/kabupaten_image_https:__dilan.tulakan.id_/image_image.png';
 				if (!curl($image)) {
-					$image = 'https://dilan.tulakan.id/images/modules/config/kabupaten_image_https:__dilan.tulakan.id_/image_image.png';
-					// msg('Load Halaman Gagal, logo kabupaten belum diatur', 'danger');
-					// die();
+					// $image = 'https://dilan.tulakan.id/images/modules/config/kabupaten_image_https:__dilan.tulakan.id_/image_image.png';
+					msg('Load Halaman Gagal, logo kabupaten belum diatur', 'danger');
+					die();
 				}
 
 				$text_desa = !empty($config['is_petinggi']) ? 'PETINGGI ' : 'DESA ';
