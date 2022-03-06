@@ -37,6 +37,22 @@ $form->addInput('is_dilan','radio');
 $form->setLabel('is_dilan','Gunakan Kode DLN pada nomor surat ?');
 $form->setRadio('is_dilan',['Tidak','Iya']);
 
+$form->addInput('first_row','text');
+$form->setHelp('first_row','jika kolom ini di isi maka akan menggantikan baris pertama header surat');
+$form->setLabel('first_row','Baris Pertama Header');
+
+$form->addInput('second_row','text');
+$form->setHelp('second_row','jika kolom ini di isi maka akan menggantikan baris kedua header surat');
+$form->setLabel('second_row','Baris Kedua Header');
+
+$form->addInput('third_row','text');
+$form->setHelp('third_row','jika kolom ini di isi maka akan menggantikan baris ketiga header surat');
+$form->setLabel('third_row','Baris Ketiga Header');
+
+$form->startCollapse('first_row','custom kop surat');
+$form->endCollapse('third_row');
+$form->setCollapse('first_row',1);
+
 $form->setFormName('dilan_config');
 
 $form->form();

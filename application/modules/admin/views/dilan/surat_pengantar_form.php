@@ -22,7 +22,7 @@ if(is_desa() || is_root())
 				</tr>
 				<tr>
 					<td>PEKERJAAN</td>
-					<td>: <?php echo $pekerjaan[$penduduk['pekerjaan']] ?></td>
+					<td>: <?php echo !empty($penduduk['pekerjaan']) ? $pekerjaan[$penduduk['pekerjaan']] : 'Tidak diketahui' ?></td>
 				</tr>
 				<tr>
 					<td>TEMPAT TINGGAL</td>
