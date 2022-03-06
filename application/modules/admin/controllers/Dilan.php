@@ -489,6 +489,9 @@ class Dilan extends CI_Controller
 					$pdf->Cell(190, 5, $config['second_row'],0,1,'C');
 					$pdf->Cell(190, 5, $config['third_row'],0,1,'C');
 				}else{
+					if(!empty($config['is_petinggi'])){
+						$pdf->Cell(22);
+					}
 					/*form lama*/
 					$pdf->Cell(30, 5, 'Alamat Kantor', 0, 0, 'L');
 					$pdf->Cell(60, 5, $teks4, 0, 0, 'L');
