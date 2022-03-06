@@ -93,7 +93,8 @@ if (
   $content!='dilan/surat_pengantar_form' &&
   $content!='sipapatconfig/api' && 
   $content!='sipapatconfig/custom_api' &&
-  $content!='pengumuman/index'
+  $content!='pengumuman/index' &&
+  $content!='dilan/config'
 
 ): ?>
   <script type="text/javascript">

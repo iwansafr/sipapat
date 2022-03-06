@@ -277,7 +277,7 @@ class Dilan_model extends CI_Model
 		];
 	}
 
-	public function data_by_umur()
+	public function data_by_umur($desa_id)
 	{
 		$usia = $this->db->query("SELECT DATEDIFF(CURRENT_DATE, STR_TO_DATE(p.tgl_lhr, '%Y-%m-%d'))/365 AS usia FROM penduduk AS p where desa_id = ?",$desa_id)->result_array();
 		$usia_tmp = [];

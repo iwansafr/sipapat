@@ -432,8 +432,10 @@ class Dilan extends CI_Controller
 				// pr($desa);
 
 				$image = $this->sipapat_model->get_image_kab();
+				// $image = 'https://dilan.tulakan.id/images/modules/config/kabupaten_image_https:__dilan.tulakan.id_/image_image.png';
 				if (!curl($image)) {
-					msg('Load Halaman Gagal', 'danger');
+					// $image = 'https://dilan.tulakan.id/images/modules/config/kabupaten_image_https:__dilan.tulakan.id_/image_image.png';
+					msg('Load Halaman Gagal, logo kabupaten belum diatur', 'danger');
 					die();
 				}
 
@@ -457,34 +459,52 @@ class Dilan extends CI_Controller
 				$pdf->SetFont('Arial', 'B', 7);
 				// mencetak string 
 				$pdf->Image($image, 0, 10, 40, 30);
-				$pdf->Cell(25);
-				$pdf->SetFont('Times', 'B', '15');
-				$pdf->Cell(0, 5, $teks1, 0, 1, 'C');
-				$pdf->Cell(25);
-				$pdf->Cell(0, 5, $teks2, 0, 1, 'C');
-				$pdf->Cell(25);
-				$pdf->SetFont('Times', 'B', '15');
-				$pdf->Cell(0, 5, $teks3, 0, 1, 'C');
-				$pdf->Cell(22);
-				$pdf->SetFont('Times', '', '13');
+				if(!empty($config['is_petinggi'])){
+					// $pdf->Cell(25);
+					$pdf->SetFont('Times', 'B', '12');
+					$pdf->Cell(0, 5, $teks1, 0, 1, 'C');
+					// $pdf->Cell(25);
+					$pdf->Cell(0, 5, $teks2, 0, 1, 'C');
+					// $pdf->Cell(25);
+					$pdf->SetFont('Times', 'B', '20');
+					$pdf->Cell(0, 10, $teks3, 0, 1, 'C');
+					// $pdf->Cell(22);
+					$pdf->SetFont('Times', '', '12');
+				}else{
+					$pdf->Cell(25);
+					$pdf->SetFont('Times', 'B', '15');
+					$pdf->Cell(0, 5, $teks1, 0, 1, 'C');
+					$pdf->Cell(25);
+					$pdf->Cell(0, 5, $teks2, 0, 1, 'C');
+					$pdf->Cell(25);
+					$pdf->SetFont('Times', 'B', '15');
+					$pdf->Cell(0, 5, $teks3, 0, 1, 'C');
+					$pdf->Cell(22);
+					$pdf->SetFont('Times', '', '13');
+				}
 				// $pdf->MultiCell(0,5,$teks4,0,1,false);
 				// $pdf->Cell(0,5,$teks4,0,1,'L');
-
-				/*form lama*/
-				$pdf->Cell(30, 5, 'Alamat Kantor', 0, 0, 'L');
-				$pdf->Cell(60, 5, $teks4, 0, 0, 'L');
-				$pdf->Cell(20);
-				$pdf->Cell(20, 5, 'Telepon', 0, 0, 'L');
-				$pdf->Cell(30, 5, $teks5, 0, 1, 'L');
-				$pdf->Cell(22);
-				$pdf->Cell(30, 5, 'Email', 0, 0, 'L');
-				$pdf->Cell(60, 5, $teks6, 0, 0, 'L');
-				$pdf->Cell(20);
-				$pdf->Cell(20, 5, 'Kode Pos', 0, 0, 'L');
-				$pdf->Cell(30, 5, $teks7, 0, 1, 'L');
-				$pdf->Cell(22);
-				$pdf->Cell(30, 5, 'Website', 0, 0, 'L');
-				$pdf->Cell(60, 5, $teks8, 0, 1, 'L');
+				if(!empty($config['first_row'])){
+					$pdf->Cell(190, 5, $config['first_row'],0,1,'C');
+					$pdf->Cell(190, 5, $config['second_row'],0,1,'C');
+					$pdf->Cell(190, 5, $config['third_row'],0,1,'C');
+				}else{
+					/*form lama*/
+					$pdf->Cell(30, 5, 'Alamat Kantor', 0, 0, 'L');
+					$pdf->Cell(60, 5, $teks4, 0, 0, 'L');
+					$pdf->Cell(20);
+					$pdf->Cell(20, 5, 'Telepon', 0, 0, 'L');
+					$pdf->Cell(30, 5, $teks5, 0, 1, 'L');
+					$pdf->Cell(22);
+					$pdf->Cell(30, 5, 'Email', 0, 0, 'L');
+					$pdf->Cell(60, 5, $teks6, 0, 0, 'L');
+					$pdf->Cell(20);
+					$pdf->Cell(20, 5, 'Kode Pos', 0, 0, 'L');
+					$pdf->Cell(30, 5, $teks7, 0, 1, 'L');
+					$pdf->Cell(22);
+					$pdf->Cell(30, 5, 'Website', 0, 0, 'L');
+					$pdf->Cell(60, 5, $teks8, 0, 1, 'L');
+				}
 				/*form lama */
 
 				// $pdf->Cell(0,0,'',0,1,'C');
