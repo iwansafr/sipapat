@@ -116,6 +116,11 @@ class Dilan extends CI_Controller
 			$this->dilan_model->save_surat_pengajuan();
 		}
 	}
+	public function edit_pekerjaan($nik = 0)
+	{
+		$penduduk = $this->db->get_where('penduduk',['nik'=>$nik])->row_array();
+		$this->load->view('index',compact('penduduk'));
+	}
 	public function cetak($id = 0)
 	{
 		$data = [];

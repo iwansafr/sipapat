@@ -38,7 +38,7 @@ $dilan_config = $this->esg->get_config($paramname);
 					</tr>
 					<tr>
 						<td>PEKERJAAN</td>
-						<td>: <?php echo !empty($penduduk['pekerjaan']) ? $pekerjaan[$penduduk['pekerjaan']] : 'Tidak diketahui' ?></td>
+						<td>: <?php echo !empty($penduduk['pekerjaan']) ? $pekerjaan[$penduduk['pekerjaan']] : 'Tidak diketahui' ?> <a class="btn btn-sm btn-primary pull-right" href="<?php echo base_url('dilan/edit_pekerjaan/'.$penduduk['nik']) ?>">Ubah Pekerjaan ?</a></td>
 					</tr>
 					<tr>
 						<td>TEMPAT TINGGAL</td>
