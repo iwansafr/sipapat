@@ -1153,4 +1153,14 @@ class Dilan extends CI_Controller
 			output_json(['data kosong']);
 		}
 	}
+
+	public function template_surat()
+	{
+		$this->dilan_model->check_template_surat();
+		$this->load->view('index');
+	}
+	public function config_template_surat()
+	{
+		$this->load->view('index');
+	}
 }
