@@ -15,6 +15,8 @@ if(is_desa()){
   $form->addInput('tpl','file');
   $form->setLabel('tpl','Upload Template');
   $form->setAccept('tpl','.rtf');
+  // $form->setFile('tpl','document');
+  $form->set_max_size(8000);
 
   $form->form();
 
@@ -34,6 +36,7 @@ if(is_desa()){
 
   $roll->addInput('tpl','plaintext');
   $roll->setLabel('tpl','Template');
+  $roll->setEditLink(base_url('admin/dilan/config_template_surat?id='));
 
   $roll->form();
 }else{
