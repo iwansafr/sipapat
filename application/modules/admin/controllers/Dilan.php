@@ -409,6 +409,7 @@ class Dilan extends CI_Controller
 			$this->load->model('pengguna_model');
 			$this->load->model('perangkat_model');
 
+
 			$surat    = $this->dilan_model->get_surat($id);
 			if (!empty($surat['penduduk_id'])) {
 				$penduduk = $this->dilan_model->get_penduduk($surat['penduduk_id']);
@@ -427,10 +428,36 @@ class Dilan extends CI_Controller
 				}
 
 				$penduduk['agama'] = @$agama[$penduduk['agama']];
-				// pr($surat);
+				// pr($surat);die();
 				// pr($penduduk);
 				// pr($desa);
 
+				$custom_template = $this->db->get_where('template_surat',['desa_id'=>$desa['id'],'dilan_surat_ket_id'=>$surat['dilan_surat_ket_id']])->row_array();
+				// pr($custom_template);
+				if(!empty($custom_template['tpl'])){
+					// pr($custom_template);
+					// $file = file_get_contents(image_module('template_surat',$custom_template['id'].'/'.$custom_template['tpl']));
+					$file = file_get_contents(FCPATH.'images/modules/template_surat/'.$custom_template['id'].'/'.$custom_template['tpl']);
+					// die();
+					// pr($file);die();
+					$text_petinggi = !empty($config['is_petinggi']) ? 'Petinggi ' : 'Kepala Desa ';
+
+					$file = str_replace('[nama]', $penduduk['nama'], $file);
+					$file = str_replace('[no_ktp]', $penduduk['nik'], $file);
+					$file = str_replace('[no_kk]', $penduduk['no_kk'], $file);
+					$file = str_replace('[nama_desa]', $desa['nama'], $file);
+					$file = str_replace('[tgl_surat]', content_date($surat['tgl']), $file);
+					$file = str_replace('[jabatan]', $text_petinggi, $file);
+					$file = str_replace('[nama_pamong]', @$kepdes['nama'], $file);
+					$file = str_replace('[pamong_nip]', @$kepdes['nip'], $file);
+
+					header("Content-type: application/msword");
+					header("Content-disposition: inline; filename=dilan-".date('dmY').".rtf");
+					header("Content-length: ".strlen($file));
+					echo $file;
+					die();
+				}
+				// pr($config);die();
 				$image = $this->sipapat_model->get_image_kab();
 				// $image = 'https://dilan.tulakan.id/images/modules/config/kabupaten_image_https:__dilan.tulakan.id_/image_image.png';
 				if (!curl($image)) {
@@ -1152,5 +1179,15 @@ class Dilan extends CI_Controller
 		}else{
 			output_json(['data kosong']);
 		}
+	}
+
+	public function template_surat()
+	{
+		$this->dilan_model->check_template_surat();
+		$this->load->view('index');
+	}
+	public function config_template_surat()
+	{
+		$this->load->view('index');
 	}
 }

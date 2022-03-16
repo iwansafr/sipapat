@@ -430,4 +430,52 @@ class Dilan_model extends CI_Model
 			}
 		}
 	}
+
+	public function check_template_surat()
+	{
+		$this->load->dbforge();
+		if(!$this->db->table_exists('template_surat')){
+			$fields = array(
+				'id' => array(
+								'type' => 'INT',
+								'constraint' => '11',
+								'unsigned' => TRUE,
+								'auto_increment' => TRUE
+				),
+				'dilan_surat_ket_id' => array(
+					'type' => 'INT',
+					'constraint' => '11',
+					'default' => NULL,
+					'after' => 'id'
+				),
+				'desa_id' => array(
+					'type' => 'INT',
+					'constraint' => '11',
+					'default' => NULL,
+					'after' => 'dilan_surat_ket_id'
+				),
+				'tpl' => array(
+					'type' => 'VARCHAR',
+					'constraint' => '255',
+					'default' => NULL,
+					'after' => 'desa_id'
+				),
+				'status' => array(
+					'type' => 'TINYINT',
+					'constraint' => '1',
+					'default' => 0,
+					'comment' => '0=not active, 1=active',
+					'after' => 'tpl'
+				),
+			);
+			$this->dbforge->add_field($fields);
+			$this->dbforge->add_key('id', TRUE);
+			if($this->dbforge->create_table('template_surat')){
+				// $this->dbforge->add_column('template_surat',$fields);
+				return true;
+			}else{
+				return false;
+			}
+		}
+	}
 }
