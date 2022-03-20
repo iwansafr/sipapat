@@ -448,8 +448,8 @@ class Dilan extends CI_Controller
 					$file = str_replace('[pekerjaan]', $pekerjaan[$penduduk['pekerjaan']], $file);
 					$file = str_replace('[ttl]', $penduduk['tmpt_lhr'].'/'.$penduduk['tgl_lhr'], $file);
 					$file = str_replace('[no_kk]', $penduduk['no_kk'], $file);
-					$file = str_replace('[nama_desa]', $desa['nama'], $file);
-					$file = str_replace('[nama_des]', $desa['nama'], $file);
+					// $file = str_replace('[nama_desa]', $desa['nama'], $file);
+					// $file = str_replace('[nama_des]', $desa['nama'], $file);
 					$file = str_replace('[alamat]', 'RT '.$penduduk['no_rt'].' RW '. $penduduk['no_rw'], $file);
 					$file = str_replace('[tgl_surat]', content_date($surat['tgl']), $file);
 					$file = str_replace('[jabatan]', $text_petinggi, $file);
