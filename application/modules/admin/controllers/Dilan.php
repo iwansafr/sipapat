@@ -580,23 +580,23 @@ class Dilan extends CI_Controller
 				$pdf->Cell(150, 5, 'Yang bertanda tangan di bawah ini, menerangkan bahwa : ', 0, 1, 'C');
 				$pdf->Ln(5);
 				$pdf->Cell(60, 5, '1. Nama', 0, 0, 'L');
-				$pdf->Cell(0, 5, ': ' . ucfirst(strtolower($penduduk['nama'])), 0, 1, 'L');
+				$pdf->Cell(0, 5, ': ' . $penduduk['nama'], 0, 1, 'L');
 				$pdf->Ln(2);
 				$pdf->Cell(60, 5, '2. Tempat, tanggal lahir', 0, 0, 'L');
-				$pdf->Cell(0, 5, ': ' . ucfirst(strtolower($penduduk['tmpt_lhr'])) . ', ' . content_date($penduduk['tgl_lhr']), 0, 1, 'L');
+				$pdf->Cell(0, 5, ': ' . ucwords(strtolower($penduduk['tmpt_lhr'])) . ', ' . content_date($penduduk['tgl_lhr']), 0, 1, 'L');
 				$pdf->Ln(2);
 				$pdf->Cell(60, 5, '3. Kewarganegaraan/ Agama', 0, 0, 'L');
 				$pdf->Cell(0, 5, ': Indonesia/ ' . $penduduk['agama'], 0, 1, 'L');
 				$pdf->Ln(2);
 				$pdf->Cell(60, 5, '4. Pekerjaan', 0, 0, 'L');
-				$pdf->Cell(0, 5, ': ' . @$pekerjaan[$penduduk['pekerjaan']], 0, 1, 'L');
+				$pdf->Cell(0, 5, ': ' . ucwords(@$pekerjaan[$penduduk['pekerjaan']]), 0, 1, 'L');
 				$pdf->Ln(2);
 				$pdf->Cell(60, 5, '5. Tempat Tinggal', 0, 0, 'L');
-				$pdf->Cell(0, 5, ': ' . ucfirst(strtolower($penduduk['alamat'])) . ' RT ' . $penduduk['no_rt'] . ' RW ' . $penduduk['no_rw'], 0, 1, 'L');
+				$pdf->Cell(0, 5, ': ' . ucwords(strtolower($penduduk['alamat'])) . ' RT ' . $penduduk['no_rt'] . ' RW ' . $penduduk['no_rw'], 0, 1, 'L');
 				$pdf->Ln(2);
 				$pdf->Cell(5);
 				$pdf->Cell(55, 5, 'Kabupaten', 0, 0, 'L');
-				$pdf->Cell(40, 5, ': ' . ucfirst(strtolower($desa['kabupaten'])), 0, 0, 'L');
+				$pdf->Cell(40, 5, ': ' . ucwords(strtolower($desa['kabupaten'])), 0, 0, 'L');
 				$pdf->Cell(5);
 				$pdf->Cell(17, 5, 'Provinsi', 0, 0, 'L');
 				$provinsi = $desa['provinsi'];
@@ -604,10 +604,10 @@ class Dilan extends CI_Controller
 					$tmp_provinsi = explode(' ', $provinsi);
 					$provinsi = '';
 					foreach ($tmp_provinsi as $key => $value) {
-						$provinsi .= ucfirst(strtolower($value)) . ' ';
+						$provinsi .= ucwords(strtolower($value)) . ' ';
 					}
 				} else {
-					$provinsi = ucfirst(strtolower($provinsi));
+					$provinsi = ucwords(strtolower($provinsi));
 				}
 				$pdf->Cell(0, 5, ': ' . $provinsi, 0, 1, 'L');
 				$pdf->ln(2);
@@ -620,14 +620,14 @@ class Dilan extends CI_Controller
 				// $pdf->Cell(5);
 				$pdf->Cell(60, 5, '7. Keperluan', 0, 0, 'L');
 				$pdf->Cell(2, 5, ': ', 0, 0, 'L');
-				$pdf->MultiCell(0, 5, ucfirst(strtolower($surat['keperluan'])), 0, 'L', false);
+				$pdf->MultiCell(0, 5, ucwords(strtolower($surat['keperluan'])), 0, 'L', false);
 				$pdf->Ln(2);
 				$pdf->Cell(60, 5, '8. Berlaku Mulai', 0, 0, 'L');
 				$pdf->Cell(0, 5, ': ' . content_date($surat['berlaku_mulai']) . ' s/d ' . content_date($surat['berlaku_sampai']), 0, 1, 'L');
 				$pdf->Ln(2);
 				$pdf->Cell(60, 5, '9. Keterangan lain-lain *)', 0, 0, 'L');
 				$pdf->Cell(2, 5, ': ', 0, 0, 'L');
-				$pdf->MultiCell(0, 5, @ucfirst($surat['keterangan']), 0, 'L', false);
+				$pdf->MultiCell(0, 5, @ucwords($surat['keterangan']), 0, 'L', false);
 				$pdf->Ln(2);
 
 				$ln_kep = strlen($surat['keperluan']);
@@ -671,7 +671,7 @@ class Dilan extends CI_Controller
 					}
 				}
 				$text_petinggi = !empty($config['is_petinggi']) ? 'Petinggi ' : 'Kepala Desa ';
-				$pdf->Cell(60, 5, $text_petinggi . ucfirst(strtolower($desa['nama'])), 0, 0, 'C');
+				$pdf->Cell(60, 5, $text_petinggi . ucwords(strtolower($desa['nama'])), 0, 0, 'C');
 				$pdf->Ln(30);
 
 				$pdf->Cell(65, 5, $penduduk['nama'], 0, 0, 'C');
@@ -686,7 +686,7 @@ class Dilan extends CI_Controller
 				$pdf->SetLineWidth(0);
 				// $pdf->Line(123,$line_len,87,$line_len);
 				if (!empty($config['show_kades'])) {
-					$pdf->Cell(60, 5, @$kepdes['nama'], 0, 1, 'C');
+					$pdf->Cell(60, 5, strtoupper(@$kepdes['nama']), 0, 1, 'C');
 				}
 				$pdf->SetLineWidth(0);
 				// $pdf->Line(183,$line_len,147,$line_len);
