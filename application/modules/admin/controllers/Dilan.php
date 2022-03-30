@@ -444,6 +444,7 @@ class Dilan extends CI_Controller
 
 					$file = str_replace('[nama]', $penduduk['nama'], $file);
 					$file = str_replace('[no_ktp]', $penduduk['nik'], $file);
+					//alternative if no_ktp cant replace
 					$file = str_replace('[nik]', $penduduk['nik'], $file);
 					$file = str_replace('[form_keterangan]', ucfirst(strtolower($surat['keperluan'])), $file);
 					$file = str_replace('[pekerjaan]', $pekerjaan[$penduduk['pekerjaan']], $file);
