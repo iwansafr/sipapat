@@ -441,13 +441,14 @@ class Dilan extends CI_Controller
 					// die();
 					// pr($file);die();
 					$text_petinggi = !empty($config['is_petinggi']) ? 'Petinggi ' : 'Kepala Desa ';
+					$current_pekerjaan = !empty($pekerjaan[$penduduk['pekerjaan']]) ? $pekerjaan[$penduduk['pekerjaan']] : 'TIDAK DIKETAHUI';
 
 					$file = str_replace('[nama]', $penduduk['nama'], $file);
 					$file = str_replace('[no_ktp]', $penduduk['nik'], $file);
 					//alternative if no_ktp cant replace
 					$file = str_replace('[nik]', $penduduk['nik'], $file);
 					$file = str_replace('[form_keterangan]', ucfirst(strtolower($surat['keperluan'])), $file);
-					$file = str_replace('[pekerjaan]', $pekerjaan[$penduduk['pekerjaan']], $file);
+					$file = str_replace('[pekerjaan]', $current_pekerjaan, $file);
 					$file = str_replace('[ttl]', $penduduk['tmpt_lhr'].'/'.$penduduk['tgl_lhr'], $file);
 					$file = str_replace('[no_kk]', $penduduk['no_kk'], $file);
 					$file = str_replace('[nama_desa]', $desa['nama'], $file);
