@@ -49,13 +49,20 @@ class Dilan_model extends CI_Model
 		{
 			$keterangan = $value['keterangan'];
 			$keterangan = strtolower($keterangan);
+			$keperluan = $value['keperluan'];
+			$keperluan = strtolower($keperluan);
 			if(!empty($desa))
 			{
 				$keterangan = str_replace('{desa}', @ucfirst(strtolower($desa['nama'])), $keterangan);
 				$keterangan = str_replace('{kecamatan}', @ucfirst(strtolower($desa['kecamatan'])), $keterangan);
 				$keterangan = str_replace('{kabupaten}', @ucfirst(strtolower($kabupaten['kabupaten'])), $keterangan);
+
+				$keperluan = str_replace('{desa}', @ucfirst(strtolower($desa['nama'])), $keperluan);
+				$keperluan = str_replace('{kecamatan}', @ucfirst(strtolower($desa['kecamatan'])), $keperluan);
+				$keperluan = str_replace('{kabupaten}', @ucfirst(strtolower($kabupaten['kabupaten'])), $keperluan);
 			}
-			$value['keterangan'] = $keterangan;
+			$value['keterangan'] = ucfirst($keterangan);
+			$value['keperluan'] = ucfirst($keperluan);
 			$data[$value['id']] = $value;
 			$i++;
 		}
