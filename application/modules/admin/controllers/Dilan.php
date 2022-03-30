@@ -461,7 +461,7 @@ class Dilan extends CI_Controller
 					$file = str_replace('[pamong_nip]', @$kepdes['nip'], $file);
 
 					header("Content-type: application/msword");
-					header("Content-disposition: inline; filename=dilan-".date('dmY').".rtf");
+					header("Content-disposition: inline; filename=dilan-".date('dmYhis').".rtf");
 					header("Content-length: ".strlen($file));
 					echo $file;
 					die();
