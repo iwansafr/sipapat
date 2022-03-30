@@ -35,6 +35,10 @@ if(is_desa()){
   $roll->tableOptions('dilan_surat_ket_id','dilan_surat_ket','id','title');
 
   $roll->addInput('tpl','plaintext');
+  // $roll->setLink('tpl',base_url('images/modules/template_surat'),'id');
+  $roll->setPlaintext('tpl',[
+    base_url('images/modules/template_surat/{id}/{tpl}') => 'download'
+  ]);
   $roll->setLabel('tpl','Template');
   $roll->setEditLink(base_url('admin/dilan/config_template_surat?id='));
 
