@@ -127,4 +127,13 @@ class Dilan extends CI_Controller
 		$data['id'] = $id;
 		$this->load->view('index',$data);
 	}
+	public function desa($nama = '')
+	{
+		if(!empty($nama)){
+			$desa = $this->db->get_where('desa',['nama'=>$nama])->row_array();
+			if(!empty($desa)){
+				header('location: '.base_url('dilan?id='.$desa['id']));
+			}
+		}
+	}
 }
