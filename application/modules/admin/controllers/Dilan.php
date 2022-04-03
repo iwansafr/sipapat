@@ -416,6 +416,7 @@ class Dilan extends CI_Controller
 				$pekerjaan = $this->dilan_model->pekerjaan();
 				$desa     = $this->sipapat_model->get_desa($penduduk['desa_id']);
 				$agama    = $this->pengguna_model->agama();
+				$kelamin = $this->dilan_model->kelamin();
 				$user     = $this->session->userdata(base_url() . '_logged_in');
 				if (empty($user)) {
 					$user = $this->db->get_where('user_desa', ['desa_id' => $desa['id']])->row_array();
@@ -444,17 +445,27 @@ class Dilan extends CI_Controller
 					$current_pekerjaan = !empty($pekerjaan[$penduduk['pekerjaan']]) ? $pekerjaan[$penduduk['pekerjaan']] : 'TIDAK DIKETAHUI';
 
 					$file = str_replace('[nama]', $penduduk['nama'], $file);
+					$file = str_replace('[tempatlahir]', $penduduk['tmpt_lhr'], $file);
+					$file = str_replace('[tanggallahir]', $penduduk['tgl_lhr'], $file);
+					$file = str_replace('[sex]', $kelamin[$penduduk['jk']], $file);
 					$file = str_replace('[no_ktp]', $penduduk['nik'], $file);
 					//alternative if no_ktp cant replace
 					$file = str_replace('[nik]', $penduduk['nik'], $file);
 					$file = str_replace('[noktp]', $penduduk['nik'], $file);
 					$file = str_replace('[form_keterangan]', ucfirst(strtolower($surat['keperluan'])), $file);
+					$file = str_replace('[keperluan]', ucfirst(strtolower($surat['keperluan'])), $file);
 					$file = str_replace('[pekerjaan]', $current_pekerjaan, $file);
 					$file = str_replace('[ttl]', $penduduk['tmpt_lhr'].'/'.$penduduk['tgl_lhr'], $file);
 					$file = str_replace('[no_kk]', $penduduk['no_kk'], $file);
 					$file = str_replace('[nama_desa]', $desa['nama'], $file);
 					$file = str_replace('[nama_des]', $desa['nama'], $file);
+					$file = str_replace('[nama_kec]', $desa['kecamatan'], $file);
+					$file = str_replace('[nama_kab]', $desa['kabupaten'], $file);
+					$file = str_replace('[nama_provinsi]', $desa['provinsi'], $file);
 					$file = str_replace('[alamat]', 'RT '.$penduduk['no_rt'].' RW '. $penduduk['no_rw'], $file);
+					$file = str_replace('[alamat_jalan]', $penduduk['alamat'], $file);
+					$file = str_replace('[rt]', $penduduk['no_rt'], $file);
+					$file = str_replace('[rw]', $penduduk['no_rw'], $file);
 					$file = str_replace('[tgl_surat]', content_date($surat['tgl']), $file);
 					$file = str_replace('[jabatan]', $text_petinggi, $file);
 					$file = str_replace('[penandatangan]', $text_petinggi, $file);
