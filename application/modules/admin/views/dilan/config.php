@@ -37,6 +37,10 @@ $form->addInput('is_dilan','radio');
 $form->setLabel('is_dilan','Gunakan Kode DLN pada nomor surat ?');
 $form->setRadio('is_dilan',['Tidak','Iya']);
 
+$form->addInput('hide_nourut','radio');
+$form->setLabel('hide_nourut','Sembunyikan Nomor Urut Surat ?');
+$form->setRadio('hide_nourut',['Tidak','Iya']);
+
 $form->addInput('first_row','text');
 $form->setHelp('first_row','jika kolom ini di isi maka akan menggantikan baris pertama header surat');
 $form->setLabel('first_row','Baris Pertama Header');

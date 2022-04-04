@@ -590,6 +590,10 @@ class Dilan extends CI_Controller
 					$nomor_surat = substr($nomor_surat,0,8);
 				}
 
+				if(!empty($config['hide_nourut'])){
+					$nomor_surat = substr($nomor_surat, 0, 4);
+				}
+
 				$pdf->Cell(200, 5, 'Nomor: ' . $nomor_surat, 0, 1, 'C');
 				$pdf->Ln(10);
 				$pdf->Cell(150, 5, 'Yang bertanda tangan di bawah ini, menerangkan bahwa : ', 0, 1, 'C');
