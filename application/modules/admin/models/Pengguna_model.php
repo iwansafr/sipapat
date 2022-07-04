@@ -159,6 +159,7 @@ class Pengguna_model extends CI_Model
 	{
 		$last_id = $this->zea->get_insert_id();
 		$id = $this->input->get('id');
+		$user_id = @intval($_POST['user_id']);
 		if(!empty($last_id) || !empty($id))
 		{
 		  $last_id = !empty($id) ? $id : $last_id;
@@ -173,7 +174,11 @@ class Pengguna_model extends CI_Model
 	    			'user_role_id' => $_POST['user_role_id'],
 	    			'active'       => @intval($_POST['active']),
 	    		);
-	    		$this->zea->set_data('user', @intval($_POST['user_id']), $pengguna_user);
+					$user_exist = $this->db->query('SELECT id FROM user WHERE id = ? LIMIT 1', $user_id)->row_array();
+					if(empty($user_exist)){
+						$user_id = 0;
+					}
+	    		$this->zea->set_data('user', $user_id, $pengguna_user);
 	    		if(empty($id))
 	    		{
 	    			$user_last_id = $this->zea->get_insert_id();
