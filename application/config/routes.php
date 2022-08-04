@@ -27,4 +27,5 @@ $route['message/send']                     = 'home/message/send';
 $route['subscribe']                        = 'home/subscribe';
 $route['content/pdf/(:any)']               = 'home/content/pdf';
 $route['dilan/(:any)']                     = 'dilan/desa/$1';
+$route['buku_tamu/(:any)']                 = 'dilan/buku_tamu/desa/$1';
 $route['translate_uri_dashes']             = FALSE;
