@@ -1,6 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 if(is_admin() || is_root())
 {
+	if(empty($sipapat_config)){
+		return redirect('admin/sipapatconfig/kabupaten');
+	}
 	$this->zea->init('edit');
 	$this->zea->setTable('user_desa');
 	$this->zea->setId(@intval($_GET['id']));
