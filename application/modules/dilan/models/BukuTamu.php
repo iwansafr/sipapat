@@ -4,7 +4,7 @@ class BukuTamu extends CI_Model
 {
     public function keperluan()
     {
-        return [1 => 'rapat', 2 => 'penawaran', 3 => 'konsultasi', 4 => 'mengantar barang / paket', 5 => 'kunjungan'];
+        return [1 => 'Rapat', 2 => 'Penawaran', 3 => 'Konsultasi', 4 => 'Mengantar Barang / Paket', 5 => 'Kunjungan'];
     }
     public function save($data = array())
     {
