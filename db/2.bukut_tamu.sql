@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 8.0.30)
 # Database: sipapat
-# Generation Time: 2022-08-05 02:51:34 +0000
+# Generation Time: 2022-08-05 06:23:27 +0000
 # ************************************************************
 
 
@@ -35,6 +35,8 @@ CREATE TABLE `buku_tamu` (
   `desa_id` int DEFAULT NULL,
   `perangkat_desa_id` int DEFAULT NULL COMMENT 'bertemu dg perangkat desa',
   `keperluan` tinyint(1) DEFAULT NULL COMMENT '1 = rapat, 2 = penawaran, 3 = konsultasi, 4 = mengantar barang / paket, 5 = kunjungan',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
