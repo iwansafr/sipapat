@@ -116,52 +116,57 @@
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="" method="post" role="form" class="php-email-form">
+            <form action="#contact" method="post" role="form" class="info">
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="name">Nama</label>
-                  <input type="text" name="nama" class="form-control" id="name" required>
+                  <input type="text" name="nama" value="<?php echo $this->input->post('nama');?>" class="form-control" id="name" required>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="hp">Nomor Hp</label>
-                  <input type="number" class="form-control" name="hp" id="hp" required>
+                  <input type="number" class="form-control" name="hp" id="hp" value="<?php echo $this->input->post('hp');?>" required>
                 </div>
               </div>
               <div class="form-group">
                 <label for="jk">Jenis Kelamin</label>
                 <select name="jk" class="form-control" id="jk" required>
                     <option value="">-- Pilih Jenis Kelamin --</option>
-                    <option value="1">Laki-laki</option>
-                    <option value="2">Perempuan</option>
+                    <option value="1" <?php echo $this->input->post('jk') == 1 ? 'selected' : '';?>>Laki-laki</option>
+                    <option value="2" <?php echo $this->input->post('jk') == 2 ? 'selected' : '';?>>Perempuan</option>
                 </select>
               </div>
               <div class="form-group">
-                <label for="name">Asal Instansi</label>
-                <input type="text" class="form-control" name="asal_instansi" id="asal_instansi" required>
+                <label for="asal_instansi">Asal Instansi</label>
+                <input type="text" class="form-control" value="<?php echo $this->input->post('asal_instansi');?>" name="asal_instansi" id="asal_instansi" required>
               </div>
               <div class="form-group">
-                <label for="name">Alamat</label>
-                <textarea class="form-control" name="message" rows="3" required></textarea>
+                <label for="alamat">Alamat</label>
+                <textarea class="form-control" name="alamat" rows="3" required><?php echo $this->input->post('alamat');?></textarea>
               </div>
               <div class="form-group">
                 <label for="perangkat_desa_id">Bertemu dengan</label>
-                <select name="perangkat_desa_id" class="form-control" id="perangkat_desa_id">
+                <select name="perangkat_desa_id" class="form-control" id="perangkat_desa_id" required>
                     <option value="">-- Pilih --</option>
                     <?php foreach($data['perangkat_desa'] AS $key => $value):?>
-                        <option value="<?php echo $value['id'];?>"><?php echo $value['nama'].' - '. $jabatan[$value['jabatan']];?></option>
+                        <option <?php echo $this->input->post('perangkat_desa_id') == $value['id'] ? 'selected' : '';?> value="<?php echo $value['id'];?>"><?php echo $value['nama'].' - '. $jabatan[$value['jabatan']];?></option>
                     <?php endforeach ?>
                 </select>
               </div>
               <div class="form-group">
                 <label for="keperluan">Keperluan</label>
-                <input type="text" class="form-control" name="keperluan" id="keperluan" required>
+                <select name="keperluan" class="form-control" id="keperluan" required>
+                    <option value="">-- Pilih Keperluan --</option>
+                    <?php foreach($keperluan AS $key => $value):?>
+                        <option <?php echo $this->input->post('keperluan') == $key ? 'selected' : '';?> value="<?php echo $key;?>"><?php echo $value;?></option>
+                    <?php endforeach ?>
+                </select>
               </div>
               <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+                <?php if(!empty($msg)):?>
+                    <div class="alert alert-<?php echo $msg['alert']?>"><?php echo $msg['msg'];?></div>
+                <?php endif;?>
               </div>
-              <div class="text-center"><button type="submit">Kirim</button></div>
+              <div class="text-center"><button class="btn btn-primary" type="submit">Kirim</button></div>
             </form>
           </div>
 
