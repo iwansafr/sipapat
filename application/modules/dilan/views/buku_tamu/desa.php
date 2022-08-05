@@ -129,8 +129,8 @@
               </div>
               <div class="form-group">
                 <label for="jk">Jenis Kelamin</label>
-                <select name="jk" class="form-control" id="jk">
-                    <option >-- Pilih Jenis Kelamin --</option>
+                <select name="jk" class="form-control" id="jk" required>
+                    <option value="">-- Pilih Jenis Kelamin --</option>
                     <option value="1">Laki-laki</option>
                     <option value="2">Perempuan</option>
                 </select>
@@ -146,7 +146,7 @@
               <div class="form-group">
                 <label for="perangkat_desa_id">Bertemu dengan</label>
                 <select name="perangkat_desa_id" class="form-control" id="perangkat_desa_id">
-                    <option >-- Pilih --</option>
+                    <option value="">-- Pilih --</option>
                     <?php foreach($data['perangkat_desa'] AS $key => $value):?>
                         <option value="<?php echo $value['id'];?>"><?php echo $value['nama'].' - '. $jabatan[$value['jabatan']];?></option>
                     <?php endforeach ?>

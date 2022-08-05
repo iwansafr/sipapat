@@ -24,6 +24,7 @@ class Buku_tamu extends CI_Controller
                 $data['perangkat_desa'] = $this->db->query('SELECT * FROM perangkat_desa WHERE desa_id = ? AND kelompok = 1',$data['id'])->result_array();
             }
             $jabatan = $this->pengguna_model->jabatan()[1];
+            
             $this->load->view('dilan/buku_tamu/desa',compact('data','jabatan'));
         }else{
             echo 'Link tidak valid';
