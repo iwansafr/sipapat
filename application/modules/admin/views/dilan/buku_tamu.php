@@ -8,7 +8,7 @@ $form->setNumbering(true);
 $form->addInput('nama','link');
 $form->setLink('nama',base_url('admin/dilan/buku_tamu_detail/'),'id');
 $form->addInput('keperluan','dropdown');
-$form->setOptions('keperluan',$this->bukutamu->keperluan());
+$form->setOptions('keperluan',$this->buku_tamu_model->keperluan());
 $form->setAttribute('keperluan','disabled');
 $form->addInput('perangkat_desa_id','dropdown');
 $form->tableOptions('perangkat_desa_id','perangkat_desa','id','nama');

@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class BukuTamu extends CI_Model
+class Buku_tamu_model extends CI_Model
 {
     public function keperluan()
     {

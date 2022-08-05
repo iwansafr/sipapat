@@ -19,7 +19,7 @@ $form->tableOptions('perangkat_desa_id','perangkat_desa','id','nama');
 $form->setLabel('perangkat_desa_id','Bertemu Dengan');
 $form->setAttribute('perangkat_desa_id','disabled');
 $form->addInput('keperluan','dropdown');
-$form->setOptions('keperluan',$this->bukutamu->keperluan());
+$form->setOptions('keperluan',$this->buku_tamu_model->keperluan());
 $form->setAttribute('keperluan','disabled');
 
 $form->setSave(false);
