@@ -87,6 +87,10 @@ if (is_root() || is_admin() || (@$pengguna['desa_id'] == $id && !empty($id))) {
 	$form->setAttribute('email', ['type' => 'email', 'placeholder' => 'nama@gmail.com']);
 	$form->addInput('website', 'text');
 	$form->setAttribute('website', ['type' => 'url', 'placeholder' => 'http://website.com']);
+	$form->addInput('youtube_video', 'text');
+	$form->setAttribute('youtube_video', ['type' => 'url', 'placeholder' => 'http://youtube.com']);
+	$form->addInput('gmap_link', 'text');
+	$form->setAttribute('gmap_link', ['type' => 'url', 'placeholder' => 'http://map.google.com']);
 	$form->addInput('alamat', 'textarea');
 	$form->setLabel('alamat', 'Alamat Balai Desa');
 	$form->addInput('ttd_img', 'file');

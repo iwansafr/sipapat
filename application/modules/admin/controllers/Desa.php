@@ -32,6 +32,32 @@ class Desa extends CI_Controller
 
 	public function edit()
 	{
+		if(!$this->db->field_exists('youtube_video','desa'))
+		{
+			$this->load->dbforge();
+			$fields = [
+				'youtube_video' => [
+						'type' => 'VARCHAR',
+						'constraint' => '255',
+						'default' => NULL,
+						'after' => 'website'
+				],
+			];
+			$this->dbforge->add_column('desa',$fields);
+		}
+		if(!$this->db->field_exists('gmap_link','desa'))
+		{
+			$this->load->dbforge();
+			$fields = [
+				'gmap_link' => [
+						'type' => 'VARCHAR',
+						'constraint' => '255',
+						'default' => NULL,
+						'after' => 'website'
+				],
+			];
+			$this->dbforge->add_column('desa',$fields);
+		}
 		$pengguna = $this->pengguna_model->get_pengguna();
 		$sipapat_config = $this->esg->get_esg('sipapat_config');
 		if(empty($sipapat_config))
