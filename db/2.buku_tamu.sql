@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 8.0.30)
 # Database: sipapat
-# Generation Time: 2022-08-04 07:46:10 +0000
+# Generation Time: 2022-08-05 02:16:32 +0000
 # ************************************************************
 
 
@@ -28,6 +28,7 @@ DROP TABLE IF EXISTS `buku_tamu`;
 CREATE TABLE `buku_tamu` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `nama` varchar(255) DEFAULT NULL,
+  `hp` varchar(15) DEFAULT NULL,
   `alamat` text,
   `asal_instansi` varchar(255) DEFAULT NULL,
   `jk` tinyint(1) DEFAULT NULL COMMENT '1 = laki-laki , 2= perempuan',

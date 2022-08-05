@@ -54,7 +54,7 @@
  * NOTE: If you change these, also change the error_reporting() code below
  */
 date_default_timezone_set("Asia/Bangkok");
-if(@$_SERVER['SERVER_NAME'] == 'localhost')
+if(@$_SERVER['SERVER_NAME'] != 'localhost')
 {
 	$env = 'development';
 }else{
