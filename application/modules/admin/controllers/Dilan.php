@@ -1215,4 +1215,8 @@ class Dilan extends CI_Controller
 	{
 		$this->load->view('index');
 	}
+	public function buku_tamu()
+	{
+		$this->load->view('index');
+	}
 }
