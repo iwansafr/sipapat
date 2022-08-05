@@ -1,8 +1,12 @@
 <?php
 
+$pengguna = $this->pengguna_model->get_pengguna();
 $form = new Zea();
 $form->init('roll');
 $form->setTable('buku_tamu');
+if(is_desa()){
+    $form->setWhere('desa_id = '.$pengguna['desa_id']);
+}
 $form->addInput('id','hidden');
 $form->setNumbering(true);
 $form->addInput('nama','link');
