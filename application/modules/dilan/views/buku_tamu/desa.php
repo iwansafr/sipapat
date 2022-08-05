@@ -203,7 +203,7 @@
             <p>
               <?php echo $data['nama'];?> <br>
               <?php echo $data['alamat'];?><br>
-              <?php echo $data['kabupaaten'];?> <br><br>
+              <?php echo $data['kabupaten'];?> <br><br>
               <strong>Telepon:</strong> <?php echo $data['telepon'];?><br>
               <strong>Email:</strong> <?php echo $data['email'];?><br>
             </p>
