@@ -137,11 +137,24 @@
               </div>
               <div class="form-group">
                 <label for="name">Asal Instansi</label>
-                <input type="text" class="form-control" name="asal_instansi" id="subject" required>
+                <input type="text" class="form-control" name="asal_instansi" id="asal_instansi" required>
               </div>
               <div class="form-group">
                 <label for="name">Alamat</label>
-                <textarea class="form-control" name="message" rows="10" required></textarea>
+                <textarea class="form-control" name="message" rows="3" required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="perangkat_desa_id">Bertemu dengan</label>
+                <select name="perangkat_desa_id" class="form-control" id="perangkat_desa_id">
+                    <option >-- Pilih --</option>
+                    <?php foreach($data['perangkat_desa'] AS $key => $value):?>
+                        <option value="<?php echo $value['id'];?>"><?php echo $value['nama'].' - '. $jabatan[$value['jabatan']];?></option>
+                    <?php endforeach ?>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="keperluan">Keperluan</label>
+                <input type="text" class="form-control" name="keperluan" id="keperluan" required>
               </div>
               <div class="my-3">
                 <div class="loading">Loading</div>

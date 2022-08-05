@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 8.0.30)
 # Database: sipapat
-# Generation Time: 2022-08-05 02:16:32 +0000
+# Generation Time: 2022-08-05 02:51:34 +0000
 # ************************************************************
 
 
@@ -34,7 +34,7 @@ CREATE TABLE `buku_tamu` (
   `jk` tinyint(1) DEFAULT NULL COMMENT '1 = laki-laki , 2= perempuan',
   `desa_id` int DEFAULT NULL,
   `perangkat_desa_id` int DEFAULT NULL COMMENT 'bertemu dg perangkat desa',
-  `keperluan` tinyint(1) DEFAULT NULL,
+  `keperluan` tinyint(1) DEFAULT NULL COMMENT '1 = rapat, 2 = penawaran, 3 = konsultasi, 4 = mengantar barang / paket, 5 = kunjungan',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
