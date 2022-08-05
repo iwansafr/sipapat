@@ -18,8 +18,8 @@ class Buku_tamu extends CI_Controller
     public function desa($desa)
     {
         if(is_numeric($desa)){
-            $desa = $this->db->query('SELECT * FROM desa WHERE id = ? ', $desa)->row_array();
-            $this->load->view('index');
+            $data = $this->db->query('SELECT * FROM desa WHERE id = ? ', $desa)->row_array();
+            $this->load->view('dilan/buku_tamu/desa',compact('data'));
         }else{
             echo 'Link tidak valid';
         }
