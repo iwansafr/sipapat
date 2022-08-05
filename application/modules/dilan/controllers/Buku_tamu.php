@@ -11,7 +11,7 @@ class Buku_tamu extends CI_Controller
 		$this->load->model('admin/sipapat_model');
 		$this->load->model('admin/dilan_model');
 		$this->load->model('admin/pengguna_model');
-        $this->load->model('dilan/bukutamu');
+        $this->load->model('dilan/buku_tamu_model');
 	}
     public function index()
     {
@@ -23,7 +23,7 @@ class Buku_tamu extends CI_Controller
         if(!empty($this->input->post())){
             $post = $this->input->post();
             $post['desa_id'] = $desa;
-            $msg = $this->bukutamu->save($post);
+            $msg = $this->buku_tamu_model->save($post);
         }
         if(is_numeric($desa)){
             $data = $this->db->query('SELECT * FROM desa WHERE id = ? ', $desa)->row_array();
@@ -31,7 +31,7 @@ class Buku_tamu extends CI_Controller
                 $data['perangkat_desa'] = $this->db->query('SELECT * FROM perangkat_desa WHERE desa_id = ? AND kelompok = 1',$data['id'])->result_array();
             }
             $jabatan = $this->pengguna_model->jabatan()[1];
-            $keperluan = $this->bukutamu->keperluan();
+            $keperluan = $this->buku_tamu_model->keperluan();
             
             $this->load->view('dilan/buku_tamu/desa',compact('data','jabatan','keperluan','msg'));
         }else{
