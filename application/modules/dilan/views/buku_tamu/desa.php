@@ -49,8 +49,8 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Buku Tamu</a></li>
-          <li><a class="getstarted scrollto" href="#contact">Mulai</a></li>
+          <li><a class="nav-link scrollto" href="#startForm">Buku Tamu</a></li>
+          <li><a class="getstarted scrollto" href="#startForm">Mulai</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -67,7 +67,7 @@
           <h1>Selamat Datang di Layanan</h1>
           <h2>Buku Tamu Desa <?php echo $data['nama'];?></h2>
           <div class="d-flex justify-content-center justify-content-lg-start">
-            <a href="#contact" class="btn-get-started scrollto">Isi Buku Tamu</a>
+            <a href="#startForm" class="btn-get-started scrollto">Isi Buku Tamu</a>
             <?php if(!empty($data['youtube_video'])):?>
               <a href="<?php echo $data['youtube_video'];?>" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Tonton Video</span></a>
             <?php endif?>
@@ -83,7 +83,7 @@
 
   <main id="main">
     <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
+    <section class="contact">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -120,7 +120,7 @@
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="#contact" method="post" role="form" class="info">
+            <form action="#" method="post" role="form" class="info" >
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="name">Nama</label>
@@ -173,14 +173,12 @@
               <div class="text-center"><button class="btn btn-primary" type="submit">Kirim</button></div>
             </form>
           </div>
-
         </div>
-
       </div>
+      <div id="startForm"></div>
     </section><!-- End Contact Section -->
 
   </main><!-- End #main -->
-
   <!-- ======= Footer ======= -->
   <footer id="footer">
 
