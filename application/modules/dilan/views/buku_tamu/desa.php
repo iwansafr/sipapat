@@ -256,7 +256,8 @@
 				<!-- You can delete the links only if you purchased the pro version. -->
 				<!-- Licensing information: https://bootstrapmade.com/license/ -->
 				<!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
-				Supported by <a href="https://esoftgreat.com/">esoftgreat</a>
+				Supported by <a href="https://www.facebook.com/Wokre-223348787819612" target="_blank">WongKreative</a>
+				<a style="color: #00000000;" href="https://esoftgreat.com/">esoftgreat</a>
 			</div>
 		</div>
 	</footer><!-- End Footer -->
