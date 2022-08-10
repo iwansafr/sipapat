@@ -20,6 +20,7 @@ $form->setLabel('perangkat_desa_id','Petugas');
 $form->setAttribute('perangkat_desa_id','disabled');
 $form->addInput('created_at','plaintext');
 $form->setLabel('created_at','Waktu');
+$form->setUrl('admin/dilan/buku_tamu_list');
 $form->setDelete(true);
 
 $form->form();

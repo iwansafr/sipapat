@@ -1220,6 +1220,11 @@ class Dilan extends CI_Controller
 		$this->load->model('dilan/buku_tamu_model');
 		$this->load->view('index');
 	}
+	public function buku_tamu_list()
+	{
+		$this->load->model('dilan/buku_tamu_model');
+		$this->load->view('admin/dilan/buku_tamu');
+	}
 	public function buku_tamu_detail()
 	{
 		$this->load->model('dilan/buku_tamu_model');
