@@ -12,7 +12,7 @@ if(is_desa() || is_root())
 				?>
 				<div class="col-md-3">
 					<a href="<?php echo base_url('admin/dilan/surat_pengantar_form/'.$id.'/'.$value['id']) ?>" class="small-box" style="background:  #363b71; color:white;">
-						<div class="small-box" style="background:  #363b71; color:white;">
+						<div class="small-box" style="background:  #363b71; color:white; height:170px;">
 						<div class="inner">
 							<h3>form</h3>
 
