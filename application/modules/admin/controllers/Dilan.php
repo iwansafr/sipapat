@@ -471,6 +471,7 @@ class Dilan extends CI_Controller
 					$file = str_replace('[penandatangan]', $text_petinggi, $file);
 					$file = str_replace('[nama_pamong]', @$kepdes['nama'], $file);
 					$file = str_replace('[pamong_nip]', @$kepdes['nip'], $file);
+					$file = str_replace('[masa_berlaku]', content_date($surat['berlaku_mulai']) . ' s/d ' . content_date($surat['berlaku_sampai']), $file);
 
 					header("Content-type: application/msword");
 					header("Content-disposition: inline; filename=dilan-".date('dmYhis').".rtf");
