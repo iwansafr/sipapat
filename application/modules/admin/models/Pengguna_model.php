@@ -68,7 +68,7 @@ class Pengguna_model extends CI_Model
 			'1' => 	[
 								'1'=>strtoupper('kepala desa'),
 								'2'=>strtoupper('sekretaris desa'),
-								'21'=>strtoupper('PLT sekretaris desa'),
+								'22'=>strtoupper('PLT sekretaris desa'),
 								'3'=>strtoupper('kepala dusun 1'),
 								'4'=>strtoupper('kepala dusun ii'),
 								'5'=>strtoupper('kepala dusun iii'),
