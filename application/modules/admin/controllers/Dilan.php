@@ -444,9 +444,12 @@ class Dilan extends CI_Controller
 					$text_petinggi = !empty($config['is_petinggi']) ? 'Petinggi ' : 'Kepala Desa ';
 					$current_pekerjaan = !empty($pekerjaan[$penduduk['pekerjaan']]) ? $pekerjaan[$penduduk['pekerjaan']] : 'TIDAK DIKETAHUI';
 
+					$tgl = strtotime($penduduk['tgl_lahir']);
+					$tgl_lahir = date('d-m-Y', $tgl);
+
 					$file = str_replace('[nama]', $penduduk['nama'], $file);
 					$file = str_replace('[tempatlahir]', $penduduk['tmpt_lhr'], $file);
-					$file = str_replace('[tanggallahir]', $penduduk['tgl_lhr'], $file);
+					$file = str_replace('[tanggallahir]', $tgl_lahir, $file);
 					$file = str_replace('[sex]', $kelamin[$penduduk['jk']], $file);
 					$file = str_replace('[no_ktp]', $penduduk['nik'], $file);
 					//alternative if no_ktp cant replace
@@ -455,7 +458,7 @@ class Dilan extends CI_Controller
 					$file = str_replace('[form_keterangan]', ucfirst(strtolower($surat['keperluan'])), $file);
 					$file = str_replace('[keperluan]', ucfirst(strtolower($surat['keperluan'])), $file);
 					$file = str_replace('[pekerjaan]', $current_pekerjaan, $file);
-					$file = str_replace('[ttl]', $penduduk['tmpt_lhr'].'/'.$penduduk['tgl_lhr'], $file);
+					$file = str_replace('[ttl]', $penduduk['tmpt_lhr'].'/'.$tgl_lahir, $file);
 					$file = str_replace('[no_kk]', $penduduk['no_kk'], $file);
 					$file = str_replace('[nama_desa]', $desa['nama'], $file);
 					$file = str_replace('[nama_des]', $desa['nama'], $file);
