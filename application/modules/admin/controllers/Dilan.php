@@ -444,7 +444,7 @@ class Dilan extends CI_Controller
 					$text_petinggi = !empty($config['is_petinggi']) ? 'Petinggi ' : 'Kepala Desa ';
 					$current_pekerjaan = !empty($pekerjaan[$penduduk['pekerjaan']]) ? $pekerjaan[$penduduk['pekerjaan']] : 'TIDAK DIKETAHUI';
 
-					$tgl = strtotime($penduduk['tgl_lahir']);
+					$tgl = strtotime($penduduk['tgl_lhr']);
 					$tgl_lahir = date('d-m-Y', $tgl);
 
 					$file = str_replace('[nama]', $penduduk['nama'], $file);
