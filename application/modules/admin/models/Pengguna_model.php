@@ -88,6 +88,26 @@ class Pengguna_model extends CI_Model
 								'16'=>strtoupper('perangkat desa lainnya (kesra)'),
 								'19'=>strtoupper('staf kadus'),
 								'17'=>strtoupper('kader desa'),
+								// Kepala Desa 
+								// Sekretaris Desa
+								// Kaur TU dan Umum 
+								// Kaur Keuangan
+								// Kaur Perencanaan
+								// Kasi Pemerintahan
+								// Kasi Kesejahteraan
+								// Kasi Pelayanan
+								// Kamituwo Krajan
+								// Kamituwo Winong
+								// Kamituwo Ngemplak
+								// Kamituwo Drojo
+								// Kamituwo Pejing
+								// Staf Seksi Pemerintahan
+								// Staf Seksi Kesejahteraan
+								// Staf Seksi Pelayanan
+								// Staf Urusan TU dan Umum 
+								// Staf Urusan Keuangan
+								// Staf Urusan Perencanaan 
+
 							],
 			'2' =>  [
 								'1'=>strtoupper('ketua'),
