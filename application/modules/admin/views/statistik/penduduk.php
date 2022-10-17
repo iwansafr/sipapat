@@ -4,6 +4,7 @@ $pengguna = $this->pengguna_model->get_pengguna();
 
 if(is_desa())
 {
+    $this->load->view('admin/statistik/menu');
     $desa = $this->sipapat_model->get_desa($pengguna['desa_id']);
 
     $statistik_data = $this->statistik_model->getIdStatistikDesa($desa['id']);
