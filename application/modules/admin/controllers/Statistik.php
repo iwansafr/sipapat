@@ -9,6 +9,7 @@ class Statistik extends CI_Controller
 		$this->load->model('esg_model');
 		$this->load->model('admin_model');
 		$this->load->model('pengguna_model');
+		$this->load->model('statistik_model');
 		$this->load->library('esg');
 		$this->load->library('ZEA/zea');
 		$this->esg_model->init();
