@@ -63,7 +63,7 @@ if(is_desa())
     $form->setType('s3','number');
     $form->setLabel('s3','Jumlah Warga Dengan Gelar S3 / Doktor');
 
-
-
     $form->form();
+}else if(is_admin() || is_root()){
+    $this->load->view('admin/statistik/admin_pendidikan');
 }
