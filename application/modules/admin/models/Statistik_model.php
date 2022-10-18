@@ -46,4 +46,54 @@ class Statistik_model extends CI_Model
 
         return $output;
     }
+    public function getStatistikAgama()
+    {
+        $output = [];
+    
+        $output['islam'] = $this->db->query('SELECT sum(islam) AS `Jumlah Warga Beragama Islam` FROM statistik_penduduk')->row_array();
+
+        $output['kristen'] = $this->db->query('SELECT sum(kristen) AS `Jumlah Warga Beragama Kristen` FROM statistik_penduduk')->row_array();
+
+        $output['katholik'] = $this->db->query('SELECT sum(katholik) AS `Jumlah Warga Beragama Katholik` FROM statistik_penduduk')->row_array();
+
+        $output['hindu'] = $this->db->query('SELECT sum(hindu) AS `Jumlah Warga Beragama Hindu` FROM statistik_penduduk')->row_array();
+
+        $output['budha'] = $this->db->query('SELECT sum(budha) AS `Jumlah Warga Beragama Budha` FROM statistik_penduduk')->row_array();
+
+        $output['khonghucu'] = $this->db->query('SELECT sum(khonghucu) AS `Jumlah Warga Beragama Khong Hucu` FROM statistik_penduduk')->row_array();
+
+        $output['penghayat_kepercayaan'] = $this->db->query('SELECT sum(penghayat_kepercayaan) AS `Jumlah Warga Penghayat Kepercayaan` FROM statistik_penduduk')->row_array();
+
+        return $output;
+    }
+    public function getStatistikPekerjaan()
+    {
+        $output = [];
+
+        $output['asn'] = $this->db->query('SELECT SUM(asn) AS `Jumlah ASN` FROM statistik_penduduk')->row_array();
+        
+        $output['tni'] = $this->db->query('SELECT SUM(tni) AS `Jumlah TNI` FROM statistik_penduduk')->row_array();
+        
+        $output['polri'] = $this->db->query('SELECT SUM(polri) AS `Jumlah POLRI` FROM statistik_penduduk')->row_array();
+        
+        $output['karyawan_swasta'] = $this->db->query('SELECT SUM(karyawan_swasta) AS `Jumlah Karyawan Swasta` FROM statistik_penduduk')->row_array();
+        
+        $output['karyawan_bumn'] = $this->db->query('SELECT SUM(karyawan_bumn) AS `Jumlah Karyawan BUMN/BUMN` FROM statistik_penduduk')->row_array();
+        
+        $output['petani'] = $this->db->query('SELECT SUM(petani) AS `Jumlah Petani` FROM statistik_penduduk')->row_array();
+        
+        $output['buruh_tani'] = $this->db->query('SELECT SUM(buruh_tani) AS `Jumlah Buruh Tani` FROM statistik_penduduk')->row_array();
+        
+        $output['nelayan'] = $this->db->query('SELECT SUM(nelayan) AS `Jumlah Nelayan` FROM statistik_penduduk')->row_array();
+        
+        $output['wiraswasta'] = $this->db->query('SELECT SUM(wiraswasta) AS `Jumlah Wiraswasta` FROM statistik_penduduk')->row_array();
+        
+        $output['ibu_rumah_tangga'] = $this->db->query('SELECT SUM(ibu_rumah_tangga) AS `Jumlah Ibu Rumah Tangga` FROM statistik_penduduk')->row_array();
+        
+        $output['belum_bekerja'] = $this->db->query('SELECT SUM(belum_bekerja) AS `Jumlah Belum Bekerja` FROM statistik_penduduk')->row_array();
+        
+        $output['pekerjaan_lainnya'] = $this->db->query('SELECT SUM(pekerjaan_lainnya) AS `Jumlah Pekerja Lainnya` FROM statistik_penduduk')->row_array();
+
+        return $output;
+    }
 }

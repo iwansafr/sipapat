@@ -52,4 +52,6 @@ if(is_desa())
     $form->setLabel('penghayat_kepercayaan','Jumlah Warga Penghayat Kepercayaan');
     
     $form->form();
+}else if(is_admin() || is_root()){
+    $this->load->view('admin/statistik/admin_agama');
 }

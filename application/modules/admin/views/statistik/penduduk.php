@@ -77,4 +77,6 @@ if(is_desa())
         }
     </script>
     <?php
+}else if(is_admin() || is_root()){
+    $this->load->view('admin/statistik/admin_penduduk');
 }

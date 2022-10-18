@@ -72,4 +72,6 @@ if(is_desa())
     $form->setLabel('pekerjaan_lainnya','Jumlah Pekerja Lainnya');
 
     $form->form();
+}else if(is_admin() || is_root()){
+    $this->load->view('admin/statistik/admin_pekerjaan');
 }

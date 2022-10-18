@@ -22,8 +22,15 @@ class Statistik extends CI_Controller
     {
         $this->load->view('index');
     }
-    
+    public function admin_penduduk_statistik()
+    {
+        $this->load->view('index');
+    }
     public function agama(){
+        $this->load->view('index');
+    }
+    public function admin_agama_statistik()
+    {
         $this->load->view('index');
     }
     public function pendidikan(){
@@ -36,7 +43,15 @@ class Statistik extends CI_Controller
     public function sarpras(){
         $this->load->view('index');
     }
+    public function admin_sarpras_statistik()
+    {
+        $this->load->view('index');
+    }
     public function pekerjaan(){
+        $this->load->view('index');
+    }
+    public function admin_pekerjaan_statistik()
+    {
         $this->load->view('index');
     }
 }
