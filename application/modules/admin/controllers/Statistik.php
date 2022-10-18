@@ -22,10 +22,15 @@ class Statistik extends CI_Controller
     {
         $this->load->view('index');
     }
+    
     public function agama(){
         $this->load->view('index');
     }
     public function pendidikan(){
+        $this->load->view('index');
+    }
+    public function admin_pendidikan_statistik()
+    {
         $this->load->view('index');
     }
     public function sarpras(){
