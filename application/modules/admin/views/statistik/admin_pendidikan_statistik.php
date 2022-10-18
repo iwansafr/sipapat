@@ -8,7 +8,7 @@ $statistik = $this->statistik_model->getStatistikPendidikan();
       <h5 class="box-title">Statistik</h5>
     </div>
     <div class="box-body">
-        <table class="table table-responsive" id="tableStatistikPendidikan">
+        <table class="table table-responsive table-striped" id="tableStatistikPendidikan">
             <?php
             $pendidikan_chart_data = '';
             $color =
