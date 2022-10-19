@@ -77,4 +77,23 @@ class Statistik_model extends CI_Model
 
         return $output;
     }
+    public function getStatistikFasPem()
+    {
+        $output = [];
+        $output['faspem_kantor_desa'] = $this->db->query('SELECT SUM(faspem_kantor_desa) AS `Jumlah Kantor Desa` FROM statistik_penduduk')->row_array();
+        $output['faspem_balai_desa'] = $this->db->query('SELECT SUM(faspem_balai_desa) AS `Jumlah Balai Desa` FROM statistik_penduduk')->row_array();
+        $output['faspem_perpus_desa'] = $this->db->query('SELECT SUM(faspem_perpus_desa) AS `Jumlah Perpustakaan Desa` FROM statistik_penduduk')->row_array();
+        return $output;
+    }
+
+    public function getStatistikFasIb()
+    {
+        $output = [];
+        $output['fasib_masjid'] = $this->db->query('SELECT SUM(fasib_masjid) AS `Jumlah Masjid` FROM statistik_penduduk')->row_array();
+        $output['fasib_mushola'] = $this->db->query('SELECT SUM(fasib_mushola) AS `Jumlah Mushola` FROM statistik_penduduk')->row_array();
+        $output['fasib_gereja'] = $this->db->query('SELECT SUM(fasib_gereja) AS `Jumlah Gereja` FROM statistik_penduduk')->row_array();
+        $output['fasib_wihara'] = $this->db->query('SELECT SUM(fasib_wihara) AS `Jumlah Wihara` FROM statistik_penduduk')->row_array();
+        $output['fasib_klenteng'] = $this->db->query('SELECT SUM(fasib_klenteng) AS `Jumlah Klenteng` FROM statistik_penduduk')->row_array();
+        return $output;
+    }
 }
