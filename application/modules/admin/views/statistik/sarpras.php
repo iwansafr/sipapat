@@ -155,6 +155,4 @@ if(is_desa())
     $form->endCollapse('fasling_pamsimas');
 
     $form->form();
-}else if(is_admin() || is_root()){
-    $this->load->view('admin/statistik/admin_sarpras');
 }

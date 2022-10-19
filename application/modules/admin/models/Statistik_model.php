@@ -64,4 +64,17 @@ class Statistik_model extends CI_Model
 
         return $output;
     }
+
+    public function getStatistikFasPen()
+    {
+        $output = [];
+        $output['faspen_tk'] = $this->db->query('SELECT SUM(faspen_tk) AS `Jumlah TK/PAUD/RA` FROM statistik_penduduk')->row_array();
+        $output['faspen_sd'] = $this->db->query('SELECT SUM(faspen_sd) AS `Jumlah SD/MI` FROM statistik_penduduk')->row_array();
+        $output['faspen_sltp'] = $this->db->query('SELECT SUM(faspen_sltp) AS `Jumlah SLTP/SMP/MTS` FROM statistik_penduduk')->row_array();
+        $output['faspen_slta'] = $this->db->query('SELECT SUM(faspen_slta) AS `Jumlah SLTA` FROM statistik_penduduk')->row_array();
+        $output['faspen_pesantren'] = $this->db->query('SELECT SUM(faspen_pesantren) AS `Jumlah Pondok Pesantren` FROM statistik_penduduk')->row_array();
+        $output['faspen_perguruan_tinggi'] = $this->db->query('SELECT SUM(faspen_perguruan_tinggi) AS `Jumlah Perguruan Tinggi` FROM statistik_penduduk')->row_array();
+
+        return $output;
+    }
 }

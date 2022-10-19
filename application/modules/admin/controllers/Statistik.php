@@ -54,4 +54,42 @@ class Statistik extends CI_Controller
     {
         $this->load->view('index');
     }
+
+    public function sarpras_fasilitas_pendidikan(){
+        $this->load->view('index');
+    }
+    public function sarpras_fasilitas_pemerintahan(){
+        $this->load->view('index');
+    }
+    public function sarpras_fasilitas_ibadah(){
+        $this->load->view('index');
+    }
+    public function sarpras_fasilitas_ekonomi(){
+        $this->load->view('index');
+    }
+    public function sarpras_fasilitas_kesehatan(){
+        $this->load->view('index');
+    }
+    public function sarpras_fasilitas_lingkungan(){
+        $this->load->view('index');
+    }
+
+    public function sarpras_fasilitas_pendidikan_statistik(){
+        $this->load->view('index');
+    }
+    public function sarpras_fasilitas_pemerintahan_statistik(){
+        $this->load->view('index');
+    }
+    public function sarpras_fasilitas_ibadah_statistik(){
+        $this->load->view('index');
+    }
+    public function sarpras_fasilitas_ekonomi_statistik(){
+        $this->load->view('index');
+    }
+    public function sarpras_fasilitas_kesehatan_statistik(){
+        $this->load->view('index');
+    }
+    public function sarpras_fasilitas_lingkungan_statistik(){
+        $this->load->view('index');
+    }
 }
