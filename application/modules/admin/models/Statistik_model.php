@@ -107,4 +107,14 @@ class Statistik_model extends CI_Model
         $output[] = $this->db->query('SELECT SUM(fasek_warung_makan) AS `Jumlah Warung Makan` FROM statistik_penduduk')->row_array();
         return $output;
     }
+
+    public function getStatistikFasKes()
+    {
+        $output = [];
+        $output[] = $this->db->query('SELECT SUM(faskes_pkd) AS `Jumlah Pos Kesehatan Desa` FROM statistik_penduduk')->row_array();
+        $output[] = $this->db->query('SELECT SUM(faskes_puskesmas) AS `Jumlah Puskesmas` FROM statistik_penduduk')->row_array();
+        $output[] = $this->db->query('SELECT SUM(faskes_klinik) AS `Jumlah Klinik` FROM statistik_penduduk')->row_array();
+        $output[] = $this->db->query('SELECT SUM(faskes_dokter_praktik) AS `Jumlah Dokter Praktik` FROM statistik_penduduk')->row_array();
+        return $output;
+    }
 }
