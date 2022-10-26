@@ -117,4 +117,14 @@ class Statistik_model extends CI_Model
         $output[] = $this->db->query('SELECT SUM(faskes_dokter_praktik) AS `Jumlah Dokter Praktik` FROM statistik_penduduk')->row_array();
         return $output;
     }
+
+    public function getStatistikFasLing()
+    {
+        $output = [];
+        $output[] = $this->db->query('SELECT SUM(fasling_tpa) AS `Jumlah BANK SAMPAH/TPA` FROM statistik_penduduk')->row_array();
+        $output[] = $this->db->query('SELECT SUM(fasling_makam) AS `Jumlah Makam` FROM statistik_penduduk')->row_array();
+        $output[] = $this->db->query('SELECT SUM(fasling_lap_or) AS `Jumlah Lapangan Olah Raga` FROM statistik_penduduk')->row_array();
+        $output[] = $this->db->query('SELECT SUM(fasling_pamsimas) AS `Jumlah Pamsimas` FROM statistik_penduduk')->row_array();
+        return $output;
+    }
 }
