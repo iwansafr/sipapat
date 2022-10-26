@@ -36,7 +36,7 @@
                 </ul>
               </div>
             <?php else:?>
-              <a href="<?php echo base_url('admin/statistik/sarpras');?>" class="w-100 btn btn-success">Pekerjaan</a>
+              <a href="<?php echo base_url('admin/statistik/sarpras');?>" class="w-100 btn btn-warning">Sarana Prasarana</a>
             <?php endif;?>
           </td>
           <td>
