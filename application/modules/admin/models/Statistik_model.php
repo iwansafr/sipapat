@@ -127,4 +127,16 @@ class Statistik_model extends CI_Model
         $output[] = $this->db->query('SELECT SUM(fasling_pamsimas) AS `Jumlah Pamsimas` FROM statistik_penduduk')->row_array();
         return $output;
     }
+
+    public function getStatistikPenduduk()
+    {
+        $output = [];
+        $output[] = $this->db->query('SELECT SUM(laki_laki) AS `Jumlah Warga Laki-laki` FROM statistik_penduduk')->row_array();
+        $output[] = $this->db->query('SELECT SUM(perempuan) AS `Jumlah Warga Perempuan` FROM statistik_penduduk')->row_array();
+        $output[] = $this->db->query('SELECT SUM(kepala_keluarga_laki_laki) AS `Jumlah Kepala Keluarga Laki-laki` FROM statistik_penduduk')->row_array();
+        $output[] = $this->db->query('SELECT SUM(kepala_keluarga_perempuan) AS `Jumlah Kepala Keluarga Perempuan` FROM statistik_penduduk')->row_array();
+        $output[] = $this->db->query('SELECT SUM(kepala_keluarga) AS `Jumlah Total Kepala Keluarga` FROM statistik_penduduk')->row_array();
+
+        return $output;
+    }
 }
