@@ -498,7 +498,7 @@ class Dilan extends CI_Controller
 					$text_kabupaten = 'KABUPATEN '.$text_kabupaten;
 				}
 				// $text_kabupaten = preg_match('kabupaten')
-				$teks1 = 'PEMERINTAH '.@$desa['kabupaten'];
+				$teks1 = 'PEMERINTAH '.$text_kabupaten;
 				$teks2 = 'KECAMATAN ' . @$desa['kecamatan'];
 				$teks3 = $text_desa . $desa['nama'];
 				// $teks4 = 'Alamat Kantor Kepala Desa '.strtolower(@$desa['nama']).' '.substr(@$desa['alamat'],0,20).' Kec. '.strtolower(@$desa['kecamatan']).' kab. '.$desa['kabupaten'];
