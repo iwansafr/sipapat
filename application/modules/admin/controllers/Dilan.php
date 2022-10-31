@@ -493,6 +493,11 @@ class Dilan extends CI_Controller
 
 				$text_desa = !empty($config['is_petinggi']) ? 'PETINGGI ' : 'DESA ';
 
+				$text_kabupaten = @$desa['kabupaten'];
+				if(!preg_match('~kabupaten~', $text_kabupaten)){
+					$text_kabupaten = 'KABUPATEN '.$text_kabupaten;
+				}
+				// $text_kabupaten = preg_match('kabupaten')
 				$teks1 = 'PEMERINTAH '.@$desa['kabupaten'];
 				$teks2 = 'KECAMATAN ' . @$desa['kecamatan'];
 				$teks3 = $text_desa . $desa['nama'];
