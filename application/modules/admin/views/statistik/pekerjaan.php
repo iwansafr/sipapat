@@ -16,7 +16,7 @@ if(is_desa())
         $form->setId($statistik_data[0]['id']);
     }
 
-    $form->setHeading('Data Statistik Pendidikan Desa <b>'.$desa['nama'].'</b>');
+    $form->setHeading('Data Statistik Pekerjaan Desa <b>'.$desa['nama'].'</b>');
     $form->setEditStatus(false);
     $form->setTable('statistik_penduduk');
 
@@ -26,6 +26,14 @@ if(is_desa())
     $form->addInput('asn','text');
     $form->setType('asn','number');
     $form->setLabel('asn','Jumlah ASN');
+
+    $form->addInput('pelajar','text');
+    $form->setType('pelajar','number');
+    $form->setLabel('pelajar','Jumlah PELAJAR / MAHASISWA');
+
+    $form->addInput('perangkat_desa','text');
+    $form->setType('perangkat_desa','number');
+    $form->setLabel('perangkat_desa','Jumlah PERANGKAT DESA');
 
     $form->addInput('tni','text');
     $form->setType('tni','number');

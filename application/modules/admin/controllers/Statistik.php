@@ -48,6 +48,32 @@ class Statistik extends CI_Controller
         $this->load->view('index');
     }
     public function pekerjaan(){
+        if(!$this->db->field_exists('pelajar','statistik_penduduk'))
+		{
+			$this->load->dbforge();
+			$fields = array(
+                'pelajar' => array(
+                        'type' => 'INT',
+                        'constraint' => '11',
+                        'default' => '0',
+                        'after' => 'asn'
+                ),
+			);
+			$this->dbforge->add_column('statistik_penduduk',$fields);
+		}
+        if(!$this->db->field_exists('perangkat_desa','statistik_penduduk'))
+		{
+			$this->load->dbforge();
+			$fields = array(
+                'perangkat_desa' => array(
+                        'type' => 'INT',
+                        'constraint' => '11',
+                        'default' => '0',
+                        'after' => 'asn'
+                ),
+			);
+			$this->dbforge->add_column('statistik_penduduk',$fields);
+		}
         $this->load->view('index');
     }
     public function admin_pekerjaan_statistik()
