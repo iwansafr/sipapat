@@ -41,7 +41,7 @@ if(is_desa())
 
     $form->addInput('karyawan_bumn','text');
     $form->setType('karyawan_bumn','number');
-    $form->setLabel('karyawan_bumn','Jumlah Karyawan BUMN/BUMN');
+    $form->setLabel('karyawan_bumn','Jumlah Karyawan BUMN/BUMD');
 
     $form->addInput('petani','text');
     $form->setType('petani','number');

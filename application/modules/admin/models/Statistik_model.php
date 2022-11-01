@@ -54,7 +54,7 @@ class Statistik_model extends CI_Model
         $output['tni'] = $this->db->query('SELECT SUM(tni) AS `Jumlah TNI` FROM statistik_penduduk')->row_array();
         $output['polri'] = $this->db->query('SELECT SUM(polri) AS `Jumlah POLRI` FROM statistik_penduduk')->row_array();
         $output['karyawan_swasta'] = $this->db->query('SELECT SUM(karyawan_swasta) AS `Jumlah Karyawan Swasta` FROM statistik_penduduk')->row_array();
-        $output['karyawan_bumn'] = $this->db->query('SELECT SUM(karyawan_bumn) AS `Jumlah Karyawan BUMN/BUMN` FROM statistik_penduduk')->row_array();
+        $output['karyawan_bumn'] = $this->db->query('SELECT SUM(karyawan_bumn) AS `Jumlah Karyawan BUMN/BUMD` FROM statistik_penduduk')->row_array();
         $output['petani'] = $this->db->query('SELECT SUM(petani) AS `Jumlah Petani` FROM statistik_penduduk')->row_array();
         $output['buruh_tani'] = $this->db->query('SELECT SUM(buruh_tani) AS `Jumlah Buruh Tani` FROM statistik_penduduk')->row_array();
         $output['nelayan'] = $this->db->query('SELECT SUM(nelayan) AS `Jumlah Nelayan` FROM statistik_penduduk')->row_array();
