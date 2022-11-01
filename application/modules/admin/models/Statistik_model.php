@@ -61,6 +61,9 @@ class Statistik_model extends CI_Model
         $output['wiraswasta'] = $this->db->query('SELECT SUM(wiraswasta) AS `Jumlah Wiraswasta` FROM statistik_penduduk')->row_array();
         $output['ibu_rumah_tangga'] = $this->db->query('SELECT SUM(ibu_rumah_tangga) AS `Jumlah Ibu Rumah Tangga` FROM statistik_penduduk')->row_array();
         $output['belum_bekerja'] = $this->db->query('SELECT SUM(belum_bekerja) AS `Jumlah Belum Bekerja` FROM statistik_penduduk')->row_array();
+        $output['pelajar'] = $this->db->query('SELECT SUM(pelajar) AS `Jumlah PELAJAR / MAHASISWA` FROM statistik_penduduk')->row_array();
+        $output['perangkat_desa'] = $this->db->query('SELECT SUM(perangkat_desa) AS `Jumlah PERANGKAT DESA` FROM statistik_penduduk')->row_array();
+        $output['pedagang'] = $this->db->query('SELECT SUM(pedagang) AS `Jumlah Pedagang` FROM statistik_penduduk')->row_array();
 
         return $output;
     }

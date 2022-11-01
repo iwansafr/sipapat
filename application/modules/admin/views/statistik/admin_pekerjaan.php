@@ -12,6 +12,15 @@ $form->setAttribute('desa_id','disabled');
 $form->addInput('asn','plaintext');
 $form->setLabel('asn','Jumlah ASN');
 
+$form->addInput('pelajar','plaintext');
+$form->setLabel('pelajar','Jumlah PELAJAR / MAHASISWA');
+
+$form->addInput('perangkat_desa','plaintext');
+$form->setLabel('perangkat_desa','Jumlah PERANGKAT DESA');
+
+$form->addInput('pedagang','plaintext');
+$form->setLabel('pedagang','Jumlah Pedagang');
+
 $form->addInput('tni','plaintext');
 $form->setLabel('tni','Jumlah TNI');
 
@@ -22,7 +31,7 @@ $form->addInput('karyawan_swasta','plaintext');
 $form->setLabel('karyawan_swasta','Jumlah Karyawan Swasta');
 
 $form->addInput('karyawan_bumn','plaintext');
-$form->setLabel('karyawan_bumn','Jumlah Karyawan BUMN/BUMN');
+$form->setLabel('karyawan_bumn','Jumlah Karyawan BUMN/BUMD');
 
 $form->addInput('petani','plaintext');
 $form->setLabel('petani','Jumlah Petani');
