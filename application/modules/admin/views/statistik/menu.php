@@ -22,7 +22,7 @@
           <td><a href="<?php echo base_url('admin/statistik/agama');?>" class="w-100 btn btn-danger">Agama</a></td>
           <td><a href="<?php echo base_url('admin/statistik/pendidikan');?>" class="w-100 btn btn-primary">Pendidikan</a></td>
           <td>
-            <?php if(is_root()):?>
+            <?php if(is_root() || is_admin()):?>
               <div class="input-group-btn">
                 <button type="button" class="w-100 btn btn-warning dropdown-toggle" data-toggle="dropdown">Sarana Prasarana
                   <span class="fa fa-caret-down"></span></button>
