@@ -67,6 +67,10 @@ if(is_desa())
     $form->setType('wiraswasta','number');
     $form->setLabel('wiraswasta','Jumlah Wiraswasta');
 
+    $form->addInput('pedagang','text');
+    $form->setType('pedagang','number');
+    $form->setLabel('pedagang','Jumlah Pedagang');
+
     $form->addInput('ibu_rumah_tangga','text');
     $form->setType('ibu_rumah_tangga','number');
     $form->setLabel('ibu_rumah_tangga','Jumlah Ibu Rumah Tangga');
