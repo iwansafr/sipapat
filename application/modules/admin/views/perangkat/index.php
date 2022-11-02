@@ -167,6 +167,8 @@ if(is_desa() || is_root())
 	$form->setEditLink(base_url('admin/perangkat/'.$module[$kelompok].'/edit?id='));
 	$form->setDelete(TRUE);
 }
+msg('perangkat desa yang masa jabatan sudah lewat, maka data akan diarsipkan dan tidak akan tampil, untuk perangkat desa yang sudah tidak menjabat tidak perlu dihapus namun cukup masa akhir jabatan dirubah menjadi tanggal yang sudah lewat dari hari ini','info');
+
 $form->form();
 if(is_root())
 {
