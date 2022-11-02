@@ -71,6 +71,10 @@ if(is_desa())
     $form->setType('pedagang','number');
     $form->setLabel('pedagang','Jumlah Pedagang');
 
+    $form->addInput('guru','text');
+    $form->setType('guru','number');
+    $form->setLabel('guru','Jumlah Guru');
+
     $form->addInput('ibu_rumah_tangga','text');
     $form->setType('ibu_rumah_tangga','number');
     $form->setLabel('ibu_rumah_tangga','Jumlah Ibu Rumah Tangga');

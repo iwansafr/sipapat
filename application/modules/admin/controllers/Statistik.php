@@ -88,6 +88,19 @@ class Statistik extends CI_Controller
 			);
 			$this->dbforge->add_column('statistik_penduduk',$fields);
 		}
+        if(!$this->db->field_exists('guru','statistik_penduduk'))
+		{
+			$this->load->dbforge();
+			$fields = array(
+                'guru' => array(
+                        'type' => 'INT',
+                        'constraint' => '11',
+                        'default' => '0',
+                        'after' => 'asn'
+                ),
+			);
+			$this->dbforge->add_column('statistik_penduduk',$fields);
+		}
         $this->load->view('index');
     }
     public function admin_pekerjaan_statistik()
