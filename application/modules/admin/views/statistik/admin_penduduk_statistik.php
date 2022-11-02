@@ -42,7 +42,7 @@ $statistik = $this->statistik_model->getStatistikPenduduk();
                     ?>
                     <tr>
                         <td><?php echo $key;?></td>
-                        <td><?php echo $value;?></td>
+                        <td><?php echo number_format($value,0,'.','.');;?></td>
                     </tr>
                     <?php
                 }
