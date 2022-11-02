@@ -16,7 +16,7 @@ if(is_admin() || is_root() || is_inspektorat())
 $form = new zea();
 $form->init('roll');
 // $form->setId(@intval($_GET['id']));
-$ext = (is_desa()) ? ' AND desa_id = '.$pengguna['desa_id'] : '';
+$ext = (is_desa()) ? ' AND desa_id = '.$pengguna['desa_id'].' AND akhir_masa_jabatan > "'.date('Y-m-d').'"'  : '';
 if(!empty($_GET['desa_id']) && (!is_desa()))
 {
 	$ext = ' AND desa_id = '.@intval($_GET['desa_id']);
