@@ -16,10 +16,10 @@ if(is_admin() || is_root() || is_inspektorat())
 $form = new zea();
 $form->init('roll');
 // $form->setId(@intval($_GET['id']));
-$ext = (is_desa()) ? ' AND desa_id = '.$pengguna['desa_id'].' AND akhir_masa_jabatan > "'.date('Y-m-d').'"'  : '';
+$ext = (is_desa()) ? ' AND desa_id = '.$pengguna['desa_id'].' AND akhir_masa_jabatan <= "'.date('Y-m-d').'"'  : '';
 if(!empty($_GET['desa_id']) && (!is_desa()))
 {
-	$ext = ' AND desa_id = '.@intval($_GET['desa_id']).' AND akhir_masa_jabatan > "'.date('Y-m-d').'"';
+	$ext = ' AND desa_id = '.@intval($_GET['desa_id']).' AND akhir_masa_jabatan <= "'.date('Y-m-d').'"';
 }
 if(is_kecamatan())
 {
@@ -160,7 +160,7 @@ if(is_admin() || is_root())
 
 $form->setFormName($module[$kelompok].'_desa_form');
 
-$form->setUrl('admin/perangkat/clear_list/'.$module[$kelompok]);
+$form->setUrl('admin/perangkat/clear_purna/'.$module[$kelompok]);
 if(is_desa() || is_root())
 {
 	$form->setEdit(TRUE);
