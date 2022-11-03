@@ -31,13 +31,13 @@ if(!empty($desa_id))
 	{
 		$form->setValue('kegiatan',"-\n-");
 	}
-	$form->setLabel('kegiatan','kegiatan <span style="background: red;color:white;">(nyalakan capslock saat input kegiatan)</span>');
+	$form->setLabel('kegiatan','kegiatan');
 	$form->addInput('peralatan','textarea');
 	if(empty($id))
 	{
 		$form->setValue('peralatan',"-\n-");
 	}
-	$form->setLabel('peralatan','peralatan / perlengkapan <span style="background: red;color:white;">(nyalakan capslock saat input peralatan)</span>');
+	$form->setLabel('peralatan','peralatan / perlengkapan');
 
 	$form->setRequired('All');
 
