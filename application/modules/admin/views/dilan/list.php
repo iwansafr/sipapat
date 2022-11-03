@@ -180,9 +180,9 @@ $form->setPlaintext('id','
 $form->addInput('no_kk','plaintext');
 $form->addInput('nik','plaintext');
 $form->addInput('nama','plaintext');
-$form->addInput('alamat','plaintext');
-$form->addInput('tgl_lhr','plaintext');
-$form->setLabel('alamat','desa');
+// $form->addInput('alamat','plaintext');
+// $form->addInput('tgl_lhr','plaintext');
+// $form->setLabel('alamat','desa');
 // $form->addInput('jk','dropdown');
 // $form->setOptions('jk',['1'=>'Laki-laki','2'=>'perempuan']);
 // $form->setAttribute('jk','disabled');
